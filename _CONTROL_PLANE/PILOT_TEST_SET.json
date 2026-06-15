@@ -1,0 +1,428 @@
+{
+  "schema_version": "1.0",
+  "name": "Project Geode Phase 4A CCR Pilot Test Set",
+  "purpose": "Canonical metadata for the first 15 CCR rules selected for full 8-layer pilot ingestion.",
+  "source_document": "docs/PILOT_TEST_SET.md",
+  "rules": [
+    {
+      "sequence": 1,
+      "ccr_number": "5 CCR 1001-5",
+      "canonical_id": "5_CCR_1001-5",
+      "title": "Regulation Number 3 - Stationary Source Permitting and Air Pollutant Emission Notice Requirements",
+      "department": "Department of Public Health and Environment",
+      "department_code": "1000",
+      "agency": "Air Quality Control Commission",
+      "agency_abbreviation_hint": "AQCC",
+      "format_available": "PDF + DOCX",
+      "format_status": "confirmed_docx_pdf",
+      "size_label": "large",
+      "estimated_page_range": {"min": 200, "max": null},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2337",
+      "key_test_focus": ["air quality", "permitting", "manufacturing"],
+      "why_selected": [
+        "Core air quality permitting regulation directly relevant to manufacturing.",
+        "Many CRS citations test citation extraction.",
+        "Complex multi-part structure tests structure parsing.",
+        "DOCX availability tests Path 1 conversion."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["air_quality", "emissions", "permitting"],
+        "industry_tags": ["manufacturing"],
+        "compliance_keywords": ["permit_required", "reporting"],
+        "tag_notes": ["energy"]
+      }
+    },
+    {
+      "sequence": 2,
+      "ccr_number": "5 CCR 1001-9",
+      "canonical_id": "5_CCR_1001-9",
+      "title": "Regulation Number 7 - Control of Emissions from Oil and Gas Operations",
+      "department": "Department of Public Health and Environment",
+      "department_code": "1000",
+      "agency": "Air Quality Control Commission",
+      "agency_abbreviation_hint": "AQCC",
+      "format_available": "PDF + DOCX",
+      "format_status": "confirmed_docx_pdf",
+      "size_label": "large",
+      "estimated_page_range": {"min": 150, "max": null},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2341",
+      "key_test_focus": ["energy", "oil gas", "complex structure"],
+      "why_selected": [
+        "Oil and gas is a major Colorado regulatory focus.",
+        "Tests energy and oil_gas tags.",
+        "Multi-part technical structure tests extraction depth.",
+        "Federal cross-references test CFR citation extraction."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["air_quality", "emissions", "oil_gas", "pipeline_safety"],
+        "industry_tags": ["oil_gas"],
+        "compliance_keywords": ["reporting", "monitoring"],
+        "tag_notes": ["energy"]
+      }
+    },
+    {
+      "sequence": 3,
+      "ccr_number": "6 CCR 1007-2",
+      "canonical_id": "6_CCR_1007-2",
+      "title": "Solid Waste Disposal Sites and Facilities",
+      "department": "Department of Public Health and Environment",
+      "department_code": "1000",
+      "agency": "Hazardous Materials and Waste Management Division",
+      "agency_abbreviation_hint": "HMWMD",
+      "format_available": "PDF + DOCX",
+      "format_status": "confirmed_docx_pdf",
+      "size_label": "medium",
+      "estimated_page_range": {"min": 50, "max": 80},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2367",
+      "key_test_focus": ["solid waste", "reference example"],
+      "why_selected": [
+        "Primary design-phase example.",
+        "Clean definitions section tests defined term extraction.",
+        "Clear enabling statute tests statute linkage.",
+        "Moderate complexity balances simple and complex rules."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["solid_waste", "permitting", "environment"],
+        "industry_tags": ["administrative_support"],
+        "compliance_keywords": ["permit_required", "inspection"],
+        "tag_notes": ["environmental_compliance", "waste_management"]
+      }
+    },
+    {
+      "sequence": 4,
+      "ccr_number": "1 CCR 201-2",
+      "canonical_id": "1_CCR_201-2",
+      "title": "Income Tax",
+      "department": "Department of Revenue",
+      "department_code": "900",
+      "agency": "Taxation Division",
+      "agency_abbreviation_hint": null,
+      "format_available": "PDF + DOCX",
+      "format_status": "confirmed_docx_pdf",
+      "size_label": "large",
+      "estimated_page_range": {"min": 200, "max": null},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=1936",
+      "key_test_focus": ["tax tables", "rate schedules", "finance"],
+      "why_selected": [
+        "Tax regulations contain tables, rate schedules, and formulas.",
+        "Heavy CRS Title 39 cross-reference volume tests citation extraction.",
+        "Broad business relevance.",
+        "Frequent amendments test versioning assumptions."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["business_regulation", "reporting"],
+        "industry_tags": ["finance_insurance", "small_business"],
+        "compliance_keywords": ["reporting", "fees"],
+        "tag_notes": ["taxation", "tax tables"]
+      }
+    },
+    {
+      "sequence": 5,
+      "ccr_number": "1 CCR 201-4",
+      "canonical_id": "1_CCR_201-4",
+      "title": "Sales and Use Tax",
+      "department": "Department of Revenue",
+      "department_code": "900",
+      "agency": "Taxation Division",
+      "agency_abbreviation_hint": null,
+      "format_available": "PDF + DOCX",
+      "format_status": "confirmed_docx_pdf",
+      "size_label": "large",
+      "estimated_page_range": {"min": 150, "max": null},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=1938",
+      "key_test_focus": ["retail", "business", "high cross-ref count"],
+      "why_selected": [
+        "Sales tax rules are frequently referenced by small businesses.",
+        "Exemption lists test exception extraction.",
+        "Many CRS Title 39 cross-references.",
+        "Tests retail and business-regulation tagging."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["business_regulation", "consumer_protection", "disclosure"],
+        "industry_tags": ["retail_trade", "finance_insurance", "small_business"],
+        "compliance_keywords": ["disclosure", "fees", "reporting"],
+        "tag_notes": ["taxation"]
+      }
+    },
+    {
+      "sequence": 6,
+      "ccr_number": "7 CCR 1103-1",
+      "canonical_id": "7_CCR_1103-1",
+      "title": "Minimum Wage",
+      "department": "Department of Labor and Employment",
+      "department_code": "300",
+      "agency": "Division of Labor Standards and Statistics",
+      "agency_abbreviation_hint": "DLSS",
+      "format_available": "PDF + DOCX (expected)",
+      "format_status": "expected_docx_pdf",
+      "size_label": "short",
+      "estimated_page_range": {"min": 5, "max": 15},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=3154",
+      "key_test_focus": ["wages", "labor", "simple baseline"],
+      "why_selected": [
+        "Short, simple regulation tests minimal input.",
+        "Clear obligations provide baseline rule-unit decomposition.",
+        "Tests wages_hours and labor_employment tags.",
+        "Verifies pipeline behavior on very short documents."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["wages_hours", "labor_employment"],
+        "industry_tags": ["small_business"],
+        "compliance_keywords": ["reporting"],
+        "tag_notes": []
+      }
+    },
+    {
+      "sequence": 7,
+      "ccr_number": "7 CCR 1103-7",
+      "canonical_id": "7_CCR_1103-7",
+      "title": "Colorado Overtime and Minimum Pay Standards Order (COMPS Order)",
+      "department": "Department of Labor and Employment",
+      "department_code": "300",
+      "agency": "Division of Labor Standards and Statistics",
+      "agency_abbreviation_hint": "DLSS",
+      "format_available": "PDF + DOCX (expected)",
+      "format_status": "expected_docx_pdf",
+      "size_label": "medium",
+      "estimated_page_range": {"min": 30, "max": 50},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=3574",
+      "key_test_focus": ["workplace standards", "heavily referenced"],
+      "why_selected": [
+        "Commonly referenced Colorado employment regulation.",
+        "Contains exemptions and industry-specific rules.",
+        "Wage tables test table handling.",
+        "Tests exception preservation across regulated entity types."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["wages_hours", "workplace_safety", "labor_employment"],
+        "industry_tags": ["small_business"],
+        "compliance_keywords": ["reporting", "recordkeeping"],
+        "tag_notes": []
+      }
+    },
+    {
+      "sequence": 8,
+      "ccr_number": "2 CCR 502-1",
+      "canonical_id": "2_CCR_502-1",
+      "title": "Behavioral Health",
+      "department": "Department of Human Services",
+      "department_code": "700",
+      "agency": "Behavioral Health Administration",
+      "agency_abbreviation_hint": "BHA",
+      "format_available": "PDF + DOCX",
+      "format_status": "confirmed_docx_pdf",
+      "size_label": "large",
+      "estimated_page_range": {"min": 150, "max": null},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2157",
+      "key_test_focus": ["healthcare", "definitions-heavy"],
+      "why_selected": [
+        "Definition-heavy regulation stress tests defined-term extraction.",
+        "Behavioral health domain tests public-health ontology coverage.",
+        "Complex licensing requirements test multiple rule types.",
+        "Emergency rule history tests status handling."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["behavioral_health", "health_facilities", "public_health"],
+        "industry_tags": ["healthcare"],
+        "compliance_keywords": ["license_required", "reporting"],
+        "tag_notes": []
+      }
+    },
+    {
+      "sequence": 9,
+      "ccr_number": "12 CCR 2509-2",
+      "canonical_id": "12_CCR_2509-2",
+      "title": "Referral and Assessment (Child Welfare)",
+      "department": "Department of Human Services",
+      "department_code": "700",
+      "agency": "Division of Child Welfare",
+      "agency_abbreviation_hint": null,
+      "format_available": "PDF + DOCX",
+      "format_status": "confirmed_docx_pdf",
+      "size_label": "medium",
+      "estimated_page_range": {"min": 40, "max": 60},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2821",
+      "key_test_focus": ["human services", "different structure"],
+      "why_selected": [
+        "Different structure from environmental regulations.",
+        "Social services domain broadens pipeline coverage.",
+        "Tests parser resilience to varied formatting.",
+        "Cross-references multiple CRS titles."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["public_health", "government_operations"],
+        "industry_tags": ["healthcare", "public_administration"],
+        "compliance_keywords": ["reporting", "recordkeeping"],
+        "tag_notes": ["child_welfare", "human_services"]
+      }
+    },
+    {
+      "sequence": 10,
+      "ccr_number": "3 CCR 716-1",
+      "canonical_id": "3_CCR_716-1",
+      "title": "Rules Regarding Real Estate Brokers",
+      "department": "Department of Regulatory Agencies (DORA)",
+      "department_code": "800",
+      "agency": "Real Estate Commission",
+      "agency_abbreviation_hint": "REC",
+      "format_available": "PDF + DOCX (expected)",
+      "format_status": "expected_docx_pdf",
+      "size_label": "medium",
+      "estimated_page_range": {"min": 40, "max": 80},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=660",
+      "key_test_focus": ["professional licensing", "real estate"],
+      "why_selected": [
+        "DORA professional licensing uses a different regulatory style.",
+        "Tests real_estate_licensing and professional_licensing tags.",
+        "Practice, ethics, and disclosure standards test varied obligations.",
+        "Tests license, disclosure, and fee compliance keywords."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["professional_licensing", "real_estate_licensing", "disclosure"],
+        "industry_tags": ["real_estate"],
+        "compliance_keywords": ["license_required", "disclosure", "fees"],
+        "tag_notes": []
+      }
+    },
+    {
+      "sequence": 11,
+      "ccr_number": "4 CCR 801-1",
+      "canonical_id": "4_CCR_801-1",
+      "title": "State Personnel Board Rules and Personnel Director's Administrative Procedures",
+      "department": "Department of Personnel and Administration",
+      "department_code": "1400",
+      "agency": "State Personnel Board / State Personnel Director",
+      "agency_abbreviation_hint": "SPB",
+      "format_available": "PDF + DOCX",
+      "format_status": "confirmed_docx_pdf",
+      "size_label": "very_large",
+      "estimated_page_range": {"min": 300, "max": null},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2328",
+      "key_test_focus": ["government operations", "longest doc stress test"],
+      "why_selected": [
+        "Very large regulation stress tests long document handling.",
+        "Tests chunking and context-window behavior.",
+        "Government operations domain tests state_operations tags.",
+        "Complex hierarchy tests subsection parsing."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["state_operations", "government_operations"],
+        "industry_tags": ["public_administration"],
+        "compliance_keywords": ["reporting", "recordkeeping"],
+        "tag_notes": []
+      }
+    },
+    {
+      "sequence": 12,
+      "ccr_number": "2 CCR 404-1",
+      "canonical_id": "2_CCR_404-1",
+      "title": "Rules and Regulations for Oil and Gas Conservation",
+      "department": "Department of Natural Resources",
+      "department_code": "400",
+      "agency": "Colorado Oil and Gas Conservation Commission",
+      "agency_abbreviation_hint": "COGCC",
+      "format_available": "PDF + DOCX (expected)",
+      "format_status": "expected_docx_pdf",
+      "size_label": "large",
+      "estimated_page_range": {"min": 200, "max": null},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=178",
+      "key_test_focus": ["oil gas", "mining", "complex cross-refs"],
+      "why_selected": [
+        "Major Colorado energy regulation.",
+        "Tests oil_gas, mining, energy, and pipeline_safety tags.",
+        "Technical standards test detailed extraction.",
+        "Heavy state and federal cross-references test citation extraction."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["oil_gas", "mining", "pipeline_safety", "energy"],
+        "industry_tags": ["oil_gas", "mining"],
+        "compliance_keywords": ["permit_required", "reporting", "inspection"],
+        "tag_notes": []
+      }
+    },
+    {
+      "sequence": 13,
+      "ccr_number": "8 CCR 1202-10",
+      "canonical_id": "8_CCR_1202-10",
+      "title": "Colorado Pesticide Applicators Act Rules",
+      "department": "Department of Agriculture",
+      "department_code": "100",
+      "agency": "Division of Plant Industry",
+      "agency_abbreviation_hint": null,
+      "format_available": "PDF + DOCX (expected)",
+      "format_status": "expected_docx_pdf",
+      "size_label": "short",
+      "estimated_page_range": {"min": 10, "max": 20},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=17",
+      "key_test_focus": ["agriculture", "pesticides", "simple"],
+      "why_selected": [
+        "Agriculture domain differs from other pilot rules.",
+        "Short regulation provides a second baseline.",
+        "Tests agriculture and pesticides tags.",
+        "Certification and licensing requirements test compliance keywords."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["agriculture", "pesticides"],
+        "industry_tags": ["agriculture"],
+        "compliance_keywords": ["certification_required", "license_required"],
+        "tag_notes": []
+      }
+    },
+    {
+      "sequence": 14,
+      "ccr_number": "1 CCR 301-39",
+      "canonical_id": "1_CCR_301-39",
+      "title": "Rules for the Administration of Educator Licensing Act of 1991",
+      "department": "Department of Education",
+      "department_code": "200",
+      "agency": "State Board of Education",
+      "agency_abbreviation_hint": "SBE",
+      "format_available": "PDF + DOCX (expected)",
+      "format_status": "expected_docx_pdf",
+      "size_label": "medium",
+      "estimated_page_range": {"min": 50, "max": 80},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=1870",
+      "key_test_focus": ["education", "teacher licensing"],
+      "why_selected": [
+        "Education domain adds a distinct regulatory style.",
+        "Tests education and teacher_licensing tags.",
+        "Licensing tiers and endorsements test categorization.",
+        "References CRS Title 22."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["education", "teacher_licensing"],
+        "industry_tags": ["education_services"],
+        "compliance_keywords": ["license_required", "certification_required"],
+        "tag_notes": []
+      }
+    },
+    {
+      "sequence": 15,
+      "ccr_number": "8 CCR 1507-1",
+      "canonical_id": "8_CCR_1507-1",
+      "title": "Rules of the Colorado Peace Officers Standards and Training Board (POST)",
+      "department": "Department of Public Safety",
+      "department_code": "1500",
+      "agency": "Peace Officers Standards and Training Board",
+      "agency_abbreviation_hint": "POST",
+      "format_available": "PDF + DOCX (expected)",
+      "format_status": "expected_docx_pdf",
+      "size_label": "medium",
+      "estimated_page_range": {"min": 40, "max": 60},
+      "sos_rule_info_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2696",
+      "key_test_focus": ["criminal justice", "training"],
+      "why_selected": [
+        "Criminal justice and public safety domain.",
+        "Tests certification and training extraction.",
+        "Different regulatory voice and structure.",
+        "Certification standards for law enforcement."
+      ],
+      "expected_ontology_tags": {
+        "subject_tags": ["criminal_justice"],
+        "industry_tags": ["public_administration"],
+        "compliance_keywords": ["certification_required", "training_required"],
+        "tag_notes": []
+      }
+    }
+  ]
+}

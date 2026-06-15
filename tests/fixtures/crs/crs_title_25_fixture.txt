@@ -1,0 +1,29 @@
+---
+source_id: crs_2025_title_25_fixture
+source_url: https://leg.colorado.gov/colorado-revised-statutes
+source_format: fixture
+retrieved_at: 2026-06-15T00:00:00Z
+publication_year: 2025
+title_number: 25
+title_name: Public Health and Environment
+---
+# Title 25 - Public Health and Environment
+
+## Article 7 - Air Quality Control
+
+### Part 1 - General Provisions
+
+#### 25-7-109. Commission - powers and duties.
+
+(1) The commission shall promulgate rules necessary for the proper implementation and
+administration of this article 7.
+
+(2) The commission may consult with any person who is subject to requirements under
+25-7-114 before adopting rules.
+
+#### 25-7-114. Emission control regulations.
+
+(1) The commission may adopt emission control regulations applicable to stationary sources.
+
+(2) A person subject to an emission control regulation shall comply with the schedule
+stated in the regulation.

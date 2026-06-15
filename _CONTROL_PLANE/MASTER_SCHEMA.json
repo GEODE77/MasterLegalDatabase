@@ -1,0 +1,884 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project-geode.local/schema/master.schema.json",
+  "title": "Project Geode Master Schema",
+  "description": "Formal JSON Schema definitions for Project Geode legal authority records.",
+  "type": "object",
+  "oneOf": [
+    {"$ref": "#/$defs/statute_section"},
+    {"$ref": "#/$defs/regulation_rule"},
+    {"$ref": "#/$defs/bill"},
+    {"$ref": "#/$defs/rulemaking_notice"},
+    {"$ref": "#/$defs/executive_order"},
+    {"$ref": "#/$defs/session_law"},
+    {"$ref": "#/$defs/ag_opinion"},
+    {"$ref": "#/$defs/coprrr_review"},
+    {"$ref": "#/$defs/rule_unit"},
+    {"$ref": "#/$defs/crosswalk_entry"},
+    {"$ref": "#/$defs/timeline_event"},
+    {"$ref": "#/$defs/agency"}
+  ],
+  "$defs": {
+    "ConfidenceScore": {
+      "type": "object",
+      "description": "Per-record and optional per-field confidence scores.",
+      "additionalProperties": false,
+      "required": ["overall"],
+      "properties": {
+        "overall": {
+          "type": "number",
+          "description": "Overall confidence from 0.0 to 1.0.",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "fields": {
+          "type": "object",
+          "description": "Optional field-level confidence values keyed by field name.",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "route": {
+          "type": "string",
+          "description": "Optional pipeline routing outcome.",
+          "enum": ["auto_accept", "flag_accept", "quarantine", "reject"]
+        }
+      }
+    },
+    "Sponsor": {
+      "type": "object",
+      "description": "Legislative bill sponsor.",
+      "additionalProperties": false,
+      "required": ["name", "chamber", "role"],
+      "properties": {
+        "name": {"type": "string", "description": "Sponsor display name."},
+        "party": {"type": ["string", "null"], "description": "Political party if known."},
+        "chamber": {
+          "type": "string",
+          "description": "Legislative chamber.",
+          "enum": ["Senate", "House"]
+        },
+        "role": {"type": "string", "description": "Sponsor role, such as primary."}
+      }
+    },
+    "HistoryEvent": {
+      "type": "object",
+      "description": "One chronological amendment-history event.",
+      "additionalProperties": false,
+      "required": ["date", "action"],
+      "properties": {
+        "date": {"type": "string", "description": "Event date.", "format": "date"},
+        "action": {"type": "string", "description": "Action taken on the entity."},
+        "bill": {"type": ["string", "null"], "description": "Bill ID, if applicable."}
+      }
+    },
+    "statute_section": {
+      "type": "object",
+      "description": "A Colorado Revised Statutes section.",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "id",
+        "title_num",
+        "title_name",
+        "article_num",
+        "article_name",
+        "section_num",
+        "section_heading",
+        "full_text",
+        "subject_tags",
+        "industry_tags",
+        "source_url",
+        "data_retrieved",
+        "data_version",
+        "confidence"
+      ],
+      "properties": {
+        "entity_type": {
+          "const": "statute_section",
+          "description": "Entity type discriminator."
+        },
+        "id": {
+          "type": "string",
+          "description": "Canonical CRS section ID.",
+          "pattern": "^CRS-[0-9]{1,2}(?:\\.[0-9]+)?-[0-9]+(?:\\.[0-9]+)?-[0-9]+(?:\\.[0-9]+)?$"
+        },
+        "title_num": {"type": "integer", "description": "CRS title number from 1 to 44."},
+        "title_name": {"type": "string", "description": "Official CRS title name."},
+        "article_num": {"type": "integer", "description": "CRS article number."},
+        "article_name": {"type": "string", "description": "Official article name."},
+        "part_num": {"type": ["integer", "null"], "description": "Part number if present."},
+        "part_name": {"type": ["string", "null"], "description": "Part name if present."},
+        "section_num": {"type": "string", "description": "Full official section number."},
+        "section_heading": {"type": "string", "description": "Official section heading."},
+        "full_text": {"type": "string", "description": "Complete unmodified legal text."},
+        "effective_date": {
+          "type": ["string", "null"],
+          "description": "Date this version took effect if known.",
+          "format": "date"
+        },
+        "last_amended_session": {
+          "type": ["string", "null"],
+          "description": "Session year of the last known amendment."
+        },
+        "last_amended_by": {
+          "type": "array",
+          "description": "Bill IDs that last amended the section.",
+          "items": {"type": "string"}
+        },
+        "history_note": {
+          "type": ["string", "null"],
+          "description": "Legislative history note."
+        },
+        "subject_tags": {
+          "type": "array",
+          "description": "Ontology subject tags.",
+          "items": {"type": "string"}
+        },
+        "industry_tags": {
+          "type": "array",
+          "description": "Ontology industry tags.",
+          "items": {"type": "string"}
+        },
+        "cross_references_outbound": {
+          "type": "array",
+          "description": "Canonical IDs referenced by this section.",
+          "items": {"type": "string"}
+        },
+        "enabling_agencies": {
+          "type": "array",
+          "description": "Agency IDs enabled or governed by this section.",
+          "items": {"type": "string"}
+        },
+        "related_regulations": {
+          "type": "array",
+          "description": "CCR regulation IDs related to this section.",
+          "items": {"type": "string"}
+        },
+        "source_url": {"type": "string", "description": "Official source URL.", "format": "uri"},
+        "data_retrieved": {
+          "type": "string",
+          "description": "Date the data was retrieved.",
+          "format": "date"
+        },
+        "data_version": {"type": "string", "description": "Source data version ID."},
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      },
+      "examples": [
+        {
+          "entity_type": "statute_section",
+          "id": "CRS-25-7-109",
+          "title_num": 25,
+          "title_name": "Public Health and Environment",
+          "article_num": 7,
+          "article_name": "Air Quality Control",
+          "part_num": null,
+          "part_name": null,
+          "section_num": "25-7-109",
+          "section_heading": "Emission control regulations",
+          "full_text": "(1) The commission shall promulgate...",
+          "effective_date": "2023-07-01",
+          "last_amended_session": "2023",
+          "last_amended_by": ["SB23-016"],
+          "history_note": null,
+          "subject_tags": ["air_quality", "emissions"],
+          "industry_tags": ["manufacturing", "energy"],
+          "cross_references_outbound": [],
+          "enabling_agencies": [],
+          "related_regulations": [],
+          "source_url": "https://leg.colorado.gov/colorado-revised-statutes",
+          "data_retrieved": "2026-06-10",
+          "data_version": "2025_session_final",
+          "confidence": {"overall": 0.95}
+        }
+      ]
+    },
+    "regulation_rule": {
+      "type": "object",
+      "description": "An administrative rule from the Code of Colorado Regulations.",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "id",
+        "ccr_number",
+        "title",
+        "department",
+        "department_code",
+        "agency",
+        "agency_code",
+        "enabling_statutes",
+        "effective_date",
+        "status",
+        "full_text",
+        "chunk_level_3_summary",
+        "subject_tags",
+        "industry_tags",
+        "source_url",
+        "source_format",
+        "extraction_method",
+        "confidence"
+      ],
+      "properties": {
+        "entity_type": {"const": "regulation_rule", "description": "Entity type discriminator."},
+        "id": {
+          "type": "string",
+          "description": "Canonical CCR rule ID.",
+          "pattern": "^[0-9]{1,2}_CCR_[0-9]+-[0-9]+(?:-[0-9]+)?$"
+        },
+        "ccr_number": {"type": "string", "description": "Official CCR number."},
+        "title": {"type": "string", "description": "Rule title."},
+        "department": {"type": "string", "description": "Department name."},
+        "department_code": {"type": "string", "description": "Department numeric code."},
+        "agency": {"type": "string", "description": "Issuing agency."},
+        "agency_code": {"type": "string", "description": "Agency code from registry."},
+        "enabling_statutes": {
+          "type": "array",
+          "description": "CRS IDs authorizing the rule.",
+          "items": {"type": "string"}
+        },
+        "effective_date": {"type": "string", "description": "Effective date.", "format": "date"},
+        "status": {
+          "type": "string",
+          "description": "Rule status.",
+          "enum": ["active", "repealed", "superseded", "emergency", "expired"]
+        },
+        "full_text": {"type": "string", "description": "Complete rule text."},
+        "chunk_level_3_summary": {
+          "type": "string",
+          "description": "Plain-English discovery summary."
+        },
+        "subject_tags": {
+          "type": "array",
+          "description": "Ontology subject tags.",
+          "items": {"type": "string"}
+        },
+        "industry_tags": {
+          "type": "array",
+          "description": "Ontology industry tags.",
+          "items": {"type": "string"}
+        },
+        "compliance_keywords": {
+          "type": "array",
+          "description": "Ontology compliance keywords.",
+          "items": {"type": "string"}
+        },
+        "source_url": {"type": "string", "description": "Official source URL.", "format": "uri"},
+        "source_format": {
+          "type": "string",
+          "description": "Original source format.",
+          "enum": ["pdf", "docx"]
+        },
+        "extraction_method": {"type": "string", "description": "Extraction method name."},
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      },
+      "examples": [
+        {
+          "entity_type": "regulation_rule",
+          "id": "5_CCR_1001-9",
+          "ccr_number": "5 CCR 1001-9",
+          "title": "Regulation 3 - Stationary Source Permitting",
+          "department": "Public Health and Environment",
+          "department_code": "1000",
+          "agency": "Air Quality Control Commission",
+          "agency_code": "CDPHE_AQCC",
+          "enabling_statutes": ["CRS-25-7-109", "CRS-25-7-110"],
+          "effective_date": "2024-01-15",
+          "status": "active",
+          "full_text": "PART A...",
+          "chunk_level_3_summary": "Establishes permitting for stationary air pollution sources.",
+          "subject_tags": ["air_quality", "permitting"],
+          "industry_tags": ["manufacturing", "energy"],
+          "compliance_keywords": ["permit_required"],
+          "source_url": "https://www.sos.state.co.us/CCR/Welcome.do",
+          "source_format": "docx",
+          "extraction_method": "docx_structural_parse",
+          "confidence": {"overall": 0.94}
+        }
+      ]
+    },
+    "bill": {
+      "type": "object",
+      "description": "A Colorado legislative bill.",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "id",
+        "session",
+        "chamber",
+        "bill_number",
+        "title",
+        "sponsors",
+        "status",
+        "status_date",
+        "introduced_date",
+        "subject_tags",
+        "source_url",
+        "confidence"
+      ],
+      "properties": {
+        "entity_type": {"const": "bill", "description": "Entity type discriminator."},
+        "id": {
+          "type": "string",
+          "description": "Canonical bill ID.",
+          "pattern": "^(SB|HB|SCR|HCR|SJR|HJR)[0-9]{2}-[0-9]{3}$"
+        },
+        "session": {"type": "string", "description": "Legislative session year."},
+        "chamber": {
+          "type": "string",
+          "description": "Origin chamber.",
+          "enum": ["Senate", "House"]
+        },
+        "bill_number": {"type": "string", "description": "Bill number."},
+        "title": {"type": "string", "description": "Short bill title."},
+        "sponsors": {
+          "type": "array",
+          "description": "Bill sponsor records.",
+          "items": {"$ref": "#/$defs/Sponsor"}
+        },
+        "status": {
+          "type": "string",
+          "description": "Current bill status.",
+          "enum": ["signed", "vetoed", "in_committee", "active", "expired"]
+        },
+        "status_date": {"type": "string", "description": "Latest status date.", "format": "date"},
+        "introduced_date": {"type": "string", "description": "Introduction date.", "format": "date"},
+        "statutes_amended": {
+          "type": "array",
+          "description": "CRS sections amended by this bill.",
+          "items": {"type": "string"}
+        },
+        "statutes_created": {
+          "type": "array",
+          "description": "CRS sections created by this bill.",
+          "items": {"type": "string"}
+        },
+        "statutes_repealed": {
+          "type": "array",
+          "description": "CRS sections repealed by this bill.",
+          "items": {"type": "string"}
+        },
+        "subject_tags": {
+          "type": "array",
+          "description": "Ontology subject tags.",
+          "items": {"type": "string"}
+        },
+        "source_url": {"type": "string", "description": "LegiScan or official source URL.", "format": "uri"},
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      },
+      "examples": [
+        {
+          "entity_type": "bill",
+          "id": "SB23-016",
+          "session": "2023",
+          "chamber": "Senate",
+          "bill_number": "016",
+          "title": "Air Quality Control Amendments",
+          "sponsors": [{"name": "Doe, Jane", "party": "D", "chamber": "Senate", "role": "primary"}],
+          "status": "signed",
+          "status_date": "2023-06-02",
+          "introduced_date": "2023-01-15",
+          "statutes_amended": ["CRS-25-7-109"],
+          "statutes_created": [],
+          "statutes_repealed": [],
+          "subject_tags": ["air_quality"],
+          "source_url": "https://legiscan.com/CO",
+          "confidence": {"overall": 0.98}
+        }
+      ]
+    },
+    "rulemaking_notice": {
+      "type": "object",
+      "description": "A Colorado Register rulemaking notice.",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "id",
+        "notice_type",
+        "ccr_rule_affected",
+        "agency_code",
+        "summary",
+        "publication_date",
+        "subject_tags",
+        "source_url",
+        "confidence"
+      ],
+      "properties": {
+        "entity_type": {"const": "rulemaking_notice", "description": "Entity type discriminator."},
+        "id": {"type": "string", "description": "Canonical notice ID.", "pattern": "^RM-[0-9]{4}-[A-Za-z0-9_-]+$"},
+        "notice_type": {
+          "type": "string",
+          "description": "Notice type.",
+          "enum": ["proposed", "adopted", "emergency", "amended", "repealed"]
+        },
+        "ccr_rule_affected": {"type": "string", "description": "CCR rule modified by the notice."},
+        "agency_code": {"type": "string", "description": "Agency code from registry."},
+        "summary": {"type": "string", "description": "Notice summary."},
+        "hearing_date": {"type": ["string", "null"], "description": "Hearing date if known.", "format": "date"},
+        "effective_date": {"type": ["string", "null"], "description": "Effective date if known.", "format": "date"},
+        "publication_date": {"type": "string", "description": "Publication date.", "format": "date"},
+        "subject_tags": {
+          "type": "array",
+          "description": "Ontology subject tags.",
+          "items": {"type": "string"}
+        },
+        "source_url": {"type": "string", "description": "Official source URL.", "format": "uri"},
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      },
+      "examples": [
+        {
+          "entity_type": "rulemaking_notice",
+          "id": "RM-2023-00847",
+          "notice_type": "adopted",
+          "ccr_rule_affected": "5_CCR_1001-9",
+          "agency_code": "CDPHE_AQCC",
+          "summary": "Amendments to Reg 3 updating thresholds.",
+          "hearing_date": null,
+          "effective_date": "2024-01-15",
+          "publication_date": "2023-12-10",
+          "subject_tags": ["air_quality"],
+          "source_url": "https://www.sos.state.co.us/CCR/eDocketPublic.do",
+          "confidence": {"overall": 0.92}
+        }
+      ]
+    },
+    "executive_order": {
+      "type": "object",
+      "description": "A Colorado Governor executive order.",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "id",
+        "order_number",
+        "title",
+        "governor",
+        "signed_date",
+        "status",
+        "full_text",
+        "summary",
+        "subject_tags",
+        "source_url",
+        "confidence"
+      ],
+      "properties": {
+        "entity_type": {"const": "executive_order", "description": "Entity type discriminator."},
+        "id": {"type": "string", "description": "Canonical executive order ID.", "pattern": "^EO-[0-9]{4}-[0-9]{3}$"},
+        "order_number": {"type": "string", "description": "Official order number."},
+        "title": {"type": "string", "description": "Executive order title."},
+        "governor": {"type": "string", "description": "Governor name."},
+        "signed_date": {"type": "string", "description": "Date signed.", "format": "date"},
+        "status": {
+          "type": "string",
+          "description": "Order status.",
+          "enum": ["active", "rescinded", "expired", "superseded"]
+        },
+        "full_text": {"type": "string", "description": "Complete order text."},
+        "summary": {"type": "string", "description": "Grounded summary."},
+        "statutes_cited": {
+          "type": "array",
+          "description": "Statutes cited by the order.",
+          "items": {"type": "string"}
+        },
+        "subject_tags": {
+          "type": "array",
+          "description": "Ontology subject tags.",
+          "items": {"type": "string"}
+        },
+        "source_url": {"type": "string", "description": "Official source URL.", "format": "uri"},
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      },
+      "examples": [
+        {
+          "entity_type": "executive_order",
+          "id": "EO-2025-003",
+          "order_number": "D 2025 003",
+          "title": "State Agency Use of AI",
+          "governor": "Polis, Jared",
+          "signed_date": "2025-03-01",
+          "status": "active",
+          "full_text": "WHEREAS...",
+          "summary": "Directs state agencies to develop AI use policies.",
+          "statutes_cited": ["CRS-24-37.5-101"],
+          "subject_tags": ["technology", "ai_governance"],
+          "source_url": "https://www.colorado.gov/governor/executive-orders",
+          "confidence": {"overall": 0.9}
+        }
+      ]
+    },
+    "session_law": {
+      "type": "object",
+      "description": "An enacted session law.",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "id",
+        "session_year",
+        "chapter",
+        "title",
+        "summary",
+        "subject_tags",
+        "source_url",
+        "confidence"
+      ],
+      "properties": {
+        "entity_type": {"const": "session_law", "description": "Entity type discriminator."},
+        "id": {"type": "string", "description": "Canonical session law ID.", "pattern": "^SL-[0-9]{4}-[0-9]+$"},
+        "session_year": {"type": "string", "description": "Legislative session year."},
+        "chapter": {"type": "string", "description": "Session law chapter number."},
+        "bill_id": {"type": ["string", "null"], "description": "Related bill ID if known."},
+        "title": {"type": "string", "description": "Session law title."},
+        "effective_date": {"type": ["string", "null"], "description": "Effective date if known.", "format": "date"},
+        "statutes_affected": {
+          "type": "array",
+          "description": "CRS sections affected.",
+          "items": {"type": "string"}
+        },
+        "summary": {"type": "string", "description": "Grounded summary."},
+        "subject_tags": {
+          "type": "array",
+          "description": "Ontology subject tags.",
+          "items": {"type": "string"}
+        },
+        "source_url": {"type": "string", "description": "Official source URL.", "format": "uri"},
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      },
+      "examples": [
+        {
+          "entity_type": "session_law",
+          "id": "SL-2023-142",
+          "session_year": "2023",
+          "chapter": "142",
+          "bill_id": "SB23-016",
+          "title": "Air Quality Amendments",
+          "effective_date": "2023-07-01",
+          "statutes_affected": ["CRS-25-7-109"],
+          "summary": "Amends CRS 25-7-109.",
+          "subject_tags": ["air_quality"],
+          "source_url": "https://leg.colorado.gov/session-laws",
+          "confidence": {"overall": 0.85}
+        }
+      ]
+    },
+    "ag_opinion": {
+      "type": "object",
+      "description": "A formal Colorado Attorney General opinion.",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "id",
+        "opinion_number",
+        "title",
+        "attorney_general",
+        "issued_date",
+        "summary",
+        "subject_tags",
+        "source_url",
+        "confidence"
+      ],
+      "properties": {
+        "entity_type": {"const": "ag_opinion", "description": "Entity type discriminator."},
+        "id": {"type": "string", "description": "Canonical AG opinion ID.", "pattern": "^AGO-[0-9]{4}-[0-9]+$"},
+        "opinion_number": {"type": "string", "description": "Official opinion number."},
+        "title": {"type": "string", "description": "Opinion title."},
+        "attorney_general": {"type": "string", "description": "Attorney General name."},
+        "issued_date": {"type": "string", "description": "Date issued.", "format": "date"},
+        "statutes_interpreted": {
+          "type": "array",
+          "description": "Statutes interpreted by the opinion.",
+          "items": {"type": "string"}
+        },
+        "summary": {"type": "string", "description": "Grounded summary."},
+        "subject_tags": {
+          "type": "array",
+          "description": "Ontology subject tags.",
+          "items": {"type": "string"}
+        },
+        "source_url": {"type": "string", "description": "Official source URL.", "format": "uri"},
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      },
+      "examples": [
+        {
+          "entity_type": "ag_opinion",
+          "id": "AGO-2024-001",
+          "opinion_number": "24-01",
+          "title": "Municipal Authority over Short-Term Rentals",
+          "attorney_general": "Weiser, Phil",
+          "issued_date": "2024-03-15",
+          "statutes_interpreted": ["CRS-29-20-104"],
+          "summary": "Municipalities have broad authority to regulate STRs.",
+          "subject_tags": ["housing", "municipal_authority"],
+          "source_url": "https://coag.gov/opinions/",
+          "confidence": {"overall": 0.88}
+        }
+      ]
+    },
+    "coprrr_review": {
+      "type": "object",
+      "description": "A COPRRR sunrise or sunset review.",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "id",
+        "review_type",
+        "program_reviewed",
+        "agency_code",
+        "publication_date",
+        "recommendation",
+        "summary",
+        "subject_tags",
+        "source_url",
+        "confidence"
+      ],
+      "properties": {
+        "entity_type": {"const": "coprrr_review", "description": "Entity type discriminator."},
+        "id": {"type": "string", "description": "Canonical COPRRR review ID.", "pattern": "^COPRRR-[0-9]{4}-[A-Za-z0-9_-]+$"},
+        "review_type": {
+          "type": "string",
+          "description": "Review type.",
+          "enum": ["sunrise", "sunset"]
+        },
+        "program_reviewed": {"type": "string", "description": "Program reviewed."},
+        "agency_code": {"type": "string", "description": "Agency code from registry."},
+        "publication_date": {"type": "string", "description": "Publication date.", "format": "date"},
+        "recommendation": {"type": "string", "description": "Review recommendation."},
+        "summary": {"type": "string", "description": "Grounded summary."},
+        "subject_tags": {
+          "type": "array",
+          "description": "Ontology subject tags.",
+          "items": {"type": "string"}
+        },
+        "source_url": {"type": "string", "description": "Official source URL.", "format": "uri"},
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      },
+      "examples": [
+        {
+          "entity_type": "coprrr_review",
+          "id": "COPRRR-2023-AUD",
+          "review_type": "sunset",
+          "program_reviewed": "State Board of Accountancy",
+          "agency_code": "DORA_DPO",
+          "publication_date": "2023-10-15",
+          "recommendation": "continue with modifications",
+          "summary": "Continue accountancy licensing with modifications.",
+          "subject_tags": ["professional_licensing"],
+          "source_url": "https://coprrr.colorado.gov/",
+          "confidence": {"overall": 0.85}
+        }
+      ]
+    },
+    "rule_unit": {
+      "type": "object",
+      "description": "An atomic obligation, prohibition, permission, or related rule unit.",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "id",
+        "parent_regulation_id",
+        "source_section",
+        "rule_type",
+        "regulated_entity",
+        "action_required",
+        "plain_english_summary",
+        "subject_tags",
+        "confidence"
+      ],
+      "properties": {
+        "entity_type": {"const": "rule_unit", "description": "Entity type discriminator."},
+        "id": {"type": "string", "description": "Canonical rule-unit ID."},
+        "parent_regulation_id": {"type": "string", "description": "Parent regulation ID."},
+        "source_section": {"type": "string", "description": "Source section label."},
+        "rule_type": {
+          "type": "string",
+          "description": "Atomic rule type.",
+          "enum": ["obligation", "prohibition", "permission", "definition", "condition", "exception", "penalty", "reporting", "standard", "procedure"]
+        },
+        "regulated_entity": {"type": "string", "description": "Covered regulated entity."},
+        "action_required": {"type": "string", "description": "Action required, prohibited, or allowed."},
+        "conditions": {
+          "type": "array",
+          "description": "Conditions attached to the rule unit.",
+          "items": {"type": "string"}
+        },
+        "exceptions": {
+          "type": "array",
+          "description": "Exceptions or exemptions.",
+          "items": {"type": "string"}
+        },
+        "enabling_statute": {
+          "type": "array",
+          "description": "Enabling statute IDs.",
+          "items": {"type": "string"}
+        },
+        "temporal": {"type": ["string", "null"], "description": "Temporal requirement text."},
+        "penalties": {
+          "type": "array",
+          "description": "Linked penalties.",
+          "items": {"type": "string"}
+        },
+        "plain_english_summary": {"type": "string", "description": "Grounded plain-English summary."},
+        "subject_tags": {
+          "type": "array",
+          "description": "Ontology subject tags.",
+          "items": {"type": "string"}
+        },
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      },
+      "examples": [
+        {
+          "entity_type": "rule_unit",
+          "id": "6_CCR_1007-2_2.2_1",
+          "parent_regulation_id": "6_CCR_1007-2",
+          "source_section": "Part 2, Section 2.2(1)",
+          "rule_type": "prohibition",
+          "regulated_entity": "Any person seeking to operate a solid waste facility",
+          "action_required": "Must obtain certificate of designation before operating",
+          "conditions": [],
+          "exceptions": [],
+          "enabling_statute": ["CRS-30-20-102"],
+          "temporal": null,
+          "penalties": [],
+          "plain_english_summary": "Cannot operate a solid waste facility without a certificate from local government.",
+          "subject_tags": ["solid_waste", "permitting"],
+          "confidence": {"overall": 0.91}
+        }
+      ]
+    },
+    "crosswalk_entry": {
+      "type": "object",
+      "description": "A relationship record linking two entities.",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_type",
+        "target_type",
+        "relationship",
+        "confidence",
+        "data_retrieved"
+      ],
+      "properties": {
+        "source_id": {"type": "string", "description": "Source entity ID."},
+        "source_type": {"type": "string", "description": "Source entity type."},
+        "target_id": {"type": ["string", "null"], "description": "Single target entity ID."},
+        "target_ids": {
+          "type": "array",
+          "description": "Multiple target entity IDs.",
+          "items": {"type": "string"}
+        },
+        "target_type": {"type": "string", "description": "Target entity type."},
+        "relationship": {
+          "type": "string",
+          "description": "Controlled relationship type.",
+          "enum": ["authorized_by", "implements", "amends", "creates", "repeals", "cites", "supersedes", "modified_by", "interprets", "reviews"]
+        },
+        "confidence": {
+          "type": "number",
+          "description": "Relationship confidence.",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source_evidence": {"type": ["string", "null"], "description": "Evidence text from source."},
+        "data_retrieved": {"type": "string", "description": "Retrieval date.", "format": "date"}
+      },
+      "anyOf": [
+        {"required": ["target_id"]},
+        {"required": ["target_ids"]}
+      ],
+      "examples": [
+        {
+          "source_id": "5_CCR_1001-9",
+          "source_type": "regulation_rule",
+          "target_id": "CRS-25-7-109",
+          "target_type": "statute_section",
+          "relationship": "authorized_by",
+          "confidence": 0.95,
+          "source_evidence": "Promulgated pursuant to section 25-7-109, C.R.S.",
+          "data_retrieved": "2026-06-12"
+        }
+      ]
+    },
+    "timeline_event": {
+      "type": "object",
+      "description": "An event in the unified chronological spine.",
+      "additionalProperties": false,
+      "required": ["id", "date", "event_type", "entity_id", "entity_type", "description", "layer", "file_path"],
+      "properties": {
+        "id": {"type": "string", "description": "Canonical timeline event ID.", "pattern": "^TE-[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{3}$"},
+        "date": {"type": "string", "description": "Event date.", "format": "date"},
+        "event_type": {
+          "type": "string",
+          "description": "Controlled event type.",
+          "enum": ["bill_signed", "bill_introduced", "rule_effective", "rule_proposed", "executive_order", "session_law", "constitution_amendment"]
+        },
+        "entity_id": {"type": "string", "description": "Primary entity ID for the event."},
+        "entity_type": {"type": "string", "description": "Primary entity type for the event."},
+        "description": {"type": "string", "description": "Human-readable event description."},
+        "affects": {
+          "type": "array",
+          "description": "Entity IDs affected by the event.",
+          "items": {"type": "string"}
+        },
+        "layer": {"type": "string", "description": "Layer path containing the entity."},
+        "file_path": {"type": "string", "description": "Path to the entity storage file."}
+      },
+      "examples": [
+        {
+          "id": "TE-2023-07-01-001",
+          "date": "2023-07-01",
+          "event_type": "bill_signed",
+          "entity_id": "SB23-016",
+          "entity_type": "bill",
+          "description": "SB23-016 signed - amends CRS 25-7-109",
+          "affects": ["CRS-25-7-109"],
+          "layer": "03_Legislation",
+          "file_path": "03_Legislation/2023/bills_2023.jsonl"
+        }
+      ]
+    },
+    "agency": {
+      "type": "object",
+      "description": "A Colorado state agency.",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "id",
+        "agency_name",
+        "agency_abbreviation",
+        "department",
+        "department_code"
+      ],
+      "properties": {
+        "entity_type": {"const": "agency", "description": "Entity type discriminator."},
+        "id": {"type": "string", "description": "Canonical agency ID.", "pattern": "^[A-Z0-9]+_[A-Z0-9]+$"},
+        "agency_name": {"type": "string", "description": "Agency name."},
+        "agency_abbreviation": {"type": "string", "description": "Agency abbreviation."},
+        "department": {"type": "string", "description": "Parent department name."},
+        "department_code": {"type": "string", "description": "Department code or CCR department number."},
+        "enabling_statutes": {
+          "type": ["array", "null"],
+          "description": "Enabling statute IDs if known.",
+          "items": {"type": "string"}
+        },
+        "ccr_prefix": {"type": ["string", "null"], "description": "CCR prefix if known."},
+        "regulation_count": {"type": ["integer", "null"], "description": "Known regulation count.", "minimum": 0},
+        "website_url": {"type": ["string", "null"], "description": "Agency website URL.", "format": "uri"},
+        "notes": {"type": ["string", "null"], "description": "Notes about uncertain fields or coverage."}
+      },
+      "examples": [
+        {
+          "entity_type": "agency",
+          "id": "CDPHE_AQCC",
+          "agency_name": "Air Quality Control Commission",
+          "agency_abbreviation": "AQCC",
+          "department": "Public Health and Environment",
+          "department_code": "1000",
+          "enabling_statutes": ["CRS-25-7-104", "CRS-25-7-105"],
+          "ccr_prefix": "5 CCR 1001-",
+          "regulation_count": 14,
+          "website_url": "https://cdphe.colorado.gov/aqcc",
+          "notes": null
+        }
+      ]
+    }
+  }
+}

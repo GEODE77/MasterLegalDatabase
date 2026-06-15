@@ -1,0 +1,137 @@
+{
+  "project": {
+    "name": "Project Geode",
+    "description": "AI-first Colorado legal authority corpus for structured retrieval, compliance analysis, and legislative intelligence.",
+    "version": "0.1.0",
+    "created_date": "2026-06-15"
+  },
+  "data_layers": [
+    {
+      "id": "01_Statutes_CRS",
+      "path": "01_Statutes_CRS",
+      "entity_type": "statute_section",
+      "record_count": 0,
+      "source": "crs",
+      "format": ["markdown", "jsonl"],
+      "last_ingested": null,
+      "currency": null,
+      "index_file": "01_Statutes_CRS/_index.jsonl",
+      "known_gaps": ["No versioned historical snapshots in machine-readable form."],
+      "last_checked": null,
+      "staleness_days": null,
+      "status": "empty"
+    },
+    {
+      "id": "02_Regulations_CCR",
+      "path": "02_Regulations_CCR",
+      "entity_type": "regulation_rule",
+      "record_count": 0,
+      "source": "ccr",
+      "format": ["markdown", "jsonl"],
+      "last_ingested": null,
+      "currency": null,
+      "index_file": "02_Regulations_CCR/_index.jsonl",
+      "known_gaps": ["No centralized statute-to-regulation crosswalk."],
+      "last_checked": null,
+      "staleness_days": null,
+      "status": "empty"
+    },
+    {
+      "id": "03_Legislation",
+      "path": "03_Legislation",
+      "entity_type": "bill",
+      "record_count": 0,
+      "source": "legiscan",
+      "format": ["jsonl"],
+      "last_ingested": null,
+      "currency": null,
+      "index_file": "03_Legislation/_index.jsonl",
+      "known_gaps": ["Pre-2010 coverage requires historical session-law sources."],
+      "last_checked": null,
+      "staleness_days": null,
+      "status": "empty"
+    },
+    {
+      "id": "04_Rulemaking",
+      "path": "04_Rulemaking",
+      "entity_type": "rulemaking_notice",
+      "record_count": 0,
+      "source": "colorado_register",
+      "format": ["jsonl"],
+      "last_ingested": null,
+      "currency": null,
+      "index_file": "04_Rulemaking/_index.jsonl",
+      "known_gaps": ["Notice-to-regulation crosswalk must be extracted."],
+      "last_checked": null,
+      "staleness_days": null,
+      "status": "empty"
+    },
+    {
+      "id": "05_Executive_Orders",
+      "path": "05_Executive_Orders",
+      "entity_type": "executive_order",
+      "record_count": 0,
+      "source": "executive_orders",
+      "format": ["jsonl"],
+      "last_ingested": null,
+      "currency": null,
+      "index_file": "05_Executive_Orders/_index.jsonl",
+      "known_gaps": ["Historical executive orders may require archive discovery."],
+      "last_checked": null,
+      "staleness_days": null,
+      "status": "empty"
+    },
+    {
+      "id": "06_Session_Laws",
+      "path": "06_Session_Laws",
+      "entity_type": "session_law",
+      "record_count": 0,
+      "source": "crs",
+      "format": ["jsonl"],
+      "last_ingested": null,
+      "currency": null,
+      "index_file": "06_Session_Laws/_index.jsonl",
+      "known_gaps": ["Older session laws require separate historical collection."],
+      "last_checked": null,
+      "staleness_days": null,
+      "status": "empty"
+    },
+    {
+      "id": "07_Supplementary",
+      "path": "07_Supplementary",
+      "entity_type": "supplementary_document",
+      "record_count": 0,
+      "source": "coprrr, ag_opinions",
+      "format": ["jsonl"],
+      "last_ingested": null,
+      "currency": null,
+      "index_file": "07_Supplementary/_index.jsonl",
+      "known_gaps": ["Program-to-statute links require extraction from report text."],
+      "last_checked": null,
+      "staleness_days": null,
+      "status": "empty"
+    }
+  ],
+  "crosswalks_available": [
+    "regulation_to_statute.jsonl",
+    "statute_to_regulation.jsonl",
+    "bill_to_statute.jsonl",
+    "rulemaking_to_regulation.jsonl",
+    "agency_to_statute.jsonl",
+    "amendment_history.jsonl"
+  ],
+  "freshness_policy": {
+    "statutes": {"max_staleness_days": 365, "alert_after_days": 330},
+    "regulations": {"max_staleness_days": 45, "alert_after_days": 30},
+    "legislation": {"max_staleness_days": 14, "alert_after_days": 10},
+    "rulemaking": {"max_staleness_days": 20, "alert_after_days": 15},
+    "exec_orders": {"max_staleness_days": 60, "alert_after_days": 45},
+    "session_laws": {"max_staleness_days": 365, "alert_after_days": 330},
+    "supplementary": {"max_staleness_days": 120, "alert_after_days": 90}
+  },
+  "system_info": {
+    "pipeline_version": "0.1.0",
+    "schema_version": "1.0",
+    "ontology_version": "1.0"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "bill": {
+    "bill_id": 12345,
+    "number": "SB 16",
+    "session": {
+      "session_id": 2023,
+      "year_start": 2023,
+      "year_end": 2023
+    },
+    "title": "Air Quality Control Amendments",
+    "description": "Concerning amendments to section 25-7-109, C.R.S.",
+    "body": "The bill amends 25-7-109, C.R.S., concerning air quality permits.",
+    "status": "Signed by Governor",
+    "status_date": "2023-06-02",
+    "introduced_date": "2023-01-15",
+    "url": "https://legiscan.com/CO/bill/SB16/2023",
+    "sponsors": [
+      {
+        "name": "Doe, Jane",
+        "party": "D",
+        "chamber": "Senate",
+        "role": "primary"
+      }
+    ],
+    "subjects": [
+      "Environment",
+      "Air Quality"
+    ],
+    "history": [
+      {
+        "date": "2023-01-15",
+        "action": "Introduced"
+      },
+      {
+        "date": "2023-06-02",
+        "action": "Signed by Governor"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+﻿# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OneDrive artifacts
+~$*
+.~lock.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (too large for Git)
+_RAW_ARCHIVE/**/*.pdf
+_RAW_ARCHIVE/**/*.docx
+_SNAPSHOTS/

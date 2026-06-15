@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0",
+  "subject_tags": {
+    "environment": {
+      "description": "Environmental quality, natural resources, and environmental compliance.",
+      "children": [
+        "air_quality",
+        "emissions",
+        "water_quality",
+        "solid_waste",
+        "hazardous_waste",
+        "land_use",
+        "environmental_cleanup",
+        "climate_change",
+        "natural_resources",
+        "wildlife",
+        "water_rights"
+      ]
+    },
+    "public_health": {
+      "description": "Public health programs, facilities, and safety systems.",
+      "children": [
+        "communicable_disease",
+        "food_safety",
+        "drinking_water",
+        "radiation_control",
+        "health_facilities",
+        "emergency_medical",
+        "behavioral_health",
+        "substance_abuse",
+        "vital_records"
+      ]
+    },
+    "labor_employment": {
+      "description": "Workplace, employment, compensation, and worker protection law.",
+      "children": [
+        "wages_hours",
+        "workplace_safety",
+        "workers_compensation",
+        "unemployment_insurance",
+        "employment_discrimination",
+        "child_labor",
+        "paid_leave"
+      ]
+    },
+    "professional_licensing": {
+      "description": "Professional and occupational licensing programs.",
+      "children": [
+        "medical_licensing",
+        "legal_licensing",
+        "engineering_licensing",
+        "contractor_licensing",
+        "real_estate_licensing",
+        "financial_licensing",
+        "cosmetology",
+        "accountancy"
+      ]
+    },
+    "business_regulation": {
+      "description": "Business formation, commerce, finance, and regulated markets.",
+      "children": [
+        "corporate_registration",
+        "securities",
+        "insurance",
+        "banking",
+        "consumer_protection",
+        "trade_practices",
+        "cannabis_regulation",
+        "alcohol_regulation",
+        "gaming"
+      ]
+    },
+    "energy": {
+      "description": "Energy production, utilities, and energy infrastructure.",
+      "children": [
+        "oil_gas",
+        "renewable_energy",
+        "utility_regulation",
+        "pipeline_safety",
+        "mining",
+        "electric_vehicles"
+      ]
+    },
+    "transportation": {
+      "description": "Transportation systems, vehicles, roads, and emissions.",
+      "children": [
+        "motor_vehicles",
+        "highways",
+        "public_transit",
+        "vehicle_emissions",
+        "commercial_vehicles"
+      ]
+    },
+    "education": {
+      "description": "K-12, higher education, school governance, and educator licensing.",
+      "children": [
+        "k12_education",
+        "higher_education",
+        "charter_schools",
+        "school_safety",
+        "teacher_licensing"
+      ]
+    },
+    "housing": {
+      "description": "Housing, construction, occupancy, and real-property programs.",
+      "children": [
+        "building_codes",
+        "affordable_housing",
+        "landlord_tenant",
+        "short_term_rentals",
+        "construction_standards",
+        "mobile_homes",
+        "homeowner_associations"
+      ]
+    },
+    "compliance": {
+      "description": "General compliance mechanisms and regulatory enforcement tools.",
+      "children": [
+        "permitting",
+        "reporting",
+        "inspection",
+        "enforcement",
+        "penalties",
+        "disclosure",
+        "recordkeeping"
+      ]
+    },
+    "government_operations": {
+      "description": "State operations, public administration, and governmental process.",
+      "children": [
+        "state_operations",
+        "procurement",
+        "elections",
+        "open_records",
+        "administrative_procedure",
+        "rulemaking",
+        "sunset_review",
+        "municipal_authority"
+      ]
+    },
+    "technology": {
+      "description": "Technology, information governance, and telecommunications.",
+      "children": [
+        "data_privacy",
+        "cybersecurity",
+        "ai_governance",
+        "broadband",
+        "telecommunications"
+      ]
+    },
+    "agriculture": {
+      "description": "Agriculture, livestock, pesticides, and irrigation.",
+      "children": [
+        "crop_regulation",
+        "livestock",
+        "pesticides",
+        "organic_certification",
+        "water_irrigation"
+      ]
+    },
+    "criminal_justice": {
+      "description": "Criminal justice, corrections, sentencing, and victim services.",
+      "children": [
+        "sentencing",
+        "corrections",
+        "probation",
+        "victims_rights",
+        "juvenile_justice"
+      ]
+    }
+  },
+  "industry_tags": [
+    {"tag": "agriculture", "naics_prefix": "11", "description": "Agriculture, forestry, fishing, and hunting."},
+    {"tag": "mining", "naics_prefix": "21", "description": "Mining, quarrying, and oil and gas extraction."},
+    {"tag": "utilities", "naics_prefix": "22", "description": "Electric, gas, water, and related utilities."},
+    {"tag": "construction", "naics_prefix": "23", "description": "Construction and specialty trade contractors."},
+    {"tag": "manufacturing", "naics_prefix": "31-33", "description": "All manufacturing sectors."},
+    {"tag": "wholesale_trade", "naics_prefix": "42", "description": "Wholesale trade."},
+    {"tag": "retail_trade", "naics_prefix": "44-45", "description": "Retail trade."},
+    {"tag": "transportation_warehousing", "naics_prefix": "48-49", "description": "Transportation and warehousing."},
+    {"tag": "information", "naics_prefix": "51", "description": "Publishing, data, telecom, and information services."},
+    {"tag": "finance_insurance", "naics_prefix": "52", "description": "Finance and insurance."},
+    {"tag": "real_estate", "naics_prefix": "53", "description": "Real estate, rental, and leasing."},
+    {"tag": "professional_services", "naics_prefix": "54", "description": "Professional, scientific, and technical services."},
+    {"tag": "management_companies", "naics_prefix": "55", "description": "Management of companies and enterprises."},
+    {"tag": "administrative_support", "naics_prefix": "56", "description": "Administrative support and waste management services."},
+    {"tag": "education_services", "naics_prefix": "61", "description": "Educational services."},
+    {"tag": "healthcare", "naics_prefix": "62", "description": "Health care and social assistance."},
+    {"tag": "arts_entertainment", "naics_prefix": "71", "description": "Arts, entertainment, and recreation."},
+    {"tag": "accommodation_food", "naics_prefix": "72", "description": "Accommodation and food services."},
+    {"tag": "other_services", "naics_prefix": "81", "description": "Other services except public administration."},
+    {"tag": "public_administration", "naics_prefix": "92", "description": "Public administration and government programs."},
+    {"tag": "cannabis", "naics_prefix": null, "description": "Colorado-specific marijuana and cannabis businesses."},
+    {"tag": "oil_gas", "naics_prefix": "211-213", "description": "Oil and gas extraction and support activities."},
+    {"tag": "small_business", "naics_prefix": null, "description": "Cross-cutting small business impact tag."}
+  ],
+  "compliance_keywords": [
+    "permit_required",
+    "license_required",
+    "registration_required",
+    "reporting",
+    "disclosure",
+    "recordkeeping",
+    "inspection",
+    "monitoring",
+    "fees",
+    "penalty",
+    "fine",
+    "enforcement_action",
+    "hearing_required",
+    "public_notice",
+    "annual_filing",
+    "bonding_required",
+    "insurance_required",
+    "training_required",
+    "certification_required",
+    "background_check"
+  ],
+  "rule_type_enum": [
+    "obligation",
+    "prohibition",
+    "permission",
+    "definition",
+    "condition",
+    "exception",
+    "penalty",
+    "reporting",
+    "standard",
+    "procedure"
+  ],
+  "relationship_type_enum": [
+    "authorized_by",
+    "implements",
+    "amends",
+    "creates",
+    "repeals",
+    "cites",
+    "supersedes",
+    "modified_by",
+    "interprets",
+    "reviews"
+  ],
+  "event_type_enum": [
+    "bill_signed",
+    "bill_introduced",
+    "rule_effective",
+    "rule_proposed",
+    "executive_order",
+    "session_law",
+    "constitution_amendment"
+  ],
+  "status_enum": [
+    "active",
+    "repealed",
+    "superseded",
+    "emergency",
+    "expired",
+    "rescinded",
+    "in_committee",
+    "signed",
+    "vetoed"
+  ]
+}
