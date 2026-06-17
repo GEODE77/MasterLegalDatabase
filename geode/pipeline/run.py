@@ -13,6 +13,7 @@ from typing import Any, Callable
 
 from geode.connectors.crs_parser import parse_crs_fixture
 from geode.constants import CRS_LAYER
+from geode.pipeline.ccr import run_ccr_pipeline
 from geode.pipeline.writer import ensure_project_structure, write_crs_title, write_quarantine_record
 from geode.schemas import QuarantineRecord
 from geode.utils.file_io import relative_path
@@ -124,12 +125,16 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run a Project Geode ingestion pipeline.")
     parser.add_argument(
         "--layer",
-        choices=["crs", "bills"],
+        choices=["crs", "bills", "ccr"],
         help='Pipeline layer. Use "crs" for fixture CRS ingestion.',
     )
     parser.add_argument("--input", type=Path)
     parser.add_argument("--title")
     parser.add_argument("--publication-year", type=int)
+    parser.add_argument(
+        "--rule-id",
+        help="CCR rule identifier (numeric). Required for --layer ccr.",
+    )
     parser.add_argument("--root", default=Path.cwd(), type=Path)
     parser.add_argument(
         "--sample",
@@ -456,6 +461,19 @@ def main() -> int:
     args = build_parser().parse_args()
     root = args.root.resolve()
     now = datetime.now(timezone.utc)
+
+    if args.layer == "ccr":
+        if not args.rule_id:
+            LOGGER.error("--layer ccr requires --rule-id.")
+            return 2
+        return run_ccr_pipeline(
+            root=args.root,
+            rule_id=args.rule_id,
+            output_dir=args.output_dir if hasattr(args, "output_dir") else "data",
+            taxonomy_dir=args.taxonomy_dir,
+            dry_run=args.dry_run,
+            fmt=args.format,
+        )
 
     if args.layer == "crs":
         try:
