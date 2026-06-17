@@ -85,8 +85,11 @@ def _fake_client() -> FakeClient:
     for suffix in range(9, 14):
         ccr = f"5%20CCR%201001-{suffix}"
         responses[
+            f"https://www.sos.state.co.us/CCR/GenerateRulePdf.do?rule={ccr}"
+        ] = FakeResponse(content=f"%PDF-1.7\npdf-{suffix}".encode("utf-8"))
+        responses[
             f"https://www.sos.state.co.us/CCR/GenerateRuleDoc.do?rule={ccr}"
-        ] = FakeResponse(content=f"docx-{suffix}".encode("utf-8"))
+        ] = FakeResponse(content=b"PK\x03\x04" + f"docx-{suffix}".encode("utf-8"))
     return FakeClient(responses)
 
 
@@ -123,7 +126,7 @@ def test_resolve_rule_info_page_prefers_docx() -> None:
     )
     assert entry.docx_url is not None
     assert entry.pdf_url is not None
-    assert "GenerateRuleDoc.do" in entry.preferred_url
+    assert "GenerateRulePdf.do" in entry.preferred_url
 
 
 def test_resolve_rule_info_page_uses_pdf_fallback() -> None:
@@ -170,7 +173,7 @@ def test_resolve_rule_info_page_parses_live_javascript_downloads() -> None:
     assert entry.docx_url is not None
     assert "ruleVersionId=11979" in str(entry.pdf_url)
     assert "fileName=5%20CCR%201002-43" in str(entry.docx_url)
-    assert "type=word" in entry.preferred_url
+    assert "type=pdf" in entry.preferred_url
 
 
 def test_download_rule_prefers_docx_and_resumes(tmp_path: Path) -> None:
@@ -179,15 +182,15 @@ def test_download_rule_prefers_docx_and_resumes(tmp_path: Path) -> None:
     client = _fake_client()
     entry = discover_all_rules(client=client, max_agencies=1)[0]
     path = download_rule(entry, tmp_path, client=client)
-    assert path.suffix == ".docx"
-    assert path.read_bytes() == b"docx-9"
+    assert path.suffix == ".pdf"
+    assert path.read_bytes() == b"%PDF-1.7\npdf-9"
     rows = list(iter_jsonl(tmp_path / "download_manifest.jsonl"))
     assert rows[0]["status"] == "downloaded"
     assert rows[0]["sha256"]
 
-    before = client.calls.count(str(entry.docx_url))
+    before = client.calls.count(str(entry.pdf_url))
     assert download_rule(entry, tmp_path, client=client) == path
-    after = client.calls.count(str(entry.docx_url))
+    after = client.calls.count(str(entry.pdf_url))
     assert after == before
 
 
