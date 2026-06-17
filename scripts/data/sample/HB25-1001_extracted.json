@@ -1,0 +1,24 @@
+{
+  "source_file": "HB25-1001.pdf",
+  "extractor": "sample_generator",
+  "page_count": 2,
+  "pages": [
+    {
+      "page_number": 1,
+      "text": "HB25-1001\nA BILL FOR AN ACT\nCONCERNING THE REGULATION OF EMISSIONS FROM INDUSTRIAL FACILITIES.\n\nBY REPRESENTATIVE(S) Smith, Garcia, Thompson\nBY SENATOR(S) Williams\n\nCommittee on Energy & Environment\n\nBill Summary\nThe bill modifies Colorado law and creates deterministic sample\ncontent for Project Geode parser, entity, graph, and tagging tests.\n\nBE IT ENACTED BY THE GENERAL ASSEMBLY OF THE STATE OF COLORADO:\n\nSECTION 1.\n25-7-114.7, Colorado Revised Statutes, is amended to read:\n(1) The division shall establish emission monitoring requirements for each industrial facility that operates a stationary source.\n(2) As used in this section:\n(a) \"stationary source\" means a building, structure, facility, or installation that emits or may emit an air pollutant.\n(b) The House Energy & Environment Committee reviewed the industrial emissions reporting schedule.\n(3) The commission shall adopt rules in accordance with § 24-4-103, C.R.S.\n(4) A person who knowingly falsifies an emissions report commits a class 1 misdemeanor and is subject to a penalty of $10,000.\n\nSECTION 2.\n25-7-114.8, Colorado Revised Statutes, is amended to read:\n(1) The division shall maintain an industrial compliance fund.\n(2) The fund consists of fees, gifts, grants, and $2,500,000 transferred for the 2025-26 fiscal year.",
+      "char_count": 1296
+    },
+    {
+      "page_number": 2,
+      "text": "(3) A facility shall submit a compliance plan by July 1, 2025.\n\nSECTION 3.\n25-8-205, Colorado Revised Statutes, is amended BY THE ADDITION OF A NEW SUBSECTION to read:\n(7) A permit for an industrial discharge must include monitoring conditions for water quality impacts.\n(8) For the 2025-26 state fiscal year, $500,000 is appropriated from the General Fund to the department of public health and environment for implementation.\n\nSECTION 4. Effective date.\nThis act takes effect July 1, 2025.",
+      "char_count": 491
+    }
+  ],
+  "full_text": "HB25-1001\nA BILL FOR AN ACT\nCONCERNING THE REGULATION OF EMISSIONS FROM INDUSTRIAL FACILITIES.\n\nBY REPRESENTATIVE(S) Smith, Garcia, Thompson\nBY SENATOR(S) Williams\n\nCommittee on Energy & Environment\n\nBill Summary\nThe bill modifies Colorado law and creates deterministic sample\ncontent for Project Geode parser, entity, graph, and tagging tests.\n\nBE IT ENACTED BY THE GENERAL ASSEMBLY OF THE STATE OF COLORADO:\n\nSECTION 1.\n25-7-114.7, Colorado Revised Statutes, is amended to read:\n(1) The division shall establish emission monitoring requirements for each industrial facility that operates a stationary source.\n(2) As used in this section:\n(a) \"stationary source\" means a building, structure, facility, or installation that emits or may emit an air pollutant.\n(b) The House Energy & Environment Committee reviewed the industrial emissions reporting schedule.\n(3) The commission shall adopt rules in accordance with § 24-4-103, C.R.S.\n(4) A person who knowingly falsifies an emissions report commits a class 1 misdemeanor and is subject to a penalty of $10,000.\n\nSECTION 2.\n25-7-114.8, Colorado Revised Statutes, is amended to read:\n(1) The division shall maintain an industrial compliance fund.\n(2) The fund consists of fees, gifts, grants, and $2,500,000 transferred for the 2025-26 fiscal year.\n\n---PAGE BREAK---\n\n(3) A facility shall submit a compliance plan by July 1, 2025.\n\nSECTION 3.\n25-8-205, Colorado Revised Statutes, is amended BY THE ADDITION OF A NEW SUBSECTION to read:\n(7) A permit for an industrial discharge must include monitoring conditions for water quality impacts.\n(8) For the 2025-26 state fiscal year, $500,000 is appropriated from the General Fund to the department of public health and environment for implementation.\n\nSECTION 4. Effective date.\nThis act takes effect July 1, 2025.",
+  "total_chars": 1807,
+  "sample_metadata": {
+    "generator_version": "1.0.0",
+    "domain": "CONCERNING THE REGULATION OF EMISSIONS FROM INDUSTRIAL FACILITIES",
+    "committee": "Energy & Environment"
+  }
+}

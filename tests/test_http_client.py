@@ -1,0 +1,110 @@
+"""Tests for hardened Geode HTTP client helpers."""
+
+from __future__ import annotations
+
+import importlib
+
+import pytest
+
+from geode.net.http_client import BROWSER_HEADERS, GeodeFetchError, build_session, polite_get
+
+
+class FakeResponse:
+    """Minimal response object for retry tests."""
+
+    def __init__(self, status_code: int, text: str = "") -> None:
+        """Create a fake response."""
+
+        self.status_code = status_code
+        self.text = text
+        self.content = text.encode("utf-8")
+        self.headers: dict[str, str] = {}
+
+
+class FakeSession:
+    """Fake session returning a programmed sequence of statuses."""
+
+    def __init__(self, statuses: list[int]) -> None:
+        """Create a fake session."""
+
+        self.statuses = list(statuses)
+        self.calls: list[dict[str, object]] = []
+        self.headers: dict[str, str] = {}
+
+    def get(
+        self,
+        url: str,
+        headers: dict[str, str] | None = None,
+        timeout: float | None = None,
+    ) -> FakeResponse:
+        """Return the next fake response."""
+
+        self.calls.append({"url": url, "headers": headers or {}, "timeout": timeout})
+        status = self.statuses.pop(0)
+        return FakeResponse(status, text=f"status={status}")
+
+
+def test_build_session_falls_back_to_requests_with_browser_user_agent(monkeypatch) -> None:
+    """When curl_cffi is missing, a requests session gets Chrome headers."""
+
+    original_import_module = importlib.import_module
+
+    def fake_import_module(name: str, package: str | None = None):
+        if name == "curl_cffi.requests":
+            raise ImportError("curl_cffi unavailable")
+        return original_import_module(name, package)
+
+    monkeypatch.setattr(importlib, "import_module", fake_import_module)
+
+    session = build_session(impersonate=True)
+    try:
+        assert session.headers["User-Agent"] == BROWSER_HEADERS["User-Agent"]
+        assert "Chrome/120.0.0.0" in session.headers["User-Agent"]
+    finally:
+        session.close()
+
+
+def test_polite_get_retries_403_then_succeeds(monkeypatch) -> None:
+    """Retryable 403 responses are retried before returning success."""
+
+    sleeps: list[float] = []
+    monkeypatch.setattr("geode.net.http_client.random.uniform", lambda *_args: 0.0)
+    monkeypatch.setattr("geode.net.http_client.time.sleep", sleeps.append)
+    session = FakeSession([403, 403, 200])
+
+    response = polite_get(session, "https://example.test/resource", max_retries=3, base_delay=1.0)
+
+    assert response.status_code == 200
+    assert len(session.calls) == 3
+    assert sleeps == [1.0, 2.0]
+    assert session.calls[0]["headers"]["User-Agent"] == BROWSER_HEADERS["User-Agent"]
+
+
+def test_polite_get_raises_after_retry_exhaustion(monkeypatch) -> None:
+    """Persistent retryable statuses raise GeodeFetchError after max attempts."""
+
+    sleeps: list[float] = []
+    monkeypatch.setattr("geode.net.http_client.random.uniform", lambda *_args: 0.0)
+    monkeypatch.setattr("geode.net.http_client.time.sleep", sleeps.append)
+    session = FakeSession([403, 403])
+
+    with pytest.raises(GeodeFetchError) as exc_info:
+        polite_get(session, "https://example.test/blocked", max_retries=2, base_delay=1.5)
+
+    assert exc_info.value.status_code == 403
+    assert exc_info.value.attempts == 2
+    assert len(session.calls) == 2
+    assert sleeps == [1.5]
+
+
+def test_polite_get_backoff_includes_exponential_delay_and_jitter(monkeypatch) -> None:
+    """Backoff delay follows exponential timing plus deterministic jitter."""
+
+    sleeps: list[float] = []
+    monkeypatch.setattr("geode.net.http_client.random.uniform", lambda *_args: 0.25)
+    monkeypatch.setattr("geode.net.http_client.time.sleep", sleeps.append)
+    session = FakeSession([503, 503, 200])
+
+    polite_get(session, "https://example.test/retry", max_retries=3, base_delay=2.0)
+
+    assert sleeps == [2.25, 4.25]

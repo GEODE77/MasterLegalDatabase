@@ -1,0 +1,24 @@
+{
+  "source_file": "SB25-0123.pdf",
+  "extractor": "sample_generator",
+  "page_count": 2,
+  "pages": [
+    {
+      "page_number": 1,
+      "text": "SB25-0123\nA BILL FOR AN ACT\nCONCERNING UPDATES TO MINED LAND RECLAMATION REQUIREMENTS.\n\nBY REPRESENTATIVE(S) Baker, Wilson\nBY SENATOR(S) Ortega\n\nCommittee on Agriculture & Natural Resources\n\nBill Summary\nThe bill modifies Colorado law and creates deterministic sample\ncontent for Project Geode parser, entity, graph, and tagging tests.\n\nBE IT ENACTED BY THE GENERAL ASSEMBLY OF THE STATE OF COLORADO:\n\nSECTION 1.\n34-32-116, Colorado Revised Statutes, is amended to read:\n(1) An operator shall file a reclamation plan before disturbing affected land.\n(2) As used in this section:\n(a) \"affected land\" means land from which overburden or minerals are removed, land on which development waste is placed, and land affected by mining operations.\n(3) The Senate Agriculture & Natural Resources Committee shall receive a report on reclamation bond adequacy by September 1, 2025.\n\nSECTION 2.\n34-60-106, Colorado Revised Statutes, is amended to read:\n(1) The commission may coordinate oil and gas conservation standards with mined land reclamation requirements.\n(2) A person who knowingly violates a reclamation bond order commits a class 2 misdemeanor and may be fined $15,000.\n\nSECTION 3. Effective date.",
+      "char_count": 1196
+    },
+    {
+      "page_number": 2,
+      "text": "This act takes effect September 1, 2025.",
+      "char_count": 40
+    }
+  ],
+  "full_text": "SB25-0123\nA BILL FOR AN ACT\nCONCERNING UPDATES TO MINED LAND RECLAMATION REQUIREMENTS.\n\nBY REPRESENTATIVE(S) Baker, Wilson\nBY SENATOR(S) Ortega\n\nCommittee on Agriculture & Natural Resources\n\nBill Summary\nThe bill modifies Colorado law and creates deterministic sample\ncontent for Project Geode parser, entity, graph, and tagging tests.\n\nBE IT ENACTED BY THE GENERAL ASSEMBLY OF THE STATE OF COLORADO:\n\nSECTION 1.\n34-32-116, Colorado Revised Statutes, is amended to read:\n(1) An operator shall file a reclamation plan before disturbing affected land.\n(2) As used in this section:\n(a) \"affected land\" means land from which overburden or minerals are removed, land on which development waste is placed, and land affected by mining operations.\n(3) The Senate Agriculture & Natural Resources Committee shall receive a report on reclamation bond adequacy by September 1, 2025.\n\nSECTION 2.\n34-60-106, Colorado Revised Statutes, is amended to read:\n(1) The commission may coordinate oil and gas conservation standards with mined land reclamation requirements.\n(2) A person who knowingly violates a reclamation bond order commits a class 2 misdemeanor and may be fined $15,000.\n\nSECTION 3. Effective date.\n\n---PAGE BREAK---\n\nThis act takes effect September 1, 2025.",
+  "total_chars": 1256,
+  "sample_metadata": {
+    "generator_version": "1.0.0",
+    "domain": "CONCERNING UPDATES TO MINED LAND RECLAMATION REQUIREMENTS",
+    "committee": "Agriculture & Natural Resources"
+  }
+}

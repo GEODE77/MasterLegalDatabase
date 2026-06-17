@@ -1,0 +1,24 @@
+{
+  "source_file": "SB25-0055.pdf",
+  "extractor": "sample_generator",
+  "page_count": 2,
+  "pages": [
+    {
+      "page_number": 1,
+      "text": "SB25-0055\nA BILL FOR AN ACT\nCONCERNING MODIFICATIONS TO THE COLORADO WAGE EQUITY ACT.\n\nBY REPRESENTATIVE(S) Chen, Adams\nBY SENATOR(S) Johnson, Rivera\n\nCommittee on Business Affairs & Labor\n\nBill Summary\nThe bill modifies Colorado law and creates deterministic sample\ncontent for Project Geode parser, entity, graph, and tagging tests.\n\nBE IT ENACTED BY THE GENERAL ASSEMBLY OF THE STATE OF COLORADO:\n\nSECTION 1.\n8-6-101, Colorado Revised Statutes, is amended to read:\n(1) As used in this section:\n(a) \"employer\" means a person, firm, partnership, association, corporation, receiver, or other officer of a court of this state that employs a person in Colorado.\n(2) The director shall publish wage transparency guidance for the 2025-26 fiscal year.\n(3) The House Business Affairs & Labor Committee may request annual compliance data.\n\nSECTION 2.\n8-13.5-201, Colorado Revised Statutes, is amended to read:\n(1) An employer shall maintain records showing wage rates, job descriptions, and promotion opportunities.\n(2) The division may issue a civil penalty of $5,000 for each willful violation of the Colorado wage equity act.\n\nSECTION 3. Effective date.",
+      "char_count": 1149
+    },
+    {
+      "page_number": 2,
+      "text": "This act takes effect upon passage.",
+      "char_count": 35
+    }
+  ],
+  "full_text": "SB25-0055\nA BILL FOR AN ACT\nCONCERNING MODIFICATIONS TO THE COLORADO WAGE EQUITY ACT.\n\nBY REPRESENTATIVE(S) Chen, Adams\nBY SENATOR(S) Johnson, Rivera\n\nCommittee on Business Affairs & Labor\n\nBill Summary\nThe bill modifies Colorado law and creates deterministic sample\ncontent for Project Geode parser, entity, graph, and tagging tests.\n\nBE IT ENACTED BY THE GENERAL ASSEMBLY OF THE STATE OF COLORADO:\n\nSECTION 1.\n8-6-101, Colorado Revised Statutes, is amended to read:\n(1) As used in this section:\n(a) \"employer\" means a person, firm, partnership, association, corporation, receiver, or other officer of a court of this state that employs a person in Colorado.\n(2) The director shall publish wage transparency guidance for the 2025-26 fiscal year.\n(3) The House Business Affairs & Labor Committee may request annual compliance data.\n\nSECTION 2.\n8-13.5-201, Colorado Revised Statutes, is amended to read:\n(1) An employer shall maintain records showing wage rates, job descriptions, and promotion opportunities.\n(2) The division may issue a civil penalty of $5,000 for each willful violation of the Colorado wage equity act.\n\nSECTION 3. Effective date.\n\n---PAGE BREAK---\n\nThis act takes effect upon passage.",
+  "total_chars": 1204,
+  "sample_metadata": {
+    "generator_version": "1.0.0",
+    "domain": "CONCERNING MODIFICATIONS TO THE COLORADO WAGE EQUITY ACT",
+    "committee": "Business Affairs & Labor"
+  }
+}

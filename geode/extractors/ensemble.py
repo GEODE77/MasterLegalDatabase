@@ -11,13 +11,9 @@ from typing import Any, Literal, Sequence
 from pydantic import BaseModel, ConfigDict, Field
 
 from geode.extractors.llm_extractor import (
+    DISABLED_MESSAGE,
     LLMClient,
     LLMTaskPrompt,
-    assign_tags,
-    decompose_rule_units,
-    extract_citations,
-    extract_structure,
-    generate_summary,
 )
 
 FieldStatus = Literal["ACCEPT", "FLAG", "VERIFY", "QUARANTINE", "REJECT"]
@@ -267,6 +263,8 @@ async def run_ensemble_extraction_async(
 ) -> EnsembleResult:
     """Run Layer 3 tasks for two models and combine them with Layer 4 voting."""
 
+    raise NotImplementedError(DISABLED_MESSAGE)
+
     chosen_models = list(models or _default_models())
     if len(chosen_models) != 2:
         raise ValueError("ensemble extraction requires exactly two models")
@@ -292,6 +290,8 @@ def run_ensemble_extraction(
 ) -> EnsembleResult:
     """Synchronous wrapper for the async-capable ensemble pipeline."""
 
+    raise NotImplementedError(DISABLED_MESSAGE)
+
     try:
         asyncio.get_running_loop()
     except RuntimeError:
@@ -305,6 +305,8 @@ async def _run_model_tasks(
     model: LLMClient,
 ) -> EnsembleModelOutput:
     """Execute all five Layer 3 tasks for one injected model."""
+
+    raise NotImplementedError(DISABLED_MESSAGE)
 
     structure, citations, rule_units, summary = await asyncio.gather(
         asyncio.to_thread(

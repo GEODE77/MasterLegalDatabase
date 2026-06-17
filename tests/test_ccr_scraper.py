@@ -146,6 +146,33 @@ def test_resolve_rule_info_page_uses_pdf_fallback() -> None:
     assert "GenerateRulePdf.do" in entry.preferred_url
 
 
+def test_resolve_rule_info_page_parses_live_javascript_downloads() -> None:
+    """Live SOS rule pages expose downloads through OpenRule JavaScript calls."""
+
+    source_url = "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=3154"
+    html = (
+        '<a href="javascript:void(0)">06/15/2025 (PDF)</a>'
+        '<a href="javascript:void(0)">06/15/2025 (DOCX)</a>'
+        "OpenRuleWindow('11979', '5 CCR 1002-43' )"
+        "OpenRuleWordVersion('11979', '5 CCR 1002-43' )"
+    )
+    client = FakeClient({source_url: FakeResponse(text=html)})
+    entry = resolve_rule_info_page(
+        {
+            "ccr_number": "5 CCR 1002-43",
+            "department": "Department of Public Health and Environment",
+            "agency": "Water Quality Control Commission",
+            "source_page_url": source_url,
+        },
+        client=client,
+    )
+    assert entry.pdf_url is not None
+    assert entry.docx_url is not None
+    assert "ruleVersionId=11979" in str(entry.pdf_url)
+    assert "fileName=5%20CCR%201002-43" in str(entry.docx_url)
+    assert "type=word" in entry.preferred_url
+
+
 def test_download_rule_prefers_docx_and_resumes(tmp_path: Path) -> None:
     """Downloads prefer DOCX, log SHA-256, and skip when manifest hash matches."""
 

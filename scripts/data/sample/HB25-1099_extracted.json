@@ -1,0 +1,24 @@
+{
+  "source_file": "HB25-1099.pdf",
+  "extractor": "sample_generator",
+  "page_count": 2,
+  "pages": [
+    {
+      "page_number": 1,
+      "text": "HB25-1099\nA BILL FOR AN ACT\nCONCERNING MODIFICATIONS TO THE STATE INCOME TAX CREDIT FOR CAPITAL INVESTMENT.\n\nBY REPRESENTATIVE(S) Nguyen, Davis, Clark\nBY SENATOR(S) Robinson, Taylor\n\nCommittee on Finance\n\nBill Summary\nThe bill modifies Colorado law and creates deterministic sample\ncontent for Project Geode parser, entity, graph, and tagging tests.\n\nBE IT ENACTED BY THE GENERAL ASSEMBLY OF THE STATE OF COLORADO:\n\nSECTION 1.\n39-22-104, Colorado Revised Statutes, is amended to read:\n(1) A taxpayer may claim a credit for a qualified capital investment placed in service during an income tax year.\n(2) As used in this section:\n(a) \"qualified capital investment\" means an investment in machinery, equipment, technology infrastructure, or industrial property used in Colorado.\n(3) The credit is capped at $10,000 for each qualified taxpayer.\n\nSECTION 2.\n39-22-514, Colorado Revised Statutes, is amended to read:\n(1) The aggregate amount of credits certified in a state fiscal year shall not exceed $50,000,000.\n(2) The House Finance Committee shall review annual program performance data.\n\nSECTION 3.",
+      "char_count": 1099
+    },
+    {
+      "page_number": 2,
+      "text": "24-4-103, Colorado Revised Statutes, is amended to read:\n(1) The department of revenue shall promulgate rules for the capital investment credit in accordance with the state administrative procedure act.\n(2) For administration, $250,000 is appropriated from the General Fund to the department of revenue.\n\nSECTION 4. Effective date.\nThis act applies to tax years starting on or after January 1, 2026.",
+      "char_count": 399
+    }
+  ],
+  "full_text": "HB25-1099\nA BILL FOR AN ACT\nCONCERNING MODIFICATIONS TO THE STATE INCOME TAX CREDIT FOR CAPITAL INVESTMENT.\n\nBY REPRESENTATIVE(S) Nguyen, Davis, Clark\nBY SENATOR(S) Robinson, Taylor\n\nCommittee on Finance\n\nBill Summary\nThe bill modifies Colorado law and creates deterministic sample\ncontent for Project Geode parser, entity, graph, and tagging tests.\n\nBE IT ENACTED BY THE GENERAL ASSEMBLY OF THE STATE OF COLORADO:\n\nSECTION 1.\n39-22-104, Colorado Revised Statutes, is amended to read:\n(1) A taxpayer may claim a credit for a qualified capital investment placed in service during an income tax year.\n(2) As used in this section:\n(a) \"qualified capital investment\" means an investment in machinery, equipment, technology infrastructure, or industrial property used in Colorado.\n(3) The credit is capped at $10,000 for each qualified taxpayer.\n\nSECTION 2.\n39-22-514, Colorado Revised Statutes, is amended to read:\n(1) The aggregate amount of credits certified in a state fiscal year shall not exceed $50,000,000.\n(2) The House Finance Committee shall review annual program performance data.\n\nSECTION 3.\n\n---PAGE BREAK---\n\n24-4-103, Colorado Revised Statutes, is amended to read:\n(1) The department of revenue shall promulgate rules for the capital investment credit in accordance with the state administrative procedure act.\n(2) For administration, $250,000 is appropriated from the General Fund to the department of revenue.\n\nSECTION 4. Effective date.\nThis act applies to tax years starting on or after January 1, 2026.",
+  "total_chars": 1518,
+  "sample_metadata": {
+    "generator_version": "1.0.0",
+    "domain": "CONCERNING MODIFICATIONS TO THE STATE INCOME TAX CREDIT FOR CAPITAL INVESTMENT",
+    "committee": "Finance"
+  }
+}

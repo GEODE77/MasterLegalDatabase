@@ -1,0 +1,128 @@
+[
+  {
+    "pattern": "mining|mineral|ore|tailings|quarry",
+    "naics": ["2121", "2122", "2123"],
+    "themes": ["mining", "mineral_resources"],
+    "description": "Mining, mineral, ore, tailings, and quarry references"
+  },
+  {
+    "pattern": "oil and gas|petroleum|natural gas|drilling|fracking",
+    "naics": ["2111", "2112"],
+    "themes": ["oil_and_gas", "energy"],
+    "description": "Oil and gas, petroleum, natural gas, drilling, and fracking references"
+  },
+  {
+    "pattern": "hospital|patient|physician|HIPAA|healthcare|medical",
+    "naics": ["6211", "6221", "6222", "6223"],
+    "themes": ["healthcare", "medical"],
+    "description": "Hospital, patient, physician, HIPAA, healthcare, and medical references"
+  },
+  {
+    "pattern": "pharmacy|pharmaceutical|drug|prescription",
+    "naics": ["3254", "4461"],
+    "themes": ["pharmacy", "pharmaceuticals"],
+    "description": "Pharmacy, pharmaceutical, drug, and prescription references"
+  },
+  {
+    "pattern": "semiconductor|wafer|cleanroom|chip|fabrication",
+    "naics": ["3344", "3345"],
+    "themes": ["semiconductors", "advanced_manufacturing"],
+    "description": "Semiconductor, wafer, cleanroom, chip, and fabrication references"
+  },
+  {
+    "pattern": "bank|lending|mortgage|financial institution|credit union",
+    "naics": ["5211", "5221", "5222"],
+    "themes": ["banking", "financial_regulation"],
+    "description": "Banking, lending, mortgage, financial institution, and credit union references"
+  },
+  {
+    "pattern": "insurance|underwriting|policyholder|premium",
+    "naics": ["5241", "5242"],
+    "themes": ["insurance", "financial_regulation"],
+    "description": "Insurance, underwriting, policyholder, and premium references"
+  },
+  {
+    "pattern": "cannabis|marijuana|dispensary|THC|hemp",
+    "naics": ["4453", "1119"],
+    "themes": ["cannabis", "regulated_industries"],
+    "description": "Cannabis, marijuana, dispensary, THC, and hemp references"
+  },
+  {
+    "pattern": "construction|contractor|subcontractor",
+    "naics": ["2361", "2362", "2381", "2382"],
+    "themes": ["construction", "contracting"],
+    "description": "Construction, contractor, and subcontractor references"
+  },
+  {
+    "pattern": "agriculture|farming|ranch|livestock|crop",
+    "naics": ["1111", "1112", "1121", "1122"],
+    "themes": ["agriculture", "livestock", "crop_production"],
+    "description": "Agriculture, farming, ranch, livestock, and crop references"
+  },
+  {
+    "pattern": "trucking|freight|shipping|motor carrier|CDL",
+    "naics": ["4841", "4842", "4884"],
+    "themes": ["transportation", "freight"],
+    "description": "Trucking, freight, shipping, motor carrier, and CDL references"
+  },
+  {
+    "pattern": "restaurant|food service|food establishment",
+    "naics": ["7223", "7224", "7225"],
+    "themes": ["food_service", "food_establishments"],
+    "description": "Restaurant, food service, and food establishment references"
+  },
+  {
+    "pattern": "real estate|property management|landlord|tenant",
+    "naics": ["5311", "5312", "5313"],
+    "themes": ["real_estate", "housing"],
+    "description": "Real estate, property management, landlord, and tenant references"
+  },
+  {
+    "pattern": "telecommunications|broadband|wireless|ISP",
+    "naics": ["5171", "5172", "5174"],
+    "themes": ["telecommunications", "broadband"],
+    "description": "Telecommunications, broadband, wireless, and ISP references"
+  },
+  {
+    "pattern": "education|school|teacher|student|curriculum",
+    "naics": ["6111", "6112", "6113"],
+    "themes": ["education"],
+    "description": "Education, school, teacher, student, and curriculum references"
+  },
+  {
+    "pattern": "manufacturing|factory|plant|industrial|production facility",
+    "naics": ["31-33"],
+    "themes": ["manufacturing", "industrial"],
+    "description": "Manufacturing, factory, plant, industrial, and production facility references"
+  },
+  {
+    "pattern": "ceramic|glass|refractory|kiln|sintering|technical ceramic",
+    "naics": ["3271", "3272", "3279"],
+    "themes": ["ceramics", "glass", "refractory", "advanced_materials"],
+    "description": "Ceramic, glass, refractory, kiln, sintering, and technical ceramic references"
+  },
+  {
+    "pattern": "emission|pollution|discharge|remediation|contamination",
+    "naics": ["5621", "5622", "5629", "9241"],
+    "themes": ["environmental_compliance", "emissions", "remediation"],
+    "description": "Emission, pollution, discharge, remediation, and contamination references"
+  },
+  {
+    "pattern": "energy|power|utility|electric|solar|wind|renewable",
+    "naics": ["2211", "2212"],
+    "themes": ["energy", "utilities", "renewable_energy"],
+    "description": "Energy, power, utility, electric, solar, wind, and renewable references"
+  },
+  {
+    "pattern": "water|irrigation|reservoir|wastewater",
+    "naics": ["2213"],
+    "themes": ["water", "irrigation", "wastewater"],
+    "description": "Water, irrigation, reservoir, and wastewater references"
+  },
+  {
+    "pattern": "software|data|technology|cybersecurity|artificial intelligence",
+    "naics": ["5112", "5415"],
+    "themes": ["software", "data", "technology", "cybersecurity", "artificial_intelligence"],
+    "description": "Software, data, technology, cybersecurity, and artificial intelligence references"
+  }
+]

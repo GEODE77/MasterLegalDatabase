@@ -12,14 +12,17 @@ from geode.extractors.ensemble import (
     run_ensemble_extraction,
 )
 from geode.extractors.llm_extractor import (
+    DISABLED_MESSAGE,
     GEODE_CONSTITUTION,
     TASK_INSTRUCTIONS,
-    LLMProviderUnavailable,
     LLMTaskPrompt,
+    assign_tags,
     build_task_prompt,
+    decompose_rule_units,
     extract_citations,
     extract_structure,
     generate_summary,
+    parse_model_spec,
 )
 
 
@@ -41,41 +44,31 @@ class FakeClient:
         return self.responses[prompt.task_id]
 
 
-def test_all_task_prompts_embed_constitution() -> None:
-    """Every Layer 3 prompt includes the Geode Constitution and task text."""
+def test_llm_constants_remain_importable() -> None:
+    """Legacy LLM constants remain importable for archived design references."""
+
+    assert "PRINCIPLE 1 - SOURCE FIDELITY" in GEODE_CONSTITUTION
+    assert set(TASK_INSTRUCTIONS) == {"A", "B", "C", "D", "E"}
+
+
+def test_llm_extractor_functions_are_disabled() -> None:
+    """Every LLM extractor entry point raises the deterministic-only error."""
 
     client = FakeClient("openai", "fake-openai", {})
-    for task_id, task_text in TASK_INSTRUCTIONS.items():
-        prompt = build_task_prompt(task_id, "source", {}, client, "contract")
-        assert GEODE_CONSTITUTION in prompt.system_prompt
-        assert "PRINCIPLE 1 - SOURCE FIDELITY" in prompt.system_prompt
-        assert "PRINCIPLE 8 - ENTITY CLARITY" in prompt.system_prompt
-        assert task_text in prompt.system_prompt
+    disabled_calls = [
+        lambda: parse_model_spec("openai:gpt-4o"),
+        lambda: build_task_prompt("A", "source", {}, client, "contract"),
+        lambda: extract_structure("text", {}, client),
+        lambda: extract_citations("text", [], client),
+        lambda: decompose_rule_units("text", {}, client),
+        lambda: assign_tags("text", "summary", {}, client),
+        lambda: generate_summary("text", client),
+        lambda: generate_summary("text", "openai:gpt-4o"),
+    ]
 
-
-def test_llm_task_functions_use_injected_client_only() -> None:
-    """Task wrappers dispatch to fake clients and return typed task outputs."""
-
-    client = FakeClient(
-        "anthropic",
-        "fake-claude",
-        {
-            "A": {"corrected_structure": [], "correction_notes": []},
-            "B": [{"canonical_form": "CRS-25-7-109"}],
-            "E": "The commission must issue permits.",
-        },
-    )
-    assert extract_structure("text", {}, client)["corrected_structure"] == []
-    assert extract_citations("text", [], client)[0]["canonical_form"] == "CRS-25-7-109"
-    assert generate_summary("text", client) == "The commission must issue permits."
-    assert [prompt.task_id for prompt in client.prompts] == ["A", "B", "E"]
-
-
-def test_provider_string_requires_adapter() -> None:
-    """Provider strings are parsed, but no live SDK call is attempted."""
-
-    with pytest.raises(LLMProviderUnavailable):
-        generate_summary("source text", "openai:gpt-4o")
+    for call in disabled_calls:
+        with pytest.raises(NotImplementedError, match=DISABLED_MESSAGE):
+            call()
 
 
 def test_exact_field_voting_boundaries() -> None:
@@ -123,8 +116,8 @@ def test_text_field_grounding_rejects_unsupported_claims() -> None:
     assert rejected.status == "REJECT"
 
 
-def test_run_ensemble_extraction_with_fake_models() -> None:
-    """Full ensemble run executes all five tasks twice without API keys."""
+def test_run_ensemble_extraction_is_disabled() -> None:
+    """Full LLM ensemble extraction is disabled in deterministic-only Geode."""
 
     responses = {
         "A": {"corrected_structure": [{"section": "1"}], "correction_notes": []},
@@ -141,11 +134,10 @@ def test_run_ensemble_extraction_with_fake_models() -> None:
         FakeClient("openai", "fake-openai", responses),
         FakeClient("anthropic", "fake-claude", responses),
     ]
-    result = run_ensemble_extraction(
-        "The commission must issue permits. Owners must submit reports.",
-        {"structure": {}, "citations": [], "ontology": {}},
-        models=models,
-    )
-    assert result.route_hint == "AUTO_ACCEPT"
-    assert result.merged_output["summary"].startswith("The commission")
-    assert all(len(model.prompts) == 5 for model in models)
+    with pytest.raises(NotImplementedError, match=DISABLED_MESSAGE):
+        run_ensemble_extraction(
+            "The commission must issue permits. Owners must submit reports.",
+            {"structure": {}, "citations": [], "ontology": {}},
+            models=models,
+        )
+    assert all(len(model.prompts) == 0 for model in models)

@@ -1,0 +1,102 @@
+{
+  "House Appropriations": {
+    "chamber": "house",
+    "naics": ["ALL"],
+    "themes": ["fiscal", "budget"]
+  },
+  "House Education": {
+    "chamber": "house",
+    "naics": ["6111", "6112", "6113", "6114"],
+    "themes": ["education"]
+  },
+  "House Energy & Environment": {
+    "chamber": "house",
+    "naics": ["2111", "2211", "2212", "3251", "3271", "3272", "3311", "5621", "5622", "9241"],
+    "themes": ["energy", "environmental_compliance", "emissions"]
+  },
+  "House Finance": {
+    "chamber": "house",
+    "naics": ["5211", "5221", "5222", "5231", "5241", "5242"],
+    "themes": ["financial_regulation", "taxation"]
+  },
+  "House Health & Insurance": {
+    "chamber": "house",
+    "naics": ["5241", "5242", "6211", "6221", "6222", "6223", "6231"],
+    "themes": ["healthcare", "insurance"]
+  },
+  "House Judiciary": {
+    "chamber": "house",
+    "naics": ["ALL"],
+    "themes": ["judicial", "criminal_law"]
+  },
+  "House State Affairs": {
+    "chamber": "house",
+    "naics": ["ALL"],
+    "themes": ["government"]
+  },
+  "House Transportation & Local Government": {
+    "chamber": "house",
+    "naics": ["4841", "4842", "4851", "9211", "2371", "2372", "2373"],
+    "themes": ["transportation", "infrastructure"]
+  },
+  "House Business Affairs & Labor": {
+    "chamber": "house",
+    "naics": ["ALL"],
+    "themes": ["labor", "business_regulation"]
+  },
+  "House Agriculture & Natural Resources": {
+    "chamber": "house",
+    "naics": ["1111", "1112", "1113", "1121", "1122", "2121", "2122", "2123"],
+    "themes": ["agriculture", "natural_resources", "mining"]
+  },
+  "Senate Appropriations": {
+    "chamber": "senate",
+    "naics": ["ALL"],
+    "themes": ["fiscal", "budget"]
+  },
+  "Senate Education": {
+    "chamber": "senate",
+    "naics": ["6111", "6112", "6113", "6114"],
+    "themes": ["education"]
+  },
+  "Senate Finance": {
+    "chamber": "senate",
+    "naics": ["5211", "5221", "5222", "5231", "5241", "5242"],
+    "themes": ["financial_regulation", "taxation"]
+  },
+  "Senate Health & Human Services": {
+    "chamber": "senate",
+    "naics": ["6211", "6221", "6222", "6223", "6231", "6241", "6242"],
+    "themes": ["healthcare", "social_services"]
+  },
+  "Senate Judiciary": {
+    "chamber": "senate",
+    "naics": ["ALL"],
+    "themes": ["judicial", "criminal_law"]
+  },
+  "Senate State Affairs": {
+    "chamber": "senate",
+    "naics": ["ALL"],
+    "themes": ["government"]
+  },
+  "Senate Transportation & Energy": {
+    "chamber": "senate",
+    "naics": ["2111", "2211", "2212", "4841", "4842", "2371", "2372"],
+    "themes": ["transportation", "energy"]
+  },
+  "Senate Business Labor & Technology": {
+    "chamber": "senate",
+    "naics": ["ALL"],
+    "themes": ["labor", "business_regulation", "technology"]
+  },
+  "Senate Agriculture & Natural Resources": {
+    "chamber": "senate",
+    "naics": ["1111", "1112", "1121", "2121", "2122", "2123"],
+    "themes": ["agriculture", "natural_resources"]
+  },
+  "Senate Local Government & Housing": {
+    "chamber": "senate",
+    "naics": ["9211", "5311", "5312", "5313", "2361", "2362"],
+    "themes": ["local_government", "housing"]
+  }
+}

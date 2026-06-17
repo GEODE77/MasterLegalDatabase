@@ -1,0 +1,565 @@
+{
+  "1": {
+    "title_name": "General Provisions",
+    "default_naics": ["ALL"],
+    "default_themes": ["general_law"],
+    "articles": {}
+  },
+  "2": {
+    "title_name": "Legislative",
+    "default_naics": ["9211"],
+    "default_themes": ["legislative_process", "government"],
+    "articles": {}
+  },
+  "3": {
+    "title_name": "Elections",
+    "default_naics": ["ALL"],
+    "default_themes": ["elections", "civic_participation"],
+    "articles": {}
+  },
+  "4": {
+    "title_name": "Uniform Commercial Code",
+    "default_naics": ["ALL"],
+    "default_themes": ["commercial_law", "contracts"],
+    "articles": {}
+  },
+  "5": {
+    "title_name": "Debtor-Creditor",
+    "default_naics": ["ALL"],
+    "default_themes": ["debtor_creditor", "financial_obligations"],
+    "articles": {}
+  },
+  "6": {
+    "title_name": "Consumer and Commercial Affairs",
+    "default_naics": ["ALL"],
+    "default_themes": ["consumer_protection", "commercial_regulation"],
+    "articles": {
+      "1": {
+        "article_name": "Consumer Protection",
+        "naics": ["ALL"],
+        "themes": ["consumer_protection"]
+      },
+      "16": {
+        "article_name": "Antitrust",
+        "naics": ["ALL"],
+        "themes": ["antitrust", "commercial_regulation"]
+      },
+      "22": {
+        "article_name": "Identity Theft",
+        "naics": ["ALL"],
+        "themes": ["identity_theft", "data_privacy", "consumer_protection"]
+      }
+    }
+  },
+  "7": {
+    "title_name": "Corporations and Associations",
+    "default_naics": ["ALL"],
+    "default_themes": ["corporate_governance", "business_formation"],
+    "articles": {}
+  },
+  "8": {
+    "title_name": "Labor and Industry",
+    "default_naics": ["ALL"],
+    "default_themes": ["labor", "employment"],
+    "articles": {
+      "1": {
+        "article_name": "Industrial Relations",
+        "naics": ["ALL"],
+        "themes": ["industrial_relations", "labor"]
+      },
+      "4": {
+        "article_name": "Workers Compensation",
+        "naics": ["ALL"],
+        "themes": ["workplace_safety", "insurance"]
+      },
+      "6": {
+        "article_name": "Wages",
+        "naics": ["ALL"],
+        "themes": ["wages", "labor"]
+      },
+      "13.5": {
+        "article_name": "Equal Pay",
+        "naics": ["ALL"],
+        "themes": ["equal_pay", "civil_rights", "labor"]
+      },
+      "14": {
+        "article_name": "Unemployment",
+        "naics": ["ALL"],
+        "themes": ["unemployment", "labor"]
+      },
+      "14.3": {
+        "article_name": "Paid Family Leave",
+        "naics": ["ALL"],
+        "themes": ["paid_family_leave", "labor"]
+      }
+    }
+  },
+  "9": {
+    "title_name": "Safety",
+    "default_naics": ["ALL"],
+    "default_themes": ["public_safety", "safety"],
+    "articles": {}
+  },
+  "10": {
+    "title_name": "Insurance",
+    "default_naics": ["5241", "5242", "5251"],
+    "default_themes": ["insurance"],
+    "articles": {
+      "1": {
+        "article_name": "General",
+        "naics": ["5241", "5242", "5251"],
+        "themes": ["insurance", "general_regulation"]
+      },
+      "3": {
+        "article_name": "Life Insurance",
+        "naics": ["5241", "5242"],
+        "themes": ["insurance", "life_insurance"]
+      },
+      "4": {
+        "article_name": "Property and Casualty Insurance",
+        "naics": ["5241", "5242"],
+        "themes": ["insurance", "property_casualty"]
+      },
+      "16": {
+        "article_name": "Health Insurance",
+        "naics": ["5241", "5242", "5251"],
+        "themes": ["insurance", "health_care", "health_insurance"]
+      }
+    }
+  },
+  "11": {
+    "title_name": "Financial Institutions",
+    "default_naics": ["5211", "5221", "5222", "5223"],
+    "default_themes": ["financial_services", "banking"],
+    "articles": {}
+  },
+  "12": {
+    "title_name": "Professions and Occupations",
+    "default_naics": ["5411", "5412", "5413", "6211", "6212", "6213", "8111", "8121"],
+    "default_themes": ["professional_licensing", "occupational_regulation"],
+    "articles": {
+      "20": {
+        "article_name": "Engineers",
+        "naics": ["5413"],
+        "themes": ["professional_licensing", "engineering"]
+      },
+      "36": {
+        "article_name": "Pharmacy",
+        "naics": ["6211", "6213"],
+        "themes": ["professional_licensing", "pharmacy", "health_care"]
+      },
+      "40": {
+        "article_name": "Medical",
+        "naics": ["6211", "6212", "6213"],
+        "themes": ["professional_licensing", "medical_practice", "health_care"]
+      },
+      "100": {
+        "article_name": "Real Estate",
+        "naics": ["5311", "5312", "5313"],
+        "themes": ["professional_licensing", "real_estate"]
+      }
+    }
+  },
+  "13": {
+    "title_name": "Courts and Court Procedure",
+    "default_naics": ["ALL"],
+    "default_themes": ["courts", "civil_procedure"],
+    "articles": {}
+  },
+  "14": {
+    "title_name": "Domestic Matters",
+    "default_naics": ["ALL"],
+    "default_themes": ["family_law", "domestic_relations"],
+    "articles": {}
+  },
+  "15": {
+    "title_name": "Probate, Trusts, and Fiduciaries",
+    "default_naics": ["5231", "5239", "5411"],
+    "default_themes": ["probate", "estate_planning", "fiduciary"],
+    "articles": {}
+  },
+  "16": {
+    "title_name": "Criminal Proceedings",
+    "default_naics": ["ALL"],
+    "default_themes": ["criminal_procedure", "public_safety"],
+    "articles": {}
+  },
+  "17": {
+    "title_name": "Corrections",
+    "default_naics": ["9221"],
+    "default_themes": ["corrections", "public_safety"],
+    "articles": {}
+  },
+  "18": {
+    "title_name": "Criminal Code",
+    "default_naics": ["ALL"],
+    "default_themes": ["criminal_law", "public_safety"],
+    "articles": {}
+  },
+  "19": {
+    "title_name": "Children's Code",
+    "default_naics": ["6241", "6244"],
+    "default_themes": ["children", "child_welfare", "human_services"],
+    "articles": {}
+  },
+  "20": {
+    "title_name": "District Attorneys",
+    "default_naics": ["9211"],
+    "default_themes": ["prosecution", "government"],
+    "articles": {}
+  },
+  "21": {
+    "title_name": "County Courts",
+    "default_naics": ["9211"],
+    "default_themes": ["courts", "government"],
+    "articles": {}
+  },
+  "22": {
+    "title_name": "Education",
+    "default_naics": ["6111", "6112", "6113"],
+    "default_themes": ["education"],
+    "articles": {
+      "7": {
+        "article_name": "School Finance",
+        "naics": ["6111", "6112"],
+        "themes": ["education", "school_finance", "fiscal"]
+      },
+      "30.5": {
+        "article_name": "Charter Schools",
+        "naics": ["6111", "6112"],
+        "themes": ["education", "charter_schools"]
+      },
+      "54": {
+        "article_name": "Higher Education",
+        "naics": ["6113"],
+        "themes": ["education", "higher_education"]
+      }
+    }
+  },
+  "23": {
+    "title_name": "Postsecondary Education",
+    "default_naics": ["6113", "6114", "6115"],
+    "default_themes": ["higher_education", "workforce_training"],
+    "articles": {}
+  },
+  "24": {
+    "title_name": "Government - State",
+    "default_naics": ["9211"],
+    "default_themes": ["state_government", "administrative_law"],
+    "articles": {
+      "4": {
+        "article_name": "Fiscal",
+        "naics": ["ALL"],
+        "themes": ["fiscal", "procurement"]
+      },
+      "6": {
+        "article_name": "Administrative Procedure Act",
+        "naics": ["ALL"],
+        "themes": ["regulatory_compliance", "administrative_law"]
+      },
+      "18": {
+        "article_name": "Procurement",
+        "naics": ["ALL"],
+        "themes": ["procurement", "contracting"]
+      },
+      "33.5": {
+        "article_name": "Colorado Open Records Act",
+        "naics": ["ALL"],
+        "themes": ["transparency", "data_privacy"]
+      },
+      "37": {
+        "article_name": "Cybersecurity",
+        "naics": ["ALL"],
+        "themes": ["cybersecurity"]
+      },
+      "72": {
+        "article_name": "Open Records",
+        "naics": ["ALL"],
+        "themes": ["transparency"]
+      },
+      "73": {
+        "article_name": "Privacy Act",
+        "naics": ["ALL"],
+        "themes": ["data_privacy", "consumer_protection"]
+      }
+    }
+  },
+  "25": {
+    "title_name": "Public Health and Environment",
+    "default_naics": ["9241"],
+    "default_themes": ["public_health", "environment"],
+    "articles": {
+      "1": {
+        "article_name": "Department of Public Health and Environment",
+        "naics": ["9241"],
+        "themes": ["public_health", "environment", "agency_administration"]
+      },
+      "1.5": {
+        "article_name": "Health Facilities",
+        "naics": ["6211", "6221", "6222", "6223", "6231", "6232"],
+        "themes": ["health_facilities", "health_care", "licensing"]
+      },
+      "3": {
+        "article_name": "Communicable Diseases",
+        "naics": ["9241", "6211", "6221"],
+        "themes": ["communicable_disease", "public_health"]
+      },
+      "5": {
+        "article_name": "Hazardous Waste",
+        "naics": ["2111", "3241", "3251", "3252", "3253", "3259", "3271", "3272", "3311", "3312", "3313", "5621", "5622"],
+        "themes": ["hazmat", "waste_management"]
+      },
+      "7": {
+        "article_name": "Air Quality",
+        "naics": ["2111", "2211", "3241", "3251", "3252", "3271", "3272", "3311", "3312", "3313"],
+        "themes": ["emissions", "permitting"]
+      },
+      "8": {
+        "article_name": "Water Quality",
+        "naics": ["2211", "2213", "1111", "1112", "2121", "2122", "2123", "3251", "3271", "3272", "3311"],
+        "themes": ["water", "permitting"]
+      },
+      "11": {
+        "article_name": "Solid Waste",
+        "naics": ["5621", "5622", "5629"],
+        "themes": ["solid_waste", "waste_management"]
+      },
+      "15": {
+        "article_name": "Radiation",
+        "naics": ["3344", "3345", "6211", "6215", "6221"],
+        "themes": ["radiation", "health_care", "public_health"]
+      }
+    }
+  },
+  "25.5": {
+    "title_name": "Health Care Policy and Financing",
+    "default_naics": ["6211", "6221", "6222", "6223", "6231", "5241"],
+    "default_themes": ["health_care", "medicaid", "health_policy"],
+    "articles": {}
+  },
+  "26": {
+    "title_name": "Human Services Code",
+    "default_naics": ["6241", "6242", "6243", "6244"],
+    "default_themes": ["human_services", "social_services"],
+    "articles": {}
+  },
+  "27": {
+    "title_name": "Behavioral Health",
+    "default_naics": ["6221", "6222", "6223", "6241"],
+    "default_themes": ["behavioral_health", "health_care"],
+    "articles": {}
+  },
+  "28": {
+    "title_name": "Military and Veterans",
+    "default_naics": ["9281"],
+    "default_themes": ["military", "veterans"],
+    "articles": {}
+  },
+  "29": {
+    "title_name": "Government - Local",
+    "default_naics": ["9211"],
+    "default_themes": ["local_government"],
+    "articles": {}
+  },
+  "30": {
+    "title_name": "Government - County",
+    "default_naics": ["9211"],
+    "default_themes": ["county_government", "local_government"],
+    "articles": {
+      "28": {
+        "article_name": "Zoning",
+        "naics": ["ALL"],
+        "themes": ["land_use", "zoning", "permitting"]
+      }
+    }
+  },
+  "31": {
+    "title_name": "Government - Municipal",
+    "default_naics": ["9211"],
+    "default_themes": ["municipal_government", "local_government"],
+    "articles": {}
+  },
+  "32": {
+    "title_name": "Special Districts",
+    "default_naics": ["9211", "2213"],
+    "default_themes": ["special_districts", "local_government", "utilities"],
+    "articles": {}
+  },
+  "33": {
+    "title_name": "Parks and Wildlife",
+    "default_naics": ["1141", "1142", "7121", "7139"],
+    "default_themes": ["wildlife", "parks", "recreation"],
+    "articles": {}
+  },
+  "34": {
+    "title_name": "Mineral Resources",
+    "default_naics": ["2111", "2121", "2122", "2123"],
+    "default_themes": ["mining", "energy", "natural_resources"],
+    "articles": {
+      "32": {
+        "article_name": "Mined Land Reclamation",
+        "naics": ["2121", "2122", "2123"],
+        "themes": ["mining", "reclamation", "permitting"]
+      },
+      "60": {
+        "article_name": "Oil and Gas",
+        "naics": ["2111", "2112"],
+        "themes": ["oil_and_gas", "permitting"]
+      },
+      "63": {
+        "article_name": "Setback",
+        "naics": ["2111"],
+        "themes": ["safety"]
+      }
+    }
+  },
+  "35": {
+    "title_name": "Agriculture",
+    "default_naics": ["1111", "1112", "1113", "1114", "1119", "1121", "1122", "1123"],
+    "default_themes": ["agriculture", "food_supply"],
+    "articles": {
+      "1": {
+        "article_name": "Department of Agriculture",
+        "naics": ["1111", "1112", "1113", "1114", "1119", "1121", "1122", "1123"],
+        "themes": ["agriculture", "agency_administration"]
+      },
+      "9": {
+        "article_name": "Pesticide",
+        "naics": ["1111", "1112", "1113", "1114", "1119", "3253"],
+        "themes": ["pesticide", "agriculture", "environment"]
+      },
+      "14": {
+        "article_name": "Animal Health",
+        "naics": ["1121", "1122", "1123"],
+        "themes": ["animal_health", "agriculture"]
+      }
+    }
+  },
+  "36": {
+    "title_name": "Parks and Recreation",
+    "default_naics": ["7121", "7131", "7139"],
+    "default_themes": ["parks", "recreation"],
+    "articles": {}
+  },
+  "37": {
+    "title_name": "Water and Irrigation",
+    "default_naics": ["2213", "1111", "2211"],
+    "default_themes": ["water", "irrigation", "utilities"],
+    "articles": {}
+  },
+  "38": {
+    "title_name": "Property - Real and Personal",
+    "default_naics": ["5311", "5312", "5313"],
+    "default_themes": ["property", "real_estate"],
+    "articles": {}
+  },
+  "39": {
+    "title_name": "Taxation",
+    "default_naics": ["ALL"],
+    "default_themes": ["taxation", "fiscal_policy"],
+    "articles": {
+      "1": {
+        "article_name": "Property Tax",
+        "naics": ["ALL"],
+        "themes": ["property_tax", "taxation"]
+      },
+      "22": {
+        "article_name": "Income Tax",
+        "naics": ["ALL"],
+        "themes": ["income_tax", "taxation"]
+      },
+      "26": {
+        "article_name": "Sales Tax",
+        "naics": ["ALL"],
+        "themes": ["sales_tax", "taxation"]
+      },
+      "28.8": {
+        "article_name": "TABOR",
+        "naics": ["ALL"],
+        "themes": ["fiscal_policy"]
+      },
+      "29": {
+        "article_name": "Severance Tax",
+        "naics": ["2111", "2121", "2122", "2123"],
+        "themes": ["severance_tax", "mining"]
+      }
+    }
+  },
+  "40": {
+    "title_name": "Utilities",
+    "default_naics": ["2211", "2212", "4911", "5171", "5172"],
+    "default_themes": ["utilities", "public_utilities"],
+    "articles": {
+      "2": {
+        "article_name": "Public Utilities Commission",
+        "naics": ["2211", "2212", "4911", "5171", "5172"],
+        "themes": ["utilities", "public_utilities_commission"]
+      },
+      "3": {
+        "article_name": "Electric",
+        "naics": ["2211"],
+        "themes": ["electric", "utilities"]
+      },
+      "4": {
+        "article_name": "Gas",
+        "naics": ["2212"],
+        "themes": ["gas", "utilities"]
+      },
+      "5": {
+        "article_name": "Water",
+        "naics": ["2213"],
+        "themes": ["water", "utilities"]
+      },
+      "15": {
+        "article_name": "Telecommunications",
+        "naics": ["5171", "5172"],
+        "themes": ["telecommunications", "utilities"]
+      }
+    }
+  },
+  "41": {
+    "title_name": "Warehouses",
+    "default_naics": ["4931"],
+    "default_themes": ["warehousing", "storage"],
+    "articles": {}
+  },
+  "42": {
+    "title_name": "Vehicles and Traffic",
+    "default_naics": ["ALL"],
+    "default_themes": ["vehicles", "transportation"],
+    "articles": {}
+  },
+  "43": {
+    "title_name": "Transportation",
+    "default_naics": ["4841", "4842", "4851", "2371", "2372", "2373"],
+    "default_themes": ["transportation", "infrastructure"],
+    "articles": {}
+  },
+  "44": {
+    "title_name": "Revenue",
+    "default_naics": ["7132", "4453", "7223"],
+    "default_themes": ["regulated_industries", "revenue"],
+    "articles": {
+      "3": {
+        "article_name": "Lottery",
+        "naics": ["7132"],
+        "themes": ["lottery", "gaming"]
+      },
+      "4": {
+        "article_name": "Liquor",
+        "naics": ["4453", "7223"],
+        "themes": ["liquor", "licensing"]
+      },
+      "10": {
+        "article_name": "Marijuana",
+        "naics": ["4453"],
+        "themes": ["marijuana", "cannabis", "licensing"]
+      },
+      "30": {
+        "article_name": "Gaming",
+        "naics": ["7132"],
+        "themes": ["gaming", "licensing"]
+      }
+    }
+  }
+}

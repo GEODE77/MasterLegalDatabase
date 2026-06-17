@@ -1,11 +1,14 @@
 ﻿# Python
 .venv/
+venv/
+env/
 __pycache__/
 *.pyc
 *.pyo
 *.egg-info/
 dist/
 build/
+.pytest_cache/
 
 # Environment
 .env
@@ -23,28 +26,16 @@ build/
 .DS_Store
 Thumbs.db
 
-# Data (too large for Git)
-_RAW_ARCHIVE/**/*.pdf
-_RAW_ARCHIVE/**/*.docx
-_SNAPSHOTS/
-
-# Virtual environments
-venv/
-.venv/
-env/
-
-# Python caches
-__pycache__/
-*.pyc
-.pytest_cache/
-
-# Raw scrape outputs - belong in OneDrive, not Git
+# Raw scrape outputs (belong in OneDrive backup, not Git)
 *.pdf
 02_Regulations_CCR/*.pdf
 _CONTROL_PLANE/raw/
 _CONTROL_PLANE/normalized/
 _CONTROL_PLANE/tagged/
 _CONTROL_PLANE/cache/
+_RAW_ARCHIVE/**/*.pdf
+_RAW_ARCHIVE/**/*.docx
+_SNAPSHOTS/
 
 # Local dev scripts (one-off debugging tools)
 scripts/dev/

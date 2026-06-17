@@ -1,0 +1,188 @@
+{
+  "committees": [
+    {
+      "name": "Agriculture, Water & Natural Resources",
+      "chamber": "house",
+      "aliases": [
+        "House Agriculture, Water & Natural Resources",
+        "Agriculture & Natural Resources",
+        "Agriculture and Natural Resources",
+        "Agriculture Water Natural Resources",
+        "Agriculture, Livestock, & Water"
+      ]
+    },
+    {
+      "name": "Appropriations",
+      "chamber": "house",
+      "aliases": [
+        "House Appropriations",
+        "Appropriations Committee"
+      ]
+    },
+    {
+      "name": "Business Affairs & Labor",
+      "chamber": "house",
+      "aliases": [
+        "House Business Affairs & Labor",
+        "Business Affairs and Labor",
+        "Business Affairs Labor",
+        "Business Labor"
+      ]
+    },
+    {
+      "name": "Education",
+      "chamber": "house",
+      "aliases": [
+        "House Education",
+        "Education Committee"
+      ]
+    },
+    {
+      "name": "Energy & Environment",
+      "chamber": "house",
+      "aliases": [
+        "House Energy & Environment",
+        "Energy and Environment",
+        "Energy Environment"
+      ]
+    },
+    {
+      "name": "Finance",
+      "chamber": "house",
+      "aliases": [
+        "House Finance",
+        "Finance Committee"
+      ]
+    },
+    {
+      "name": "Health & Human Services",
+      "chamber": "house",
+      "aliases": [
+        "House Health & Human Services",
+        "Health and Human Services",
+        "Health & Insurance",
+        "Health and Insurance",
+        "Public and Behavioral Health and Human Services"
+      ]
+    },
+    {
+      "name": "Judiciary",
+      "chamber": "house",
+      "aliases": [
+        "House Judiciary",
+        "Judiciary Committee"
+      ]
+    },
+    {
+      "name": "State, Civic, Military, & Veterans Affairs",
+      "chamber": "house",
+      "aliases": [
+        "House State, Civic, Military, & Veterans Affairs",
+        "State, Civic, Military, and Veterans Affairs",
+        "State Affairs",
+        "State, Veterans, & Military Affairs",
+        "State Veterans Military Affairs"
+      ]
+    },
+    {
+      "name": "Transportation, Housing & Local Government",
+      "chamber": "house",
+      "aliases": [
+        "House Transportation, Housing & Local Government",
+        "Transportation, Housing and Local Government",
+        "Transportation & Local Government",
+        "Transportation and Local Government",
+        "Transportation Local Government"
+      ]
+    },
+    {
+      "name": "Agriculture & Natural Resources",
+      "chamber": "senate",
+      "aliases": [
+        "Senate Agriculture & Natural Resources",
+        "Agriculture and Natural Resources",
+        "Agriculture Natural Resources"
+      ]
+    },
+    {
+      "name": "Appropriations",
+      "chamber": "senate",
+      "aliases": [
+        "Senate Appropriations",
+        "Appropriations Committee"
+      ]
+    },
+    {
+      "name": "Business, Labor, & Technology",
+      "chamber": "senate",
+      "aliases": [
+        "Senate Business, Labor, & Technology",
+        "Business, Labor, and Technology",
+        "Business Labor & Technology",
+        "Business Labor and Technology",
+        "Business Labor Technology"
+      ]
+    },
+    {
+      "name": "Education",
+      "chamber": "senate",
+      "aliases": [
+        "Senate Education",
+        "Education Committee"
+      ]
+    },
+    {
+      "name": "Finance",
+      "chamber": "senate",
+      "aliases": [
+        "Senate Finance",
+        "Finance Committee"
+      ]
+    },
+    {
+      "name": "Health & Human Services",
+      "chamber": "senate",
+      "aliases": [
+        "Senate Health & Human Services",
+        "Health and Human Services",
+        "Health Human Services"
+      ]
+    },
+    {
+      "name": "Judiciary",
+      "chamber": "senate",
+      "aliases": [
+        "Senate Judiciary",
+        "Judiciary Committee"
+      ]
+    },
+    {
+      "name": "Local Government & Housing",
+      "chamber": "senate",
+      "aliases": [
+        "Senate Local Government & Housing",
+        "Local Government and Housing",
+        "Local Government Housing"
+      ]
+    },
+    {
+      "name": "State, Veterans, & Military Affairs",
+      "chamber": "senate",
+      "aliases": [
+        "Senate State, Veterans, & Military Affairs",
+        "State, Veterans, and Military Affairs",
+        "State Affairs",
+        "State Veterans Military Affairs"
+      ]
+    },
+    {
+      "name": "Transportation & Energy",
+      "chamber": "senate",
+      "aliases": [
+        "Senate Transportation & Energy",
+        "Transportation and Energy",
+        "Transportation Energy"
+      ]
+    }
+  ]
+}

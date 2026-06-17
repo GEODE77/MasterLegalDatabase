@@ -11,17 +11,21 @@ from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qs, urljoin, urlparse
+from urllib.parse import parse_qs, quote, urljoin, urlparse
 
-import httpx
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
 
+from geode.net.http_client import GeodeFetchError, build_session, polite_get
 from geode.schemas.validators import require_official_source_url
 from geode.utils.hashing import sha256_file
 
 LOGGER = logging.getLogger(__name__)
 
 CCR_BASE_URL = "https://www.sos.state.co.us"
+SOS_HOME_URL = f"{CCR_BASE_URL}/"
+GOOGLE_REFERER = "https://www.google.com/"
+CCR_WELCOME_URL = f"{CCR_BASE_URL}/CCR/Welcome.do"
+CCR_SEARCH_URL = CCR_WELCOME_URL
 CCR_DEPARTMENT_LIST_URL = f"{CCR_BASE_URL}/CCR/NumericalDeptList.do"
 DOWNLOAD_MANIFEST = "download_manifest.jsonl"
 CCR_NUMBER_RE = re.compile(r"\b(\d+\s+CCR\s+\d+-\d+(?:-\d+)?)\b", re.IGNORECASE)
@@ -175,11 +179,12 @@ def discover_all_rules(
 ) -> list[CCRRuleEntry]:
     """Crawl CCR browse pages and catalog rule document links."""
 
-    department_html = _fetch_text(start_url, client)
+    session = _session_or_client(client)
+    department_html = _fetch_text(start_url, session, referer=CCR_WELCOME_URL)
     agency_links = _agency_links(department_html, start_url)
     entries: list[CCRRuleEntry] = []
     for agency_url, department, agency in agency_links[:max_agencies]:
-        agency_html = _fetch_text(agency_url, client)
+        agency_html = _fetch_text(agency_url, session, referer=start_url)
         entries.extend(_rule_entries_from_page(agency_html, agency_url, department, agency))
     return entries
 
@@ -190,18 +195,31 @@ def resolve_rule_info_page(
 ) -> CCRRuleEntry:
     """Resolve one SOS rule-info page into downloadable DOCX/PDF URLs."""
 
+    session = _session_or_client(client)
     rule = _coerce_rule_entry(entry)
-    html = _fetch_text(str(rule.source_page_url), client)
+    html = _fetch_text(
+        str(rule.source_page_url),
+        session,
+        referer=CCR_DEPARTMENT_LIST_URL,
+    )
     parser = _parse_links(html)
     pdf_url = str(rule.pdf_url) if rule.pdf_url is not None else None
     docx_url = str(rule.docx_url) if rule.docx_url is not None else None
     for link in parser.links:
+        if _is_javascript_href(link.href):
+            continue
         absolute = urljoin(str(rule.source_page_url), link.href)
-        lower = f"{absolute} {link.text}".lower()
-        if _looks_docx(lower):
+        lower_href = absolute.lower()
+        if _looks_docx(lower_href):
             docx_url = absolute
-        elif _looks_pdf(lower):
+        elif _looks_pdf(lower_href):
             pdf_url = absolute
+    script_pdf_url, script_docx_url = _download_urls_from_rule_scripts(
+        html,
+        str(rule.source_page_url),
+    )
+    pdf_url = pdf_url or script_pdf_url
+    docx_url = docx_url or script_docx_url
     return CCRRuleEntry(
         ccr_number=rule.ccr_number,
         department=rule.department,
@@ -228,6 +246,7 @@ def download_rule(
 ) -> Path:
     """Download one CCR rule to the raw archive, preferring DOCX over PDF."""
 
+    session = _session_or_client(client)
     archive_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = archive_dir / DOWNLOAD_MANIFEST
     target = archive_dir / f"{_safe_stem(entry.canonical_id)}{entry.preferred_extension}"
@@ -237,7 +256,11 @@ def download_rule(
         return target
 
     try:
-        response = _fetch_bytes(entry.preferred_url, client)
+        response = _fetch_bytes(
+            entry.preferred_url,
+            session,
+            referer=str(entry.source_page_url),
+        )
     except Exception as exc:
         _append_manifest(
             manifest_path,
@@ -285,7 +308,8 @@ def download_all_rules(
 ) -> DownloadReport:
     """Discover and download all CCR rules with rate limiting and resume support."""
 
-    entries = discover_all_rules(client=client)
+    session = _session_or_client(client)
+    entries = discover_all_rules(client=session)
     paths: list[str] = []
     errors: list[str] = []
     downloaded = 0
@@ -295,7 +319,7 @@ def download_all_rules(
         target = archive_dir / f"{_safe_stem(entry.canonical_id)}{entry.preferred_extension}"
         existed = target.exists()
         try:
-            path = download_rule(entry, archive_dir, client=client)
+            path = download_rule(entry, archive_dir, client=session)
         except CCRDownloadError as exc:
             failed += 1
             errors.append(f"{entry.ccr_number}: {exc}")
@@ -369,17 +393,19 @@ def _rule_entries_from_page(
     parser = _parse_links(html)
     grouped: dict[str, dict[str, str]] = {}
     for link in parser.links:
+        if _is_javascript_href(link.href):
+            continue
         absolute = urljoin(source_page_url, link.href)
-        lower = f"{absolute} {link.text}".lower()
-        if not _looks_downloadable(lower):
+        lower_href = absolute.lower()
+        if not _looks_downloadable(lower_href):
             continue
         ccr_number = _ccr_number_from_text(f"{link.text} {absolute}")
         if ccr_number is None:
             continue
         item = grouped.setdefault(ccr_number, {})
-        if _looks_docx(lower):
+        if _looks_docx(lower_href):
             item["docx_url"] = absolute
-        elif _looks_pdf(lower):
+        elif _looks_pdf(lower_href):
             item["pdf_url"] = absolute
     entries = []
     for ccr_number, urls in sorted(grouped.items(), key=lambda item: _ccr_sort_key(item[0])):
@@ -439,10 +465,50 @@ def _looks_downloadable(lower_url: str) -> bool:
     return _looks_docx(lower_url) or _looks_pdf(lower_url)
 
 
+def _download_urls_from_rule_scripts(html: str, source_page_url: str) -> tuple[str | None, str | None]:
+    """Extract live SOS PDF/DOCX URLs from JavaScript download calls."""
+
+    pdf_url: str | None = None
+    docx_url: str | None = None
+    pattern = re.compile(
+        r"OpenRule(?P<kind>Window|WordVersion)\(\s*['\"](?P<version>\d+)['\"]\s*,"
+        r"\s*['\"](?P<file_name>[^'\"]+)['\"]\s*\)",
+        re.IGNORECASE,
+    )
+    for match in pattern.finditer(html):
+        version = quote(match.group("version"))
+        file_name = quote(match.group("file_name"))
+        base = f"/CCR/GenerateRulePdf.do?ruleVersionId={version}&fileName={file_name}"
+        absolute = urljoin(source_page_url, base)
+        if match.group("kind").casefold() == "wordversion":
+            docx_url = docx_url or f"{absolute}&type=word"
+        else:
+            pdf_url = pdf_url or absolute
+        if pdf_url and docx_url:
+            break
+    return pdf_url, docx_url
+
+
+def _is_javascript_href(href: str) -> bool:
+    """Return whether a link href is JavaScript rather than a document URL."""
+
+    return href.strip().lower().startswith("javascript:")
+
+
 def _looks_docx(lower_url: str) -> bool:
     """Return whether a URL points to a DOC/DOCX source."""
 
-    return any(token in lower_url for token in (".docx", ".doc", "docx", "word"))
+    return any(
+        token in lower_url
+        for token in (
+            ".docx",
+            ".doc?",
+            ".doc&",
+            "generateruledoc",
+            "type=word",
+            "wordversion",
+        )
+    )
 
 
 def _looks_pdf(lower_url: str) -> bool:
@@ -451,51 +517,64 @@ def _looks_pdf(lower_url: str) -> bool:
     return ".pdf" in lower_url or "pdf" in lower_url
 
 
-def _fetch_text(url: str, client: Any | None) -> str:
+def _session_or_client(client: Any | None) -> Any:
+    """Return an injected client or a warmed SOS browser session."""
+
+    if client is not None:
+        return client
+    session = build_session()
+    _prime_sos_session(session)
+    return session
+
+
+def _prime_sos_session(session: Any) -> None:
+    """Walk the SOS referer chain to collect cookies before CCR requests."""
+
+    if getattr(session, "_geode_sos_primed", False):
+        return
+
+    try:
+        polite_get(session, SOS_HOME_URL, referer=GOOGLE_REFERER)
+        next_referer = SOS_HOME_URL
+    except GeodeFetchError as exc:
+        if exc.status_code != 403:
+            raise
+        LOGGER.warning(
+            "SOS homepage returned 403 after retries; harvesting CCR search cookies."
+        )
+        polite_get(session, CCR_SEARCH_URL, referer=GOOGLE_REFERER)
+        next_referer = CCR_SEARCH_URL
+
+    polite_get(session, CCR_WELCOME_URL, referer=next_referer)
+    polite_get(session, CCR_DEPARTMENT_LIST_URL, referer=CCR_WELCOME_URL)
+    try:
+        setattr(session, "_geode_sos_primed", True)
+    except Exception:
+        LOGGER.debug("Could not mark SOS session as primed.", exc_info=True)
+
+
+def _fetch_text(url: str, client: Any | None, referer: str | None = None) -> str:
     """Fetch text with retry handling."""
 
-    response = _get_with_retries(url, client)
+    response = _get_with_retries(url, client, referer=referer)
     return str(response.text)
 
 
-def _fetch_bytes(url: str, client: Any | None) -> bytes:
+def _fetch_bytes(url: str, client: Any | None, referer: str | None = None) -> bytes:
     """Fetch bytes with retry handling."""
 
-    response = _get_with_retries(url, client)
+    response = _get_with_retries(url, client, referer=referer)
     return bytes(response.content)
 
 
-def _get_with_retries(url: str, client: Any | None, retries: int = 3) -> Any:
-    """GET a URL with three attempts on HTTP errors."""
+def _get_with_retries(url: str, client: Any | None, referer: str | None = None) -> Any:
+    """GET a URL using the hardened polite client."""
 
-    last_error: Exception | None = None
-    for attempt in range(1, retries + 1):
-        try:
-            response = _get(url, client)
-            if hasattr(response, "raise_for_status"):
-                response.raise_for_status()
-            elif int(response.status_code) >= 400:
-                raise httpx.HTTPStatusError("HTTP error", request=None, response=response)
-            return response
-        except Exception as exc:
-            last_error = exc
-            LOGGER.warning(
-                "CCR request failed attempt %s/%s for %s: %s",
-                attempt,
-                retries,
-                url,
-                exc,
-            )
-    raise CCRDownloadError(f"failed after {retries} attempts: {last_error}")
-
-
-def _get(url: str, client: Any | None) -> Any:
-    """Issue one HTTP GET using an injected or temporary client."""
-
-    if client is not None:
-        return client.get(url)
-    with httpx.Client(follow_redirects=True, timeout=30.0) as http_client:
-        return http_client.get(url)
+    session = client if client is not None else _session_or_client(None)
+    try:
+        return polite_get(session, url, referer=referer)
+    except GeodeFetchError as exc:
+        raise CCRDownloadError(str(exc)) from exc
 
 
 def _manifest_entry_for(

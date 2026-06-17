@@ -1,0 +1,24 @@
+{
+  "source_file": "HB25-1042.pdf",
+  "extractor": "sample_generator",
+  "page_count": 2,
+  "pages": [
+    {
+      "page_number": 1,
+      "text": "HB25-1042\nA BILL FOR AN ACT\nCONCERNING REQUIREMENTS FOR HEALTH INSURANCE COVERAGE OF BEHAVIORAL HEALTH SERVICES.\n\nBY REPRESENTATIVE(S) Martinez, Lee\nBY SENATOR(S) Patel\n\nCommittee on Health & Insurance\n\nBill Summary\nThe bill modifies Colorado law and creates deterministic sample\ncontent for Project Geode parser, entity, graph, and tagging tests.\n\nBE IT ENACTED BY THE GENERAL ASSEMBLY OF THE STATE OF COLORADO:\n\nSECTION 1.\n10-16-104, Colorado Revised Statutes, is amended to read:\n(1) A carrier that offers a health benefit plan shall provide coverage for behavioral health services on terms no more restrictive than medical services.\n(2) The House Health & Insurance Committee shall receive an annual parity compliance report.\n(3) As used in this section:\n(a) \"behavioral health disorder\" means a mental health or substance use disorder that is recognized in current clinical standards.\n(b) \"parity\" means coverage requirements that are comparable for behavioral health and medical benefits.\n\nSECTION 2.\n25.5-5-402, Colorado Revised Statutes, is amended to read:\n(1) The state department shall seek federal approval to align medicaid managed care contracts with behavioral health parity requirements.\n(2) The department may use 2.0 FTE to implement this section.",
+      "char_count": 1265
+    },
+    {
+      "page_number": 2,
+      "text": "SECTION 3.\n27-60-104, Colorado Revised Statutes, is amended to read:\n(1) The behavioral health administration shall coordinate provider standards for clinical services and patient access.\n\nSECTION 4.\n10-16-104.5, Colorado Revised Statutes, is added to read:\n(1) A carrier shall maintain an internal appeal process for a denial of behavioral health services.\n(2) For the 2025-26 state fiscal year, $1,200,000 is appropriated from the Healthcare Affordability Fund to the division of insurance.\n\nSECTION 5. Effective date.\nThis act takes effect January 1, 2026.",
+      "char_count": 559
+    }
+  ],
+  "full_text": "HB25-1042\nA BILL FOR AN ACT\nCONCERNING REQUIREMENTS FOR HEALTH INSURANCE COVERAGE OF BEHAVIORAL HEALTH SERVICES.\n\nBY REPRESENTATIVE(S) Martinez, Lee\nBY SENATOR(S) Patel\n\nCommittee on Health & Insurance\n\nBill Summary\nThe bill modifies Colorado law and creates deterministic sample\ncontent for Project Geode parser, entity, graph, and tagging tests.\n\nBE IT ENACTED BY THE GENERAL ASSEMBLY OF THE STATE OF COLORADO:\n\nSECTION 1.\n10-16-104, Colorado Revised Statutes, is amended to read:\n(1) A carrier that offers a health benefit plan shall provide coverage for behavioral health services on terms no more restrictive than medical services.\n(2) The House Health & Insurance Committee shall receive an annual parity compliance report.\n(3) As used in this section:\n(a) \"behavioral health disorder\" means a mental health or substance use disorder that is recognized in current clinical standards.\n(b) \"parity\" means coverage requirements that are comparable for behavioral health and medical benefits.\n\nSECTION 2.\n25.5-5-402, Colorado Revised Statutes, is amended to read:\n(1) The state department shall seek federal approval to align medicaid managed care contracts with behavioral health parity requirements.\n(2) The department may use 2.0 FTE to implement this section.\n\n---PAGE BREAK---\n\nSECTION 3.\n27-60-104, Colorado Revised Statutes, is amended to read:\n(1) The behavioral health administration shall coordinate provider standards for clinical services and patient access.\n\nSECTION 4.\n10-16-104.5, Colorado Revised Statutes, is added to read:\n(1) A carrier shall maintain an internal appeal process for a denial of behavioral health services.\n(2) For the 2025-26 state fiscal year, $1,200,000 is appropriated from the Healthcare Affordability Fund to the division of insurance.\n\nSECTION 5. Effective date.\nThis act takes effect January 1, 2026.",
+  "total_chars": 1844,
+  "sample_metadata": {
+    "generator_version": "1.0.0",
+    "domain": "CONCERNING REQUIREMENTS FOR HEALTH INSURANCE COVERAGE OF BEHAVIORAL HEALTH SERVICES",
+    "committee": "Health & Insurance"
+  }
+}
