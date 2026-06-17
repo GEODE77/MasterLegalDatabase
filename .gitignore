@@ -46,3 +46,6 @@ test_scrape*.py
 test_session.py
 download_wage.py
 run_wage.py
+
+# Per-run provenance manifests (regenerated on every pull)
+data/raw/**/download_manifest.jsonl
