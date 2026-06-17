@@ -64,24 +64,27 @@ class CCRRuleEntry(BaseModel):
 
     @property
     def preferred_url(self) -> str:
-        """Return DOCX URL when available, otherwise PDF URL."""
+        """Return PDF URL when available, otherwise DOC/DOCX URL."""
 
-        if self.docx_url is not None:
-            return str(self.docx_url)
         if self.pdf_url is not None:
             return str(self.pdf_url)
+        if self.docx_url is not None:
+            return str(self.docx_url)
         raise CCRDownloadError(f"no downloadable URL for {self.ccr_number}")
 
     @property
     def preferred_extension(self) -> str:
         """Return the archive extension for the preferred source."""
 
-        parsed = urlparse(self.preferred_url)
+        preferred_url = self.preferred_url
+        parsed = urlparse(preferred_url)
         suffix = Path(parsed.path).suffix.lower()
         if suffix in {".doc", ".docx", ".pdf"}:
             return suffix
-        if self.docx_url is not None:
-            return ".docx"
+        if self.pdf_url is not None and preferred_url == str(self.pdf_url):
+            return ".pdf"
+        if self.docx_url is not None and preferred_url == str(self.docx_url):
+            return ".doc"
         return ".pdf"
 
 
@@ -244,7 +247,7 @@ def download_rule(
     archive_dir: Path,
     client: Any | None = None,
 ) -> Path:
-    """Download one CCR rule to the raw archive, preferring DOCX over PDF."""
+    """Download one CCR rule to the raw archive, preferring PDF over DOC/DOCX."""
 
     session = _session_or_client(client)
     archive_dir.mkdir(parents=True, exist_ok=True)
@@ -276,6 +279,10 @@ def download_rule(
             ),
         )
         raise CCRDownloadError(str(exc)) from exc
+
+    actual_extension = _extension_from_signature(response)
+    if actual_extension is not None and target.suffix.lower() != actual_extension:
+        target = target.with_suffix(actual_extension)
 
     tmp_path = target.with_name(f"{target.name}.tmp")
     try:
@@ -483,7 +490,7 @@ def _download_urls_from_rule_scripts(html: str, source_page_url: str) -> tuple[s
         if match.group("kind").casefold() == "wordversion":
             docx_url = docx_url or f"{absolute}&type=word"
         else:
-            pdf_url = pdf_url or absolute
+            pdf_url = pdf_url or f"{absolute}&type=pdf"
         if pdf_url and docx_url:
             break
     return pdf_url, docx_url
@@ -515,6 +522,18 @@ def _looks_pdf(lower_url: str) -> bool:
     """Return whether a URL points to a PDF source."""
 
     return ".pdf" in lower_url or "pdf" in lower_url
+
+
+def _extension_from_signature(content: bytes) -> str | None:
+    """Return a document extension inferred from its magic bytes."""
+
+    if content[:4] == b"%PDF":
+        return ".pdf"
+    if content[:4] == b"PK\x03\x04":
+        return ".docx"
+    if content[:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1":
+        return ".doc"
+    return None
 
 
 def _session_or_client(client: Any | None) -> Any:

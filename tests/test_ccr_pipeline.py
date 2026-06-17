@@ -99,7 +99,7 @@ def test_run_ccr_pipeline_happy_path(monkeypatch, tmp_path: Path) -> None:
     monkeypatch.setattr(ccr, "build_session", lambda: session)
     monkeypatch.setattr(ccr, "resolve_rule_info_page", lambda *_args, **_kwargs: entry)
     monkeypatch.setattr(ccr, "download_rule", fake_download_rule)
-    monkeypatch.setattr(ccr, "convert_docx_to_markdown", lambda *_args, **_kwargs: FakeConversion())
+    monkeypatch.setattr(ccr, "convert_to_markdown", lambda *_args, **_kwargs: FakeConversion())
     monkeypatch.setattr(ccr, "load_taxonomies", lambda _path: {})
     monkeypatch.setattr(ccr, "tag_bill", lambda *_args, **_kwargs: {"ok": True})
 

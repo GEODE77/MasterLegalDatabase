@@ -14,6 +14,8 @@ from geode.extractors.fingerprint import (
     fingerprint_source,
 )
 
+DEFAULT_SOURCE_URL = "https://www.sos.state.co.us/CCR/Welcome.do"
+
 
 class ConversionResult(BaseModel):
     """Result from a source-to-Markdown conversion attempt."""
@@ -73,6 +75,12 @@ def _source_text_for_preservation(path: Path) -> str:
         return ""
 
 
+def _source_url_or_default(source_url: str | None) -> str:
+    """Return a source URL suitable for conversion metadata."""
+
+    return source_url or DEFAULT_SOURCE_URL
+
+
 def convert_docx_to_markdown(
     docx_path: Path,
     source_url: str = "https://www.sos.state.co.us/CCR/Welcome.do",
@@ -100,6 +108,39 @@ def convert_docx_to_markdown(
     )
 
 
+def convert_doc_to_markdown(
+    doc_path: Path,
+    *,
+    source_url: str | None = None,
+) -> ConversionResult:
+    """Convert a legacy .doc (Compound Document) to markdown via mammoth."""
+
+    try:
+        import mammoth
+    except ImportError as exc:
+        raise RuntimeError(
+            f"Legacy DOC conversion dependency mammoth is not installed for {doc_path}."
+        ) from exc
+
+    try:
+        with doc_path.open("rb") as doc_file:
+            result = mammoth.convert_to_markdown(doc_file)
+    except Exception as exc:
+        raise RuntimeError(f"Legacy DOC conversion failed for {doc_path}: {exc}") from exc
+
+    warnings = [str(message) for message in getattr(result, "messages", [])]
+    markdown = str(getattr(result, "value", ""))
+    source_text = _source_text_for_preservation(doc_path)
+    return ConversionResult(
+        markdown_text=markdown,
+        conversion_path="path_1_doc",
+        tool_used="mammoth",
+        preservation_score=compute_preservation_score(source_text, markdown),
+        fingerprint=fingerprint_source(doc_path, _source_url_or_default(source_url)),
+        warnings=warnings,
+    )
+
+
 def detect_if_scanned(pdf_path: Path) -> bool:
     """Best-effort scanned-PDF detector using text extraction when available."""
 
@@ -121,10 +162,10 @@ def detect_if_scanned(pdf_path: Path) -> bool:
 
 def convert_pdf_to_markdown(
     pdf_path: Path,
-    use_llm: bool = False,
-    source_url: str = "https://www.sos.state.co.us/CCR/Welcome.do",
+    *,
+    source_url: str | None = None,
 ) -> ConversionResult:
-    """Convert a PDF source document to Markdown."""
+    """Convert a PDF to markdown using markitdown's PDF converter."""
 
     warnings: list[str] = []
     markdown = _convert_with_markitdown(pdf_path)
@@ -152,9 +193,37 @@ def convert_pdf_to_markdown(
     source_text = _source_text_for_preservation(pdf_path)
     return ConversionResult(
         markdown_text=markdown,
-        conversion_path="path_2_pdf_marker_llm" if use_llm else "path_2_pdf_markitdown",
+        conversion_path="path_2_pdf_markitdown",
         tool_used=tool_used,
         preservation_score=compute_preservation_score(source_text, markdown),
-        fingerprint=fingerprint_source(pdf_path, source_url),
+        fingerprint=fingerprint_source(pdf_path, _source_url_or_default(source_url)),
         warnings=warnings,
+    )
+
+
+def detect_document_format(path: Path) -> str:
+    """Return one of 'pdf', 'docx', 'doc', or 'unknown' based on file signature."""
+
+    signature = path.read_bytes()[:16]
+    if signature[:4] == b"%PDF":
+        return "pdf"
+    if signature[:4] == b"PK\x03\x04":
+        return "docx"
+    if signature[:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1":
+        return "doc"
+    return "unknown"
+
+
+def convert_to_markdown(path: Path, *, source_url: str | None = None) -> ConversionResult:
+    """Dispatch conversion based on detected file format."""
+
+    fmt = detect_document_format(path)
+    if fmt == "pdf":
+        return convert_pdf_to_markdown(path, source_url=source_url)
+    if fmt == "docx":
+        return convert_docx_to_markdown(path, source_url=_source_url_or_default(source_url))
+    if fmt == "doc":
+        return convert_doc_to_markdown(path, source_url=source_url)
+    raise ValueError(
+        f"Unsupported document format for {path}: signature did not match pdf/docx/doc"
     )

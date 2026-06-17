@@ -13,9 +13,7 @@ from typing import Any
 from geode.connectors.ccr_scraper import CCRRuleEntry, download_rule, resolve_rule_info_page
 from geode.extractors.converter import (
     ConversionResult,
-    convert_docx_to_markdown,
-    convert_pdf_to_markdown,
-    detect_if_scanned,
+    convert_to_markdown,
 )
 from geode.net.http_client import build_session
 from geode.pipeline.writer import ensure_project_structure
@@ -150,16 +148,7 @@ def _validate_format(fmt: str) -> None:
 def _convert_source(source_path: Path, source_url: str) -> ConversionResult:
     """Convert a downloaded CCR source to Markdown."""
 
-    suffix = source_path.suffix.lower()
-    if suffix in {".doc", ".docx"}:
-        return convert_docx_to_markdown(source_path, source_url=source_url)
-    if suffix == ".pdf":
-        return convert_pdf_to_markdown(
-            source_path,
-            use_llm=detect_if_scanned(source_path),
-            source_url=source_url,
-        )
-    raise ValueError(f"unsupported CCR source extension: {suffix}")
+    return convert_to_markdown(source_path, source_url=source_url)
 
 
 def _taggable_record(rule_id: str, conversion: ConversionResult) -> dict[str, Any]:
