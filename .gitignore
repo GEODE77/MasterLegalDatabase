@@ -27,3 +27,31 @@ Thumbs.db
 _RAW_ARCHIVE/**/*.pdf
 _RAW_ARCHIVE/**/*.docx
 _SNAPSHOTS/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Raw scrape outputs - belong in OneDrive, not Git
+*.pdf
+02_Regulations_CCR/*.pdf
+_CONTROL_PLANE/raw/
+_CONTROL_PLANE/normalized/
+_CONTROL_PLANE/tagged/
+_CONTROL_PLANE/cache/
+
+# Local dev scripts (one-off debugging tools)
+scripts/dev/
+check_*.py
+peek.py
+scan_llm.py
+test_scrape*.py
+test_session.py
+download_wage.py
+run_wage.py
