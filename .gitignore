@@ -49,3 +49,6 @@ run_wage.py
 
 # Per-run provenance manifests (regenerated on every pull)
 data/raw/**/download_manifest.jsonl
+
+# Per-run provenance manifests (regenerated on every pull)
+data/raw/**/download_manifest.jsonl
