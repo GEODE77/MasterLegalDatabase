@@ -1206,6 +1206,14 @@ def _manifest_metadata(entry: CCRRuleEntry, target: Path) -> dict[str, object]:
     }
 
 
+def _canonical_source_url(value: object) -> object:
+    """Normalize HTML-encoded query separators in persisted source URLs."""
+
+    if value is None:
+        return None
+    return html_unescape(str(value))
+
+
 def _append_manifest(path: Path, entry: DownloadManifestEntry) -> None:
     """Append one raw-archive download manifest row atomically."""
 
