@@ -530,6 +530,79 @@ def test_download_rule_manifest_urls_are_not_html_encoded(tmp_path: Path) -> Non
     )
 
 
+def test_download_rule_canonicalizes_existing_manifest_rows(tmp_path: Path) -> None:
+    """Final manifest persistence canonicalizes carried-forward rows."""
+
+    manifest_path = tmp_path / "download_manifest.jsonl"
+    manifest_path.write_text(
+        (
+            '{"ccr_number":"5 CCR 1001-1",'
+            '"source_url":"https://www.sos.state.co.us/CCR/GenerateRulePdf.do?'
+            'ruleVersionId=1&amp;fileName=5%20CCR%201001-1&amp;type=word",'
+            '"source_page_url":"https://www.sos.state.co.us/CCR/DisplayRule.do?'
+            'action=ruleinfo&amp;ruleId=1&amp;seriesNum=5%20CCR%201001-1",'
+            '"archive_path":"old.docx","size_bytes":1,'
+            '"downloaded_at":"2026-06-18T00:00:00Z","status":"downloaded"}\n'
+        ),
+        encoding="utf-8",
+    )
+    entry = CCRRuleEntry(
+        ccr_number="5 CCR 1001-9",
+        department="1000 Department of Public Health and Environment",
+        agency="1001 Air Quality Control Commission",
+        source_page_url=(
+            "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo"
+            "&amp;amp;ruleId=2341&amp;seriesNum=5%20CCR%201001-9"
+        ),
+        docx_url=(
+            "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12486"
+            "&amp;amp;fileName=5%20CCR%201001-9&amp;type=word"
+        ),
+    )
+    client = FakeClient({str(entry.docx_url): FakeResponse(content=b"docx")})
+
+    download_rule(entry, tmp_path, client=client)
+    raw_manifest = manifest_path.read_text(encoding="utf-8")
+
+    assert "&amp;" not in raw_manifest
+    assert (
+        "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?"
+        "ruleVersionId=1&fileName=5%20CCR%201001-1&type=word"
+    ) in raw_manifest
+    assert (
+        "https://www.sos.state.co.us/CCR/DisplayRule.do?"
+        "action=ruleinfo&ruleId=1&seriesNum=5%20CCR%201001-1"
+    ) in raw_manifest
+
+
+def test_download_all_rules_canonicalizes_manifest_without_append(tmp_path: Path) -> None:
+    """Bulk resume startup canonicalizes existing rows even when no download runs."""
+
+    manifest_path = tmp_path / "download_manifest.jsonl"
+    manifest_path.write_text(
+        (
+            '{"ccr_number":"5 CCR 1001-1",'
+            '"source_url":"https://www.sos.state.co.us/CCR/GenerateRulePdf.do?'
+            'ruleVersionId=1&amp;fileName=5%20CCR%201001-1&amp;type=word",'
+            '"source_page_url":"https://www.sos.state.co.us/CCR/DisplayRule.do?'
+            'action=ruleinfo&amp;ruleId=1&amp;seriesNum=5%20CCR%201001-1",'
+            '"archive_path":"old.docx","size_bytes":1,'
+            '"downloaded_at":"2026-06-18T00:00:00Z","status":"downloaded"}\n'
+        ),
+        encoding="utf-8",
+    )
+
+    report = download_all_rules(tmp_path, delay=0, client=_fake_client(), max_downloads=0)
+    raw_manifest = manifest_path.read_text(encoding="utf-8")
+
+    assert report.attempted == 0
+    assert "&amp;" not in raw_manifest
+    assert (
+        "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?"
+        "ruleVersionId=1&fileName=5%20CCR%201001-1&type=word"
+    ) in raw_manifest
+
+
 def test_download_all_rules_downloads_five_samples(tmp_path: Path) -> None:
     """Batch download discovers and downloads five mocked CCR samples."""
 

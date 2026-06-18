@@ -545,6 +545,7 @@ def download_all_rules(
     failed = 0
     network_attempts = 0
     manifest_path = download_manifest_path(archive_dir)
+    _rewrite_manifest_urls(manifest_path)
     for index, entry in enumerate(entries):
         target = ccr_rule_document_path(archive_dir, entry.canonical_id, entry.preferred_extension)
         already_downloaded = _is_downloaded(manifest_path, entry, target)
@@ -1211,19 +1212,64 @@ def _canonical_source_url(value: object) -> object:
 
     if value is None:
         return None
-    return html_unescape(str(value))
+    previous = str(value)
+    for _ in range(3):
+        current = html_unescape(previous)
+        if current == previous:
+            return current
+        previous = current
+    return previous
+
+
+def _canonical_manifest_line(line: str) -> str:
+    """Return one manifest JSONL row with canonical source URL fields."""
+
+    try:
+        payload = json.loads(line)
+    except json.JSONDecodeError:
+        return line
+    if not isinstance(payload, dict):
+        return line
+    for field in ("source_url", "source_page_url"):
+        if payload.get(field) is not None:
+            payload[field] = _canonical_source_url(payload[field])
+    return json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+
+
+def _canonical_manifest_lines(lines: list[str]) -> list[str]:
+    """Return manifest JSONL rows with canonical source URL fields."""
+
+    return [_canonical_manifest_line(line) if line.strip() else line for line in lines]
+
+
+def _rewrite_manifest_urls(path: Path) -> None:
+    """Rewrite an existing manifest only when URL fields need canonicalization."""
+
+    if not path.exists():
+        return
+    existing = path.read_text(encoding="utf-8").splitlines()
+    canonical = _canonical_manifest_lines(existing)
+    if canonical == existing:
+        return
+    tmp_path = temp_path_for(path)
+    try:
+        tmp_path.write_text("\n".join(canonical) + "\n", encoding="utf-8", newline="\n")
+        os.replace(tmp_path, path)
+    finally:
+        if tmp_path.exists():
+            tmp_path.unlink()
 
 
 def _append_manifest(path: Path, entry: DownloadManifestEntry) -> None:
     """Append one raw-archive download manifest row atomically."""
 
     path.parent.mkdir(parents=True, exist_ok=True)
-    existing = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
-    payload = entry.model_dump(mode="json")
-    for key in ("source_url", "source_page_url"):
-        if payload.get(key) is not None:
-            payload[key] = _canonical_source_url(payload[key])
-    existing.append(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
+    existing = (
+        _canonical_manifest_lines(path.read_text(encoding="utf-8").splitlines())
+        if path.exists()
+        else []
+    )
+    existing.append(_canonical_manifest_line(entry.model_dump_json()))
     tmp_path = temp_path_for(path)
     try:
         tmp_path.write_text("\n".join(existing) + "\n", encoding="utf-8", newline="\n")
