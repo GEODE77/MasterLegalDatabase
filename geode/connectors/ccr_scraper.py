@@ -1220,7 +1220,6 @@ def _canonical_source_url(value: object) -> object:
         previous = current
     return previous
 
-
 def _canonical_manifest_line(line: str) -> str:
     """Return one manifest JSONL row with canonical source URL fields."""
 
