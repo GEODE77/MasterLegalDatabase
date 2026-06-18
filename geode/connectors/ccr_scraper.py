@@ -7,12 +7,13 @@ import logging
 import os
 import re
 import time
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from html import unescape as html_unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qs, quote, urljoin, urlparse
+from urllib.parse import parse_qs, quote, unquote, urljoin, urlparse
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
 
@@ -51,6 +52,14 @@ CCR_NUMBER_RE = re.compile(r"\b(\d+\s+CCR\s+\d+-\d+(?:-\d+)?)\b", re.IGNORECASE)
 
 class CCRDownloadError(RuntimeError):
     """Raised when a CCR rule cannot be downloaded after retries."""
+
+
+@dataclass(frozen=True)
+class _DiscoveryResponse:
+    requested_url: str
+    final_url: str
+    status_code: int | None
+    text: str
 
 
 class CCRRuleEntry(BaseModel):
@@ -232,7 +241,7 @@ def discover_all_rules(
         timeout_seconds=timeout_seconds,
         max_retry_delay_seconds=max_retry_delay_seconds,
     )
-    department_html = _fetch_text(
+    department_page = _fetch_discovery_response(
         start_url,
         session,
         referer=CCR_WELCOME_URL,
@@ -241,11 +250,23 @@ def discover_all_rules(
         timeout_seconds=timeout_seconds,
         max_retry_delay_seconds=max_retry_delay_seconds,
     )
-    agency_links = _agency_links(department_html, start_url)
+    agency_links = _agency_links(department_page.text, start_url)
+    raw_agency_candidates = _agency_candidate_count(department_page.text, start_url)
+    _log_discovery_diagnostics(
+        "department",
+        department_page,
+        _department_page_markers(department_page.text),
+        raw_agency_candidates,
+        len(agency_links),
+        level=logging.INFO,
+    )
     selected_agency_links = agency_links[:max_agencies]
     entries: list[CCRRuleEntry] = []
+    raw_rule_candidates_total = 0
+    filtered_rule_candidates_total = 0
+    downloadable_rule_candidates_total = 0
     for index, (agency_url, department, agency) in enumerate(selected_agency_links):
-        agency_html = _fetch_text(
+        agency_page = _fetch_discovery_response(
             agency_url,
             session,
             referer=start_url,
@@ -254,9 +275,55 @@ def discover_all_rules(
             timeout_seconds=timeout_seconds,
             max_retry_delay_seconds=max_retry_delay_seconds,
         )
-        entries.extend(_rule_entries_from_page(agency_html, agency_url, department, agency))
+        raw_rule_candidates = _rule_candidate_count(agency_page.text, agency_url)
+        filtered_rule_candidates = _rule_entries_from_page(
+            agency_page.text,
+            agency_url,
+            department,
+            agency,
+        )
+        downloadable_rule_candidates = _resolve_rule_info_candidates(
+            filtered_rule_candidates,
+            session,
+            request_delay=request_delay,
+            max_retries=max_retries,
+            base_delay=base_delay,
+            timeout_seconds=timeout_seconds,
+            max_retry_delay_seconds=max_retry_delay_seconds,
+        )
+        raw_rule_candidates_total += raw_rule_candidates
+        filtered_rule_candidates_total += len(filtered_rule_candidates)
+        downloadable_rule_candidates_total += len(downloadable_rule_candidates)
+        entries.extend(downloadable_rule_candidates)
+        _log_discovery_diagnostics(
+            "agency",
+            agency_page,
+            _agency_page_markers(agency_page.text),
+            raw_rule_candidates,
+            len(filtered_rule_candidates),
+            resolved_count=len(downloadable_rule_candidates),
+            context=f"department={department} agency={agency}",
+            level=logging.DEBUG,
+        )
         if request_delay > 0 and index < len(selected_agency_links) - 1:
             time.sleep(request_delay)
+    LOGGER.info(
+        "CCR discovery summary agencies=%s raw_rule_candidates=%s "
+        "filtered_rule_candidates=%s downloadable_rule_candidates=%s",
+        len(selected_agency_links),
+        raw_rule_candidates_total,
+        filtered_rule_candidates_total,
+        downloadable_rule_candidates_total,
+    )
+    if not entries:
+        LOGGER.warning(
+            "CCR discovery returned zero downloadable entries start_url=%s "
+            "agency_candidates=%s raw_rule_candidates=%s filtered_rule_candidates=%s",
+            start_url,
+            len(agency_links),
+            raw_rule_candidates_total,
+            filtered_rule_candidates_total,
+        )
     return entries
 
 
@@ -586,6 +653,81 @@ def _agency_links(html: str, base_url: str) -> list[tuple[str, str, str]]:
     return links
 
 
+def _agency_candidate_count(html: str, base_url: str) -> int:
+    """Return raw agency-link candidates before full agency filtering."""
+
+    parser = _parse_links(html)
+    return sum(
+        1
+        for link in parser.links
+        if "NumericalCCRDocList.do" in urljoin(base_url, link.href)
+    )
+
+
+def _rule_candidate_count(html: str, base_url: str) -> int:
+    """Return raw rule-link candidates before full rule filtering."""
+
+    parser = _parse_links(html)
+    return sum(
+        1
+        for link in parser.links
+        if _looks_rule_info(urljoin(base_url, link.href).lower())
+        or _looks_downloadable(urljoin(base_url, link.href).lower())
+    )
+
+
+def _department_page_markers(html: str) -> dict[str, bool]:
+    """Return expected department-list page markers."""
+
+    return {
+        "browse_rules": "Browse Rules" in html or "Browse rules" in html,
+        "agency_links": "NumericalCCRDocList.do" in html,
+        "ccr_application": "/CCR/" in html,
+    }
+
+
+def _agency_page_markers(html: str) -> dict[str, bool]:
+    """Return expected agency rule-list page markers."""
+
+    return {
+        "rule_info_links": "DisplayRule.do" in html,
+        "direct_doc_links": "GenerateRuleDoc" in html,
+        "direct_pdf_links": "GenerateRulePdf" in html,
+        "ccr_numbers": bool(CCR_NUMBER_RE.search(unquote(html))),
+    }
+
+
+def _log_discovery_diagnostics(
+    page_kind: str,
+    response: _DiscoveryResponse,
+    markers: dict[str, bool],
+    raw_candidates: int,
+    filtered_candidates: int,
+    *,
+    resolved_count: int | None = None,
+    context: str = "",
+    level: int = logging.INFO,
+) -> None:
+    """Log targeted CCR discovery diagnostics for one fetched page."""
+
+    resolved = "" if resolved_count is None else f" resolved_candidates={resolved_count}"
+    context_text = "" if not context else f" {context}"
+    LOGGER.log(
+        level,
+        "CCR discovery page=%s requested_url=%s final_url=%s status=%s "
+        "markers=%s raw_candidates=%s filtered_candidates=%s%s%s",
+        page_kind,
+        response.requested_url,
+        response.final_url,
+        response.status_code,
+        ",".join(f"{key}:{value}" for key, value in sorted(markers.items())),
+        raw_candidates,
+        filtered_candidates,
+        resolved,
+        context_text,
+    )
+
+
 def _rule_entries_from_page(
     html: str,
     source_page_url: str,
@@ -601,6 +743,12 @@ def _rule_entries_from_page(
             continue
         absolute = urljoin(source_page_url, link.href)
         lower_href = absolute.lower()
+        if _looks_rule_info(lower_href):
+            ccr_number = _ccr_number_from_text(f"{link.text} {absolute}")
+            if ccr_number is None:
+                continue
+            grouped.setdefault(ccr_number, {})["source_page_url"] = absolute
+            continue
         if not _looks_downloadable(lower_href):
             continue
         ccr_number = _ccr_number_from_text(f"{link.text} {absolute}")
@@ -618,12 +766,60 @@ def _rule_entries_from_page(
                 ccr_number=ccr_number,
                 department=department,
                 agency=agency,
-                source_page_url=source_page_url,
+                source_page_url=urls.get("source_page_url", source_page_url),
                 pdf_url=urls.get("pdf_url"),
                 docx_url=urls.get("docx_url"),
             )
         )
     return entries
+
+
+def _resolve_rule_info_candidates(
+    entries: list[CCRRuleEntry],
+    session: Any,
+    request_delay: float = 0.0,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
+) -> list[CCRRuleEntry]:
+    """Resolve rule-info candidates into entries with download URLs."""
+
+    resolved_entries: list[CCRRuleEntry] = []
+    for index, entry in enumerate(entries):
+        if entry.pdf_url is not None or entry.docx_url is not None:
+            resolved_entries.append(entry)
+        else:
+            try:
+                resolved = resolve_rule_info_page(
+                    entry,
+                    client=session,
+                    max_retries=max_retries,
+                    base_delay=base_delay,
+                    timeout_seconds=timeout_seconds,
+                    max_retry_delay_seconds=max_retry_delay_seconds,
+                )
+            except Exception as exc:
+                LOGGER.warning(
+                    "CCR rule-info resolution failed ccr_number=%s source_page_url=%s "
+                    "error=%s",
+                    entry.ccr_number,
+                    entry.source_page_url,
+                    exc,
+                )
+            else:
+                if resolved.pdf_url is not None or resolved.docx_url is not None:
+                    resolved_entries.append(resolved)
+                else:
+                    LOGGER.warning(
+                        "CCR rule-info page had no downloadable URLs ccr_number=%s "
+                        "source_page_url=%s",
+                        entry.ccr_number,
+                        entry.source_page_url,
+                    )
+        if request_delay > 0 and index < len(entries) - 1:
+            time.sleep(request_delay)
+    return resolved_entries
 
 
 def _ccr_sort_key(ccr_number: str) -> tuple[int, int, int]:
@@ -656,7 +852,7 @@ def _parse_links(html: str) -> _LinkParser:
 def _ccr_number_from_text(text: str) -> str | None:
     """Extract a CCR number from link text or URL."""
 
-    decoded = text.replace("_", " ").replace("%20", " ")
+    decoded = unquote(text).replace("_", " ").replace("%20", " ")
     match = CCR_NUMBER_RE.search(decoded)
     if not match:
         return None
@@ -667,6 +863,12 @@ def _looks_downloadable(lower_url: str) -> bool:
     """Return whether a URL looks like a CCR source document."""
 
     return _looks_docx(lower_url) or _looks_pdf(lower_url)
+
+
+def _looks_rule_info(lower_url: str) -> bool:
+    """Return whether a URL points to an SOS CCR rule-info page."""
+
+    return "displayrule.do" in lower_url and "action=ruleinfo" in lower_url
 
 
 def _download_urls_from_rule_scripts(html: str, source_page_url: str) -> tuple[str | None, str | None]:
@@ -819,6 +1021,34 @@ def _prime_sos_session(
         LOGGER.debug("Could not mark SOS session as primed.", exc_info=True)
 
 
+def _fetch_discovery_response(
+    url: str,
+    client: Any | None,
+    referer: str | None = None,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
+) -> _DiscoveryResponse:
+    """Fetch a CCR discovery page with response metadata for diagnostics."""
+
+    response = _get_with_retries(
+        url,
+        client,
+        referer=referer,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
+    return _DiscoveryResponse(
+        requested_url=url,
+        final_url=str(getattr(response, "url", url)),
+        status_code=_response_status_code(response),
+        text=str(response.text),
+    )
+
+
 def _fetch_text(
     url: str,
     client: Any | None,
@@ -830,7 +1060,7 @@ def _fetch_text(
 ) -> str:
     """Fetch text with retry handling."""
 
-    response = _get_with_retries(
+    response = _fetch_discovery_response(
         url,
         client,
         referer=referer,
@@ -839,7 +1069,7 @@ def _fetch_text(
         timeout_seconds=timeout_seconds,
         max_retry_delay_seconds=max_retry_delay_seconds,
     )
-    return str(response.text)
+    return response.text
 
 
 def _fetch_bytes(
@@ -899,6 +1129,18 @@ def _get_with_retries(
         )
     except GeodeFetchError as exc:
         raise CCRDownloadError(str(exc)) from exc
+
+
+def _response_status_code(response: Any) -> int | None:
+    """Return a response status code when one is available."""
+
+    status_code = getattr(response, "status_code", None)
+    if status_code is None:
+        return None
+    try:
+        return int(status_code)
+    except (TypeError, ValueError):
+        return None
 
 
 def _manifest_entry_for(

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
 from geode.connectors.ccr_scraper import (
@@ -103,6 +104,47 @@ def test_discover_all_rules_from_one_department() -> None:
     assert entries[0].department == "1000 Department of Public Health and Environment"
     assert entries[0].docx_url is not None
     assert entries[0].pdf_url is not None
+
+
+def test_discover_all_rules_resolves_live_style_rule_info_links(caplog) -> None:
+    """Discovery resolves current SOS agency-page rule-info links to downloads."""
+
+    caplog.set_level(logging.INFO)
+    rule_info_url = (
+        "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2341"
+        "&seriesNum=5%20CCR%201001-9"
+    )
+    department_html = (
+        f'<a href="{AGENCY_URL.replace("https://www.sos.state.co.us", "")}">'
+        "1001 Air Quality Control Commission</a>"
+    )
+    agency_html = (
+        '<a href="/CCR/DisplayRule.do?action=ruleinfo&ruleId=2341'
+        '&seriesNum=5%20CCR%201001-9">5 CCR 1001-9</a>'
+    )
+    rule_info_html = (
+        '<a href="javascript:void(0)">06/15/2025 (PDF)</a>'
+        '<a href="javascript:void(0)">06/15/2025 (DOCX)</a>'
+        "OpenRuleWindow('12486', '5 CCR 1001-9')"
+        "OpenRuleWordVersion('12486', '5 CCR 1001-9')"
+    )
+    client = FakeClient(
+        {
+            CCR_DEPARTMENT_LIST_URL: FakeResponse(text=department_html),
+            AGENCY_URL: FakeResponse(text=agency_html),
+            rule_info_url: FakeResponse(text=rule_info_html),
+        }
+    )
+
+    entries = discover_all_rules(client=client, max_agencies=1)
+
+    assert len(entries) == 1
+    assert entries[0].ccr_number == "5 CCR 1001-9"
+    assert "ruleVersionId=12486" in str(entries[0].docx_url)
+    assert "type=word" in entries[0].preferred_url
+    log_messages = "\n".join(record.getMessage() for record in caplog.records)
+    assert "raw_rule_candidates=1" in log_messages
+    assert "downloadable_rule_candidates=1" in log_messages
 
 
 def test_resolve_rule_info_page_prefers_docx() -> None:
