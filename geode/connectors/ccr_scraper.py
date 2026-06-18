@@ -1259,6 +1259,45 @@ def _rewrite_manifest_urls(path: Path) -> None:
             tmp_path.unlink()
 
 
+def _canonical_manifest_line(line: str) -> str:
+    """Return one manifest JSONL row with canonical source URL fields."""
+
+    try:
+        payload = json.loads(line)
+    except json.JSONDecodeError:
+        return line
+    if not isinstance(payload, dict):
+        return line
+    for field in ("source_url", "source_page_url"):
+        if payload.get(field) is not None:
+            payload[field] = _canonical_source_url(payload[field])
+    return json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+
+
+def _canonical_manifest_lines(lines: list[str]) -> list[str]:
+    """Return manifest JSONL rows with canonical source URL fields."""
+
+    return [_canonical_manifest_line(line) if line.strip() else line for line in lines]
+
+
+def _rewrite_manifest_urls(path: Path) -> None:
+    """Rewrite an existing manifest only when URL fields need canonicalization."""
+
+    if not path.exists():
+        return
+    existing = path.read_text(encoding="utf-8").splitlines()
+    canonical = _canonical_manifest_lines(existing)
+    if canonical == existing:
+        return
+    tmp_path = temp_path_for(path)
+    try:
+        tmp_path.write_text("\n".join(canonical) + "\n", encoding="utf-8", newline="\n")
+        os.replace(tmp_path, path)
+    finally:
+        if tmp_path.exists():
+            tmp_path.unlink()
+
+
 def _append_manifest(path: Path, entry: DownloadManifestEntry) -> None:
     """Append one raw-archive download manifest row atomically."""
 
