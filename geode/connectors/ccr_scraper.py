@@ -8,6 +8,7 @@ import os
 import re
 import time
 from datetime import datetime, timezone
+from html import unescape as html_unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
@@ -15,7 +16,24 @@ from urllib.parse import parse_qs, quote, urljoin, urlparse
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
 
-from geode.net.http_client import GeodeFetchError, build_session, polite_get
+from geode.connectors.archive_paths import (
+    DOWNLOAD_MANIFEST_NAME,
+    ccr_rule_document_path,
+    download_manifest_path,
+    temp_path_for,
+)
+from geode.connectors.download_metadata import (
+    COLORADO_JURISDICTION,
+    missing_metadata_fields,
+    source_format_from_extension,
+)
+from geode.net.http_client import (
+    DEFAULT_MAX_RETRY_DELAY_SECONDS,
+    DEFAULT_TIMEOUT_SECONDS,
+    GeodeFetchError,
+    build_session,
+    polite_get,
+)
 from geode.schemas.validators import require_official_source_url
 from geode.utils.hashing import sha256_file
 
@@ -27,7 +45,7 @@ GOOGLE_REFERER = "https://www.google.com/"
 CCR_WELCOME_URL = f"{CCR_BASE_URL}/CCR/Welcome.do"
 CCR_SEARCH_URL = CCR_WELCOME_URL
 CCR_DEPARTMENT_LIST_URL = f"{CCR_BASE_URL}/CCR/NumericalDeptList.do"
-DOWNLOAD_MANIFEST = "download_manifest.jsonl"
+DOWNLOAD_MANIFEST = DOWNLOAD_MANIFEST_NAME
 CCR_NUMBER_RE = re.compile(r"\b(\d+\s+CCR\s+\d+-\d+(?:-\d+)?)\b", re.IGNORECASE)
 
 
@@ -93,21 +111,40 @@ class DownloadManifestEntry(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
+    jurisdiction: str = COLORADO_JURISDICTION
+    source_type: str = "regulation_rule"
+    document_id: str = ""
+    document_name: str | None = None
     ccr_number: str
+    department: str | None = None
+    agency: str | None = None
     source_url: HttpUrl
+    source_page_url: HttpUrl | None = None
+    source_format: str | None = None
     archive_path: str
     sha256: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
     size_bytes: int = Field(ge=0)
     downloaded_at: datetime
+    effective_date: str | None = None
+    publication_date: str | None = None
     status: str
     error: str | None = None
+    missing_metadata: list[str] = Field(default_factory=list)
 
-    @field_validator("source_url")
+    @field_validator("source_url", "source_page_url", mode="before")
     @classmethod
-    def validate_source_url(cls, value: HttpUrl) -> HttpUrl:
+    def normalize_manifest_urls(cls, value: object) -> object:
+        """Store manifest URLs with canonical query separators."""
+
+        return _canonical_source_url(value)
+
+    @field_validator("source_url", "source_page_url")
+    @classmethod
+    def validate_source_url(cls, value: HttpUrl | None) -> HttpUrl | None:
         """Require official source URLs."""
 
-        require_official_source_url(str(value).rstrip("/"))
+        if value is not None:
+            require_official_source_url(str(value).rstrip("/"))
         return value
 
 
@@ -117,6 +154,7 @@ class DownloadReport(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     discovered: int = Field(ge=0)
+    attempted: int = Field(ge=0)
     downloaded: int = Field(ge=0)
     skipped: int = Field(ge=0)
     failed: int = Field(ge=0)
@@ -179,31 +217,75 @@ def discover_all_rules(
     client: Any | None = None,
     start_url: str = CCR_DEPARTMENT_LIST_URL,
     max_agencies: int | None = None,
+    request_delay: float = 0.0,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
 ) -> list[CCRRuleEntry]:
     """Crawl CCR browse pages and catalog rule document links."""
 
-    session = _session_or_client(client)
-    department_html = _fetch_text(start_url, session, referer=CCR_WELCOME_URL)
+    session = _session_or_client(
+        client,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
+    department_html = _fetch_text(
+        start_url,
+        session,
+        referer=CCR_WELCOME_URL,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
     agency_links = _agency_links(department_html, start_url)
+    selected_agency_links = agency_links[:max_agencies]
     entries: list[CCRRuleEntry] = []
-    for agency_url, department, agency in agency_links[:max_agencies]:
-        agency_html = _fetch_text(agency_url, session, referer=start_url)
+    for index, (agency_url, department, agency) in enumerate(selected_agency_links):
+        agency_html = _fetch_text(
+            agency_url,
+            session,
+            referer=start_url,
+            max_retries=max_retries,
+            base_delay=base_delay,
+            timeout_seconds=timeout_seconds,
+            max_retry_delay_seconds=max_retry_delay_seconds,
+        )
         entries.extend(_rule_entries_from_page(agency_html, agency_url, department, agency))
+        if request_delay > 0 and index < len(selected_agency_links) - 1:
+            time.sleep(request_delay)
     return entries
 
 
 def resolve_rule_info_page(
     entry: CCRRuleEntry | dict[str, Any],
     client: Any | None = None,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
 ) -> CCRRuleEntry:
     """Resolve one SOS rule-info page into downloadable DOCX/PDF URLs."""
 
-    session = _session_or_client(client)
+    session = _session_or_client(
+        client,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
     rule = _coerce_rule_entry(entry)
     html = _fetch_text(
         str(rule.source_page_url),
         session,
         referer=CCR_DEPARTMENT_LIST_URL,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
     )
     parser = _parse_links(html)
     pdf_url = str(rule.pdf_url) if rule.pdf_url is not None else None
@@ -236,26 +318,55 @@ def resolve_rule_info_page(
 def resolve_rule_info_pages(
     entries: list[CCRRuleEntry | dict[str, Any]],
     client: Any | None = None,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
 ) -> list[CCRRuleEntry]:
     """Resolve multiple SOS rule-info pages into downloadable rule entries."""
 
-    return [resolve_rule_info_page(entry, client=client) for entry in entries]
+    return [
+        resolve_rule_info_page(
+            entry,
+            client=client,
+            max_retries=max_retries,
+            base_delay=base_delay,
+            timeout_seconds=timeout_seconds,
+            max_retry_delay_seconds=max_retry_delay_seconds,
+        )
+        for entry in entries
+    ]
 
 
 def download_rule(
     entry: CCRRuleEntry,
     archive_dir: Path,
     client: Any | None = None,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
 ) -> Path:
     """Download one CCR rule to the raw archive, preferring PDF over DOC/DOCX."""
 
-    session = _session_or_client(client)
+    session = _session_or_client(
+        client,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
     archive_dir.mkdir(parents=True, exist_ok=True)
-    manifest_path = archive_dir / DOWNLOAD_MANIFEST
-    target = archive_dir / f"{_safe_stem(entry.canonical_id)}{entry.preferred_extension}"
+    manifest_path = download_manifest_path(archive_dir)
+    target = ccr_rule_document_path(archive_dir, entry.canonical_id, entry.preferred_extension)
     prior = _manifest_entry_for(manifest_path, entry)
     if prior and target.exists() and prior.sha256 == sha256_file(target):
-        LOGGER.info("Skipping already downloaded CCR rule %s", entry.ccr_number)
+        LOGGER.debug(
+            "CCR download skipped ccr_number=%s source_url=%s archive_path=%s",
+            entry.ccr_number,
+            entry.preferred_url,
+            target.as_posix(),
+        )
         return target
 
     try:
@@ -263,11 +374,16 @@ def download_rule(
             entry.preferred_url,
             session,
             referer=str(entry.source_page_url),
+            max_retries=max_retries,
+            base_delay=base_delay,
+            timeout_seconds=timeout_seconds,
+            max_retry_delay_seconds=max_retry_delay_seconds,
         )
     except Exception as exc:
         _append_manifest(
             manifest_path,
             DownloadManifestEntry(
+                **_manifest_metadata(entry, target),
                 ccr_number=entry.ccr_number,
                 source_url=entry.preferred_url,
                 archive_path=target.as_posix(),
@@ -278,13 +394,20 @@ def download_rule(
                 error=str(exc),
             ),
         )
+        LOGGER.warning(
+            "CCR download failed ccr_number=%s source_url=%s archive_path=%s error=%s",
+            entry.ccr_number,
+            entry.preferred_url,
+            target.as_posix(),
+            exc,
+        )
         raise CCRDownloadError(str(exc)) from exc
 
     actual_extension = _extension_from_signature(response)
     if actual_extension is not None and target.suffix.lower() != actual_extension:
         target = target.with_suffix(actual_extension)
 
-    tmp_path = target.with_name(f"{target.name}.tmp")
+    tmp_path = temp_path_for(target)
     try:
         tmp_path.write_bytes(response)
         os.replace(tmp_path, target)
@@ -295,6 +418,7 @@ def download_rule(
     _append_manifest(
         manifest_path,
         DownloadManifestEntry(
+            **_manifest_metadata(entry, target),
             ccr_number=entry.ccr_number,
             source_url=entry.preferred_url,
             archive_path=target.as_posix(),
@@ -304,7 +428,12 @@ def download_rule(
             status="downloaded",
         ),
     )
-    LOGGER.info("Downloaded CCR rule %s to %s", entry.ccr_number, target)
+    LOGGER.debug(
+        "CCR download succeeded ccr_number=%s source_url=%s archive_path=%s",
+        entry.ccr_number,
+        entry.preferred_url,
+        target.as_posix(),
+    )
     return target
 
 
@@ -312,41 +441,109 @@ def download_all_rules(
     archive_dir: Path,
     delay: float = 1.0,
     client: Any | None = None,
+    discovery_delay: float = 0.0,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
+    max_downloads: int | None = None,
 ) -> DownloadReport:
     """Discover and download all CCR rules with rate limiting and resume support."""
 
-    session = _session_or_client(client)
-    entries = discover_all_rules(client=session)
+    _validate_max_downloads(max_downloads)
+    session = _session_or_client(
+        client,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
+    entries = discover_all_rules(
+        client=session,
+        request_delay=discovery_delay,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
+    LOGGER.info(
+        "CCR bulk download discovered=%s archive_dir=%s",
+        len(entries),
+        archive_dir.as_posix(),
+    )
     paths: list[str] = []
     errors: list[str] = []
     downloaded = 0
     skipped = 0
     failed = 0
+    network_attempts = 0
+    manifest_path = download_manifest_path(archive_dir)
     for index, entry in enumerate(entries):
-        target = archive_dir / f"{_safe_stem(entry.canonical_id)}{entry.preferred_extension}"
-        existed = target.exists()
+        target = ccr_rule_document_path(archive_dir, entry.canonical_id, entry.preferred_extension)
+        already_downloaded = _is_downloaded(manifest_path, entry, target)
+        if already_downloaded:
+            paths.append(target.as_posix())
+            skipped += 1
+            continue
+        if max_downloads is not None and network_attempts >= max_downloads:
+            LOGGER.info(
+                "CCR bulk download paused max_downloads=%s archive_dir=%s",
+                max_downloads,
+                archive_dir.as_posix(),
+            )
+            break
+        network_attempts += 1
         try:
-            path = download_rule(entry, archive_dir, client=session)
+            path = download_rule(
+                entry,
+                archive_dir,
+                client=session,
+                max_retries=max_retries,
+                base_delay=base_delay,
+                timeout_seconds=timeout_seconds,
+                max_retry_delay_seconds=max_retry_delay_seconds,
+            )
         except CCRDownloadError as exc:
             failed += 1
             errors.append(f"{entry.ccr_number}: {exc}")
         else:
             paths.append(path.as_posix())
-            if existed:
-                skipped += 1
-            else:
-                downloaded += 1
-        if delay > 0 and index < len(entries) - 1:
+            downloaded += 1
+        if (
+            delay > 0
+            and index < len(entries) - 1
+            and (max_downloads is None or network_attempts < max_downloads)
+        ):
             time.sleep(delay)
-    return DownloadReport(
+    report = DownloadReport(
         discovered=len(entries),
+        attempted=downloaded + skipped + failed,
         downloaded=downloaded,
         skipped=skipped,
         failed=failed,
-        manifest_path=(archive_dir / DOWNLOAD_MANIFEST).as_posix(),
+        manifest_path=manifest_path.as_posix(),
         paths=paths,
         errors=errors,
     )
+    log_summary = LOGGER.warning if failed else LOGGER.info
+    log_summary(
+        "CCR bulk download summary attempted=%s succeeded=%s failed=%s skipped=%s "
+        "archive_dir=%s manifest=%s",
+        report.attempted,
+        report.downloaded,
+        report.failed,
+        report.skipped,
+        archive_dir.as_posix(),
+        report.manifest_path,
+    )
+    return report
+
+
+def _validate_max_downloads(max_downloads: int | None) -> None:
+    """Validate an optional per-run network-attempt cap."""
+
+    if max_downloads is not None and max_downloads < 0:
+        raise ValueError("max_downloads cannot be negative")
 
 
 def _coerce_rule_entry(entry: CCRRuleEntry | dict[str, Any]) -> CCRRuleEntry:
@@ -536,24 +733,50 @@ def _extension_from_signature(content: bytes) -> str | None:
     return None
 
 
-def _session_or_client(client: Any | None) -> Any:
+def _session_or_client(
+    client: Any | None,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
+) -> Any:
     """Return an injected client or a warmed SOS browser session."""
 
     if client is not None:
         return client
     session = build_session()
-    _prime_sos_session(session)
+    _prime_sos_session(
+        session,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
     return session
 
 
-def _prime_sos_session(session: Any) -> None:
+def _prime_sos_session(
+    session: Any,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
+) -> None:
     """Walk the SOS referer chain to collect cookies before CCR requests."""
 
     if getattr(session, "_geode_sos_primed", False):
         return
 
     try:
-        polite_get(session, SOS_HOME_URL, referer=GOOGLE_REFERER)
+        polite_get(
+            session,
+            SOS_HOME_URL,
+            referer=GOOGLE_REFERER,
+            max_retries=max_retries,
+            base_delay=base_delay,
+            timeout_seconds=timeout_seconds,
+            max_retry_delay_seconds=max_retry_delay_seconds,
+        )
         next_referer = SOS_HOME_URL
     except GeodeFetchError as exc:
         if exc.status_code != 403:
@@ -561,37 +784,119 @@ def _prime_sos_session(session: Any) -> None:
         LOGGER.warning(
             "SOS homepage returned 403 after retries; harvesting CCR search cookies."
         )
-        polite_get(session, CCR_SEARCH_URL, referer=GOOGLE_REFERER)
+        polite_get(
+            session,
+            CCR_SEARCH_URL,
+            referer=GOOGLE_REFERER,
+            max_retries=max_retries,
+            base_delay=base_delay,
+            timeout_seconds=timeout_seconds,
+            max_retry_delay_seconds=max_retry_delay_seconds,
+        )
         next_referer = CCR_SEARCH_URL
 
-    polite_get(session, CCR_WELCOME_URL, referer=next_referer)
-    polite_get(session, CCR_DEPARTMENT_LIST_URL, referer=CCR_WELCOME_URL)
+    polite_get(
+        session,
+        CCR_WELCOME_URL,
+        referer=next_referer,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
+    polite_get(
+        session,
+        CCR_DEPARTMENT_LIST_URL,
+        referer=CCR_WELCOME_URL,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
     try:
         setattr(session, "_geode_sos_primed", True)
     except Exception:
         LOGGER.debug("Could not mark SOS session as primed.", exc_info=True)
 
 
-def _fetch_text(url: str, client: Any | None, referer: str | None = None) -> str:
+def _fetch_text(
+    url: str,
+    client: Any | None,
+    referer: str | None = None,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
+) -> str:
     """Fetch text with retry handling."""
 
-    response = _get_with_retries(url, client, referer=referer)
+    response = _get_with_retries(
+        url,
+        client,
+        referer=referer,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
     return str(response.text)
 
 
-def _fetch_bytes(url: str, client: Any | None, referer: str | None = None) -> bytes:
+def _fetch_bytes(
+    url: str,
+    client: Any | None,
+    referer: str | None = None,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
+) -> bytes:
     """Fetch bytes with retry handling."""
 
-    response = _get_with_retries(url, client, referer=referer)
+    response = _get_with_retries(
+        url,
+        client,
+        referer=referer,
+        max_retries=max_retries,
+        base_delay=base_delay,
+        timeout_seconds=timeout_seconds,
+        max_retry_delay_seconds=max_retry_delay_seconds,
+    )
     return bytes(response.content)
 
 
-def _get_with_retries(url: str, client: Any | None, referer: str | None = None) -> Any:
+def _get_with_retries(
+    url: str,
+    client: Any | None,
+    referer: str | None = None,
+    max_retries: int = 4,
+    base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
+) -> Any:
     """GET a URL using the hardened polite client."""
 
-    session = client if client is not None else _session_or_client(None)
+    session = (
+        client
+        if client is not None
+        else _session_or_client(
+            None,
+            max_retries=max_retries,
+            base_delay=base_delay,
+            timeout_seconds=timeout_seconds,
+            max_retry_delay_seconds=max_retry_delay_seconds,
+        )
+    )
     try:
-        return polite_get(session, url, referer=referer)
+        return polite_get(
+            session,
+            url,
+            referer=referer,
+            max_retries=max_retries,
+            base_delay=base_delay,
+            timeout_seconds=timeout_seconds,
+            max_retry_delay_seconds=max_retry_delay_seconds,
+        )
     except GeodeFetchError as exc:
         raise CCRDownloadError(str(exc)) from exc
 
@@ -615,13 +920,61 @@ def _manifest_entry_for(
     return latest
 
 
+def _is_downloaded(
+    manifest_path: Path,
+    entry: CCRRuleEntry,
+    target: Path,
+) -> bool:
+    """Return whether a CCR rule has a matching archived file and manifest row."""
+
+    prior = _manifest_entry_for(manifest_path, entry)
+    return bool(prior and target.exists() and prior.sha256 == sha256_file(target))
+
+
+def _canonical_source_url(value: object) -> object:
+    """Normalize HTML-encoded query separators in persisted source URLs."""
+
+    if value is None:
+        return None
+    previous = str(value)
+    for _ in range(3):
+        current = html_unescape(previous)
+        if current == previous:
+            return current
+        previous = current
+    return previous
+
+
+def _manifest_metadata(entry: CCRRuleEntry, target: Path) -> dict[str, object]:
+    """Return normalized CCR raw-download metadata for a manifest row."""
+
+    metadata = {
+        "document_id": entry.canonical_id,
+        "document_name": entry.ccr_number,
+        "department": entry.department,
+        "agency": entry.agency,
+        "source_page_url": _canonical_source_url(str(entry.source_page_url)),
+        "source_format": source_format_from_extension(target.suffix),
+        "effective_date": None,
+        "publication_date": None,
+    }
+    return {
+        **metadata,
+        "missing_metadata": missing_metadata_fields(metadata),
+    }
+
+
 def _append_manifest(path: Path, entry: DownloadManifestEntry) -> None:
     """Append one raw-archive download manifest row atomically."""
 
     path.parent.mkdir(parents=True, exist_ok=True)
     existing = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
-    existing.append(entry.model_dump_json())
-    tmp_path = path.with_name(f"{path.name}.tmp")
+    payload = entry.model_dump(mode="json")
+    for key in ("source_url", "source_page_url"):
+        if payload.get(key) is not None:
+            payload[key] = _canonical_source_url(payload[key])
+    existing.append(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
+    tmp_path = temp_path_for(path)
     try:
         tmp_path.write_text("\n".join(existing) + "\n", encoding="utf-8", newline="\n")
         os.replace(tmp_path, path)
@@ -634,9 +987,3 @@ def _normalize_space(value: str) -> str:
     """Normalize internal whitespace."""
 
     return re.sub(r"\s+", " ", value).strip()
-
-
-def _safe_stem(value: str) -> str:
-    """Return a filesystem-safe CCR archive stem."""
-
-    return re.sub(r"[^A-Za-z0-9_-]+", "_", value).strip("_")

@@ -104,6 +104,53 @@ def test_parse_structure_builds_hierarchy() -> None:
     assert tree.parts[0].sections[0].subsections[0].label == "(1)"
 
 
+def test_parse_structure_detects_plain_ccr_rule_headings() -> None:
+    """Plain CCR rule headings become section boundaries."""
+
+    tree = parse_structure(
+        """
+DEPARTMENT OF PERSONNEL AND ADMINISTRATION
+PART 1 PURPOSES, CONSTRUCTION AND APPLICATION
+R-24-101-102-1 General
+These rules implement the Colorado Procurement Code.
+1
+CODE OF COLORADO REGULATIONS 1 CCR 101-9
+Division of Finance and Procurement
+(a) The rules apply to public funds.
+R 24-101-102-2 Expenditure of Funds.
+These rules shall apply to every expenditure of public funds.
+"""
+    )
+
+    part = tree.parts[0]
+    assert part.label == "1"
+    assert [section.number for section in part.sections] == [
+        "R-24-101-102-1",
+        "R-24-101-102-2",
+    ]
+    assert part.sections[0].heading == "General"
+    assert "CODE OF COLORADO REGULATIONS" not in part.sections[0].subsections[0].text
+    assert "Division of Finance and Procurement" not in part.sections[0].subsections[0].text
+
+
+def test_parse_structure_keeps_decimal_body_text_inside_section() -> None:
+    """Decimal-leading body text is not promoted to a section heading."""
+
+    tree = parse_structure(
+        """
+PART 1 GENERAL
+R-24-101-102-1 Applicability
+The threshold is stated below.
+1.1 milligrams per liter is the compliance threshold.
+"""
+    )
+
+    section = tree.parts[0].sections[0]
+    assert section.number == "R-24-101-102-1"
+    assert len(tree.parts[0].sections) == 1
+    assert "1.1 milligrams per liter" in section.text
+
+
 def test_extract_metadata_flags_regex_misses_for_llm() -> None:
     """Metadata extraction marks matches deterministic and misses needs_llm."""
 

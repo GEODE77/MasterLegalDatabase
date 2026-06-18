@@ -6,6 +6,7 @@ from pathlib import Path
 
 from geode.connectors.ccr_scraper import (
     CCR_DEPARTMENT_LIST_URL,
+    CCRRuleEntry,
     discover_all_rules,
     download_all_rules,
     download_rule,
@@ -176,8 +177,8 @@ def test_resolve_rule_info_page_parses_live_javascript_downloads() -> None:
     assert "type=pdf" in entry.preferred_url
 
 
-def test_download_rule_prefers_docx_and_resumes(tmp_path: Path) -> None:
-    """Downloads prefer DOCX, log SHA-256, and skip when manifest hash matches."""
+def test_download_rule_prefers_pdf_and_resumes(tmp_path: Path) -> None:
+    """Downloads prefer PDF, log SHA-256, and skip when manifest hash matches."""
 
     client = _fake_client()
     entry = discover_all_rules(client=client, max_agencies=1)[0]
@@ -185,13 +186,56 @@ def test_download_rule_prefers_docx_and_resumes(tmp_path: Path) -> None:
     assert path.suffix == ".pdf"
     assert path.read_bytes() == b"%PDF-1.7\npdf-9"
     rows = list(iter_jsonl(tmp_path / "download_manifest.jsonl"))
+    assert rows[0]["jurisdiction"] == "Colorado"
+    assert rows[0]["source_type"] == "regulation_rule"
+    assert rows[0]["document_id"] == "5_CCR_1001-9"
+    assert rows[0]["document_name"] == "5 CCR 1001-9"
+    assert rows[0]["department"] == "1000 Department of Public Health and Environment"
+    assert rows[0]["agency"] == "1001 Air Quality Control Commission"
+    assert rows[0]["source_format"] == "pdf"
     assert rows[0]["status"] == "downloaded"
     assert rows[0]["sha256"]
+    assert rows[0]["missing_metadata"] == ["effective_date", "publication_date"]
 
     before = client.calls.count(str(entry.pdf_url))
     assert download_rule(entry, tmp_path, client=client) == path
     after = client.calls.count(str(entry.pdf_url))
     assert after == before
+
+
+def test_download_rule_manifest_urls_are_not_html_encoded(tmp_path: Path) -> None:
+    """Manifest source URLs store canonical query separators."""
+
+    source_page_url = (
+        "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo"
+        "&amp;amp;ruleId=2341&amp;seriesNum=5%20CCR%201001-9"
+    )
+    pdf_url = (
+        "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12486"
+        "&amp;amp;fileName=5%20CCR%201001-9&amp;type=pdf"
+    )
+    entry = CCRRuleEntry(
+        ccr_number="5 CCR 1001-9",
+        department="1000 Department of Public Health and Environment",
+        agency="1001 Air Quality Control Commission",
+        source_page_url=source_page_url,
+        pdf_url=pdf_url,
+    )
+    client = FakeClient({str(entry.pdf_url): FakeResponse(content=b"%PDF-1.7\npdf")})
+
+    download_rule(entry, tmp_path, client=client)
+    raw_manifest = (tmp_path / "download_manifest.jsonl").read_text(encoding="utf-8")
+    row = list(iter_jsonl(tmp_path / "download_manifest.jsonl"))[0]
+
+    assert "&amp;" not in raw_manifest
+    assert row["source_url"] == (
+        "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12486"
+        "&fileName=5%20CCR%201001-9&type=pdf"
+    )
+    assert row["source_page_url"] == (
+        "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo"
+        "&ruleId=2341&seriesNum=5%20CCR%201001-9"
+    )
 
 
 def test_download_all_rules_downloads_five_samples(tmp_path: Path) -> None:
@@ -202,3 +246,18 @@ def test_download_all_rules_downloads_five_samples(tmp_path: Path) -> None:
     assert report.downloaded == 5
     assert report.failed == 0
     assert len(list(iter_jsonl(tmp_path / "download_manifest.jsonl"))) == 5
+
+
+def test_download_all_rules_redownloads_unmanifested_partial_file(tmp_path: Path) -> None:
+    """Existing files without matching manifest rows are not treated as complete."""
+
+    client = _fake_client()
+    entry = discover_all_rules(client=client, max_agencies=1)[0]
+    target = tmp_path / f"{entry.canonical_id}.pdf"
+    target.write_bytes(b"partial")
+
+    report = download_all_rules(tmp_path, delay=0, client=client)
+
+    assert report.downloaded == 5
+    assert report.skipped == 0
+    assert target.read_bytes() == b"%PDF-1.7\npdf-9"

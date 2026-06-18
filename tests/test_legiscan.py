@@ -6,13 +6,14 @@ import json
 from pathlib import Path
 
 from geode.connectors.legiscan_client import (
+    download_all_sessions,
     get_bill_detail,
     get_session_bills,
     get_session_list,
 )
 from geode.connectors.legiscan_transformer import transform_bill
 from geode.schemas.validators import validate_record
-from geode.utils.file_io import load_json
+from geode.utils.file_io import iter_jsonl, load_json
 
 
 class FakeResponse:
@@ -36,10 +37,11 @@ class FakeResponse:
 class FakeClient:
     """Fake LegiScan API client keyed by operation."""
 
-    def __init__(self, bill_fixture: dict) -> None:
+    def __init__(self, bill_fixture: dict, fail_get_bill_attempts: int = 0) -> None:
         """Create fake client with one bill fixture."""
 
         self.bill_fixture = bill_fixture
+        self.fail_get_bill_attempts = fail_get_bill_attempts
         self.calls: list[str] = []
 
     def get(self, url: str, params: dict) -> FakeResponse:
@@ -74,6 +76,9 @@ class FakeClient:
                     }
                 }
             )
+        if self.fail_get_bill_attempts:
+            self.fail_get_bill_attempts -= 1
+            raise RuntimeError("temporary getBill failure")
         return FakeResponse(self.bill_fixture)
 
 
@@ -107,3 +112,89 @@ def test_transform_bill_fixture_validates(
     assert record["id"] == "SB23-016"
     assert record["statutes_amended"] == ["CRS-25-7-109"]
     assert "air_quality" in record["subject_tags"]
+
+
+def test_legiscan_download_all_sessions_resumes_without_duplicate_get_bill(
+    legiscan_fixture_path: Path,
+    tmp_path: Path,
+) -> None:
+    """Manifest-backed LegiScan reruns skip already archived bill JSON."""
+
+    fixture = json.loads(legiscan_fixture_path.read_text(encoding="utf-8"))
+    client = FakeClient(fixture)
+
+    first = download_all_sessions(tmp_path, api_key="test", client=client, delay=0)
+    get_bill_calls = client.calls.count("getBill")
+    second = download_all_sessions(tmp_path, api_key="test", client=client, delay=0)
+
+    assert first.bills == 1
+    assert first.skipped == 0
+    assert second.bills == 1
+    assert second.skipped == 1
+    assert client.calls.count("getBill") == get_bill_calls
+    assert client.calls.count("getSessionList") == 2
+    assert len(list(iter_jsonl(tmp_path / "download_manifest.jsonl"))) == 1
+
+
+def test_legiscan_max_downloads_caps_get_bill_calls(
+    legiscan_fixture_path: Path,
+    tmp_path: Path,
+) -> None:
+    """LegiScan capped runs avoid bill-detail calls until allowed."""
+
+    fixture = json.loads(legiscan_fixture_path.read_text(encoding="utf-8"))
+    client = FakeClient(fixture)
+
+    capped = download_all_sessions(
+        tmp_path,
+        api_key="test",
+        client=client,
+        delay=0,
+        max_downloads=0,
+    )
+    get_bill_after_cap = client.calls.count("getBill")
+    resumed = download_all_sessions(
+        tmp_path,
+        api_key="test",
+        client=client,
+        delay=0,
+        max_downloads=1,
+    )
+
+    assert capped.attempted == 0
+    assert capped.bills == 0
+    assert get_bill_after_cap == 0
+    assert client.calls.count("getBill") == 1
+    assert resumed.attempted == 1
+    assert resumed.bills == 1
+
+
+def test_legiscan_failed_bill_is_recorded_and_retried(
+    legiscan_fixture_path: Path,
+    tmp_path: Path,
+) -> None:
+    """Failed LegiScan bill attempts are retained and retried on the next run."""
+
+    fixture = json.loads(legiscan_fixture_path.read_text(encoding="utf-8"))
+    client = FakeClient(fixture, fail_get_bill_attempts=1)
+
+    first = download_all_sessions(tmp_path, api_key="test", client=client, delay=0)
+    second = download_all_sessions(tmp_path, api_key="test", client=client, delay=0)
+    rows = list(iter_jsonl(tmp_path / "download_manifest.jsonl"))
+
+    assert first.bills == 0
+    assert first.failed == 1
+    assert "temporary getBill failure" in first.errors[0]
+    assert second.bills == 1
+    assert second.failed == 0
+    assert [row["status"] for row in rows] == ["failed", "downloaded"]
+    assert rows[0]["jurisdiction"] == "Colorado"
+    assert rows[0]["source_type"] == "bill"
+    assert rows[0]["document_id"] == "12345"
+    assert rows[0]["document_name"] == "Air Quality Control Amendments"
+    assert rows[0]["source_format"] == "json"
+    assert rows[0]["missing_metadata"] == []
+    assert rows[1]["jurisdiction"] == "Colorado"
+    assert rows[1]["source_type"] == "bill"
+    assert rows[1]["document_id"] == "12345"
+    assert rows[1]["source_format"] == "json"

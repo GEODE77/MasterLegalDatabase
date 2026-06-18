@@ -12,22 +12,32 @@ from geode.net.http_client import BROWSER_HEADERS, GeodeFetchError, build_sessio
 class FakeResponse:
     """Minimal response object for retry tests."""
 
-    def __init__(self, status_code: int, text: str = "") -> None:
+    def __init__(
+        self,
+        status_code: int,
+        text: str = "",
+        headers: dict[str, str] | None = None,
+    ) -> None:
         """Create a fake response."""
 
         self.status_code = status_code
         self.text = text
         self.content = text.encode("utf-8")
-        self.headers: dict[str, str] = {}
+        self.headers = headers or {}
 
 
 class FakeSession:
     """Fake session returning a programmed sequence of statuses."""
 
-    def __init__(self, statuses: list[int]) -> None:
+    def __init__(
+        self,
+        statuses: list[int],
+        response_headers: list[dict[str, str] | None] | None = None,
+    ) -> None:
         """Create a fake session."""
 
         self.statuses = list(statuses)
+        self.response_headers = list(response_headers or [])
         self.calls: list[dict[str, object]] = []
         self.headers: dict[str, str] = {}
 
@@ -41,7 +51,8 @@ class FakeSession:
 
         self.calls.append({"url": url, "headers": headers or {}, "timeout": timeout})
         status = self.statuses.pop(0)
-        return FakeResponse(status, text=f"status={status}")
+        response_headers = self.response_headers.pop(0) if self.response_headers else None
+        return FakeResponse(status, text=f"status={status}", headers=response_headers)
 
 
 def test_build_session_falls_back_to_requests_with_browser_user_agent(monkeypatch) -> None:
@@ -108,3 +119,41 @@ def test_polite_get_backoff_includes_exponential_delay_and_jitter(monkeypatch) -
     polite_get(session, "https://example.test/retry", max_retries=3, base_delay=2.0)
 
     assert sleeps == [2.25, 4.25]
+
+
+def test_polite_get_passes_configured_timeout() -> None:
+    """Configured request timeouts are passed to compatible sessions."""
+
+    session = FakeSession([200])
+
+    polite_get(session, "https://example.test/timeout", timeout_seconds=12.5)
+
+    assert session.calls[0]["timeout"] == 12.5
+
+
+def test_polite_get_respects_retry_after_header(monkeypatch) -> None:
+    """429 Retry-After controls the next retry delay when it exceeds backoff."""
+
+    sleeps: list[float] = []
+    monkeypatch.setattr("geode.net.http_client.random.uniform", lambda *_args: 0.0)
+    monkeypatch.setattr("geode.net.http_client.time.sleep", sleeps.append)
+    session = FakeSession([429, 200], response_headers=[{"Retry-After": "7"}, None])
+
+    polite_get(session, "https://example.test/rate-limited", max_retries=2, base_delay=1.0)
+
+    assert sleeps == [7.0]
+
+
+def test_polite_get_exposes_blocked_error_context(monkeypatch) -> None:
+    """Persistent 403s surface a blocked-source error state."""
+
+    monkeypatch.setattr("geode.net.http_client.random.uniform", lambda *_args: 0.0)
+    monkeypatch.setattr("geode.net.http_client.time.sleep", lambda _delay: None)
+    session = FakeSession([403])
+
+    with pytest.raises(GeodeFetchError) as exc_info:
+        polite_get(session, "https://example.test/blocked", max_retries=1)
+
+    assert exc_info.value.is_blocked
+    assert not exc_info.value.is_rate_limited
+    assert "access denied or blocked" in str(exc_info.value)

@@ -9,6 +9,10 @@ __pycache__/
 dist/
 build/
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
 
 # Environment
 .env
@@ -26,16 +30,38 @@ build/
 .DS_Store
 Thumbs.db
 
-# Raw scrape outputs (belong in OneDrive backup, not Git)
-*.pdf
-02_Regulations_CCR/*.pdf
+# Generated Geode runtime data
+#
+# Keep source, schemas, fixtures, docs, and curated control-plane files in Git.
+# Keep bulk downloads and pipeline run output out of Git; for large live runs,
+# prefer --root outside OneDrive or other sync-managed folders.
+_RAW_ARCHIVE/**
+_SNAPSHOTS/**
+_CONTROL_PLANE/BULK_DOWNLOAD_QUALITY_REPORT.json
 _CONTROL_PLANE/raw/
 _CONTROL_PLANE/normalized/
 _CONTROL_PLANE/tagged/
 _CONTROL_PLANE/cache/
-_RAW_ARCHIVE/**/*.pdf
-_RAW_ARCHIVE/**/*.docx
-_SNAPSHOTS/
+data/raw_pdfs/**
+!data/raw_pdfs/.gitkeep
+data/extracted_text/**
+!data/extracted_text/.gitkeep
+data/sample/**
+!data/sample/.gitkeep
+data/structured_output/**
+!data/structured_output/.gitkeep
+!data/structured_output/bills/
+!data/structured_output/bills/.gitkeep
+!data/structured_output/indices/
+!data/structured_output/indices/.gitkeep
+*.tmp
+*.part
+*.download
+*.log
+
+# Raw scrape outputs from legacy/manual scripts
+*.pdf
+02_Regulations_CCR/*.pdf
 
 # Local dev scripts (one-off debugging tools)
 scripts/dev/

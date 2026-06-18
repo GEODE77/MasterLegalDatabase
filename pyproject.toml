@@ -37,6 +37,7 @@ geode-validate = "geode.validate:main"
 geode-integrity-check = "geode.integrity_check:main"
 geode-pipeline-run = "geode.pipeline.run:main"
 geode-freshness-report = "geode.freshness_report:main"
+geode-bulk-download = "geode.connectors.run:main"
 
 [tool.setuptools.packages.find]
 include = ["geode*"]

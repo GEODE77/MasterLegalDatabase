@@ -6,6 +6,8 @@ import importlib
 import logging
 import random
 import time
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from typing import Any
 
 import requests
@@ -14,6 +16,7 @@ LOGGER = logging.getLogger(__name__)
 
 RETRY_STATUSES = {403, 429, 502, 503, 504}
 DEFAULT_TIMEOUT_SECONDS = 30.0
+DEFAULT_MAX_RETRY_DELAY_SECONDS = 60.0
 
 BROWSER_HEADERS = {
     "User-Agent": (
@@ -58,6 +61,18 @@ class GeodeFetchError(RuntimeError):
         self.attempts = attempts
         self.last_response = last_response
 
+    @property
+    def is_blocked(self) -> bool:
+        """Return whether the failure looks like source-side access denial."""
+
+        return self.status_code == 403
+
+    @property
+    def is_rate_limited(self) -> bool:
+        """Return whether the failure looks like source-side rate limiting."""
+
+        return self.status_code == 429
+
 
 def build_session(impersonate: bool = True) -> Any:
     """Build a cookie-persisting session with browser-like defaults.
@@ -92,6 +107,10 @@ def polite_get(
     referer: str | None = None,
     max_retries: int = 4,
     base_delay: float = 2.0,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
+    retry_statuses: set[int] | None = None,
+    respect_retry_after: bool = True,
 ) -> Any:
     """GET a URL with browser headers, cookies, and retry backoff.
 
@@ -101,6 +120,10 @@ def polite_get(
         referer: Optional referer header for this request.
         max_retries: Total attempts before raising ``GeodeFetchError``.
         base_delay: Base delay in seconds for exponential backoff.
+        timeout_seconds: Per-request timeout.
+        max_retry_delay_seconds: Optional cap for any one retry sleep.
+        retry_statuses: HTTP statuses that should be retried.
+        respect_retry_after: Whether to honor server ``Retry-After`` headers.
 
     Returns:
         HTTP response object.
@@ -111,10 +134,17 @@ def polite_get(
 
     if max_retries < 1:
         raise ValueError("max_retries must be at least 1")
+    if base_delay < 0:
+        raise ValueError("base_delay cannot be negative")
+    if timeout_seconds <= 0:
+        raise ValueError("timeout_seconds must be greater than 0")
+    if max_retry_delay_seconds is not None and max_retry_delay_seconds <= 0:
+        raise ValueError("max_retry_delay_seconds must be greater than 0")
 
     headers = dict(BROWSER_HEADERS)
     if referer:
         headers["Referer"] = referer
+    retryable_statuses = retry_statuses or RETRY_STATUSES
 
     last_response: Any | None = None
     last_error: Exception | None = None
@@ -123,11 +153,11 @@ def polite_get(
     for attempt in range(1, max_retries + 1):
         delay = 0.0
         try:
-            response = _session_get(session, url, headers)
+            response = _session_get(session, url, headers, timeout_seconds)
             last_response = response
             last_status = _status_code(response)
-            should_retry = last_status in RETRY_STATUSES
-            LOGGER.info(
+            should_retry = last_status in retryable_statuses
+            LOGGER.debug(
                 "GET %s attempt %s/%s status=%s delay=0.00",
                 url,
                 attempt,
@@ -136,7 +166,8 @@ def polite_get(
             )
             if not should_retry and last_status is not None and last_status >= 400:
                 raise GeodeFetchError(
-                    f"GET {url} failed with status {last_status}",
+                    f"GET {url} failed with status {last_status} "
+                    f"({_status_context(last_status)})",
                     url=url,
                     status_code=last_status,
                     attempts=attempt,
@@ -161,7 +192,17 @@ def polite_get(
         if attempt >= max_retries:
             break
 
-        delay = _retry_delay(attempt, base_delay)
+        retry_after = (
+            _retry_after_delay(last_response)
+            if respect_retry_after and last_response is not None
+            else None
+        )
+        delay = _retry_delay(
+            attempt,
+            base_delay,
+            retry_after_delay=retry_after,
+            max_delay_seconds=max_retry_delay_seconds,
+        )
         LOGGER.warning(
             "GET %s attempt %s/%s status=%s delay=%.2f",
             url,
@@ -176,7 +217,8 @@ def polite_get(
         f"status {last_status}" if last_status is not None else f"error {last_error}"
     )
     raise GeodeFetchError(
-        f"GET {url} failed after {max_retries} attempts ({status_message})",
+        f"GET {url} failed after {max_retries} attempts "
+        f"({status_message}; {_status_context(last_status)})",
         url=url,
         status_code=last_status,
         attempts=max_retries,
@@ -198,11 +240,16 @@ def _apply_headers(session: Any) -> None:
         headers.update(BROWSER_HEADERS)
 
 
-def _session_get(session: Any, url: str, headers: dict[str, str]) -> Any:
+def _session_get(
+    session: Any,
+    url: str,
+    headers: dict[str, str],
+    timeout_seconds: float,
+) -> Any:
     """Call a session's GET while tolerating simple fake clients in tests."""
 
     try:
-        return session.get(url, headers=headers, timeout=DEFAULT_TIMEOUT_SECONDS)
+        return session.get(url, headers=headers, timeout=timeout_seconds)
     except TypeError:
         try:
             return session.get(url, headers=headers)
@@ -222,8 +269,70 @@ def _status_code(response: Any) -> int | None:
         return None
 
 
-def _retry_delay(attempt: int, base_delay: float) -> float:
+def _retry_delay(
+    attempt: int,
+    base_delay: float,
+    retry_after_delay: float | None = None,
+    max_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
+) -> float:
     """Calculate exponential backoff with a small jitter component."""
 
     jitter = random.uniform(0.0, max(base_delay, 0.0) * 0.25)
-    return max(base_delay, 0.0) * (2 ** (attempt - 1)) + jitter
+    delay = max(base_delay, 0.0) * (2 ** (attempt - 1)) + jitter
+    if retry_after_delay is not None:
+        delay = max(delay, retry_after_delay)
+    if max_delay_seconds is not None:
+        delay = min(delay, max_delay_seconds)
+    return delay
+
+
+def _retry_after_delay(response: Any) -> float | None:
+    """Parse a Retry-After response header into seconds."""
+
+    headers = getattr(response, "headers", None)
+    if not headers:
+        return None
+    value = _header_value(headers, "Retry-After")
+    if value is None:
+        return None
+    try:
+        return max(float(value), 0.0)
+    except ValueError:
+        pass
+    try:
+        retry_at = parsedate_to_datetime(value)
+    except (TypeError, ValueError):
+        return None
+    if retry_at.tzinfo is None:
+        retry_at = retry_at.replace(tzinfo=timezone.utc)
+    return max((retry_at - datetime.now(timezone.utc)).total_seconds(), 0.0)
+
+
+def _header_value(headers: Any, name: str) -> str | None:
+    """Return a header value from regular or case-insensitive mappings."""
+
+    getter = getattr(headers, "get", None)
+    if callable(getter):
+        value = getter(name)
+        if value is None:
+            value = getter(name.lower())
+        if value is not None:
+            return str(value)
+    for key, value in getattr(headers, "items", lambda: [])():
+        if str(key).casefold() == name.casefold():
+            return str(value)
+    return None
+
+
+def _status_context(status_code: int | None) -> str:
+    """Return a short explanation for common source-side fetch failures."""
+
+    if status_code == 403:
+        return "access denied or blocked by source"
+    if status_code == 429:
+        return "rate limited by source"
+    if status_code is not None and status_code >= 500:
+        return "transient source/server failure"
+    if status_code is not None and status_code >= 400:
+        return "non-retryable source/client failure"
+    return "transport failure"

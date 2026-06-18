@@ -94,6 +94,47 @@ python -m geode.integrity_check
 pytest tests/ -v --cov=geode --cov-report=term-missing
 ```
 
+Bulk source-download commands:
+
+```powershell
+$env:GEODE_DATA_ROOT = "C:\GeodeData"
+python -m geode.connectors.run --connectors ccr --root $env:GEODE_DATA_ROOT --delay 1 --http-max-retries 4
+python -m geode.connectors.run --connectors ccr,colorado_register --root $env:GEODE_DATA_ROOT
+python -m geode.connectors.run --connectors all --root $env:GEODE_DATA_ROOT --delay 1 --discovery-delay 0.25
+python -m geode.connectors.run --connectors ccr --root $env:GEODE_DATA_ROOT --max-downloads 100 --delay 1
+```
+
+After `pip install -e .`, the equivalent console script is:
+
+```powershell
+geode-bulk-download --connectors ccr,colorado_register --root $env:GEODE_DATA_ROOT
+```
+
+Use `python -m geode.connectors.run --help` for all runtime options. The
+bulk-download entry point writes raw source artifacts under `_RAW_ARCHIVE/`,
+connector manifests beside those artifacts, failure manifests when item
+downloads fail, and `_CONTROL_PLANE/BULK_DOWNLOAD_QUALITY_REPORT.json` unless
+`--no-quality-report` is passed. LegiScan downloads require `LEGISCAN_API_KEY`
+or `--legiscan-api-key`. Use `--delay` for item-download pacing,
+`--discovery-delay` for CCR browse-page pacing, and `--max-downloads` to cap
+non-skipped download attempts per connector in a resumable batch.
+
+`geode.connectors.run` is the operational entry point for raw source bulk
+downloads. The direct connector functions remain available for tests and
+programmatic use, while `geode.pipeline.run` and `run_pipeline.py` remain the
+separate bill/CRS processing pipeline commands.
+
+### Storage Boundary
+
+Source code, schemas, tests, docs, fixtures, taxonomies, and curated control
+plane files belong in Git. Generated bulk artifacts belong in a data root,
+preferably outside the source checkout and outside OneDrive or other sync
+folders for large live runs. The ignored generated paths include
+`_RAW_ARCHIVE/`, `_SNAPSHOTS/`, `_CONTROL_PLANE/BULK_DOWNLOAD_QUALITY_REPORT.json`,
+`data/raw_pdfs/`, `data/extracted_text/`, `data/sample/`, and
+`data/structured_output/`. The tracked `.gitkeep` files keep expected local
+directories visible without committing run output.
+
 Bill pipeline commands:
 
 ```powershell
