@@ -1,0 +1,2 @@
+#!/bin/sh
+python -m geode.validation.secret_safety --staged
