@@ -41,6 +41,7 @@ def test_repair_intake_archives_file_and_removes_item_from_queue(tmp_path: Path)
 
     repaired_rows = list(iter_jsonl(tmp_path / "03_Legislation" / "_documents" / "bill_documents.jsonl"))
     refreshed_queue = load_json(tmp_path / "_CONTROL_PLANE" / "MODERN_LEGISCAN_REPAIR_QUEUE.json")
+    refreshed_checklist = load_json(tmp_path / "_CONTROL_PLANE" / "LEGISCAN_SOURCE_FINDER_CHECKLIST.json")
     summary = load_json(tmp_path / "03_Legislation" / "_documents" / "bill_document_summary.json")
 
     assert record.dataset_status_after == "downloaded"
@@ -52,6 +53,7 @@ def test_repair_intake_archives_file_and_removes_item_from_queue(tmp_path: Path)
     assert summary["downloaded"] == 1
     assert summary["failed_permanent"] == 0
     assert refreshed_queue["item_count"] == 0
+    assert refreshed_checklist["item_count"] == 0
     assert (tmp_path / "_CONTROL_PLANE" / "LEGISCAN_REPAIR_INTAKE_LEDGER.jsonl").exists()
 
 

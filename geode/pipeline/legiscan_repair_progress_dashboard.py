@@ -109,7 +109,8 @@ def build_legiscan_repair_progress_dashboard(root: Path) -> LegiScanRepairProgre
         repaired_items=repaired_items,
         open_items=open_items,
         next_action=(
-            "For each open item, locate a verified official replacement file and run "
+            "For each open item, use _CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json "
+            "to locate a verified official replacement file, then run "
             "python -m geode.pipeline.legiscan_repair_intake."
         ),
         boundary=(

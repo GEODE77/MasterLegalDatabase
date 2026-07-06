@@ -1,6 +1,6 @@
 # LegiScan Repair Progress Dashboard
 
-Generated: 2026-07-06T19:18:25.204365+00:00
+Generated: 2026-07-06T19:26:53.064993+00:00
 
 ## Summary
 
@@ -65,7 +65,7 @@ No modern LegiScan repair intakes have been recorded yet.
 
 ## Next Action
 
-For each open item, locate a verified official replacement file and run python -m geode.pipeline.legiscan_repair_intake.
+For each open item, use _CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json to locate a verified official replacement file, then run python -m geode.pipeline.legiscan_repair_intake.
 
 ## Boundary
 

@@ -174,6 +174,9 @@ def repair_modern_legiscan_item(
     _append_jsonl_raw(resolved_root / ARCHIVE_MANIFEST_PATH, record)
     _append_jsonl_control(resolved_root / LEDGER_PATH, record, resolved_root)
     refreshed_queue = write_modern_legiscan_repair_queue(resolved_root)
+    from geode.pipeline.legiscan_source_finder_checklist import write_source_finder_checklist
+
+    write_source_finder_checklist(resolved_root)
     from geode.pipeline.legiscan_repair_progress_dashboard import (
         write_legiscan_repair_progress_dashboard,
     )

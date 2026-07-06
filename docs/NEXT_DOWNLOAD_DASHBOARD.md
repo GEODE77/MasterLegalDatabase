@@ -16,6 +16,10 @@ Track repair progress here:
 
 `_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json`
 
+Use the source-finder checklist before intake:
+
+`_CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json`
+
 After an official replacement file is verified, repair one queue item with:
 
 ```powershell
@@ -44,7 +48,8 @@ Before any broad download, read:
 3. `_CONTROL_PLANE/BLOCKED_DOWNLOAD_QUEUE.json`
 4. `_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json`
 5. `_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
-6. `_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json`
-7. `docs/PUBLICATION_CHECKLIST.md`
+6. `_CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json`
+7. `_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json`
+8. `docs/PUBLICATION_CHECKLIST.md`
 
 Then ask the project owner to approve the specific next run.

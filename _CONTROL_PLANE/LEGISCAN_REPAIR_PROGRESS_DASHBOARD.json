@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T19:18:25.204365Z",
+  "generated_at": "2026-07-06T19:26:53.064993Z",
   "status": "active",
   "purpose": "Track modern LegiScan repair progress by combining the open repair queue with completed guarded intake records.",
   "queue_path": "_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json",
@@ -519,6 +519,6 @@
       "needed_action": "needs verified official replacement file"
     }
   ],
-  "next_action": "For each open item, locate a verified official replacement file and run python -m geode.pipeline.legiscan_repair_intake.",
+  "next_action": "For each open item, use _CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json to locate a verified official replacement file, then run python -m geode.pipeline.legiscan_repair_intake.",
   "boundary": "This dashboard tracks source-repair operations only. It does not certify legal correctness, source interpretation, or public reliance."
 }
