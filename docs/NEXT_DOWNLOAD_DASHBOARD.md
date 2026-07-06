@@ -8,6 +8,18 @@ This guide points to the control-plane file that tells the next agent where to r
 
 The LegiScan live refresh is complete. The next broad source issue remains EO-2019-007, which needs a valid official PDF from the Governor's Office or State Archives.
 
+Before any future broad refresh, run the source update watcher:
+
+```powershell
+python -m geode.pipeline.source_update_watcher --root . --write
+```
+
+Review the watcher dashboard and queue before downloading:
+
+`_CONTROL_PLANE/SOURCE_UPDATE_WATCHER_DASHBOARD.json`
+
+`_CONTROL_PLANE/SOURCE_UPDATE_DOWNLOAD_QUEUE.json`
+
 For LegiScan specifically, use the focused modern repair queue before starting the large legacy archive recovery project:
 
 `_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
@@ -47,9 +59,11 @@ Before any broad download, read:
 2. `_CONTROL_PLANE/NEXT_DOWNLOAD_DASHBOARD.json`
 3. `_CONTROL_PLANE/BLOCKED_DOWNLOAD_QUEUE.json`
 4. `_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json`
-5. `_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
-6. `_CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json`
-7. `_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json`
-8. `docs/PUBLICATION_CHECKLIST.md`
+5. `_CONTROL_PLANE/SOURCE_UPDATE_WATCHER_DASHBOARD.json`
+6. `_CONTROL_PLANE/SOURCE_UPDATE_DOWNLOAD_QUEUE.json`
+7. `_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
+8. `_CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json`
+9. `_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json`
+10. `docs/PUBLICATION_CHECKLIST.md`
 
 Then ask the project owner to approve the specific next run.

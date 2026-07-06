@@ -1,0 +1,223 @@
+{
+  "dashboard_id": "SOURCE-UPDATE-WATCHER-DASHBOARD",
+  "generated_at": "2026-07-06T19:37:47.584699Z",
+  "status": "warn",
+  "purpose": "Identify likely new official source material before any future download, then route safe downloads through the existing guarded pipeline.",
+  "watch_items_total": 8,
+  "new_data_items": 0,
+  "manual_review_items": 2,
+  "ready_watchers": 2,
+  "status_counts": {
+    "manual_review_needed": 2,
+    "needs_live_check": 4,
+    "watch_ready": 2
+  },
+  "items": [
+    {
+      "source_id": "crs",
+      "source_name": "Colorado Revised Statutes",
+      "layer_ids": [
+        "01_Statutes_CRS",
+        "06_Session_Laws"
+      ],
+      "source_url": "https://leg.colorado.gov/colorado-revised-statutes",
+      "access_method": "email_request",
+      "update_frequency": "annually, typically May-July",
+      "watch_mode": "manual_request",
+      "geode_last_checked": "2026-07-02",
+      "geode_last_ingested": "2026-07-02",
+      "local_marker": "2025",
+      "latest_observed_marker": null,
+      "observed_at": null,
+      "change_status": "manual_review_needed",
+      "download_status": "manual_or_guarded_intake_required",
+      "guarded_download_command": null,
+      "evidence": "Source is registered for watching at https://leg.colorado.gov/colorado-revised-statutes.",
+      "next_step": "Manual source review is needed before any download or replacement intake."
+    },
+    {
+      "source_id": "ccr",
+      "source_name": "Code of Colorado Regulations",
+      "layer_ids": [
+        "02_Regulations_CCR"
+      ],
+      "source_url": "https://www.sos.state.co.us/CCR/Welcome.do",
+      "access_method": "scrape",
+      "update_frequency": "continuous",
+      "watch_mode": "official_listing_watch",
+      "geode_last_checked": "2026-07-02",
+      "geode_last_ingested": "2026-07-02",
+      "local_marker": "2026-07-02",
+      "latest_observed_marker": null,
+      "observed_at": null,
+      "change_status": "needs_live_check",
+      "download_status": "watch_only",
+      "guarded_download_command": null,
+      "evidence": "Source is registered for watching at https://www.sos.state.co.us/CCR/Welcome.do.",
+      "next_step": "Live source check is needed before deciding whether to download."
+    },
+    {
+      "source_id": "legiscan",
+      "source_name": "LegiScan Colorado",
+      "layer_ids": [
+        "03_Legislation"
+      ],
+      "source_url": "https://legiscan.com/CO",
+      "access_method": "api",
+      "update_frequency": "weekly during session; monthly off session",
+      "watch_mode": "api_pull",
+      "geode_last_checked": "2026-07-06",
+      "geode_last_ingested": "2026-07-06",
+      "local_marker": "2026-07-06",
+      "latest_observed_marker": null,
+      "observed_at": null,
+      "change_status": "watch_ready",
+      "download_status": "watch_only",
+      "guarded_download_command": "python -m geode.connectors.legiscan_pipeline --output-root . --download --session-year 2026",
+      "evidence": "Source is registered for watching at https://legiscan.com/CO.",
+      "next_step": "Watcher is configured; run the LegiScan API pull during the next refresh window."
+    },
+    {
+      "source_id": "colorado_register",
+      "source_name": "Colorado Register",
+      "layer_ids": [
+        "04_Rulemaking"
+      ],
+      "source_url": "https://www.sos.state.co.us/CCR/RegisterHome.do",
+      "access_method": "scrape",
+      "update_frequency": "twice monthly",
+      "watch_mode": "official_listing_watch",
+      "geode_last_checked": "2026-07-02",
+      "geode_last_ingested": "2026-07-02",
+      "local_marker": "2026-07-02",
+      "latest_observed_marker": null,
+      "observed_at": null,
+      "change_status": "watch_ready",
+      "download_status": "watch_only",
+      "guarded_download_command": "python -m geode.connectors.register_pipeline --output-root . --download",
+      "evidence": "Source is registered for watching at https://www.sos.state.co.us/CCR/RegisterHome.do.",
+      "next_step": "Live source check is needed before deciding whether to download."
+    },
+    {
+      "source_id": "colorado_edocket",
+      "source_name": "Colorado Secretary of State eDocket",
+      "layer_ids": [],
+      "source_url": "https://www.sos.state.co.us/CCR/eDocketPublic.do",
+      "access_method": "scrape",
+      "update_frequency": "continuous",
+      "watch_mode": "official_listing_watch",
+      "geode_last_checked": null,
+      "geode_last_ingested": null,
+      "local_marker": null,
+      "latest_observed_marker": null,
+      "observed_at": null,
+      "change_status": "needs_live_check",
+      "download_status": "watch_only",
+      "guarded_download_command": null,
+      "evidence": "Source is registered for watching at https://www.sos.state.co.us/CCR/eDocketPublic.do.",
+      "next_step": "Live source check is needed before deciding whether to download."
+    },
+    {
+      "source_id": "executive_orders",
+      "source_name": "Colorado Governor Executive Orders",
+      "layer_ids": [
+        "05_Executive_Orders"
+      ],
+      "source_url": "https://www.colorado.gov/governor/executive-orders",
+      "access_method": "scrape",
+      "update_frequency": "monthly check; irregular publication",
+      "watch_mode": "official_listing_watch",
+      "geode_last_checked": "2026-07-02",
+      "geode_last_ingested": "2026-07-02",
+      "local_marker": "2026-07-02",
+      "latest_observed_marker": null,
+      "observed_at": null,
+      "change_status": "manual_review_needed",
+      "download_status": "manual_or_guarded_intake_required",
+      "guarded_download_command": "Use the existing executive order connector or manual_source_intake for blocked official files, then rerun the executive order rebuild.",
+      "evidence": "Replace EO-2019-007 bad artifact and refresh Governor EO index.",
+      "next_step": "Manual source review is needed before any download or replacement intake."
+    },
+    {
+      "source_id": "coprrr",
+      "source_name": "COPRRR Sunrise and Sunset Reviews",
+      "layer_ids": [
+        "07_Supplementary"
+      ],
+      "source_url": "https://coprrr.colorado.gov/",
+      "access_method": "scrape",
+      "update_frequency": "quarterly",
+      "watch_mode": "official_listing_watch",
+      "geode_last_checked": "2026-07-02",
+      "geode_last_ingested": "2026-07-02",
+      "local_marker": "2026-07-02",
+      "latest_observed_marker": null,
+      "observed_at": null,
+      "change_status": "needs_live_check",
+      "download_status": "watch_only",
+      "guarded_download_command": null,
+      "evidence": "Source is registered for watching at https://coprrr.colorado.gov/.",
+      "next_step": "Live source check is needed before deciding whether to download."
+    },
+    {
+      "source_id": "ag_opinions",
+      "source_name": "Colorado Attorney General Opinions",
+      "layer_ids": [
+        "07_Supplementary"
+      ],
+      "source_url": "https://coag.gov/opinions/",
+      "access_method": "scrape",
+      "update_frequency": "irregular",
+      "watch_mode": "official_listing_watch",
+      "geode_last_checked": "2026-07-02",
+      "geode_last_ingested": "2026-07-02",
+      "local_marker": "2026-07-02",
+      "latest_observed_marker": null,
+      "observed_at": null,
+      "change_status": "needs_live_check",
+      "download_status": "watch_only",
+      "guarded_download_command": null,
+      "evidence": "Source is registered for watching at https://coag.gov/opinions/.",
+      "next_step": "Live source check is needed before deciding whether to download."
+    }
+  ],
+  "download_queue": [
+    {
+      "queue_id": "SOURCE-UPDATE-CRS",
+      "source_id": "crs",
+      "layer_ids": [
+        "01_Statutes_CRS",
+        "06_Session_Laws"
+      ],
+      "action_type": "manual_source_review",
+      "status": "queued",
+      "reason": "Manual source review is needed before any download or replacement intake.",
+      "guarded_command": null,
+      "required_safety_checks": [
+        "Confirm the source URL is official or authorized.",
+        "Run the secret safety check before committing.",
+        "Run the relevant layer validation after download.",
+        "Run the download closeout checklist before push."
+      ]
+    },
+    {
+      "queue_id": "SOURCE-UPDATE-EXECUTIVE_ORDERS",
+      "source_id": "executive_orders",
+      "layer_ids": [
+        "05_Executive_Orders"
+      ],
+      "action_type": "manual_source_review",
+      "status": "queued",
+      "reason": "Manual source review is needed before any download or replacement intake.",
+      "guarded_command": "Use the existing executive order connector or manual_source_intake for blocked official files, then rerun the executive order rebuild.",
+      "required_safety_checks": [
+        "Confirm the source URL is official or authorized.",
+        "Run the secret safety check before committing.",
+        "Run the relevant layer validation after download.",
+        "Run the download closeout checklist before push."
+      ]
+    }
+  ],
+  "recommended_automation_plan": "Use guarded automatic downloads for API-backed or stable listing sources, and keep manual intake for sources that require email, archives, or official replacement files. Every run should update this dashboard before downloading.",
+  "boundary": "This dashboard identifies source freshness signals and guarded next steps. It does not authorize legal reliance, unofficial source substitution, or unsupervised broad corpus refreshes."
+}

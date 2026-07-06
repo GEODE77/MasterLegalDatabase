@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-07-06T19:37:47.584699+00:00",
+  "status": "warn",
+  "item_count": 2,
+  "items": [
+    {
+      "queue_id": "SOURCE-UPDATE-CRS",
+      "source_id": "crs",
+      "layer_ids": [
+        "01_Statutes_CRS",
+        "06_Session_Laws"
+      ],
+      "action_type": "manual_source_review",
+      "status": "queued",
+      "reason": "Manual source review is needed before any download or replacement intake.",
+      "guarded_command": null,
+      "required_safety_checks": [
+        "Confirm the source URL is official or authorized.",
+        "Run the secret safety check before committing.",
+        "Run the relevant layer validation after download.",
+        "Run the download closeout checklist before push."
+      ]
+    },
+    {
+      "queue_id": "SOURCE-UPDATE-EXECUTIVE_ORDERS",
+      "source_id": "executive_orders",
+      "layer_ids": [
+        "05_Executive_Orders"
+      ],
+      "action_type": "manual_source_review",
+      "status": "queued",
+      "reason": "Manual source review is needed before any download or replacement intake.",
+      "guarded_command": "Use the existing executive order connector or manual_source_intake for blocked official files, then rerun the executive order rebuild.",
+      "required_safety_checks": [
+        "Confirm the source URL is official or authorized.",
+        "Run the secret safety check before committing.",
+        "Run the relevant layer validation after download.",
+        "Run the download closeout checklist before push."
+      ]
+    }
+  ],
+  "boundary": "This dashboard identifies source freshness signals and guarded next steps. It does not authorize legal reliance, unofficial source substitution, or unsupervised broad corpus refreshes."
+}

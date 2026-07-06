@@ -1,6 +1,6 @@
 {
   "dashboard_id": "NEXT-DOWNLOAD-DASHBOARD",
-  "generated_at": "2026-07-06T19:18:00Z",
+  "generated_at": "2026-07-06T19:37:47Z",
   "status": "active",
   "purpose": "Give the next agent a clear source-download starting point.",
   "overall_recommendation": {
@@ -19,6 +19,22 @@
     ]
   },
   "next_actions": [
+    {
+      "rank": 0,
+      "id": "SOURCE-UPDATE-WATCHER",
+      "layer_id": "all",
+      "action_type": "pre_download_update_watch",
+      "status": "active",
+      "blocked_by": null,
+      "why_it_matters": "This watcher checks each official source before future downloads and separates safe guarded downloads from manual source-review work.",
+      "ready_when": "Run before every broad source refresh or scheduled download window.",
+      "suggested_command_after_authorization": "python -m geode.pipeline.source_update_watcher --root . --write",
+      "follow_up_after_success": [
+        "Review _CONTROL_PLANE/SOURCE_UPDATE_WATCHER_DASHBOARD.json.",
+        "Use _CONTROL_PLANE/SOURCE_UPDATE_DOWNLOAD_QUEUE.json for the next guarded download or manual review item.",
+        "Do not download from a source unless the watcher, source registry, and safety checkpoint agree."
+      ]
+    },
     {
       "rank": 3,
       "id": "LEGISCAN-LIVE-REFRESH",
@@ -95,6 +111,8 @@
     "_CONTROL_PLANE/BLOCKED_DOWNLOAD_QUEUE.json",
     "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
     "_CONTROL_PLANE/SOURCE_REPAIR_DASHBOARD.json",
+    "_CONTROL_PLANE/SOURCE_UPDATE_WATCHER_DASHBOARD.json",
+    "_CONTROL_PLANE/SOURCE_UPDATE_DOWNLOAD_QUEUE.json",
     "_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json",
     "_CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json",
     "_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json",
