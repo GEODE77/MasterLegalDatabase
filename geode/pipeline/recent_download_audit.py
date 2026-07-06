@@ -6,11 +6,13 @@ import argparse
 import json
 import subprocess
 import sys
+from collections import Counter
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Iterable, Sequence
+from urllib.parse import urlparse
 
 from geode.constants import CONTROL_PLANE_DIR
 from geode.pipeline.download_closeout import CloseoutCheck, run_closeout
@@ -262,11 +264,39 @@ def legiscan_documents_signal(root: Path) -> PipelineSignal:
             FAIL,
             f"{pending} pending and {pending_retry} pending retry document(s) remain.",
         )
-    detail = (
-        f"{payload.get('downloaded')} downloaded, {failed_permanent} permanent legacy "
-        "failures, 0 pending downloads."
-    )
+    detail = f"{payload.get('downloaded')} downloaded, 0 pending downloads."
+    if failed_permanent:
+        detail = f"{detail} {summarize_legiscan_permanent_failures(root)}"
     return PipelineSignal("legiscan_document_queue", WARN if failed_permanent else PASS, detail)
+
+
+def summarize_legiscan_permanent_failures(root: Path) -> str:
+    """Summarize permanent LegiScan document failures as a source limitation."""
+
+    rows, _invalid = read_jsonl_rows(root / "03_Legislation" / "_documents" / "bill_documents.jsonl")
+    failed_rows = [
+        row
+        for row in rows
+        if isinstance(row, dict) and row.get("status") == "failed_permanent"
+    ]
+    host_counts = Counter(
+        urlparse(str(row.get("preferred_url") or "")).hostname or "unknown"
+        for row in failed_rows
+    )
+    year_counts = Counter(str(row.get("session") or "unknown") for row in failed_rows)
+    main_hosts = ", ".join(f"{host}: {count}" for host, count in host_counts.most_common(3))
+    year_span = "unknown"
+    numeric_years = sorted(int(year) for year in year_counts if year.isdigit())
+    pre_2018 = sum(count for year, count in year_counts.items() if year.isdigit() and int(year) < 2018)
+    modern = sum(count for year, count in year_counts.items() if year.isdigit() and int(year) >= 2018)
+    if numeric_years:
+        year_span = f"{numeric_years[0]}-{numeric_years[-1]}"
+    return (
+        f"{len(failed_rows)} permanent source-coverage gaps remain across sessions "
+        f"{year_span}; {pre_2018} are pre-2018 legacy links and {modern} are modern-year "
+        f"items for targeted review. Top hosts: {main_hosts}. See "
+        "_CONTROL_PLANE/SOURCE_LIMITATION_REGISTER.json."
+    )
 
 
 def blocked_download_signal(root: Path) -> PipelineSignal:

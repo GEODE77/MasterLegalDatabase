@@ -1,6 +1,6 @@
 # Recent Download Audit
 
-Generated: 2026-07-06T17:46:08.797692+00:00
+Generated: 2026-07-06T18:54:46.824337+00:00
 Overall status: **WARN**
 
 This audit checks the data collected in the recent download window.
@@ -22,7 +22,7 @@ This audit checks the data collected in the recent download window.
 | Signal | Status | Detail |
 | --- | --- | --- |
 | legiscan_live_refresh | PASS | Completed with 714 bills downloaded and 0 failures. |
-| legiscan_document_queue | WARN | 61883 downloaded, 23965 permanent legacy failures, 0 pending downloads. |
+| legiscan_document_queue | WARN | 61883 downloaded, 0 pending downloads. 23965 permanent source-coverage gaps remain across sessions 2010-2026; 23924 are pre-2018 legacy links and 41 are modern-year items for targeted review. Top hosts: www.leg.state.co.us: 21702, leg.colorado.gov: 2256, s3-us-west-2.amazonaws.com: 7. See _CONTROL_PLANE/SOURCE_LIMITATION_REGISTER.json. |
 | blocked_download_queue | WARN | 1 known blocked future download remains: EO-2019-007. |
 | schema_validator | PASS | python -m geode.validate --layer all passed. |
 | corpus_usability | PASS | Corpus usability refresh checked 57,154 index records, 9,980 crosswalk rows, and JSONL addressability with 0 errors and 0 warnings. The command timed out while printing the full detailed JSON, not while finding data errors. |
