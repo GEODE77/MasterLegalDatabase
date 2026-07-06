@@ -11,7 +11,7 @@ The LegiScan live refresh is complete. The next broad source issue remains EO-20
 Before any future broad refresh, run the source update watcher:
 
 ```powershell
-python -m geode.pipeline.source_update_watcher --root . --write
+python -m geode.pipeline.source_update_watcher --root . --live-probes --write
 ```
 
 Review the watcher dashboard and queue before downloading:

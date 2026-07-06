@@ -1,6 +1,6 @@
 # Source Update Watcher Dashboard
 
-Generated: 2026-07-06T19:37:47.584699+00:00
+Generated: 2026-07-06T19:48:34.956146+00:00
 
 ## Summary
 
@@ -12,16 +12,16 @@ Generated: 2026-07-06T19:37:47.584699+00:00
 
 ## Watch List
 
-| Source | Layers | Status | Download status | Next step |
-| --- | --- | --- | --- | --- |
-| Colorado Revised Statutes | 01_Statutes_CRS, 06_Session_Laws | manual_review_needed | manual_or_guarded_intake_required | Manual source review is needed before any download or replacement intake. |
-| Code of Colorado Regulations | 02_Regulations_CCR | needs_live_check | watch_only | Live source check is needed before deciding whether to download. |
-| LegiScan Colorado | 03_Legislation | watch_ready | watch_only | Watcher is configured; run the LegiScan API pull during the next refresh window. |
-| Colorado Register | 04_Rulemaking | watch_ready | watch_only | Live source check is needed before deciding whether to download. |
-| Colorado Secretary of State eDocket | none | needs_live_check | watch_only | Live source check is needed before deciding whether to download. |
-| Colorado Governor Executive Orders | 05_Executive_Orders | manual_review_needed | manual_or_guarded_intake_required | Manual source review is needed before any download or replacement intake. |
-| COPRRR Sunrise and Sunset Reviews | 07_Supplementary | needs_live_check | watch_only | Live source check is needed before deciding whether to download. |
-| Colorado Attorney General Opinions | 07_Supplementary | needs_live_check | watch_only | Live source check is needed before deciding whether to download. |
+| Source | Layers | Local marker | Observed marker | Status | Download status | Next step |
+| --- | --- | --- | --- | --- | --- | --- |
+| Colorado Revised Statutes | 01_Statutes_CRS, 06_Session_Laws | 2025 |  | manual_review_needed | manual_or_guarded_intake_required | Manual source review is needed before any download or replacement intake. |
+| Code of Colorado Regulations | 02_Regulations_CCR | 2026-07-02 | 2026-06-29 | no_change_detected | no_download_needed | No new source marker is newer than Geode's recorded refresh marker. |
+| LegiScan Colorado | 03_Legislation | 2026-07-06 |  | watch_ready | watch_only | Watcher is configured; run the LegiScan API pull during the next refresh window. |
+| Colorado Register | 04_Rulemaking | 2026-07-02 | 2026-06-25 | no_change_detected | no_download_needed | No new source marker is newer than Geode's recorded refresh marker. |
+| Colorado Secretary of State eDocket | none |  |  | needs_live_check | watch_only | Live source check is needed before deciding whether to download. |
+| Colorado Governor Executive Orders | 05_Executive_Orders | 2026-07-02 | 2026-06-16 | manual_review_needed | manual_or_guarded_intake_required | Manual source review is needed before any download or replacement intake. |
+| COPRRR Sunrise and Sunset Reviews | 07_Supplementary | 2026-07-02 | 2025-10-15 | no_change_detected | no_download_needed | No new source marker is newer than Geode's recorded refresh marker. |
+| Colorado Attorney General Opinions | 07_Supplementary | 2026-07-02 | 2026-01-01 | no_change_detected | no_download_needed | No new source marker is newer than Geode's recorded refresh marker. |
 
 ## Guarded Queue
 

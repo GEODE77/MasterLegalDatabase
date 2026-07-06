@@ -28,7 +28,7 @@
       "blocked_by": null,
       "why_it_matters": "This watcher checks each official source before future downloads and separates safe guarded downloads from manual source-review work.",
       "ready_when": "Run before every broad source refresh or scheduled download window.",
-      "suggested_command_after_authorization": "python -m geode.pipeline.source_update_watcher --root . --write",
+      "suggested_command_after_authorization": "python -m geode.pipeline.source_update_watcher --root . --live-probes --write",
       "follow_up_after_success": [
         "Review _CONTROL_PLANE/SOURCE_UPDATE_WATCHER_DASHBOARD.json.",
         "Use _CONTROL_PLANE/SOURCE_UPDATE_DOWNLOAD_QUEUE.json for the next guarded download or manual review item.",

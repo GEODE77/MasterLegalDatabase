@@ -1,16 +1,17 @@
 {
   "dashboard_id": "SOURCE-UPDATE-WATCHER-DASHBOARD",
-  "generated_at": "2026-07-06T19:37:47.584699Z",
+  "generated_at": "2026-07-06T19:48:34.956146Z",
   "status": "warn",
   "purpose": "Identify likely new official source material before any future download, then route safe downloads through the existing guarded pipeline.",
   "watch_items_total": 8,
   "new_data_items": 0,
   "manual_review_items": 2,
-  "ready_watchers": 2,
+  "ready_watchers": 1,
   "status_counts": {
     "manual_review_needed": 2,
-    "needs_live_check": 4,
-    "watch_ready": 2
+    "needs_live_check": 1,
+    "no_change_detected": 4,
+    "watch_ready": 1
   },
   "items": [
     {
@@ -48,13 +49,13 @@
       "geode_last_checked": "2026-07-02",
       "geode_last_ingested": "2026-07-02",
       "local_marker": "2026-07-02",
-      "latest_observed_marker": null,
-      "observed_at": null,
-      "change_status": "needs_live_check",
-      "download_status": "watch_only",
+      "latest_observed_marker": "2026-06-29",
+      "observed_at": "2026-07-06T19:48:32.432905+00:00",
+      "change_status": "no_change_detected",
+      "download_status": "no_download_needed",
       "guarded_download_command": null,
-      "evidence": "Source is registered for watching at https://www.sos.state.co.us/CCR/Welcome.do.",
-      "next_step": "Live source check is needed before deciding whether to download."
+      "evidence": "CCR page reports administrative rules current through 2026-06-29. (https://www.sos.state.co.us/CCR/Welcome.do)",
+      "next_step": "No new source marker is newer than Geode's recorded refresh marker."
     },
     {
       "source_id": "legiscan",
@@ -90,13 +91,13 @@
       "geode_last_checked": "2026-07-02",
       "geode_last_ingested": "2026-07-02",
       "local_marker": "2026-07-02",
-      "latest_observed_marker": null,
-      "observed_at": null,
-      "change_status": "watch_ready",
-      "download_status": "watch_only",
-      "guarded_download_command": "python -m geode.connectors.register_pipeline --output-root . --download",
-      "evidence": "Source is registered for watching at https://www.sos.state.co.us/CCR/RegisterHome.do.",
-      "next_step": "Live source check is needed before deciding whether to download."
+      "latest_observed_marker": "2026-06-25",
+      "observed_at": "2026-07-06T19:48:32.520538+00:00",
+      "change_status": "no_change_detected",
+      "download_status": "no_download_needed",
+      "guarded_download_command": null,
+      "evidence": "Colorado Register listing exposes latest issue date 2026-06-25. (https://www.sos.state.co.us/CCR/RegisterHome.do)",
+      "next_step": "No new source marker is newer than Geode's recorded refresh marker."
     },
     {
       "source_id": "colorado_edocket",
@@ -130,8 +131,8 @@
       "geode_last_checked": "2026-07-02",
       "geode_last_ingested": "2026-07-02",
       "local_marker": "2026-07-02",
-      "latest_observed_marker": null,
-      "observed_at": null,
+      "latest_observed_marker": "2026-06-16",
+      "observed_at": "2026-07-06T19:48:33.407568+00:00",
       "change_status": "manual_review_needed",
       "download_status": "manual_or_guarded_intake_required",
       "guarded_download_command": "Use the existing executive order connector or manual_source_intake for blocked official files, then rerun the executive order rebuild.",
@@ -151,13 +152,13 @@
       "geode_last_checked": "2026-07-02",
       "geode_last_ingested": "2026-07-02",
       "local_marker": "2026-07-02",
-      "latest_observed_marker": null,
-      "observed_at": null,
-      "change_status": "needs_live_check",
-      "download_status": "watch_only",
+      "latest_observed_marker": "2025-10-15",
+      "observed_at": "2026-07-06T19:48:33.608097+00:00",
+      "change_status": "no_change_detected",
+      "download_status": "no_download_needed",
       "guarded_download_command": null,
-      "evidence": "Source is registered for watching at https://coprrr.colorado.gov/.",
-      "next_step": "Live source check is needed before deciding whether to download."
+      "evidence": "COPRRR listing exposes latest review marker 2025-10-15. (https://coprrr.colorado.gov/)",
+      "next_step": "No new source marker is newer than Geode's recorded refresh marker."
     },
     {
       "source_id": "ag_opinions",
@@ -172,13 +173,13 @@
       "geode_last_checked": "2026-07-02",
       "geode_last_ingested": "2026-07-02",
       "local_marker": "2026-07-02",
-      "latest_observed_marker": null,
-      "observed_at": null,
-      "change_status": "needs_live_check",
-      "download_status": "watch_only",
+      "latest_observed_marker": "2026-01-01",
+      "observed_at": "2026-07-06T19:48:34.956146+00:00",
+      "change_status": "no_change_detected",
+      "download_status": "no_download_needed",
       "guarded_download_command": null,
-      "evidence": "Source is registered for watching at https://coag.gov/opinions/.",
-      "next_step": "Live source check is needed before deciding whether to download."
+      "evidence": "Attorney General opinions pages expose latest marker 2026-01-01. (https://coag.gov/attorney-general-opinions/)",
+      "next_step": "No new source marker is newer than Geode's recorded refresh marker."
     }
   ],
   "download_queue": [

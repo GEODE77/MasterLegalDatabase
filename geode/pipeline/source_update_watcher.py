@@ -3,15 +3,19 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
+import re
 from collections import Counter
 from datetime import UTC, date, datetime
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any, Callable, Sequence
+from urllib.parse import urljoin
 
 from pydantic import BaseModel, ConfigDict, Field
 
 from geode.constants import CONTROL_PLANE_DIR
+from geode.net.http_client import GeodeHttpClient, GeodeHttpClientConfig
 from geode.utils.file_io import atomic_write_json, atomic_write_text, load_json
 
 WATCHER_DASHBOARD_PATH = Path(CONTROL_PLANE_DIR) / "SOURCE_UPDATE_WATCHER_DASHBOARD.json"
@@ -26,7 +30,50 @@ NO_CHANGE = "no_change_detected"
 NEW_DATA = "new_data_available"
 WATCH_READY = "watch_ready"
 NEEDS_LIVE_CHECK = "needs_live_check"
+LIVE_PROBE_FAILED = "live_probe_failed"
 MANUAL_REVIEW = "manual_review_needed"
+
+LIVE_PROBE_SOURCE_IDS = frozenset(
+    {"ccr", "colorado_register", "executive_orders", "coprrr", "ag_opinions"}
+)
+MONTHS = {
+    "january": 1,
+    "february": 2,
+    "march": 3,
+    "april": 4,
+    "may": 5,
+    "june": 6,
+    "july": 7,
+    "august": 8,
+    "september": 9,
+    "october": 10,
+    "november": 11,
+    "december": 12,
+}
+ANCHOR_RE = re.compile(
+    r"<a\b[^>]*href=[\"'](?P<href>[^\"']+)[\"'][^>]*>(?P<body>.*?)</a>",
+    re.IGNORECASE | re.DOTALL,
+)
+TAG_RE = re.compile(r"<[^>]+>")
+ISO_DATE_RE = re.compile(r"\b(20\d{2})[-_/](\d{1,2})[-_/](\d{1,2})\b")
+US_DATE_RE = re.compile(r"\b(\d{1,2})/(\d{1,2})/(20\d{2})\b")
+MONTH_DATE_RE = re.compile(
+    r"\b(January|February|March|April|May|June|July|August|September|October|"
+    r"November|December)\s+(\d{1,2}),\s+(20\d{2})\b",
+    re.IGNORECASE,
+)
+YEAR_RE = re.compile(r"\b(20\d{2})\b")
+CCR_CURRENT_RE = re.compile(
+    r"effective\s+on\s+or\s+before\s+(?P<date>\d{1,2}/\d{1,2}/20\d{2})",
+    re.IGNORECASE,
+)
+EXECUTIVE_ORDER_YEAR_RE = re.compile(r"/governor/(20\d{2})-executive-orders\b")
+AG_YEAR_PAGE_RE = re.compile(
+    r"https://coag\.gov/(?:attorney-general-opinions/)?"
+    r"(?:20\d{2}|201\d)-formal-ag-opinions(?:-2)?/"
+)
+
+FetchText = Callable[[str], str]
 
 
 class ObservedSourceState(BaseModel):
@@ -100,9 +147,183 @@ class SourceUpdateWatcherDashboard(BaseModel):
     boundary: str
 
 
+def run_live_source_probes(
+    registry: Sequence[Any],
+    skip_source_ids: Sequence[str],
+    *,
+    fetch_text: FetchText | None = None,
+) -> tuple[list[ObservedSourceState], dict[str, str]]:
+    """Probe official source listing pages for latest visible source markers."""
+
+    skipped = set(skip_source_ids)
+    fetcher = fetch_text or _default_fetch_text
+    states: list[ObservedSourceState] = []
+    errors: dict[str, str] = {}
+    for source in registry:
+        if not isinstance(source, dict):
+            continue
+        source_id = str(source.get("source_id") or "")
+        if source_id not in LIVE_PROBE_SOURCE_IDS or source_id in skipped:
+            continue
+        try:
+            states.append(_probe_source(source_id, str(source.get("url") or ""), fetcher))
+        except Exception as exc:
+            errors[source_id] = str(exc)[:500]
+    return states, errors
+
+
+def _probe_source(source_id: str, source_url: str, fetch_text: FetchText) -> ObservedSourceState:
+    """Return one observed marker from an official source page."""
+
+    if source_id == "ccr":
+        return _probe_ccr(source_url, fetch_text)
+    if source_id == "colorado_register":
+        return _probe_colorado_register(source_url, fetch_text)
+    if source_id == "executive_orders":
+        return _probe_executive_orders(source_url, fetch_text)
+    if source_id == "coprrr":
+        return _probe_coprrr(source_url, fetch_text)
+    if source_id == "ag_opinions":
+        return _probe_ag_opinions(source_url, fetch_text)
+    raise ValueError(f"no live probe configured for {source_id}")
+
+
+def _probe_ccr(source_url: str, fetch_text: FetchText) -> ObservedSourceState:
+    """Probe the CCR landing page for the current-through date."""
+
+    page_html = fetch_text(source_url)
+    current_match = CCR_CURRENT_RE.search(_html_text(page_html))
+    marker = _date_from_us_text(current_match.group("date")) if current_match else None
+    marker = marker or _latest_date_marker(page_html)
+    if marker is None:
+        raise ValueError("CCR page did not expose a current-through date.")
+    return _observed_state(
+        "ccr",
+        marker,
+        source_url,
+        f"CCR page reports administrative rules current through {marker}.",
+    )
+
+
+def _probe_colorado_register(source_url: str, fetch_text: FetchText) -> ObservedSourceState:
+    """Probe the Colorado Register listing for the latest issue date."""
+
+    page_html = fetch_text(source_url)
+    marker = _latest_date_marker(page_html)
+    if marker is None:
+        raise ValueError("Colorado Register page did not expose any issue dates.")
+    return _observed_state(
+        "colorado_register",
+        marker,
+        source_url,
+        f"Colorado Register listing exposes latest issue date {marker}.",
+    )
+
+
+def _probe_executive_orders(source_url: str, fetch_text: FetchText) -> ObservedSourceState:
+    """Probe Governor executive order pages for the latest visible order marker."""
+
+    index_html = fetch_text(source_url)
+    year_urls = _executive_order_year_urls(index_html, source_url)
+    page_parts = [index_html]
+    for year_url in year_urls[-2:]:
+        try:
+            page_parts.append(fetch_text(year_url))
+        except Exception:
+            continue
+    combined = "\n".join(page_parts)
+    marker = _latest_date_marker(combined) or _latest_year_marker(combined)
+    if marker is None:
+        raise ValueError("Executive order pages did not expose a usable date or year marker.")
+    return _observed_state(
+        "executive_orders",
+        marker,
+        source_url,
+        f"Governor executive order pages expose latest marker {marker}.",
+    )
+
+
+def _probe_coprrr(source_url: str, fetch_text: FetchText) -> ObservedSourceState:
+    """Probe COPRRR review pages for the latest released review date."""
+
+    page_html = fetch_text(source_url)
+    marker = _latest_date_marker(page_html) or _latest_year_marker(page_html)
+    if marker is None:
+        raise ValueError("COPRRR page did not expose a usable release date or year marker.")
+    return _observed_state(
+        "coprrr",
+        marker,
+        source_url,
+        f"COPRRR listing exposes latest review marker {marker}.",
+    )
+
+
+def _probe_ag_opinions(source_url: str, fetch_text: FetchText) -> ObservedSourceState:
+    """Probe AG opinion pages for the latest visible opinion marker."""
+
+    urls = [source_url]
+    if source_url.rstrip("/") != "https://coag.gov/attorney-general-opinions":
+        urls.append("https://coag.gov/attorney-general-opinions/")
+    errors: list[str] = []
+    for url in urls:
+        try:
+            main_html = fetch_text(url)
+            year_urls = _ag_year_page_urls(main_html, url)
+            page_parts = [main_html]
+            for year_url in year_urls[-2:]:
+                try:
+                    page_parts.append(fetch_text(year_url))
+                except Exception:
+                    continue
+            combined = "\n".join(page_parts)
+            marker = _latest_date_marker(combined) or _latest_year_marker(combined)
+            if marker:
+                return _observed_state(
+                    "ag_opinions",
+                    marker,
+                    url,
+                    f"Attorney General opinions pages expose latest marker {marker}.",
+                )
+        except Exception as exc:
+            errors.append(f"{url}: {exc}")
+    raise ValueError("AG opinions probe failed. " + " ".join(errors))
+
+
+def _observed_state(
+    source_id: str,
+    marker: str,
+    evidence_url: str,
+    evidence_note: str,
+) -> ObservedSourceState:
+    """Build a normalized observed source state."""
+
+    return ObservedSourceState(
+        source_id=source_id,
+        marker=marker,
+        observed_at=datetime.now(UTC),
+        evidence_url=evidence_url,
+        evidence_note=evidence_note,
+    )
+
+
+def _default_fetch_text(url: str) -> str:
+    """Fetch a live source page as text."""
+
+    client = GeodeHttpClient(
+        config=GeodeHttpClientConfig(timeout_seconds=30.0, max_retries=2, base_delay=1.0)
+    )
+    try:
+        return client.get(url).text
+    finally:
+        client.close()
+
+
 def build_source_update_watcher_dashboard(
     root: Path,
     observed_states: Sequence[ObservedSourceState] | None = None,
+    *,
+    live_probes: bool = False,
+    fetch_text: FetchText | None = None,
 ) -> SourceUpdateWatcherDashboard:
     """Build the source update watcher dashboard from local and observed source evidence."""
 
@@ -111,6 +332,14 @@ def build_source_update_watcher_dashboard(
     manifest = _read_dict(resolved_root / CONTROL_PLANE_DIR / "MASTER_MANIFEST.json")
     freshness = _read_dict(resolved_root / CONTROL_PLANE_DIR / "FRESHNESS_VERIFICATION_QUEUE.json")
     observed_by_source = {state.source_id: state for state in observed_states or []}
+    probe_errors: dict[str, str] = {}
+    if live_probes:
+        live_states, probe_errors = run_live_source_probes(
+            registry,
+            observed_by_source.keys(),
+            fetch_text=fetch_text,
+        )
+        observed_by_source.update({state.source_id: state for state in live_states})
     layers_by_source = _layers_by_source(manifest)
     pending_freshness = _pending_freshness_by_source(freshness, manifest)
     items = [
@@ -118,6 +347,7 @@ def build_source_update_watcher_dashboard(
             source=source,
             layers=layers_by_source.get(str(source.get("source_id")), []),
             observed=observed_by_source.get(str(source.get("source_id"))),
+            probe_error=probe_errors.get(str(source.get("source_id"))),
             pending_action=pending_freshness.get(str(source.get("source_id"))),
         )
         for source in registry
@@ -157,11 +387,19 @@ def build_source_update_watcher_dashboard(
 def write_source_update_watcher_dashboard(
     root: Path,
     observed_states: Sequence[ObservedSourceState] | None = None,
+    *,
+    live_probes: bool = False,
+    fetch_text: FetchText | None = None,
 ) -> SourceUpdateWatcherDashboard:
     """Write source update watcher dashboard artifacts."""
 
     resolved_root = root.resolve()
-    dashboard = build_source_update_watcher_dashboard(resolved_root, observed_states)
+    dashboard = build_source_update_watcher_dashboard(
+        resolved_root,
+        observed_states,
+        live_probes=live_probes,
+        fetch_text=fetch_text,
+    )
     atomic_write_json(resolved_root / WATCHER_DASHBOARD_PATH, dashboard, resolved_root)
     atomic_write_json(
         resolved_root / DOWNLOAD_QUEUE_PATH,
@@ -183,6 +421,7 @@ def _build_watch_item(
     source: dict[str, Any],
     layers: list[dict[str, Any]],
     observed: ObservedSourceState | None,
+    probe_error: str | None,
     pending_action: str | None,
 ) -> SourceUpdateWatchItem:
     source_id = str(source["source_id"])
@@ -191,7 +430,14 @@ def _build_watch_item(
     geode_last_checked = _latest_layer_value(layers, "last_checked")
     geode_last_ingested = _latest_layer_value(layers, "last_ingested")
     local_marker = _local_marker(source_id, layers)
-    change_status = _change_status(source_id, access_method, local_marker, observed, pending_action)
+    change_status = _change_status(
+        source_id,
+        access_method,
+        local_marker,
+        observed,
+        probe_error,
+        pending_action,
+    )
     download_status = _download_status(access_method, change_status)
     command = _guarded_command(source_id, layers, change_status, download_status)
     return SourceUpdateWatchItem(
@@ -210,7 +456,7 @@ def _build_watch_item(
         change_status=change_status,
         download_status=download_status,
         guarded_download_command=command,
-        evidence=_evidence(source_url, observed, pending_action),
+        evidence=_evidence(source_url, observed, probe_error, pending_action),
         next_step=_next_step(source_id, change_status, download_status),
     )
 
@@ -220,12 +466,15 @@ def _change_status(
     access_method: str,
     local_marker: str | None,
     observed: ObservedSourceState | None,
+    probe_error: str | None,
     pending_action: str | None,
 ) -> str:
     if pending_action:
         return MANUAL_REVIEW
     if access_method == "email_request":
         return MANUAL_REVIEW
+    if probe_error:
+        return LIVE_PROBE_FAILED
     if observed is None:
         return WATCH_READY if source_id in {"legiscan", "colorado_register"} else NEEDS_LIVE_CHECK
     if _observed_is_newer(observed.marker, local_marker):
@@ -243,10 +492,95 @@ def _observed_is_newer(observed_marker: str, local_marker: str | None) -> bool:
     return observed_marker.strip() != local_marker.strip()
 
 
+def _latest_date_marker(value: str) -> str | None:
+    """Return the latest ISO date visible in text or HTML."""
+
+    dates = sorted(_date_markers(value))
+    return dates[-1] if dates else None
+
+
+def _date_markers(value: str) -> list[str]:
+    """Return all visible ISO dates from text or HTML."""
+
+    text = _html_text(value)
+    markers: list[str] = []
+    for match in ISO_DATE_RE.finditer(text):
+        markers.append(
+            f"{match.group(1)}-{int(match.group(2)):02d}-{int(match.group(3)):02d}"
+        )
+    for match in US_DATE_RE.finditer(text):
+        markers.append(f"{match.group(3)}-{int(match.group(1)):02d}-{int(match.group(2)):02d}")
+    for match in MONTH_DATE_RE.finditer(text):
+        month = MONTHS[match.group(1).casefold()]
+        markers.append(f"{match.group(3)}-{month:02d}-{int(match.group(2)):02d}")
+    return markers
+
+
+def _date_from_us_text(value: str) -> str | None:
+    """Return an ISO date from MM/DD/YYYY text."""
+
+    match = US_DATE_RE.search(value)
+    if not match:
+        return None
+    return f"{match.group(3)}-{int(match.group(1)):02d}-{int(match.group(2)):02d}"
+
+
+def _latest_year_marker(value: str) -> str | None:
+    """Return a conservative ISO marker for the latest year visible in text."""
+
+    years = sorted(int(match.group(1)) for match in YEAR_RE.finditer(_html_text(value)))
+    if not years:
+        return None
+    return f"{years[-1]}-01-01"
+
+
+def _executive_order_year_urls(value: str, source_url: str) -> list[str]:
+    """Return Governor executive-order year page URLs from an index page."""
+
+    urls = []
+    for href, _body in _anchors(value):
+        absolute = urljoin(source_url, href)
+        if EXECUTIVE_ORDER_YEAR_RE.search(absolute):
+            urls.append(absolute)
+    return sorted(set(urls))
+
+
+def _ag_year_page_urls(value: str, source_url: str) -> list[str]:
+    """Return official AG opinion year page URLs from a main page."""
+
+    urls = []
+    for href, _body in _anchors(value):
+        absolute = urljoin(source_url, href)
+        if AG_YEAR_PAGE_RE.search(absolute):
+            urls.append(absolute)
+    normalized = html.unescape(value).replace("\\/", "/")
+    for match in AG_YEAR_PAGE_RE.finditer(normalized):
+        urls.append(match.group(0))
+    return sorted(set(urls))
+
+
+def _anchors(value: str) -> list[tuple[str, str]]:
+    """Return href and body pairs from anchor tags."""
+
+    return [
+        (html.unescape(match.group("href")), match.group("body"))
+        for match in ANCHOR_RE.finditer(value)
+    ]
+
+
+def _html_text(value: str) -> str:
+    """Return readable text from an HTML fragment."""
+
+    return " ".join(html.unescape(TAG_RE.sub(" ", value)).split())
+
+
 def _parse_date(value: str | None) -> date | None:
     if not value:
         return None
-    for token in value.replace("/", "-").split():
+    cleaned = value.strip()
+    if re.fullmatch(r"20\d{2}", cleaned):
+        return date(int(cleaned), 1, 1)
+    for token in cleaned.replace("/", "-").split():
         try:
             return date.fromisoformat(token)
         except ValueError:
@@ -261,6 +595,8 @@ def _download_status(access_method: str, change_status: str) -> str:
         return "manual_or_guarded_intake_required"
     if change_status == NO_CHANGE:
         return "no_download_needed"
+    if change_status == LIVE_PROBE_FAILED:
+        return "probe_failed"
     return "watch_only"
 
 
@@ -334,6 +670,8 @@ def _next_step(source_id: str, change_status: str, download_status: str) -> str:
         return "Manual source review is needed before any download or replacement intake."
     if change_status == NO_CHANGE:
         return "No new source marker is newer than Geode's recorded refresh marker."
+    if change_status == LIVE_PROBE_FAILED:
+        return "Live probe failed; retry the source check before deciding whether to download."
     if source_id == "legiscan":
         return "Watcher is configured; run the LegiScan API pull during the next refresh window."
     if download_status == "watch_only":
@@ -344,12 +682,15 @@ def _next_step(source_id: str, change_status: str, download_status: str) -> str:
 def _evidence(
     source_url: str,
     observed: ObservedSourceState | None,
+    probe_error: str | None,
     pending_action: str | None,
 ) -> str:
     if pending_action:
         return pending_action
     if observed:
         return f"{observed.evidence_note} ({observed.evidence_url})"
+    if probe_error:
+        return f"Live source probe failed for {source_url}: {probe_error}"
     return f"Source is registered for watching at {source_url}."
 
 
@@ -403,6 +744,8 @@ def _overall_status(items: Sequence[SourceUpdateWatchItem]) -> str:
         return WARN
     if any(item.change_status == MANUAL_REVIEW for item in items):
         return WARN
+    if any(item.change_status == LIVE_PROBE_FAILED for item in items):
+        return WARN
     return PASS
 
 
@@ -445,13 +788,14 @@ def _docs_report(dashboard: SourceUpdateWatcherDashboard) -> str:
         "",
         "## Watch List",
         "",
-        "| Source | Layers | Status | Download status | Next step |",
-        "| --- | --- | --- | --- | --- |",
+        "| Source | Layers | Local marker | Observed marker | Status | Download status | Next step |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
     ]
     for item in dashboard.items:
         layers = ", ".join(item.layer_ids) if item.layer_ids else "none"
         lines.append(
-            f"| {item.source_name} | {layers} | {item.change_status} | "
+            f"| {item.source_name} | {layers} | {item.local_marker or ''} | "
+            f"{item.latest_observed_marker or ''} | {item.change_status} | "
             f"{item.download_status} | {item.next_step} |"
         )
     lines.extend(
@@ -490,6 +834,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--write", action="store_true", help="Write dashboard artifacts.")
     parser.add_argument("--json", action="store_true", help="Print JSON instead of text.")
     parser.add_argument(
+        "--live-probes",
+        action="store_true",
+        help="Fetch official source pages and derive latest visible source markers.",
+    )
+    parser.add_argument(
         "--observed-states",
         type=Path,
         help="Optional JSON list of externally observed source markers.",
@@ -504,9 +853,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
     observed_states = _load_observed_states(args.observed_states)
     dashboard = (
-        write_source_update_watcher_dashboard(args.root, observed_states)
+        write_source_update_watcher_dashboard(
+            args.root,
+            observed_states,
+            live_probes=args.live_probes,
+        )
         if args.write
-        else build_source_update_watcher_dashboard(args.root, observed_states)
+        else build_source_update_watcher_dashboard(
+            args.root,
+            observed_states,
+            live_probes=args.live_probes,
+        )
     )
     if args.json:
         print(dashboard.model_dump_json(indent=2))
