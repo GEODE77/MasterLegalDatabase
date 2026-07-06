@@ -6,14 +6,18 @@ This guide points to the control-plane file that tells the next agent where to r
 
 ## Current Recommendation
 
-The next major download should be the LegiScan live refresh for the legislation layer, but only after the project owner authorizes the safety gate.
+The LegiScan live refresh is complete. The next broad source issue remains EO-2019-007, which needs a valid official PDF from the Governor's Office or State Archives.
+
+For LegiScan specifically, use the focused modern repair queue before starting the large legacy archive recovery project:
+
+`_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
 
 The July 2 checkpoint has been committed on `codex/july-2-corpus-checkpoint` and pushed to GitHub. Before treating it as public-facing, complete `docs/PUBLICATION_CHECKLIST.md`, then merge the branch into GitHub `main`.
 
 ## Current Blockers
 
-1. LegiScan live refresh needs `LEGISCAN_API_KEY`.
-2. EO-2019-007 needs a valid official PDF from the Governor's Office, State Archives, or another approved official transfer.
+1. EO-2019-007 needs a valid official PDF from the Governor's Office, State Archives, or another approved official transfer.
+2. The modern LegiScan repair queue has 41 official-source gaps that need targeted review.
 
 ## Operating Rule
 
@@ -23,6 +27,7 @@ Before any broad download, read:
 2. `_CONTROL_PLANE/NEXT_DOWNLOAD_DASHBOARD.json`
 3. `_CONTROL_PLANE/BLOCKED_DOWNLOAD_QUEUE.json`
 4. `_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json`
-5. `docs/PUBLICATION_CHECKLIST.md`
+5. `_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
+6. `docs/PUBLICATION_CHECKLIST.md`
 
 Then ask the project owner to approve the specific next run.

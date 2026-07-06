@@ -53,12 +53,15 @@ The permanent failures are concentrated in old bill-text links, mostly `2010-201
 - `leg.colorado.gov`: 2,256
 - `s3-us-west-2.amazonaws.com`: 7
 
-Of the 23,965 permanent failures, 23,924 are pre-2018 legacy links and 41 are modern-year items. The modern-year group should be reviewed first because it is small enough for targeted repair.
+Of the 23,965 permanent failures, 23,924 are pre-2018 legacy links and 41 are modern-year items. The modern-year group now has its own focused queue:
+
+- `_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
+- `docs/audits/MODERN_LEGISCAN_REPAIR_QUEUE_2026-07-06.md`
 
 Repair path:
 
 1. Treat this as a historical source-coverage project, not a failed current download.
-2. Prioritize the small number of modern-year permanent failures first.
+2. Work the 41-item modern repair queue first.
 3. Build a host-specific recovery workflow for the large legacy archive group.
 4. Keep the main download audit at warning level until the coverage gap is either repaired or formally accepted by the project owner.
 

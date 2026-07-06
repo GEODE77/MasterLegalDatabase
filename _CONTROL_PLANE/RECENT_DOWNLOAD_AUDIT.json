@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T18:54:46.824337+00:00",
+  "generated_at": "2026-07-06T19:02:47.204646+00:00",
   "overall_status": "warn",
   "audited_layers": [
     "01_Statutes_CRS",
@@ -140,7 +140,7 @@
     {
       "name": "legiscan_document_queue",
       "status": "warn",
-      "detail": "61883 downloaded, 0 pending downloads. 23965 permanent source-coverage gaps remain across sessions 2010-2026; 23924 are pre-2018 legacy links and 41 are modern-year items for targeted review. Top hosts: www.leg.state.co.us: 21702, leg.colorado.gov: 2256, s3-us-west-2.amazonaws.com: 7. See _CONTROL_PLANE/SOURCE_LIMITATION_REGISTER.json."
+      "detail": "61883 downloaded, 0 pending downloads. 23965 permanent source-coverage gaps remain across sessions 2010-2026; 23924 are pre-2018 legacy links and 41 are modern-year items for targeted review. Top hosts: www.leg.state.co.us: 21702, leg.colorado.gov: 2256, s3-us-west-2.amazonaws.com: 7. See _CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json and _CONTROL_PLANE/SOURCE_LIMITATION_REGISTER.json."
     },
     {
       "name": "blocked_download_queue",

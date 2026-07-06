@@ -295,6 +295,7 @@ def summarize_legiscan_permanent_failures(root: Path) -> str:
         f"{len(failed_rows)} permanent source-coverage gaps remain across sessions "
         f"{year_span}; {pre_2018} are pre-2018 legacy links and {modern} are modern-year "
         f"items for targeted review. Top hosts: {main_hosts}. See "
+        "_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json and "
         "_CONTROL_PLANE/SOURCE_LIMITATION_REGISTER.json."
     )
 

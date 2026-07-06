@@ -1,6 +1,6 @@
 {
   "dashboard_id": "NEXT-DOWNLOAD-DASHBOARD",
-  "generated_at": "2026-07-06T16:26:07Z",
+  "generated_at": "2026-07-06T19:05:00Z",
   "status": "active",
   "purpose": "Give the next agent a clear source-download starting point.",
   "overall_recommendation": {
@@ -53,6 +53,22 @@
     },
     {
       "rank": 2,
+      "id": "LEGISCAN-MODERN-REPAIR-QUEUE",
+      "layer_id": "03_Legislation",
+      "action_type": "source_coverage_repair",
+      "status": "queued",
+      "blocked_by": null,
+      "why_it_matters": "The 41 modern-year permanent LegiScan document gaps are small enough to repair before the large pre-2018 legacy archive project.",
+      "ready_when": "The project owner authorizes a focused source repair pass for the modern LegiScan queue.",
+      "suggested_command_after_authorization": "Review _CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json, then repair each item through verified official Colorado General Assembly document links and guarded document intake.",
+      "follow_up_after_success": [
+        "Rerun python -m geode.pipeline.modern_legiscan_repair_queue --root . --write.",
+        "Rerun python -m geode.pipeline.recent_download_audit --root . --write.",
+        "Confirm the modern_year_failed_permanent count drops in _CONTROL_PLANE/SOURCE_LIMITATION_REGISTER.json."
+      ]
+    },
+    {
+      "rank": 4,
       "id": "RULEMAKING-MEDIUM-EVIDENCE",
       "layer_id": "04_Rulemaking",
       "action_type": "source_depth_upgrade",
@@ -77,6 +93,7 @@
     "_CONTROL_PLANE/BLOCKED_DOWNLOAD_QUEUE.json",
     "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
     "_CONTROL_PLANE/SOURCE_REPAIR_DASHBOARD.json",
+    "_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json",
     "_CONTROL_PLANE/LEGISCAN_LIVE_REFRESH_ATTEMPT.json",
     "_CONTROL_PLANE/EO_2019_007_RECOVERY_ATTEMPT.json",
     "docs/PUBLICATION_CHECKLIST.md"
