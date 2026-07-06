@@ -12,10 +12,10 @@
   },
   "safety_gate": {
     "checkpoint": "_CONTROL_PLANE/DOWNLOAD_SAFETY_CHECKPOINT.json",
-    "current_state": "The repository is in the middle of an interactive rebase of main, with many uncommitted generated files from the July 2 refresh.",
+    "current_state": "The July 2 checkpoint is committed and pushed on codex/july-2-corpus-checkpoint. It still needs pull-request review and merge before it is public-facing on main.",
     "required_before_large_download": [
-      "Project owner authorizes completing the paused rebase, then creating a branch and checkpoint commit, or",
-      "Project owner authorizes another recovery path before any broad download."
+      "Project owner completes docs/PUBLICATION_CHECKLIST.md before public-facing merge, or",
+      "Project owner explicitly authorizes proceeding with the next download before merging the checkpoint branch."
     ]
   },
   "next_actions": [
@@ -78,7 +78,8 @@
     "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
     "_CONTROL_PLANE/SOURCE_REPAIR_DASHBOARD.json",
     "_CONTROL_PLANE/LEGISCAN_LIVE_REFRESH_ATTEMPT.json",
-    "_CONTROL_PLANE/EO_2019_007_RECOVERY_ATTEMPT.json"
+    "_CONTROL_PLANE/EO_2019_007_RECOVERY_ATTEMPT.json",
+    "docs/PUBLICATION_CHECKLIST.md"
   ],
   "boundary": "This dashboard is an operations guide. It does not authorize legal reliance, source substitution, or unsupervised use."
 }

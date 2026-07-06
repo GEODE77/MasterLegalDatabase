@@ -8,7 +8,7 @@ This guide points to the control-plane file that tells the next agent where to r
 
 The next major download should be the LegiScan live refresh for the legislation layer, but only after the project owner authorizes the safety gate.
 
-The safety gate exists because the repository is currently on detached HEAD with many uncommitted generated files from the July 2 refresh. Starting another large refresh before accepting or committing that state would make it harder to tell which files belong to which run.
+The July 2 checkpoint has been committed on `codex/july-2-corpus-checkpoint` and pushed to GitHub. Before treating it as public-facing, complete `docs/PUBLICATION_CHECKLIST.md`, then merge the branch into GitHub `main`.
 
 ## Current Blockers
 
@@ -23,5 +23,6 @@ Before any broad download, read:
 2. `_CONTROL_PLANE/NEXT_DOWNLOAD_DASHBOARD.json`
 3. `_CONTROL_PLANE/BLOCKED_DOWNLOAD_QUEUE.json`
 4. `_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json`
+5. `docs/PUBLICATION_CHECKLIST.md`
 
 Then ask the project owner to approve the specific next run.
