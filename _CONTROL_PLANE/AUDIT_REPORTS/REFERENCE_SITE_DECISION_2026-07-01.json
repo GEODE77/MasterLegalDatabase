@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "decision_id": "REFERENCE-SITES-2026-07-01",
+  "decision_status": "approved_for_textual_annotation",
+  "approved_references": [
+    {
+      "name": "Ornn product site",
+      "url": "https://ornn.com/",
+      "verified_observations": [
+        "The page positions Ornn as financial infrastructure for compute.",
+        "The page includes product, trust, pricing, and compliance language.",
+        "The page links to Haptic as brand and website creator."
+      ]
+    },
+    {
+      "name": "Haptic Ornn case study",
+      "url": "https://www.haptic.studio/project/ornn",
+      "verified_observations": [
+        "The case study describes brand, product, web, and motion work.",
+        "The case study frames the design goal as trusted financial institution credibility plus forward-looking infrastructure."
+      ]
+    }
+  ],
+  "screenshot_capture_required": false,
+  "screenshot_capture_owner": null,
+  "screenshot_storage_path": null,
+  "boundary": "These URLs are approved for textual annotation and product-surface comparison. No screenshot evidence is claimed in this decision."
+}

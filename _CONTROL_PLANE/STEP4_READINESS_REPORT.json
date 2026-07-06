@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-07-01T19:35:40.405001Z",
+  "ready_for_step_4_completion": true,
+  "checks": [
+    {
+      "name": "Step 3 gate",
+      "ready": true,
+      "detail": "Step 3 gate is clean."
+    },
+    {
+      "name": "Formal review packets",
+      "ready": true,
+      "detail": "Review packets match the queue with 532 packets."
+    },
+    {
+      "name": "Review packet summary",
+      "ready": true,
+      "detail": "Review packet summary preserves the reliance boundary."
+    },
+    {
+      "name": "Review packet API",
+      "ready": true,
+      "detail": "Review packet API implementation markers are present."
+    },
+    {
+      "name": "Review packet UI",
+      "ready": true,
+      "detail": "Review packet UI implementation markers are present."
+    }
+  ],
+  "blockers": [],
+  "warnings": [
+    "532 review packets remain pending."
+  ],
+  "deferred_items": [
+    {
+      "id": "STEP4-PACKET-REVIEW",
+      "title": "Complete formal packet review",
+      "reason": "532 packets remain pending formal review.",
+      "next_action": "Use /app/review-packets to work packet batches and log review decisions."
+    },
+    {
+      "id": "STEP4-CANONICAL-APPLY",
+      "title": "Apply only reviewed canonical changes",
+      "reason": "Packets prepare review but do not change canonical rule-unit data.",
+      "next_action": "Apply only reviewed remove or replace decisions through the guarded apply path."
+    },
+    {
+      "id": "STEP4-RELIANCE-POLICY",
+      "title": "Define production reliance policy",
+      "reason": "Review packets preserve boundaries but do not decide who may approve reliance.",
+      "next_action": "Define reviewer roles, approval criteria, and external-use limits."
+    }
+  ],
+  "next_step": "Step 4 review packet handoff is complete; begin packet review when reviewers are ready."
+}

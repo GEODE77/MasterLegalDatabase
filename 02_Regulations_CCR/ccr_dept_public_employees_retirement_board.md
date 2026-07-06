@@ -1,0 +1,3081 @@
+---
+department: "Public Employees' Retirement Board"
+record_count: 1
+generated_at: "2026-06-23T15:45:52.098106+00:00"
+---
+
+# CCR Department - Public Employees' Retirement Board
+
+## 8 CCR 1502-1 - 8 CCR 1502-1
+
+1 
+PUBLIC EMPLOYEES’ RETIREMENT BOARD 
+Public Employees’ Retirement Association 
+COLORADO PERA RULES 
+8 CCR 1502-1 
+[Editor’s Notes follow the text of the rules at the end of this CCR Document.] 
+_________________________________________________________________________ 
+Rule 1: Definitions 
+Rule 1 defines certain terms used in the Rules, and further defines certain terms defined in Article 51, 
+Title 24, C.R.S. For the purposes of Rule 1, except Rule 1.20G, which shall not apply to DPS members 
+who are eligible to retire as of January 1, 2011, the term “member” shall include DPS members and the 
+term “retiree” shall include DPS retirees. 
+Unless otherwise stated, the terms and phrases contained in these rules shall have the same meaning as 
+specified in Article 51 of Title 24, C.R.S. 
+1.10 
+Denver Public Schools 
+A. 
+Unless otherwise indicated in the Rules, the term “member” shall not include a DPS member as 
+that term is defined in Section 24-51-101(18.3) and the term “retiree” shall not include a DPS 
+retiree as that term is defined in Section 24-51-101(18.7). 
+B. 
+The benefits provided under Part 17 of Article 51 of Title 24, C.R.S., shall herein be referred to as 
+the DPS benefit structure. 
+1.20 
+Terms Used in Rules 
+Terms used in the Rules shall have the meaning specified: 
+A. 
+Foreign employer means a person or an entity that is formed under the laws of a jurisdiction 
+outside the United States or its Territories. 
+B. 
+Pay pattern means the frequency of periodic salary payments. 
+(1) 
+Academic pay pattern means salary is paid over a period of at least 8 months but less 
+than 12 months. 
+(2) 
+Seasonal pay pattern means salary is paid over a period of 1 to 11 months as determined 
+by work available. 
+(3) 
+Traditional pay pattern means salary is paid over a period of 12 months. 
+C. 
+Noncovered employment means public or private employment with an employer in the United 
+States, its territories, or any foreign country for which no PERA service credit was earned. 
+Qualified service and non-qualified service shall be determined in accordance with the Internal 
+Revenue Code, and the Internal Revenue Service Rules and Regulations. 
+ 
+Code of Colorado Regulations
+Secretary of State
+State of Colorado
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+2 
+D. 
+Retroactive salary means salary for previous periods of employment for which payment was 
+delayed or the rate of pay subsequently changed. Retroactive salary payments shall be 
+considered earned in the months for which the salary should have been paid, had no delay or 
+subsequent rate change occurred. For retroactive salary payments that are made pursuant to 
+court orders or arbitration awards or litigation and grievance settlements, the PERA-includable 
+salary cannot be greater than the rate of pay the member would have received had he or she 
+been employed with the employer and/or paid at the time the services were performed. In the 
+event that the retroactive salary payment is less than the rate of pay the member would have 
+received had he or she been employed with the employer and/or paid at the time the services 
+were performed, the Association shall provide partial service credit to the member by prorating 
+the service credit in the same proportion to the salary that was actually paid versus the salary that 
+would have been paid. 
+E. 
+Qualified Children 
+(1) 
+Natural children means those biological children of a member who are conceived prior to 
+the date of death of the member and are born within the normal gestation period after the 
+date of the death of the member. 
+(2) 
+Adopted children means those for whom a petition for adoption was filed in court prior to 
+the date of the death of the member and such petition is diligently pursued to the entry of 
+the final decree of adoption. 
+(3) 
+Qualified children shall not include natural or adopted children of a member or inactive 
+member whose parental relationship to the child has been terminated or determined by a 
+court not to exist prior to the death of the member or inactive member. 
+(4) 
+Qualified children shall not include natural children of a member or inactive member 
+whose parental relationship to the child is determined by a court after the death of the 
+member or inactive member. 
+(5) 
+Qualified children shall include natural or adopted children of a member or inactive 
+member who are legally adopted by another parent after the death of the member or 
+inactive member. This subsection (5) shall not apply to qualified children eligible for 
+benefits pursuant to the provisions of Section 24-51-1737, C.R.S. 
+(6) 
+For purposes of the DPS benefit structure, qualified children means those children who 
+are eligible to receive survivor benefits pursuant to Section 24-51-1737, C.R.S. 
+F. 
+Salary 
+(1) 
+Accrued Leave Payments 
+(a) 
+Payments by an employer in satisfaction of amounts owed for accrued but 
+unused leave shall be treated as PERA salary pursuant to 24-51-101(42), 
+C.R.S., if the following criteria are met: 
+• 
+The payment by the employer of the accrued leave is made in a lump 
+sum within 60 days after the termination of the member’s employment or 
+in periodic payments after severing employment not at the election of the 
+member. Periodic payments must be made over consecutive pay periods 
+and for a period not to exceed the amount of service credit awarded in 
+association with the payment. In the event that periodic payments are 
+made, a single benefit adjustment will be made at the end of the 
+payment period;
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+3 
+• 
+The accrued leave payments are paid at a rate not to exceed the 
+member’s most recent rate of pay; and 
+• 
+The payment is for accrued leave earned by the member pursuant to an 
+established employer policy or employment contract and not as a result 
+of a retroactive grant or an award by the employer. 
+(b) 
+If each of the above criteria are met, consistent with longstanding PERA practice, 
+the accrued leave payment will be treated as salary in calculating service credit 
+and Highest Average Salary for retirement by applying the payment over the 
+number of months as determined by the member’s most recent monthly rate of 
+pay. Additional service credit for these months will be included in the retirement 
+benefit calculation. These months may also be used in the highest average 
+salary calculation. 
+(c) 
+Salary includes an annual lump sum payment of accrued leave, not at the 
+election of the member, paid because the individual has accrued in excess of the 
+maximum accumulation allowed by the employer’s established leave policy. 
+(d) 
+Notwithstanding anything herein to the contrary, any payout of leave made for a 
+year the member has reached any maximum limit imposed under federal income 
+tax law, including the limitations set forth in section 401(a)(17) of the federal 
+Internal Revenue Code of 1986, as amended, shall not be included in the 
+member’s salary or service credit for the year paid or any future year. 
+(2) 
+Cash Payments in lieu of Fringe Benefits 
+Cash payments in lieu of fringe benefits paid by an employer will be treated as PERA 
+salary pursuant to section 24-51-101(42), C.R.S., if the Association determines that the 
+payment is includable pursuant to this Rule and is in no way designed to manipulate 
+Highest Average Salary. 
+(3) 
+Performance or Merit Payments 
+Performance or merit payments are payments which are in addition to regular salary or 
+which replace regular salary increases in recognition of sustained employee performance 
+over the evaluation period. In order for performance or merit payments to be treated as 
+PERA salary pursuant to 24-51-101(42), C.R.S., the Association must have determined 
+that the payment is includable pursuant to this Rule and is in no way designed to 
+manipulate Highest Average Salary. All payments shall be considered earned in the 
+month in which the performance payment is made, except that payments to DPS 
+members who were eligible to retire as of January 1, 2011, shall be considered earned in 
+the months for which the performance payment was based. 
+(4) 
+Contributions Under Internal Revenue Code Section 125 and 132 
+(a) 
+For members who were members, inactive members, or retirees on June 30, 
+2019, salary shall not include amounts excluded from gross income under a 
+cafeteria plan defined in Internal Revenue Code Section 125, or under a qualified 
+transportation fringe benefit program defined in Internal Revenue Code Section 
+132(f)(4), so long as such deductions are made in equal periodic deductions 
+through the year.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+4 
+(b) 
+For members who were not members, inactive members, or retirees on June 30, 
+2019, salary shall include amounts excluded from gross income under a cafeteria 
+plan defined in Internal Revenue Code Section 125, or under a qualified 
+transportation fringe benefit program defined in Internal Revenue Code Section 
+132(f)(4). 
+(5) 
+Payments made by an employer for differential pay, as defined in section 414(u)(12) of 
+the Internal Revenue Code of 1986, as amended, shall be treated as PERA salary 
+pursuant to 24-51-101(42), C.R.S. 
+(6) 
+Tips 
+Tips received by a member for services rendered in connection with his or her 
+employment by an employer shall be salary pursuant to section 24-51-101(42), C.R.S. 
+(7) 
+One-time payments 
+PERA employers pay one-time, non-base building payments to their employees as 
+compensation for services rendered. Under section 24-51-101(42), C.R.S., payments 
+made to employees that are actually for services rendered can be PERA salary, but 
+honorariums, cash awards, bonuses, and other payments enumerated in sections 24-51-
+101(42)(a)(II) and (b)(II), C.R.S., are not PERA salary. One-time, non-performance, and 
+non-merit based payments paid by an employer shall be treated as PERA salary 
+pursuant to section 24-51-101(42), C.R.S. if the employer demonstrates its intent that the 
+payment is a salary payment rather than a bonus, and the Association determines that 
+the payment is includable pursuant to this Rule and is in no way designed to manipulate 
+Highest Average Salary. 
+G. 
+Highest Average Salary 
+(1) 
+In calculating Highest Average Salary, the Association shall sort the three or five periods 
+of twelve consecutive months of service credit in chronological order. 
+(2) 
+For a member who was a member, inactive member, or retiree on December 31, 2006, 
+and who has an effective date of retirement on or after January 1, 2009 and has more 
+than 36 months of earned service credit and less than 48 months of earned service 
+credit, the Highest Average Salary shall be calculated using the highest annual salaries 
+associated with three periods of twelve consecutive months of service credit and no 
+annual base salary shall be used. 
+(3) 
+For a member who was not a member, inactive member or retiree on December 31, 
+2006, and who has five years of service credit on December 31, 2019, or a member of 
+the judicial division who does not have five years of service credit on December 31, 2019, 
+or a member of the judicial division who was not a member, inactive member, or retiree 
+on December 31, 2019, and who has more than 36 months of earned service credit and 
+less than 48 months of earned service credit, the Highest Average Salary shall be 
+calculated using the highest annual salaries associated with three periods of twelve 
+consecutive months of service credit and no annual base salary shall be used. 
+(4) 
+For a member or inactive member who does not have five years of service credit on 
+December 31, 2019, or a member who was not a member, inactive member, or retiree on 
+December 31, 2019, who has more than 60 months of earned service credit and less 
+than 72 months of earned service credit, the Highest Average Salary shall be calculated 
+using the highest annual salaries associated with five periods of twelve consecutive 
+months of service credit and no annual base salary shall be used.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+5 
+(5) 
+For purposes of section 24-51-101(25), C.R.S., and this Rule 1.20G, the term “highest 
+annual salaries” shall mean the salaries associated with four or six periods of twelve 
+consecutive months of service credit that when summed together achieve the highest 
+cumulative value. The salaries associated with each individual twelve month period of 
+service credit shall not be considered separately from the four- or six-year cumulative 
+total for purposes of determining which periods yield the “highest annual salaries.” 
+(6) 
+This Rule 1.20G shall not apply to DPS members who are eligible to retire as of January 
+1, 2011. 
+RULE 2: 
+ADMINISTRATION 
+Rule 2 assigns affiliated employers to one of the five divisions, sets procedures for administrative review 
+of Board decisions, describes the requirements for regular and special meetings of the Board of Trustees 
+and general meetings of the Association, defines a quorum, describes the election of Board members and 
+officers, and specifies the actuarial methods and assumptions used by the Association. Unless otherwise 
+indicated, for the purposes of Rule 2, where applicable, the term “member” shall include DPS members 
+and the term “retiree” shall include DPS retirees. 
+2.10 
+Affiliated Employers 
+Whenever any state agency, its political subdivisions, any school district, any public entity or court 
+becomes affiliated with the Association, the Board shall assign it and its employees to either the State 
+Division, School Division, the Local Government Division, the Judicial Division, or the DPS Division. 
+2.15 
+Employer Assignments 
+Employers participate in PERA pursuant to section 24-51-101(20), C.R.S. Employers are assigned to one 
+of five Divisions (State, School, Local Government, Judicial, and Denver Public Schools). State Division 
+employers are further designated as either (A) Institutions of Higher Education or (B) Agencies and 
+Instrumentalities. The PERA website maintains a list of employers and designations for informational 
+purposes. 
+2.20 
+Administrative Review 
+A. 
+Request for Executive Director Initial Decision 
+A written request for an initial decision by the Executive Director must be received by the 
+Association within 90 days after the date on which the staff decision is sent. The staff decision 
+shall be sent electronically through PERA’s authorized secure channels or via certified mail. 
+B. 
+Request for Administrative Hearing 
+A written request for administrative hearing, including specifics, must be received by the 
+Association within 45 days after the date on which the notice of the initial decision is sent. The 
+initial decision shall be made by PERA’s Executive Director or the Executive Director’s designee, 
+and written notice of the initial decision shall be sent electronically through PERA’s authorized 
+secure channels or via certified mail. 
+C. 
+Administrative Hearing 
+(1) 
+Notification of Scheduled Administrative Hearing
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+6 
+The person for whom the hearing is being conducted or their attorney, if represented, and 
+the person representing the PERA administration will be notified electronically through 
+PERA’s authorized secure channels or via certified mail of the time, date and place of the 
+hearing no less than 45 days prior to the date of the hearing. 
+(2) 
+Submission of Information Prior to the Hearing 
+(a) 
+No less than 30 days prior to the date for which the hearing is scheduled, the 
+person who requested the hearing and the person representing the PERA 
+administration each shall submit: (a) a statement which includes the issues 
+presented, a brief analysis of those issues, the names of all witnesses to appear, 
+a brief description of their expected testimony, and (b) the written information to 
+be considered at the hearing. 
+(b) 
+No less than 20 days prior to the date for which the hearing is scheduled, the 
+person who requested the hearing and the person representing the PERA 
+administration each shall submit: a responsive statement including, to the extent 
+appropriate, the same elements set forth in Rule 2.20 C (2)(a) and any additional 
+written information to be considered at the hearing. After this submission, no 
+further written information is to be submitted unless good cause is shown for the 
+late submission. 
+(3) 
+Burden of Proof 
+The person who requested the hearing shall bear the burden of proof by a 
+preponderance of the evidence at the hearing. 
+D. 
+Consolidation of Administrative Appeals 
+Any party to an appeal may request consolidation of an executive director initial decision or 
+administrative hearing in appropriate circumstances. The party requesting consolidation must 
+make such request in writing no later than 30 days after the deadline for a written request for 
+executive director initial decision or administrative hearing pursuant to Rule 2.20A or B. Within 10 
+days of such a request, the other party may submit a written response stating that party’s position 
+regarding consolidation. The decision to consolidate at the executive director initial decision stage 
+will be made by the Executive Director, in their discretion; the request to consolidate at the 
+administrative hearing stage will be made by the hearing officer in their discretion. 
+E. 
+Administrative Hearing 
+(1) 
+Appointment of Panel Members 
+The Panel shall consist of three Board members appointed by the Chair. 
+(2) 
+Responsibilities of Panel 
+The Panel shall hear and consider the evidence and then shall issue written findings of 
+fact, conclusions of law, and the decision. After thirty days from the date the Panel’s 
+decision is sent, the Panel’s decision shall constitute final administrative action 
+appealable under Colorado Rule of Civil Procedure 106(a)(4) unless either party chooses 
+to appeal the decision to the PERA Board pursuant to section (F) below. Written notice of 
+the Panel’s decision shall be sent electronically through PERA’s authorized secure 
+channels or via certified mail to each person who requested the hearing or to their 
+attorney, if represented, and to the person representing the PERA administration.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+7 
+(3) 
+Hearing Officer 
+An administrative law judge from the Office of Administrative Courts shall serve as a non-
+voting hearing officer for administrative hearings. The non-voting hearing officer shall 
+issue pre-hearing rulings as needed and conduct the hearing. 
+F. 
+Review by the Board 
+(1) 
+Any party may choose to appeal the Panel’s decision to the PERA Board. If any party 
+chooses to appeal, it must submit a written request for review to the PERA Board, which 
+must be received by the Association within 30 days after the date on which the Panel’s 
+decision is mailed. If no appeal is made to the PERA Board within the 30 days, the 
+Panel’s decision shall become final administrative action at the expiration of the 30 days 
+to appeal to the PERA Board. 
+(2) 
+If a request for review to the PERA Board is filed prior to the deadline, the PERA Board 
+shall review the matter based on the existing evidentiary record. The Board’s review of 
+the matter shall be limited to issues of law and shall not include review of the factual 
+findings by the Panel. The record for Board review shall include the written materials 
+considered by the Panel, the findings of fact, conclusions of law, and the Panel’s 
+decision. The Board may permit briefs and oral argument, if requested by a party at the 
+time of appeal. The three Board members who served on the Panel shall not participate 
+in the Board’s review. After review, the Board shall issue a written decision affirming, 
+reversing, or modifying the Panel’s decision. Alternatively, the Board may remand the 
+matter to the Panel with instructions to make further factual findings on specific issues 
+that will assist the Board in determining issues of law; however, the Board may not alter 
+any factual findings made by the Panel. Once the Panel has conducted its additional 
+factual findings, the matter shall be re-submitted to the Board to issue its written decision. 
+Written notice of the Board’s final decision shall be sent electronically through PERA’s 
+authorized secure channels or via certified mail to the parties or to their attorney, if 
+represented, within 10 days of the date on which the written decision was made. 
+(3) 
+If the PERA Board reviews the Panel’s decision pursuant to this Rule, the Board’s 
+decision after its review shall constitute final administrative action appealable under 
+Colorado Rule of Civil Procedure 106(a)(4). 
+2.30 
+Candidacy for Election to the Board 
+A. 
+Any member of the Association may become a candidate for election to the Board as a 
+representative from his or her division, by submitting a petition containing the required signatures, 
+and a biographical summary of 150 words or less. The petition and the biographical summary 
+must be received by the Association office by the first working day of March of the election year. 
+B. 
+For candidacy to represent members in either the State, School or the Local Government 
+Division, a candidate must submit a petition signed by no fewer than 100 members of the Division 
+for which candidacy is declared. 
+C. 
+For candidacy to represent members in the Judicial Division, the candidate must submit a petition 
+signed by no fewer than 10 members in the Judicial Division. 
+D. 
+For the term effective July 1, 2012, and in accordance with Section 24-51-203, C.R.S., for 
+candidacy to represent members and retirees of the DPS Division, a candidate must submit a 
+petition signed by no fewer than 100 members and/or retirees in the DPS Division.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+8 
+E. 
+For candidacy as a retiree, the candidate must submit a petition signed by no fewer than 50 
+retirees. A retiree may not become a candidate in an election if the retiree’s election would result 
+in both retiree Trustees having retired from the same Division of membership. This paragraph (E) 
+does not apply to retirees of the DPS Division. 
+F. 
+Petitions must include the signature and legible printed name of each member or retiree who 
+signs. The signer must also provide either their legible address or their legible Social Security 
+number. 
+2.35 
+State Division Candidates 
+A. 
+Within the State Division at least one of the members elected to the Board shall be an employee 
+of an employer designated as an Institution of Higher Education, and at least one of the members 
+elected shall be an employee of a State employer designated as an Agency or Instrumentality. 
+B. 
+Should a State Division candidate who receives the highest number of votes be an employee of 
+one of the employers within the same group as all other current Board members from the State 
+Division, the candidate who receives the most votes and who is employed by an employer from 
+the State Division group not represented on the Board shall be declared elected. 
+2.40 
+Ballots for Board Election 
+2.42 
+Division in Which a Member or Retiree is Eligible to Vote or Become a Candidate for 
+Election to the Board 
+In situations in which an individual is a member and/or retiree of multiple divisions, the following 
+provisions shall apply to determine in which Board election the individual is eligible to vote or to become a 
+candidate for election to the Board: 
+A. 
+If the individual is an active member of one division and a retiree of another division, the 
+individual shall be considered a retiree for purposes of determining eligibility to vote and/or 
+become a candidate for election to the Board. 
+B. 
+If the individual is a retiree of multiple divisions, the individual shall be considered a retiree of the 
+division from which the retiree first retired for purposes of determining eligibility to vote and/or 
+become a candidate for election to the Board. 
+C. 
+If the individual is a retiree of multiple divisions, and the retirement dates are the same, the 
+individual shall be considered a retiree of the division from which the retiree has the largest 
+retirement benefit for purposes of determining eligibility to vote and/or become a candidate for 
+election to the Board. 
+D. 
+If the individual is an active member working in multiple divisions, the individual shall be eligible to 
+vote in the division in which he or she has the highest salary posting immediately preceding the 
+date that the Board election ballots are mailed. 
+E. 
+If the individual is an active member working in multiple divisions, the individual shall be eligible to 
+become a candidate for election to the Board in the division in which he or she has the highest 
+salary posting in the month that the individual submits his or her candidacy packet to the 
+Association.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+9 
+2.43 
+Gubernatorial Appointments 
+A. 
+At such time as the first trustee of the state, school, and local government division leaves the 
+Board either by death, resignation, removal, expiration of term, or otherwise after January 1, 
+2007, the gubernatorial appointment shall assume office at the next regularly scheduled board 
+meeting following appointment by the governor. Such gubernatorial appointed trustee who has 
+not yet been confirmed by the senate shall serve until senate confirmation or until senate 
+confirmation is denied at which time the appointee shall be removed from the Board and the 
+vacancy shall be filled in accordance with statute. Thereafter, at such time that a gubernatorial 
+appointee leaves the Board either by death, resignation, removal, expiration of term, or otherwise, 
+the next gubernatorial appointee shall assume office at the next regularly scheduled board 
+meeting following appointment by the governor. Such gubernatorial appointed trustee who has 
+not yet been confirmed by the senate shall serve until senate confirmation or until senate 
+confirmation is denied at which time the appointee shall be removed from the Board and the 
+vacancy shall be filled in accordance with statute. 
+B. 
+Gubernatorial appointed trustees shall be compensated one hundred dollars per diem plus their 
+actual and necessary expenses. The per diem amount shall be paid for each day that the trustee 
+attends at least 75% of an official Board meeting, committee meeting, administrative hearing, 
+trustee orientation, Board Planning session, or other function approved by the Board Chair or 
+Vice Chair up to a maximum of 20 days per year. 
+2.45 
+Assumption of Office 
+Members and retirees elected or appointed to the Board shall assume office at the first regular Board 
+meeting held after July 1 of the year in which they were elected, or at the first regular meeting following 
+certification of election or appointment, whichever is later. 
+2.50 
+Election of Officers 
+The Board shall, by secret ballot, elect from among its members a Chair and Vice Chair, each to serve for 
+terms of two years. When elections are required, they shall take place at the last regular meeting held in 
+the calendar year, and the newly elected Chair and Vice Chair shall assume office as of the next regular 
+meeting. No member may serve continuously as Chair for more than two consecutive terms. All officers 
+shall be elected by a majority of those present and voting. 
+2.55 
+Duties of Officers 
+A. 
+The Chair shall preside at all meetings of the Board. In the absence of the Chair, the Vice Chair 
+shall assume the duties of the Chair. 
+B. 
+Should the Chair be unable to complete the term as Chair, the Vice Chair shall serve as Chair 
+until the Board elects a new Chair. 
+2.60 
+Standing Committees 
+Members of standing committees of the Board shall be recommended by the Chair and subject to 
+approval by the Board. 
+2.70 
+Board Meetings 
+A. 
+Regular meetings shall be held not less than quarterly according to an annual schedule adopted 
+by the Board and published in the minutes of the Board. Time and location for such meetings 
+shall be determined by the Board. The annual schedule may be modified by the Board as 
+necessary.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+10 
+B. 
+Special meetings may be called by the Chair or any four members of the Board by providing three 
+days notice to each member of the Board. A call for a special meeting must state the business to 
+be considered, and the time, date and place of such meeting. 
+C. 
+A majority of the Board shall constitute a quorum. 
+D. 
+Board Action requires a majority vote of a quorum of the Board members. Board members may 
+attend and vote via telephone and/or video conferencing. 
+E. 
+No proxy voting shall be permitted. 
+2.80 
+General Meeting 
+A general meeting of the Association may be called by the Board at any time and shall be called upon 
+receipt of a petition signed by not less than 3 percent of the Association’s membership. 
+2.85 
+General Meeting Notice 
+Notice of a general meeting shall be mailed to each member not less than 10 days prior to the meeting, 
+and shall state the time, place, and purpose of the meeting. Only matters which have been specified in 
+the purpose of the meeting shall be considered. No proxy voting shall be permitted. 
+2.90 
+Actuarial Assumptions 
+A. 
+Funding Method 
+The funding method used by the Association shall be the entry age actuarial cost method. 
+B. 
+Asset Valuation Method 
+The asset valuation method used by the Association shall be a “smoothed” market value of 
+assets. The difference between actual market value actuarial gains from investment experience 
+and the expected actuarial gains from investment experience is recognized over a four-year 
+period. 
+C. 
+Actuarial Investment Assumption Rate 
+The actuarial investment assumption rate is 7.25 percent per year compounded annually, which 
+is net after investment expenses. 
+D. 
+Other Assumptions 
+Other actuarial assumptions set by the Board include the mortality table, and the probabilities of 
+age and service retirement, withdrawal from service, disability, and death-in-service. These 
+assumptions shall be set forth in the Association’s Annual Comprehensive Financial Report, and, 
+upon approval of the Report by the Board, such actuarial factors shall become part of the 
+actuarial assumptions under Rule 2.90. 
+E. 
+Money Purchase Benefits 
+The actuarial investment assumption rate and the mortality table shall be used in the actuarial 
+determination of money purchase retirement benefits.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+11 
+2.95 
+Funds Not Subject to Legal Process 
+A. 
+For purposes of 24-51-212, C.R.S. a party asserting that any of the moneys, trust funds, 
+reserves, accounts, contributions, pursuant to parts 4, 5, 14, 15, 16, and 17 of the Association 
+Statutes or benefits referred to in the Association Statutes should be assignable either in law or in 
+equity or be subject to execution, levy, attachment, garnishment, bankruptcy proceedings, or 
+other legal process, because there is a judgment for a willful and intentional violation of fiduciary 
+duties pursuant to 24-51-207, C.R.S., has the burden to prove that such a violation of fiduciary 
+duty resulted in a direct financial gain for the offender or related party unless such a 
+determination is set forth in the underlying judgment. 
+B. 
+Direct financial gain means a monetary payment that would not have been received but for the 
+willful and intentional violation of fiduciary duty. Direct financial gain shall not include the receipt 
+of a benefit that such person or related party receives as a retiree or beneficiary of the 
+Association as dictated by the statutory provisions of the Association. 
+2.96 
+Effect of Homicide on Beneficiary Designations 
+A. 
+If a person designated as a beneficiary or entitled to survivor benefits under a member’s defined 
+benefit or defined contribution account, a participant’s 401(k) plan account, or a participant’s 457 
+plan account feloniously kills that member, the person’s rights as a beneficiary or survivor are 
+forfeited and the member’s account will be treated as if the felonious killer pre-deceased the 
+member. Upon proper written notice to the Association that a member or participant may have 
+been feloniously killed by his or her beneficiary or survivor, the Association shall hold payment of 
+the funds to which the suspected felonious killer would be entitled until such time as there is a 
+final determination as to whether such individual committed the felonious killing. PERA is not 
+liable for having made any payments to a beneficiary or survivor or for having taken any other 
+action in reliance on the beneficiary or survivor’s apparent entitlement to benefits prior to receipt 
+of written notice pursuant to this Rule 2.96. PERA shall have no duty or obligation to make any 
+determination as to whether or not the deceased member or participant was a victim of a 
+felonious killing or to seek any evidence with respect to any such felonious killing even if the 
+circumstances of the member or participant’s death are suspicious or questionable as to the 
+beneficiary or survivor’s participation in any such felonious killing. PERA is only liable for actions 
+taken two or more business days after PERA has receipt of proper written notice pursuant to 
+paragraph D of this Rule. Any form or service of notice other than that described in paragraph D 
+of this Rule shall not be sufficient to impose liability on PERA for actions taken in paying a 
+beneficiary or survivor. 
+B. 
+For purposes of this Rule 2.96, a “felonious killing” is the killing of the decedent by an individual 
+who, as a result thereof, is convicted of, pleads guilty to, or enters a plea of nolo contendere to 
+the crime of murder in the first or second degree or manslaughter, as said crimes are defined in 
+sections 18-3-102 to 18-3-104, C.R.S. 
+C. 
+An individual will be considered to have committed a felonious killing if, after all right to appeal 
+has been exhausted, a judgment of conviction, a plea of guilty, or a plea of nolo contendere, 
+establishing criminal accountability for the felonious killing of the decedent conclusively 
+establishes the convicted individual as the decedent’s killer. Notwithstanding the status or 
+disposition of a criminal proceeding, an interested party may make a formal written request for a 
+determination by the Association of whether, by a preponderance of the evidence standard, each 
+of the elements of felonious killing of the decedent has been established. Upon receiving such a 
+request, the Association shall issue a staff determination regarding its determination. The 
+Association’s staff determination is appealable pursuant to PERA Rule 2.20. If the Association 
+finds that the elements have been so established, such determination conclusively establishes 
+that individual as the decedent’s killer for purposes of this Rule 2.96.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+12 
+D. 
+For purposes of this Rule, “proper written notice” means written notice mailed to PERA’s main 
+office by registered or certified mail, return receipt requested, or served upon PERA in the same 
+manner as a summons in a civil action. The written notice shall indicate the name of the 
+deceased member or participant, the name of the person asserting an interest, and a statement 
+that a claim is being made pursuant to this Rule. 
+2.97 
+Requirement of Survival 
+If a member or retiree’s named beneficiary, cobeneficiary, or other survivor does not survive the member 
+or retiree by one hundred twenty hours, that person is deemed to have predeceased the member or 
+retiree for purposes of the benefits provided under Article 51 of Title 24, C.R.S. If it is not established by 
+clear and convincing evidence that the individual survived the member or retiree by one hundred twenty 
+hours, it is deemed that the individual failed to survive for the required period. This Rule applies only to 
+individuals born prior to the death of the member or retiree. 
+2.98 
+Effect of Marital or Civil Union Status on Beneficiary Designations 
+The designation of a beneficiary under the defined contribution plan, 401(k) plan, 457 plan, or life 
+insurance program, or of a cobeneficiary, co-annuitant, or named beneficiary under the defined benefit 
+plan, is not subject to revocation pursuant to 15-11-804, C.R.S., as amended. 
+RULE 3: 
+MEMBERSHIP 
+Rule 3 describes continuation of membership, information required from employers and members and 
+determination of member status by the Board. For the purposes of Rule 3, the term “member” shall 
+include DPS members and the term “retiree” shall include DPS retirees. 
+3.15 
+Continuation of Membership 
+A. 
+Membership rights continue during an employer-certified leave of absence without pay. 
+B. 
+Membership rights continue during an absence due to work stoppage from the date work is halted 
+through the date a court order is issued for return to work. 
+C. 
+Membership rights continue during periods in which pay has ceased due to seasonal or special 
+nature of work requiring regularly recurring periods of more than 90 days during which no pay is 
+received. 
+3.25 
+Member Records 
+The Association shall require such information as may be necessary to determine membership status or 
+benefit eligibility including, but not limited to: 
+A. 
+Employer Responsibility 
+An employer shall provide any information necessary to determine membership status or benefit 
+eligibility including, but not limited to: 
+(1) 
+Written or electronic notice of changes in employment status resulting from hire, transfer, 
+promotion, leave of absence, resignation, termination, reinstatement or death. 
+(2) 
+Upon request from the Association, certification of previous employment status for 
+periods during which service credit is in question.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+13 
+(3) 
+Upon request from the Association, pay patterns, work patterns or other information 
+required to determine service credit or benefits payable. 
+B. 
+Member Responsibility 
+A member shall provide any information necessary to determine benefit eligibility and to maintain 
+contact with the member including, but not limited to: 
+(1) 
+Written notice of changes in name, address or named beneficiary. 
+(2) 
+Proof of age for the member or cobeneficiary when such age cannot be determined by 
+existing Association records. 
+3.30 
+Determination of Member Status 
+A. 
+If existing Association records are incomplete or in question, and no acceptable documentation 
+can be provided by the employer or the member, the Board shall determine benefit eligibility and 
+benefit payments based on the information available. 
+B. 
+An individual who refunded his or her member contribution account pursuant to 24-51-405, 
+C.R.S. and purchases all or part of the period associated with the refunded member contribution 
+account on or after July 1, 2005, pursuant to 24-51-503, C.R.S. shall have no rights associated 
+with membership prior to July 1, 2005, except as mandated by federal law. 
+C. 
+An individual who refunded his or her member contribution account pursuant to Section 24-51-
+405, C.R.S. and purchases all or part of the period associated with the refunded member 
+contribution account on or after January 1, 2007, pursuant to Section 24-51-503, C.R.S., shall 
+have no rights associated with membership prior to January 1, 2007, except as mandated by 
+federal law. 
+D. 
+An individual who refunded his or her member contribution account pursuant to Section 24-51-
+405, 24-51-1711, or 24-51-1729(6)(a)(I), C.R.S., and purchases all or part of the period 
+associated with the refunded member contribution account on or after January 1, 2010, pursuant 
+to Section 24-51-503 or 24-51-505, C.R.S., whichever is applicable, shall have no rights 
+associated with membership prior to January 1, 2010, except as mandated by federal law. 
+E. 
+An individual who refunded his or her member contribution account pursuant to Section 24-51-
+405, 24-51-1711, or 24-51-1729(6)(a)(I), C.R.S., and purchases all or part of the period 
+associated with the refunded member contribution account on or after January 1, 2017, pursuant 
+to Section 24-51-503 or 24-51-505, C.R.S., whichever is applicable, shall have no rights 
+associated with membership prior to January 1, 2017, except as mandated by federal law. 
+3.40 
+City Managers and Key Management Staff 
+For purposes of section 24-51-308, C.R.S., if a municipality does not have a city manager, then 
+individuals who would otherwise report to a city manager but instead report to the Mayor or other 
+governing body are still eligible to make a one-time, irrevocable election to be exempted from 
+membership in the Association.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+14 
+Rule 4: Contributions 
+Rule 4 requires the Association to prescribe the form in which the Contribution Report is submitted, 
+describes procedures for correction of reporting errors, determines the calculation of interest due if either 
+is delinquent, contains provisions regarding payment of unpaid contributions, describes the use of 
+contributions for benefit payments and describes procedures for refunds. Unless otherwise indicated, for 
+the purposes of Rule 4, except for Rule 4.25, the term “member” shall include DPS members and the 
+term “retiree” shall include DPS retirees. 
+4.10 
+Contribution Report 
+The Association shall prescribe the form in which the Contribution Report shall be submitted. 
+A. 
+Delinquent Reports or Contributions 
+Failure by an employer to submit the Contribution Report or contributions, including working 
+retiree contributions for employees who are also retirees of the association, as required, shall 
+make the employer responsible for payment of the contribution amount plus interest computed on 
+a daily rate on the contribution amount from the due date to the day that both the required report 
+and contributions are received. However, the Association, in its sole discretion, may waive the 
+interest so computed if only the report is delinquent and the delinquency is non-recurring. Any 
+resulting expenses incurred by the Association (including charges or expenses imposed by third 
+parties) for delinquency or inadequate funding by the employer shall be paid by the employer. 
+The Association, in its sole discretion, may waive such expenses. 
+B. 
+Member contributions and service credit shall be assigned to the month that includes the last date 
+in the payroll period. 
+4.15 
+Payment of Unpaid Contributions 
+A. 
+Retiree 
+A person who retired before the Association first notified the employer of a claim for unpaid 
+contributions shall be treated as an inactive member for determining the amount due the 
+Association, and for all other purposes of 24-51-402(3) through (5), C.R.S. 
+B. 
+Non-Member 
+The cost to purchase service for an individual who was not a member or inactive member when 
+the Association first notified the employer of a claim for unpaid contributions shall be the amount 
+of member contributions which would have been paid, had the individual been properly covered 
+as a member, plus interest accrued from the last date the individual was paid but not properly 
+covered to completion of payment. 
+C. 
+Member or Inactive Member 
+For an individual who was a member or inactive member at the time the Association first notified 
+the employer of a claim: 
+(1) 
+Cost 
+The cost to purchase service credit under 24-51-402(3)(b)(1)(A), C.R.S., shall be based 
+on the salary amount and percentage used pursuant to 24-51-505, C.R.S. Such cost 
+shall not be applicable if the individual has less than one year of service credit.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+15 
+(2) 
+Salary Increase Only 
+If payment of unpaid contributions results in an increase in salary, but no increase in 
+service credit, the amount due shall be the unpaid employer and member contributions 
+plus interest, as provided by 24-51-402(3)(b) (1)(B), C.R.S. 
+(3) 
+Notification to PERA 
+The Association must receive in writing, within one year after the date the employer pays 
+the unpaid employer contributions, an election from an individual declaring the intent to 
+pay unpaid employee contributions, or the individual’s right to make such contributions 
+shall be forfeited. 
+(4) 
+Payment by Member or Inactive Member 
+(a) 
+Deadline for Start of Payment 
+If an individual elects pursuant to 24-51-402(4), C.R.S., to pay all or any portion 
+of the unpaid employee contributions, the lump-sum payment or the first 
+installment payment must be made no later than the first full month following one 
+year after the date the employer pays the unpaid employer contributions. 
+(b) 
+Lump-Sum Payment 
+Eligibility to make payment under 24-51-402, C.R.S., shall be forfeited if payment 
+is not made within 30 days following the date on which the lump-sum payment is 
+due. 
+(c) 
+Installment Payments 
+Installment payments shall be subject to the provisions of Rule 5.30 B. If the 
+purchase agreement is cancelled pursuant to Rule 5.30 B(2) or (4), eligibility to 
+make payments under 24-51-402, C.R.S., shall be forfeited. 
+D. 
+Defined Contribution Plan 
+If an employer fails to provide an eligible employee membership in the Defined Contribution Plan 
+or the required level of contributions to a member’s account in the Defined Contribution Plan, the 
+employer shall pay all unpaid employer contributions pursuant to 24-51-401 C.R.S. et seq., plus 
+interest at the actuarial investment assumption rate. 
+(1) 
+Payment of Employer Contribution plus Interest to Account 
+The amount of contributions plus interest shall be allocated to the eligible employee or 
+member’s Defined Contribution Plan account in the same proportion as would have been 
+paid had the contributions been made timely. (For purpose of clarity, pursuant to 24-51-
+1505(1), C.R.S., any contribution exceeding the amount in table A in 24-51-401(1.7)(a), 
+C.R.S., plus attributable interest, shall be paid to the employer’s division trust fund.)
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+16 
+(2) 
+Election by Eligible Employee or Member to Pay 
+The eligible employee or member shall have the option to pay the full amount of member 
+contributions to the eligible employee or member’s Defined Contribution Plan account. 
+Any such individual who elects to pay all or any portion of unpaid member contributions 
+shall notify the Association of such election within one year after the date the employer 
+pays the unpaid employer contributions, and may make payment by any method provided 
+in Rule 4.15C(4). 
+(3) 
+Payment by Employer of Interest 
+Upon receipt by the Association of amounts paid pursuant to Rule 4.15D(2), the employer 
+shall pay interest on the unpaid member contributions at the actuarial investment 
+assumption rate during the time such member contributions should have been made until 
+the date the contributions are received by the Association. The interest paid by the 
+employer pursuant to this Rule 4.15D(3) shall be allocated to the eligible employee or 
+member’s Defined Contribution Plan account. 
+4.20 
+Contributions on Retroactive Salary Payments 
+Contributions with interest must be made in a lump sum on retroactive salary paid. 
+4.25 
+Furlough Payments 
+Retirees who retired before June 30, 2003, who had salary reduction due to furlough days from July 1, 
+2002, to June 30, 2003, and members who had salary reduction due to furlough days from July 1, 2002, 
+to June 30, 2004, may opt to make member contributions on the amount that their salary was reduced 
+upon notice by the Association. 
+A. 
+Such notice by the Association shall be made upon receipt of the required salary reduction 
+information from the employer but no earlier than 90 days before the member’s effective date of 
+retirement as evidenced by the member’s completed and filed retirement application. 
+B. 
+Upon receipt of the member contributions, the Association shall notify the employer of the 
+employer contributions due on the salary reduction. Upon payment by the employer, the member 
+or retiree’s Highest Average Salary shall be recalculated and benefits adjusted. 
+4.30 
+Use of Contributions for Payment of Benefits 
+For purposes of payment of benefits, money credited to the member contribution account is used first. 
+4.40 
+Refunds 
+A. 
+Any member who terminates membership is entitled to a refund of the member contribution 
+account and, subject to Section 24-51-408(2), 24-51-408(2.5), 24-51-1103, and 24-51-1726.5, 
+C.R.S, the amount of matching employer contributions upon request, except that a retiree who 
+returns to membership prior to January 1, 2011, and earns one year of service credit will have the 
+benefit recalculated instead of receiving a refund. The amount available to DPS members in the 
+event of a refund shall be governed by Section 24-51-1711 or 24-51-1729(6)(a)(I), C.R.S. 
+B. 
+No refund will be made prior to receipt of employer certification of date of termination of 
+employment, unless membership has been terminated and no contributions have been received 
+for a period of 90 days. 
+C. 
+No refund will be made prior to the date of termination of employment.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+17 
+D. 
+Member contributions and interest are subject to garnishment for child support purposes as 
+provided in 24-51-212, C.R.S., only if the membership has terminated and the member is not 
+vested. 
+E. 
+For purposes of Section 24-51-1747, C.R.S., if a member requests a refund of two member 
+contribution accounts, PERA shall combine the accounts and treat the refund as a refund of one 
+member contribution account for administrative purposes. 
+4.50 
+Contributions Based on Uniformed Service 
+A. 
+A member who is reemployed and has the rights under the Uniformed Services Employment and 
+Reemployment Rights Act of 1994 (“USERRA” ), may elect to make up his or her missed 
+contributions for the period of uniformed service up to five years. Contributions must be made in 
+accordance with USERRA, set forth at 38 U.S.C. § 4301, et seq. 
+B. 
+Contributions made by a member pursuant to this Rule must be made during the time period 
+starting with the date of reemployment and continuing for up to three times the length of the 
+member’s immediate past period of uniformed service, with the repayment period not to exceed 
+five years. Makeup contributions may only be made during this period and while the member is 
+employed with the post-service employer. 
+C. 
+Upon PERA’s receipt of the member contributions pursuant to section (A) of this Rule, the 
+employer shall pay the employer contribution attributable to the period of time that the member 
+paid make-up contributions. The employer shall pay interest on both the employer contributions 
+and the member contributions at the applicable actuarial investment assumption rate, as such 
+interest rate is from time to time adjusted, for the entire period of time for which make-up 
+contributions are made through the date such contributions are fully paid to PERA. The employer 
+shall remit the entire amount due pursuant to this section within 30 days from the date the 
+member makes his or her make-up contributions. 
+4.60 
+Working Retiree Contributions for Independent Contractors 
+A. 
+When the working retiree contribution is due on an independent contractor, the employer must 
+notify the Association and the Association shall offset the retirement benefit of the retiree in 
+accordance with Rule 11.12F. 
+B. 
+Subject to subparagraph C. below, if the employer fails to notify the Association, and therefore 
+the Association fails to collect the working retiree contribution via an offset of the retiree’s 
+benefits, the employer shall be responsible for the interest due on the contribution amount from 
+the due date to the date the contributions are received. 
+C. 
+If the retiree independent contractor fails to report the compensation as required under PERA 
+Rule 11.12 D.(2), the retiree shall be responsible for the interest on the working retiree 
+contribution at PERA’s actuarial investment assumption rate. The interest shall be collected via 
+an offset of the retirement benefit of the retiree. 
+4.70 
+State Trooper Contribution Rates 
+Members who meet the definition of “state trooper” pursuant to 24-51-101(46), C.R.S., and employers of 
+those members, shall pay the member and employer contribution rates for state troopers set forth in 24-
+51-401, C.R.S., regardless of the division the employer is assigned.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+18 
+RULE 5: 
+SERVICE CREDIT 
+Rule 5 describes the determination and recording of earned service credit, type of purchased service 
+credit and methods of payment for purchased service credit. Unless otherwise indicated, for the purposes 
+of Rule 5, the term “member” shall include DPS members and the term “retiree” shall include DPS 
+retirees. 
+5.10 
+Earned Service Credit 
+A. 
+Employment Pattern of Less Than 12 Months 
+A member who is employed in a position in which the employment pattern covers at least 8 
+months but less than 12 months per year shall have service credit for each month based on: 
+(1) 
+The ratio of actual salary received during a month to 80 times the federal minimum wage 
+hourly rate in effect at the time of service, and 
+(2) 
+The ratio of 12 months to 8 months service credit for a period of 12 consecutive months 
+may not exceed one year, except as provided in Rule 5.10 B. 
+B. 
+Combinations of Employment Patterns 
+Service credit for any combination of traditional, academic year or seasonal employment patterns 
+occurring within one year will be calculated separately and combined for the annual total. Service 
+credit for any period of 12 consecutive months may not exceed one year except for overlaps, 
+which occur due to changes in employment patterns or overlapping employment contracts. 
+5.20 
+Purchased Service Credit 
+Purchased service credit may qualify a member for earlier service retirement, earlier reduced service 
+retirement or increased benefits. 
+A. 
+Repayment of Refund 
+A member may purchase all or part of a period associated with a refunded member contribution 
+account. Service credit purchased based on all or part of a period associated with a refunded 
+member contribution account pursuant to 24-51-503, C.R.S. is considered purchased service 
+credit not earned service credit. The purchase of service credit relating to a refunded member 
+contribution account pursuant to 24-51-503, C.R.S., shall not count toward the ten year limit for 
+purchases of service credit specified in 24-51-505(2)(c), C.R.S. 
+B. 
+Sabbatical Leaves 
+(1) 
+For periods of sabbatical leave granted before July 1, 1966, service credit is provided 
+without payment. This provision does not apply to DPS members or retirees. 
+(2) 
+A member may elect to make separate purchases of service credit associated with more 
+than one period of sabbatical leave. A member may not purchase any service credit 
+associated with less than the entire period of any one sabbatical leave. 
+C. 
+Noncovered Employment 
+(1) 
+A member may purchase all or part of a period of noncovered employment except as 
+provided in 24-51-505, C.R.S.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+19 
+(2) 
+A member who earns less than full service credit for a period of covered employment and 
+has concurrent noncovered employment may not purchase service credit for that period 
+in excess of the credit needed to obtain full service credit for that period. A member who 
+earns full service credit for a period of covered employment may not purchase credit for 
+noncovered employment served during that period. 
+D. 
+Portability 
+A member who has an active service credit purchase agreement and exercises portability 
+pursuant to the provisions of Section 24-51-1747, C.R.S., may only continue to make payment on 
+the service credit purchase agreement as long as the member selects the benefit structure under 
+which the purchase is being completed. If the member does not choose the account for which the 
+service credit purchase applies, then the purchase agreement will be terminated and all 
+payments made under the purchase agreement will be returned to the member. 
+E. 
+Outside Service Under the DPS Benefit Structure 
+(1) 
+A DPS benefit structure retiree who used substantiated outside service to reach full 
+service retirement eligibility may not purchase that same time under the PERA benefit 
+structure. 
+(2) 
+An inactive DPS member who has substantiated outside service may purchase that same 
+time under the PERA benefit structure as long as the individual meets the requirements 
+to be able to purchase that service under the PERA benefit structure. The amount of the 
+substantiated outside service that can be used in the DPS benefit structure will be 
+reduced by the amount of the purchase into the PERA benefit structure account. 
+5.25 
+Service Credit Purchase Cost and Application 
+A. 
+The cost to purchase one month of noncovered employment shall be a percentage of the 
+member’s Highest Average Salary as set forth in the Table appearing on the PERA website. Such 
+percentage shall be determined by the age of the member at the time PERA receives the 
+member’s completed service credit purchase application. 
+B. 
+To purchase service credit, the member must apply using the service credit purchase application 
+form provided by PERA. 
+C. 
+The completed service credit purchase application shall contain: 
+(1) 
+Documentation of salary received by the member; 
+(2) 
+Documentation of the member’s dates of employment; 
+(3) 
+Documentation of any other pension coverage including but not limited to a mandatory 
+defined contribution plan for such employment. 
+D. 
+The Association shall have the authority to determine the adequacy of the documentation 
+described in Rule 5.25 C. 
+E. 
+Absent complete documentation, no purchase agreement shall be issued.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+20 
+F. 
+Once complete documentation has been received by the Association, the Association shall issue 
+a service credit purchase agreement which will include the cost to purchase service credit based 
+upon the age of the member at the time the Association receives the member’s completed 
+service credit purchase application. Failure to comply with all terms and conditions of the service 
+credit purchase agreement will result in a breach of the agreement and the member will not be 
+allowed to purchase service credit based on said agreement. The member’s cost for any 
+subsequent service credit purchase agreement based upon this documentation shall be 
+recalculated and determined based upon the member’s age and Highest Average Salary when a 
+subsequent agreement is issued. 
+5.26 
+Service Credit Purchase Based Upon Foreign Employment 
+The same documentation required under Rule 5.25 shall be required of members who seek to purchase 
+service credit based upon previous employment with a foreign employer subject to the Internal Revenue 
+Code and the Internal Revenue Service Rules and Regulations. If such documentation is in a language 
+other than English, the member, at the member’s own cost, shall provide a certified translation of the 
+documentation. 
+A. 
+The salary received in foreign currency shall be converted to U.S. dollars at the exchange rate in 
+effect for the time the foreign currency was earned. 
+B. 
+The resulting U.S. dollars will be compared to the U.S. minimum wage to determine the amount 
+of service credit that can be purchased pursuant to 24-51-505(2), C.R.S. 
+5.30 
+Payments for Purchased Service Credit 
+Lump-sum payments and installment payments must be completed during membership. 
+A. 
+Lump-Sum Payments 
+A lump-sum payment is the first installment payment specified in 24-51-506(2)(b), C.R.S. Failure 
+to make a lump sum payment pursuant to the terms of the service credit purchase agreement on 
+or before its due date shall result in cancellation of the service credit purchase agreement. 
+B. 
+Installment Payments 
+(1) 
+Installment payments must be made via Automated Clearing House (ACH) deduction 
+from the member’s checking or savings account or other financial account. 
+(2) 
+A service credit purchase agreement shall be canceled and payments made shall be 
+returned to the member if more than three monthly installment payments become 
+delinquent. 
+(3) 
+The Association shall notify a member of delinquency in payments. 
+(4) 
+A member may cancel a service credit purchase agreement at any time prior to 
+completion of installment payments. All payments made shall be refunded without 
+interest to the member upon receipt of the request for cancellation. 
+(5) 
+The period over which installment payments may be made shall not exceed 120 months 
+or a period equal to twice the total amount of service credit to be purchased, whichever is 
+less.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+21 
+(6) 
+Installment payments shall be made monthly in amounts not less than the monthly 
+payment amount required to complete payment of the purchase over the specified term 
+of the installment agreement. 
+(7) 
+Monthly payment amounts in excess of the required monthly installment payment will not 
+relieve the requirement for any future monthly installment payments pursuant to the 
+service credit purchase agreement. Such extra payments will shorten the term of the 
+agreement unless the member specifies in writing that the extra payments are to be used 
+to reduce the amount of each remaining future monthly payment. 
+5.35 
+Purchase of Service Credit Relating to a Refunded Member Contribution Account 
+The one percent of the member’s Highest Average Salary associated with the cost to purchase forfeited 
+service credit pursuant to 24-51-503(4), C.R.S. and any associated interest payment attributable thereto 
+shall be allocated to the annual increase reserve as soon as administratively practical upon completion of 
+the service credit purchase agreement and shall not be part of the member contribution account and 
+never refundable to the member. 
+5.40 
+Interest Rate 
+The interest rate shall be the actuarial investment assumption rate as set by the Board in effect during the 
+period for which interest is charged. 
+Rule 6: Service Retirement 
+Rule 6 defines service retirement eligibility, provides for cancellation of retirement applications, further 
+defines effective date of retirement, identifies the transition from member to retiree, describes benefits 
+payable upon the death of an applicant and describes requirements for direct payments in lieu of 
+contributions. For the purposes of Rule 6, except for Rule 6.50 and Rule 6.60, the term “member” shall 
+include DPS members and the term “retiree” shall include DPS retirees. 
+6.10 
+Service Retirement Eligibility 
+A. 
+In addition to the eligibility requirements specified in 24-51-602, C.R.S., for members who have 
+service credit as a State Trooper for which a higher contribution rate was required, eligibility for 
+service retirement shall be determined by weighting the State Trooper service credit according to 
+the eligibility requirements for State Troopers. 
+B. 
+In addition to the eligibility requirements specified in 24-51-604, C.R.S., for members who have 
+service credit as a State Trooper, as defined in 24-51-101(46), C.R.S., and as a non-State 
+Trooper, eligibility for reduced service retirement shall be determined by weighting the State 
+Trooper or non-State Trooper service credit, as appropriate, according to the reduced eligibility 
+requirements for State Troopers and non-State Troopers. 
+C. 
+If a member is eligible for a reduced service retirement benefit pursuant to Rule 6.10B, the 
+weighted service credit will be utilized in the calculation of the reduced service retirement benefit 
+pursuant to 24-51-605, C.R.S.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+22 
+6.15 
+Division From Which a Member Retires 
+A retiree who had membership in multiple divisions in the month immediately preceding retirement shall 
+be considered a retiree of the division in which the retiree has the greater salary postings in the month 
+immediately preceding the effective date of retirement. If the retiree had the same amount of salary 
+postings in more than one division in the month immediately preceding the effective date of retirement, 
+the Association shall look to the prior month or months until there is a month that the retiree has greater 
+salary postings from one of the divisions, and the retiree shall be considered a retiree of the division with 
+the greater amount of salary. 
+6.20 
+Service Retirement Application 
+Application for service retirement shall be made with the form(s) prescribed by the Association. 
+6.25 
+Cancellation of Retirement Application 
+Applicants for service retirement may cancel the application anytime prior to the earlier of (1) the issuance 
+of the initial benefit or (2) the use of any Health Care Benefit pursuant to 24-51-1201 et seq., C.R.S. 
+Requests for cancellation must be made to the Association in writing. 
+6.30 
+Effective Date of Retirement 
+Retirement shall be effective on the first day of a month. 
+A. 
+For members who have met the requirement for service retirement or reduced service retirement, 
+the effective date of retirement shall be no earlier than the first day of the month following the last 
+day of employment exclusive of any payment for accumulated annual leave for which service 
+credit is earned, or extension of service credit for members employed on an academic year basis. 
+B. 
+For vested, inactive members, service retirement or reduced service retirement shall be effective 
+no earlier than the first day of the month in which the age and service requirements are met. 
+C. 
+For elected officials who retire at the completion of their term of office who have met the 
+requirements for service retirement or reduced service retirement, the effective date of retirement 
+shall be the first of the month in which the term of office ends. 
+6.40 
+Member Becomes Service Retiree 
+The member shall become a retiree on the effective date of retirement. 
+6.50 
+Death Before Effective Date of Retirement 
+If a member who has applied for retirement dies before the effective date of retirement, the survivor 
+benefits or single payment shall be payable as described in 24-51-908, C.R.S. 
+6.60 
+Direct Payments by Vested, Inactive Members 
+A vested, inactive member who terminated membership before July 1, 2003, may make direct payments 
+in lieu of contributions to acquire eligibility for service retirement or reduced service retirement. 
+A. 
+Lump-Sum Payments 
+(1) 
+Lump-sum payments, except for retroactive payments described in Rule 6.60 B (2), shall 
+not be subject to interest.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+23 
+(2) 
+Lump-sum payments, except those preceding the initiation of installment payments, shall 
+not be refunded unless the member contribution account is refunded. Lump-sum 
+payments preceding the initiation of installment payments shall not be refunded after 
+installment payments have been completed. 
+B. 
+Installment Payments 
+For vested, inactive members who elect to make direct payments in installments, certain 
+requirements shall apply: 
+(1) 
+Installment payments must begin no later than the last day of the month following the 
+month in which employment is terminated, except as specified in Rule 6.60 B (2). 
+(2) 
+For installment payments which begin later than the last day of the first full month 
+following termination of employment, a lump-sum payment, retroactive to the date of 
+termination will be required before installment payments can begin. 
+(3) 
+Installment payments are due without notice on the last day of each month, and shall 
+become delinquent on the 10th calendar day of the following month. 
+(4) 
+Any eligibility purchased and payments made shall be refunded if more than two 
+consecutive monthly payments become delinquent. 
+(5) 
+Payments may be discontinued at any time prior to receipt by the Association of the final 
+payment. Upon discontinuation of payments, all direct payments made shall be refunded 
+and any eligibility purchased shall be negated. 
+6.70 
+Replacement Benefit Arrangement 
+The Association is authorized to establish one or more arrangements under Section 415(m) of the 
+Internal Revenue Code to restore to members the portion of their benefits affected by Code Section 415, 
+in accordance with 24-51-611, C.R.S. 
+6.80 
+Maximum Limit Under Federal Law 
+The cost of living adjustments under section 415(d) of the Internal Revenue Code of 1986, as amended 
+(“the Code” ), to the limits under section 415(b)(1)(A) of the Code are hereby incorporated by reference 
+and shall continue to apply after the member’s termination of membership, as provided in Treasury 
+Regulations section 1.415(a)-1(d)(3)(v). Pursuant to Treasury Regulations section 1.415(b)-1(c)(5), in no 
+event shall the amount payable to a member in any limitation year under the form of benefit elected 
+(taking into account annual cost-of-living increases in Part 10 of Article 51 of Title 24) be greater than the 
+Code section 415(b)(1)(A) limit applicable at the annuity starting date, as increased in subsequent years 
+pursuant to section 415(d) of the Code and Treasury Regulations section 1.415(d)-1. 
+Rule 7: Disability Benefits 
+For the purposes of Rule 7, and subject to Rule 7.90, the term “member” shall include DPS members and 
+the term “retiree” shall include DPS retirees. 
+7.10 
+Disability Application 
+A. 
+The disability application, using the prescribed form, is to be submitted to the Association. 
+B. 
+An applicant may cancel the application prior to the first payment, but the request to cancel must 
+be submitted to the Association in writing.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+24 
+C. 
+An applicant may qualify for short-term disability, disability retirement, or neither. The same 
+applicant shall not be paid both short-term disability and disability retirement for the same day. 
+7.12 
+Determination and Appeal 
+A. 
+The Association shall determine eligibility to apply for disability benefits as defined in 24-51-
+701(1) and (3), C.R.S., salary as defined in 24-51-101(42), C.R.S., service credit as defined in 
+24-51-101(43), C.R.S., the amount payable as disability retirement benefits, the provisions 
+pertaining to the earned income reduction in 24-51-707, C.R.S., and the appropriate division in 
+24-51-708, C.R.S. Any appeal of the determinations made by the Association shall be to the 
+Association in accordance with Rule 2.20. 
+B. 
+The disability program administrator shall determine all disability matters other than those 
+specified in Rule 7.12(A), including, but not limited to, whether the applicant satisfies the medical 
+standards in Rules 7.45 and 7.70. Matters determined by the disability program administrator 
+shall be appealable only to the disability program administrator, not to the Association. The 
+appeal process used by the disability program administrator shall include two levels: the first 
+appeal must be received by the disability program administrator within 180 days of the date the 
+determination is mailed; the second appeal must be received by the disability program 
+administrator within 90 days of the date the first appeal decision is mailed. The second level 
+appeal will include, if requested by the applicant, review of a medical determination by a panel of 
+independent experts, qualified based on their expertise and experience and not involved in the 
+original decision. The appeal process also shall comply with applicable statutory and regulatory 
+requirements. 
+7.15 
+Examinations, Records, and Other Information 
+A. 
+An applicant is required to undergo reasonable examination by physicians, rehabilitation experts, 
+vocational experts, or other experts selected by the disability program administrator. 
+B. 
+An applicant is required to provide medical records, other medical information, employment 
+information, financial information, and any other information reasonably requested by the 
+disability program administrator. 
+C. 
+An applicant, any current employer, and any former employer is required to provide the job 
+description, job duties, essential functions, job site conditions, possible accommodation, payroll 
+records, attendance records, return-to-work information, and any other employment-related 
+information reasonably requested by the disability program administrator. 
+D. 
+Failure to undergo a reasonable examination or re-examination, failure to cooperate with the 
+examiner or the disability program administrator, or failure to provide requested information within 
+60 days may cause the application to be cancelled and any payment, if started, to cease. 
+7.25 
+No Voluntary Suspension 
+After payment for short-term disability or disability retirement has started, voluntary suspension is not 
+permitted. 
+7.30 
+Performance of Disability Program Administrator 
+A. 
+The Association shall monitor the performance of the disability program administrator periodically. 
+For this purpose, the disability program administrator shall provide periodic reports to the 
+Association.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+25 
+B. 
+The Board shall receive a report on the disability program administrator’s performance at least 
+annually. 
+SHORT-TERM DISABILITY: 
+7.40 
+Contract with Disability Program Administrator 
+A. 
+The contract with the disability program administrator, in addition to the applicable statutes and 
+rules, shall govern short-term disability. As soon as administratively feasible following the receipt 
+of employer contributions, the Association shall segregate as a separate fund the portion of the 
+contributions necessary to fund the short-term disability program. 
+B. 
+The contract with the disability program administrator begins January 1, 1999. The applicant’s 
+disability must exist on or after that date, and the applicant’s waiting period must occur entirely on 
+or after that date. 
+C. 
+The contract with the disability program administrator may be amended from time to time. 
+7.45 
+Medical Standard for Short-Term Disability 
+For short-term disability, the applicant, because of the applicant’s medical condition, must not be able to 
+perform the essential functions of the applicant’s job with reasonable accommodation as required by 
+federal law. 
+A. 
+The medical condition causing the disability must be physical or mental or a combination of both. 
+The medical condition must be under ongoing appropriate treatment by a physician with the 
+appropriate specialty. 
+B. 
+The disability must exist prior to termination of employment as defined in 24-51-101(49), C.R.S. 
+C. 
+The applicant must not be totally and permanently mentally or physically incapacitated from 
+regular and substantial gainful employment as defined in Rule 7.70. 
+D. 
+The applicant is not disabled for this purpose if the applicant is medically able to do the types of 
+material duties which the applicant was regularly performing prior to disability and which cannot 
+be reasonably modified or omitted, whether or not the applicant does so. 
+E. 
+The applicant is not disabled for this purpose if the applicant is medically able to perform any job, 
+based on the applicant’s existing education, training, and experience, that earns at least 75 
+percent of the applicant’s predisability earnings from PERA-covered employment as defined in 
+Rule 7.50(B)(1), whether or not the applicant does so. 
+7.50 
+Payment 
+A. 
+The disability program administrator shall determine the amount payable for short-term disability, 
+if any, and shall pay it. 
+B. 
+Short-term disability may provide certain income replacement and reasonable rehabilitation as 
+specified in the contract with the disability program administrator.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+26 
+(1) 
+The maximum amount of monthly income replacement shall be 60 percent of the 
+applicant’s predisability earnings from PERA-covered employment. For short-term 
+disability, predisability earnings from PERA-covered employment shall be the monthly 
+average of the applicant’s salary as defined in 24-51-101(42), C.R.S., on which PERA 
+contributions were paid for the 12 consecutive calendar months immediately preceding 
+the last full day on the job prior to the waiting period. 
+(2) 
+As provided in the contract with the disability program administrator, this maximum 
+amount of income replacement shall be reduced by workers’ compensation benefits, 
+unemployment compensation benefits, payment for back pay claims, and other amounts 
+to the extent that total payments would otherwise exceed 100 percent of predisability 
+earnings from PERA-covered employment. This short-term disability is not a substitute 
+for workers’ compensation or unemployment compensation. 
+7.60 
+Termination 
+A. 
+Payment of short-term disability shall not be made under any of the following circumstances: 
+(1) 
+The applicant is no longer disabled, the applicant satisfies the medical standard for 
+disability retirement in Rule 7.70, the applicant returns to work other than for a temporary 
+return to work as determined by the disability program administrator, or the applicant 
+does not qualify for short-term disability for any other reason. 
+(2) 
+The maximum payment period of 22 months ends. 
+(3) 
+The applicant refunds pursuant to 24-51-405, C.R.S. Short-term disability may be paid to 
+an applicant after termination of employment as defined in 24-51-101(49), C.R.S., but not 
+after a refund. 
+(4) 
+The applicant is eligible for regular service retirement pursuant to 24-51-602, C.R.S., 
+unless the applicant is in the Judicial Division. 
+(5) 
+The applicant dies. 
+B. 
+The applicant shall notify the disability program administrator immediately in writing as soon as 
+the applicant no longer qualifies for payment. In the case of the applicant’s death, the applicant’s 
+estate or relative is to provide such notice within 30 days. 
+C. 
+The amount of any overpayment is to be recovered through repayment or offset. 
+D. 
+A member receiving short-term disability payments may voluntarily terminate receipt of short-term 
+disability payments. Any subsequent receipt of short-term disability payments or disability 
+retirement benefits would be contingent upon meeting the eligibility requirements to apply for 
+such Program as specified at 24-51-701, C.R.S., and the resulting determination by the program 
+administrator. 
+7.65 
+Terms 
+A. 
+Short-term disability shall not be a “benefit” as defined in 24-51-101(7), C.R.S. A person receiving 
+short-term disability shall not be a “benefit recipient” as defined in 24-51-101(8), C.R.S. 
+B. 
+Short-term disability payments shall not be “salary” as defined in 24-51-101(42), C.R.S., shall not 
+be subject to PERA contributions, and shall not result in service credit for PERA purposes.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+27 
+C. 
+Short-term disability payments shall not reduce the applicant’s member contribution account as 
+defined in 24-51-101(31), C.R.S. Any future payment by the Association, after short-term 
+disability, such as a refund, retirement benefits, survivor benefits, or otherwise shall be governed 
+by the applicable provisions of 24-51-101 et seq., C.R.S. 
+DISABILITY RETIREMENT: 
+7.70 
+Medical Standard for Disability Retirement 
+For disability retirement, the applicant, because of the applicant’s medical condition, must be totally and 
+permanently mentally or physically incapacitated from regular and substantial gainful employment. 
+A. 
+The medical condition causing the disability must be physical or mental or a combination of both. 
+The medical condition must be under appropriate treatment by a physician with the appropriate 
+specialty. 
+B. 
+This determination shall be based on whether the applicant is disabled as of termination of 
+employment as defined in 24-51-101(49), C.R.S. 
+C. 
+To be mentally or physically incapacitated from regular and substantial gainful employment, the 
+applicant’s medical condition must prevent the applicant from engaging in any work from which 
+the applicant could earn at least 75 percent of the applicant’s predisability earnings from PERA-
+covered employment. 
+(1) 
+For disability retirement, predisability earnings from PERA-covered employment shall be 
+the monthly average of the applicant’s salary as defined in 24-51-101(42), C.R.S., on 
+which PERA contributions were paid for the 12 consecutive calendar months immediately 
+preceding the last full day on the job. 
+(2) 
+The applicant is not disabled for this purpose if the applicant is medically able to perform 
+the essential functions of any job with reasonable accommodation as required by federal 
+law and earn at least 75 percent of predisability earnings from PERA-covered 
+employment, whether or not the applicant does so. 
+(3) 
+To be total and permanent, the applicant must reasonably be expected not to recover. 
+D. 
+If the applicant does not satisfy this medical standard for disability retirement, the applicant may 
+instead qualify for short-term disability. 
+7.75 
+Effective Date of Disability Retirement 
+A. 
+Disability retirement shall be effective on the first day of a month. The effective date of disability 
+retirement shall be no earlier than the first day of the month following termination of employment 
+as defined in 24-51-101(49), C.R.S., without consideration of any lump-sum payment for 
+accumulated annual leave for which service credit is earned or of any extension of service credit 
+for members employed on an academic year basis. 
+B. 
+An applicant must terminate employment with all PERA-covered employers no later than the last 
+day of the month following the determination that the applicant qualifies for disability retirement. If 
+the applicant fails to terminate by that date, the application shall be cancelled.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+28 
+C. 
+If an applicant is changing from short-term disability to disability retirement, the effective date for 
+the disability retirement shall be the later of (i) the date specified in Rule 7.75(A) or (ii) the first 
+day of the month in which the applicant’s short-term disability ends. For the purposes of 
+determining projected service credit pursuant to 24-51-704, C.R.S., the applicant shall receive 
+service credit for any month the applicant received short-term disability pursuant to 24-51-
+702(1)(a), C.R.S., up to a maximum of one month of service credit per month or the amount to 
+which the member would be entitled pursuant to Rule 5.10. If the applicant receives any short-
+term disability after the effective date for disability retirement, the amount of short-term disability 
+paid for that month shall reduce the amount paid as disability retirement for the same month.. 
+D. 
+If the applicant dies prior to the effective date of disability retirement or dies prior to a 
+determination that the applicant qualifies for disability retirement, the Association shall not pay 
+disability retirement, but shall pay survivor benefits or a single payment as specified in Part 9 of 
+Article 51 of Title 24, C.R.S. 
+7.77 
+Payment 
+A. 
+The Association shall determine the amount payable as the monthly disability retirement benefit, 
+if any, and shall pay it. The amount payable shall be governed by the applicable provisions of 24-
+51-701 et seq., C.R.S. 
+B. 
+If the applicant receives any amount by litigation, compromise, settlement, or other method that 
+resolves a claim for back pay for PERA-covered employment, the applicant shall not be permitted 
+to retain or receive any disability retirement for the same period as the claim. 
+7.80 
+Termination 
+A. 
+If the applicant is no longer disabled based on the medical standard in Rule 7.70 or otherwise is 
+not qualified for disability retirement for any reason other than the applicant’s death, the applicant 
+may receive disability retirement benefits for a maximum of three calendar months immediately 
+following the month in which the determination is made that the applicant no longer qualifies for 
+disability retirement. 
+B. 
+If payment to the applicant for disability retirement terminates for any reason other than the 
+applicant’s death, future payment may occur under the following circumstances: 
+(1) 
+The applicant qualifies and applies for a regular or reduced service retirement as 
+specified in 24-51-602 or 24-51-604, C.R.S. 
+a. 
+The applicant’s benefit is determined using service credit that includes only 
+actual earned and purchased service credit, not any service credit projected 
+based on 24-51-704, C.R.S. 
+b. 
+The applicant may select a new option and a new cobeneficiary for this new 
+effective date of retirement. 
+(2) 
+The applicant qualifies and applies for a refund as specified in 24-51-405, C.R.S., but 
+such refund shall be based on the remaining balance in the applicant’s member 
+contribution account, if any, after reduction for all disability retirement benefits. 
+(3) 
+The applicant dies after disability retirement benefits have terminated for some other 
+reason. Survivor benefits or a single payment may be payable, but only as specified in 
+24-51-901 et seq., C.R.S. For the purpose of calculating any survivor benefits, service 
+credit shall not include any service credit projected based on 24-51-704, C.R.S.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+29 
+(4) 
+Short-term disability may follow termination of disability retirement, but only if (i) the 
+applicant initially satisfied all of the requirements for short-term disability, except that the 
+applicant satisfied the medical standard for disability retirement in Rule 7.70, (ii) the 
+applicant continues to satisfy all of the requirements for short-term disability, and (iii) the 
+applicant has received disability retirement for less than the maximum payment period for 
+short-term disability. Under these circumstances, short-term disability shall be paid to the 
+applicant, but only for any months remaining after reducing the maximum payment period 
+for short-term disability by the number of months for which disability retirement was paid. 
+C. 
+If the applicant dies while receiving disability retirement, future payment, if any, is governed by 
+24-51-801, C.R.S. 
+D. 
+The applicant shall notify the Association immediately in writing as soon as the applicant no 
+longer qualifies for disability retirement. In the case of the applicant’s death, the applicant’s estate 
+or relative is to provide such notice within 30 days. 
+E. 
+The amount of any overpayment is to be recovered through repayment or offset. 
+F. 
+A disability retiree may voluntarily terminate receipt of disability retirement benefits. Any 
+subsequent receipt of short-term disability payments or disability retirement benefits would be 
+contingent upon meeting the eligibility requirements to apply for such Program as specified at 24-
+51-701, C.R.S., and the resulting determination by the program administrator. 
+7.85 
+Terms 
+A. 
+Disability retirement shall be a “benefit” as defined in 24-51-101(7), C.R.S. A person receiving 
+disability retirement shall be a “benefit recipient” as defined in 24-51-101(8), C.R.S., and a 
+“retiree” as defined in 24-51-101(39), C.R.S. An applicant shall first become a disability retiree as 
+of the effective date of disability retirement. 
+B. 
+In accordance with Rule 4.30, disability retirement benefits shall reduce the applicant’s member 
+contribution account as defined in 24-51-101(31), C.R.S. 
+7.90 
+Denver Public Schools 
+A. 
+Any disability application submitted to the Association on or after January 1, 2010, by a DPS 
+member shall be processed in accordance with the provisions of Section 24-51-701, et seq., 
+C.R.S. and this Rule 7. 
+B. 
+A disability application submitted to the Denver Public Schools Retirement System prior to 
+January 1, 2010, shall be processed in accordance with Section 24-51-1701, et seq., C.R.S. and 
+the following rules: 
+(1) 
+PERA shall contract with a medical advisor to assess and provide a recommendation 
+regarding each disability application. Applicants may be required to undergo medical or 
+psychological examination by the medical advisor or by physicians selected by the 
+medical advisor. 
+(2) 
+Determination of Disability 
+(a) 
+The medical advisor shall make a recommendation to PERA staff regarding the 
+disability status of the applicant. Upon review of the application and the medical 
+advisor’s recommendation, PERA staff shall make a determination regarding the 
+disability status of the applicant and shall grant or deny such application. PERA 
+staff shall issue a written determination to the applicant via certified mail.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+30 
+(b) 
+An applicant may request that the PERA Chief Benefits Officer review the staff 
+determination. A written request for review must be received by the Association 
+within 30 days after the date on which the staff determination is mailed. The 
+Chief Benefits Officer shall issue a written determination, which shall be sent to 
+the applicant via certified mail. 
+(c) 
+An applicant may request an administrative hearing before the Executive Director 
+by submitting a written request, including specifics, which must be received by 
+the Association within 30 days after the date on which the determination by the 
+Chief Benefits Officer is mailed. The hearing shall follow the format set forth in 
+Rule 2.20(C) through (E). The Executive Director’s decision shall constitute final 
+administrative action appealable under Colorado Rule of Civil Procedure 
+106(a)(4). 
+C. 
+Review of Previously Granted Disability Retirement 
+(1) 
+At any time, upon reasonable notice to any retired employee of DPS previously granted 
+disability retirement, provided the benefits for such retiree have not yet been recalculated 
+pursuant to sections 70.2031 or 90.2031 of the DPS Plan, the Association shall have the 
+right to require any such retiree to submit to re-examination to determine whether the 
+retired employee remains permanently incapacitated from performing such employee’s 
+former usual employment with DPS. The re-examination shall be performed by a 
+disability program administrator hired by the Association, who shall determine whether 
+the disabling condition continues. The disability program administrator may require any 
+such retiree to answer questions relative to current physical or mental condition and to 
+submit such data in connection therewith as the disability program administrator may 
+deem pertinent and helpful in determining whether the retiree remains incapacitated from 
+performing such employee’s former usual employment with DPS. 
+(2) 
+If any retired employee shall refuse to submit to a required examination or to submit to 
+the disability program administrator, upon request, other pertinent data concerning the 
+retired employee’s current physical or mental condition, or if the doctor selected by the 
+retired employee shall fail or refuse to take necessary action to enable the contemplated 
+procedure to go forward with reasonable promptness, the disability program administrator 
+may, without further notification to the retired employee, proceed to review the retirement 
+granted to such employee upon such information as may be secured by the disability 
+program administrator. The Association shall have the right to withhold benefit checks 
+until such required response has been received. 
+(3) 
+If the disability program administrator determines that the retired employee does not 
+remain permanently incapacitated from performing such employee’s former usual 
+employment with DPS, the disability program administrator shall provide the retiree with a 
+summary of the reasons for the finding. The retiree shall be given 15 days to appeal the 
+decision of the disability program administrator. The determination made by the disability 
+program administrator shall be appealable only to the disability program administrator, 
+not to the Association. Once 15 days have passed without appeal, or once a final 
+determination upholding the disability program administrator’s determination has been 
+made by the disability program administrator, the Association shall terminate the retiree’s 
+benefit. 
+(4) 
+No person over the age of 65 in any given year shall be subject to re-examination.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+31 
+D. 
+Review and Recalculation of Disability Benefits 
+(1) 
+Pursuant to the DPS Plan, qualification of time spent since the effective date of disability 
+retirement as accredited service requires that the disability retiree submit a copy of his or 
+her federal income tax form for the calendar year involved. All such documentation must 
+be submitted to the Association no later than six months following the end of such year. 
+(2) 
+The DPS Plan provides for the addition of accredited service earned at the effective date 
+of disability retirement to 65. 
+(3) 
+The Association will notify, in writing, those disability retirees eligible to receive additional 
+accredited service. Such notice will be sent annually to those persons eligible to comply 
+and will advise them of the requirements necessary at least six months prior to the time 
+limits for compliance set forth in Rule 7.90 D(1). 
+RULE 8: 
+BENEFIT OPTIONS 
+Rule 8 describes the requirements for election of an option and designation of a named beneficiary or 
+cobeneficiary. For the purposes of Rule 8, the term “member” shall include DPS members and the term 
+“retiree” shall include DPS retirees. 
+8.10 
+Election of Options 
+The election of a benefit option shall be made in writing and shall contain the signature of the member or 
+the signature of the individual(s) appointed to represent the member. Alternatively, designation may be 
+made electronically as prescribed by the Association. 
+8.20 
+Designation of Named Beneficiary, Cobeneficiary or Coannuitant 
+Designation of a named beneficiary, cobeneficiary, or coannuitant shall be made in writing and shall 
+contain the signature of the member or the signature of the individual(s) appointed to represent the 
+member. Alternatively, designation may be made electronically as prescribed by the Association. Such 
+designation shall take effect upon receipt by the Association. 
+A. 
+Named Beneficiary 
+The member or retiree may designate more than one named beneficiary. If more than one named 
+beneficiary survives the member, the single payment of the balance of the member contribution 
+account and the amount of the matching employer contributions shall be shared equally. If more 
+than one named beneficiary survives the retiree, the single payment of the balance remaining in 
+the member contribution account and the amount of matching employer contributions shall be 
+shared equally. Designation of the named beneficiary may be changed by the member or retiree 
+at any time prior to death. 
+B. 
+Cobeneficiary 
+Only one cobeneficiary can be designated to receive benefits under the provisions of Options 2 or 
+3. 
+C. 
+Coannuitant 
+Under the DPS benefit structure, only one coannuitant can be designated to receive benefits 
+under the provisions of Options P2, or P3.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+32 
+8.30 
+Designation of Cobeneficiary Upon Marriage or Civil Union 
+A. 
+For purposes of Section 24-51-802(3), C.R.S., only a retiree receiving an option 1 benefit may 
+elect to change to an option 2 or 3 benefit option upon marriage or civil union. A retiree may only 
+elect once to change his or her option 1 to option 2 or 3 and designate his or her new spouse, 
+whether by marriage or civil union, as cobeneficiary. Once such election is made, the retiree may 
+not make such designation again even if such election is revoked within 60 days as permitted by 
+Section 24-51-802(1), C.R.S. 
+B. 
+For purposes of Section 24-51-802(3), C.R.S., a retiree who marries on or after January 1, 2011, 
+must elect option 2 or 3 and designate his or her new spouse as cobeneficiary within 60 days of 
+the date of marriage. 
+C. 
+For purposes of Section 24-51-802(3), C.R.S., a retiree who enters into a civil union on or after 
+January 1, 2014, must elect option 2 or 3 and designate his or her new spouse as a cobeneficiary 
+within 60 days of the date of the civil union. 
+D. 
+For purposes of Rules 8.30B. and C., PERA must receive all supporting documentation within 90 
+days of the date of the marriage or civil union. If the election is not made within 60 days and the 
+supporting documentation is not received by PERA within 90 days of the date of the marriage or 
+civil union, the retiree may not elect option 2 or 3 and designate his or her new spouse as 
+cobeneficiary. 
+Rule 9: Survivor Benefits 
+Rule 9 describes the requirements for designation of named beneficiaries, defines job incurred death, 
+specifies the date on which survivor benefits become payable and the date on which survivor benefits 
+terminate. For the purposes of Rule 9, the term “member” shall include DPS members and the term 
+“retiree” shall include DPS retirees. 
+9.10 
+Designation of Named Beneficiary 
+Designation of a named beneficiary or named beneficiaries shall be made in writing and shall contain the 
+signature of the member or the signature of the individual(s) appointed to represent the member. 
+Alternatively, designation may be made electronically as prescribed by the Association. Such designation 
+shall take effect upon receipt by the Association. 
+9.20 
+Job-Incurred Death 
+The member’s death shall be considered job-incurred if the illness or injury which caused the death 
+resulted from the performance of job duties. 
+9.30 
+Survivor Benefit Application 
+Application for survivor benefits shall be made with the form(s) prescribed by the Association. Eligibility of 
+applicants to receive survivor benefits shall be determined from documentation establishing age of 
+applicant, relationship of applicant to deceased member, unmarried status, disability status, and full-time 
+enrollment in school for children over age 18 and under age 23. 
+9.40 
+Commencement of Survivor Benefits 
+Survivor benefits shall become payable on the first day of a month. 
+A. 
+Benefits Payable at the Death of the Member
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+33 
+Survivor benefits payable at the death of the member shall be payable on the first day of the 
+month following the month in which the death occurred. 
+B. 
+Benefits Payable to Child Upon Enrollment in School 
+Survivor benefits which become payable to a qualified child upon full-time enrollment in school 
+within six months of the date of the death of the member, or, for the DPS benefit structure, full-
+time enrollment in school within four months of the date of death of the member, shall be payable 
+on the first day of the month in which full-time enrollment begins. 
+C. 
+Surviving Spouse’s Benefits 
+Surviving spouse’s benefits shall become payable on the first day of the month in which the 
+surviving spouse becomes eligible for a benefit. 
+D. 
+Qualified Children’s Benefits 
+Survivor benefits payable to qualified children pursuant to Rule 1.20 E shall become payable on 
+the first day of the month in which the child is born or the decree of adoption is entered. 
+9.50 
+Termination of Benefits 
+Survivor benefits shall be terminated on the date the survivor dies or is no longer qualified to receive such 
+benefits. 
+A. 
+Qualified Children’s Benefits 
+(1) 
+Under the PERA benefit structure, qualified children’s survivor benefits shall terminate on 
+the date of marriage of the child, on the date the Board finds that the child is no longer 
+incapacitated, on the last day of the school term in which the child’s full-time enrollment 
+ceases, or, for disabled children age 23 or older, on the first day of the month in which 
+the surviving spouse becomes eligible for a benefit. 
+(2) 
+Under the DPS benefit structure, qualified children’s survivor benefits shall terminate on 
+the date of marriage of the child, on the date the Board finds that the child is no longer 
+incapacitated, or on the last day of the school term in which the child’s full-time 
+enrollment ceases. The benefit shall also terminate on the date that an otherwise eligible 
+child is adopted by anyone other than the unremarried surviving spouse of the member, 
+and in such a case eligibility of the child shall be terminated by a subsequent remarriage 
+of said surviving spouse. 
+(3) 
+Benefits shall continue during annual vacation months for which the child is not enrolled 
+in school if the child certifies within 30 days after the end of the prior term that they are 
+enrolled for the following term. If the child does not certify within 30 days after the end of 
+the prior term that he or she is enrolled for the following term, that child’s benefits will be 
+suspended for those vacation months. If that child later certifies that he or she is or was 
+enrolled in school for the following term, the Association will resume payment of benefits 
+and shall make retroactive payments to the child for the months for which the benefits 
+were suspended due to failure to provide the summer certification. In the case of multiple 
+qualified children, a child who is entitled to retroactive benefits pursuant to this Rule 9.50 
+A. shall not be paid benefits in an amount that would cause the total amount of benefits 
+paid to the qualified children to exceed the percentage of Highest Average Salary as 
+provided in 24-51-908(4) or 24-51-1738 through 1740, C.R.S. The Association shall not 
+pay benefits in excess of the amount it must pay pursuant to the statutory provisions of 
+the Association.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+34 
+B. 
+Dependent Parent’s Benefits 
+Dependent parent’s benefits shall terminate on the date the parent remarries. 
+9.60 
+Resumption of Survivor Benefits Payments 
+A. 
+Survivor benefits which have been terminated due to a child’s ineligibility may be reinstated, upon 
+receipt by the Association, of verification of unmarried status, and school attendance or disability 
+status. Benefits will be terminated for any other benefit recipients who had become eligible, 
+during the child’s period of ineligibility, effective the first of the month in which documentation 
+needed for reinstatement is received. 
+B. 
+Survivor benefits which have been terminated due to marriage shall be reinstated upon receipt, 
+by the Association, of a court order declaring the marriage invalid. 
+C. 
+Reinstated benefits shall become payable the first day of the month of renewed eligibility, 
+provided that no other benefit has been paid on the account for the same time period to which a 
+retroactive payment might apply. If another benefit has been paid, the reinstated benefit shall 
+become payable on the first of the month eligibility is verified. 
+9.70 
+Division From Which Benefits are Payable 
+A. 
+The division in which a deceased member or inactive member had membership immediately 
+preceding the date of death shall be the division which determines the eligibility and benefits for a 
+survivor of that member. 
+B. 
+The survivor of a deceased member who was receiving salary from employers in multiple 
+divisions prior to his or her date of death shall receive benefits from the division in which the 
+deceased member had the greater salary postings in the month immediately preceding his or her 
+death. If the deceased member had the same amount of salary postings in more than one 
+division in the month immediately preceding death, the Association shall look to the prior month 
+or months until there is a month that the deceased member had greater salary postings from one 
+of the divisions, and the division with the greater amount of salary shall be the division which 
+determines the eligibility and benefits for a survivor of that member. 
+RULE 10: 
+INCREASE IN BENEFITS 
+Rule 10 further defines eligibility for and determination of annual increases in benefits. Rules 10.10 and 
+10.20A. shall not apply to DPS members or retirees. 
+10.10 
+Retroactive Effective Date of Retirement or Survivor Benefit 
+A. 
+For a retiree who was a member, inactive member, or retiree on December 31, 2006, if the 
+effective date of the benefit is retroactive, then increases in the benefit shall be determined by 
+considering the benefit to have been paid from the effective date. 
+B. 
+For a survivor benefit recipient, if the effective date of the benefit is retroactive, then increases in 
+the benefit shall be determined by considering the benefit to have been paid from the effective 
+date.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+35 
+10.20 
+Increase in Benefits for Cobeneficiaries 
+A. 
+For cobeneficiaries whose benefits are based on the account of a retiree who was not a member, 
+inactive member, or retiree on December 31, 2006, the annual increase shall be effective only if 
+the retirement benefits have been paid on the account for the full preceding calendar year and the 
+retiree had met the requirements in 24-51-1001(3)(b) or 24-51-1001(3.5), C.R.S., as applicable. If 
+upon the death of the retiree, the retiree had not met the requirements in 24-51-1001(3)(b) or 24-
+51-1001(3.5), C.R.S., as applicable, the cobeneficiary will be eligible to receive an annual 
+increase when the retiree would have met the requirements in 24-51-1001(3)(b) or 24-51-
+1001(3.5), C.R.S., as applicable. 
+B. 
+For cobeneficiaries whose benefit is based on the account of a DPS member or DPS retiree, or 
+whose benefit is based on the account of a member of the PERA benefit structure who began 
+membership on or before December 31, 2006, the annual increase shall be effective only if the 
+retirement benefits have been paid on the account for the preceding twelve months and the 
+retiree had met the requirements in Section 24-51-1001(1)(b) or 24-51-1001(1)(b.5), C.R.S., as 
+applicable. If upon the death of the retiree, the retiree had not met the requirements in Section 
+24-51-1001(1)(b) or 24-51-1001(1)(b.5), C.R.S., as applicable, the cobeneficiary will be eligible to 
+receive an annual increase when the retiree would have met the requirements in Section 24-51-
+1001(1)(b) or 24-51-1001(1)(b.5), C.R.S., as applicable. This Rule only applies to accounts for 
+which the effective date of retirement is on or after January 1, 2011. 
+10.30 
+Proration of Annual Increase for Post-January 1, 2011 Benefit Recipients 
+This Rule shall only apply to post-January 1, 2011 benefit recipients whose benefit is based on the 
+account of a DPS member or DPS retiree or whose benefit is based on an account of a member of the 
+PERA benefit structure who began membership on or before December 31, 2006. 
+A. 
+When the benefit recipient receives his or her first annual increase after becoming eligible for the 
+annual increase pursuant to Part 10 of the PERA statutes, in addition to receiving the applicable 
+compounded annual increase percentage in July, the benefit recipient shall also receive: 
+(1) 
+A one-time payment that is not compounded on the base benefit or retirement allowance, 
+whichever is applicable, recognizing the period between the month in which the benefit 
+recipient first became eligible for the annual increase to July of the year in which he or 
+she receives his or her first annual increase. The amount of the one-time payment shall 
+be the amount of the annual increase percentage paid in July multiplied by the base 
+benefit or the retirement allowance, whichever is applicable, multiplied by the number of 
+months the benefit recipient has been eligible for the annual increase. 
+(2) 
+Upon re-retirement under sections 24-51-1103(1.5) or 24-51-1726.5, C.R.S., whichever is 
+applicable, each benefit segment is eligible for the one-time payment as described in 
+subsection (1) above. 
+B. 
+For benefit recipients receiving multiple benefits, excluding benefit recipients who receive multiple 
+benefit segments pursuant to sections 24-51-1103(1.5) or 24-51-1726.5, C.R.S., whichever is 
+applicable, each benefit shall be looked at separately when determining eligibility for the annual 
+increase and in determining the amount of the one-time payment as described in paragraph A. (1) 
+above. 
+C. 
+For benefit recipients receiving multiple benefit segments pursuant to sections 24-51-1103(1.5) or 
+24-51-1726.5, C.R.S., whichever is applicable, in which at least one or more is a reduced service 
+retirement benefit, the total service credit across all benefit segments will be used in determining 
+eligibility for the annual increase.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+36 
+10.40 
+Increase in Benefits for State Troopers Receiving a Reduced Service Retirement 
+For a member who is receiving a reduced service retirement and has service credit both as a State 
+Trooper, as defined in 24-51-101(46), C.R.S., and as a non-State Trooper, service credit for purposes of 
+determining eligibility for the annual increase pursuant to Part 10 of Article 51 of Title 24, C.R.S will be 
+weighted in the same manner as determining service retirement eligibility pursuant to Rule 6.10. 
+RULE 11: 
+EMPLOYMENT AFTER RETIREMENT 
+Rule 11 describes conditions under which retirees may be employed with and without a reduction or 
+suspension of benefits, describes the conditions under which employer contributions must be paid on 
+retirees performing services after retirement for a PERA employer and describes the conditions for 
+recalculation of benefits upon termination of employment after retirement. Unless otherwise indicated, for 
+the purposes of Rule 11, the term “member” shall include DPS members and the term “retiree” shall 
+include DPS retirees. 
+11.05 
+Employment During the Effective Month of Retirement 
+A. 
+A day of work during the effective month of retirement is defined as any time worked for a PERA 
+affiliated employer regardless of the number of hours worked per day. 
+B. 
+Employment by a retiree during the month of the effective date of retirement shall count toward 
+the working after retirement limits specified in 24-51-1101(1), C.R.S. 
+11.10 
+Employment After Service Retirement 
+A retiree receiving a service retirement or reduced service retirement benefit may be employed, under 
+certain conditions, without reduction in benefits. 
+A. 
+Employment with an Affiliated Employer 
+(1) 
+For a service retiree employed in a position subject to limits on employment after service 
+retirement, employment of more than four hours per day shall be considered one day. 
+(2) 
+Employment after service retirement shall include all of the time during which a retiree 
+renders any paid service. 
+B. 
+Employment with a Non-Affiliated Employer 
+A retiree receiving a service retirement or reduced service retirement benefit may be employed 
+with a non-affiliated employer without a reduction in or suspension of benefits. 
+C. 
+Employment of Benefit Recipients Other Than Retirees 
+Cobeneficiaries and survivors are not subject to employment limitations. 
+D. 
+Employment Pursuant to Section 24-51-1101(1.8) and (1.9), C.R.S. 
+(1) 
+For the purposes of Section 24-51-1101(1.8), C.R.S., an “employer” is defined to be an 
+entire school district and the charter schools of the district. Charter schools are not 
+separate employers for purposes of Section 24-51-1101(1.8), C.R.S.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+37 
+(2) 
+A service retiree who is working for an employer pursuant to Section 24-51-1101(1.8) or 
+(1.9), C.R.S., may also work for one or more employers during the calendar year. Once 
+the service retiree reaches one hundred ten days or seven hundred twenty hours in a 
+calendar year, whichever is applicable, the retiree may only work any remaining days or 
+hours, without a reduction in benefits, for the employer that designated that service 
+retiree pursuant to Section 24-51-1101(1.8) or (1.9), C.R.S. Any employment with 
+another employer will subject the retiree to a reduction in benefits pursuant to Section 24-
+51-1102, C.R.S. 
+(3) 
+For purposes of Section 24-51-1101(1.8) and (1.9), the employer must provide the 
+Association with a list of any and all service retirees employed by the employer no later 
+than September 1st of the applicable calendar year. The list must be updated with each 
+service retiree who is hired that year. 
+(4) 
+For purposes of Section 24-51-1101(1.8) and (1.9), C.R.S., an employer is not required 
+to designate all applicable service retirees by September 1st of the applicable calendar 
+year. However, once all applicable service retirees have been designated during a 
+calendar year pursuant to Section 24-51-1101(1.8), C.R.S., no additional service retirees 
+may be designated even if one or more of the designated service retirees ceases work 
+for that employer. 
+(5) 
+For purposes of Section 24-51-1101(1.8) and (1.9), C.R.S., a service retiree shall only be 
+eligible for one designation per position per employer in a calendar year. Once 
+designated, the service retiree may not be removed or redesignated during that calendar 
+year. 
+(6) 
+For purposes of Section 24-51-1101(1.8)(b.5)(II), and (1.9)(g) C.R.S., beginning on 
+January 1, 2025, the six-year limitation for service retirees is six consecutive calendar 
+years beginning in the calendar year the service retiree is first designated. Following the 
+sixth consecutive calendar year, a service retiree must take a one calendar year break 
+from such designation before being redesignated. 
+E. 
+Employment as an Instructor at a State College or University 
+(1) 
+An instructor at a state college or university may, but is not required to, determine hours 
+worked for purposes of the limit in Section 24-51-1101(1) or (1.8), C.R.S., as applicable, 
+by deeming each one credit hour taught per semester to equal three hours worked per 
+week in that semester. An instructor who determines hours worked using this method 
+may not exceed seven hundred twenty or nine hundred sixteen hours worked in the 
+calendar year, or the daily equivalent if combining the hourly employment limit with other 
+daily employment. 
+(2) 
+For the purposes of this Rule, ‘‘state college or university’’ has the same definition as 24-
+51-1101(1.8)(e)(I), C.R.S.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+38 
+11.12 
+Employer Contributions and Working Retiree Contributions on Retiree Service 
+A. 
+A PERA employer that receives the services of a retiree, other than as a volunteer, under the 
+conditions specified in this Rule, shall remit employer contributions to the Association in the 
+manner specified in 24-51-401, C.R.S. and this Rule. Working retiree contributions shall also be 
+due on such a retiree in accordance with the provisions of Rule 4.60 and paragraph (F) of this 
+Rule. Employer contributions and working retiree contributions shall be due to the Association 
+only if a retiree is the individual performing services for a PERA employer. Employer contributions 
+and working retiree contributions shall not be due to the Association for a retiree if no services are 
+provided to a PERA employer by the retiree. Employer contributions and working retiree 
+contributions shall not be due to the Association for a retiree who provides products or goods to a 
+PERA employer rather than services. 
+B. 
+Ownership of up to 5 percent of a publicly traded company registered on a national securities 
+exchange by a retiree shall not constitute ownership of the company or cause the company to be 
+an affiliated party of the retiree for purposes of 24-51-1101(2), C.R.S. Any other form or degree of 
+ownership in an entity providing services to a PERA affiliated employer shall constitute ownership 
+or operation of the entity for purposes of 24-51-1101(2), C.R.S. 
+C. 
+For purposes of 24-51-1101(2), C.R.S. an affiliated party shall include: 
+(1) 
+any person who is the named beneficiary or cobeneficiary on the PERA account of the 
+retiree, 
+(2) 
+any person who is a relative of the retiree by blood or adoption to and including parents, 
+siblings, half-siblings, children, and grandchildren, 
+(3) 
+any person who is a relative of the retiree by marriage or civil union to and including 
+spouse, spouse’s parents, step-parents, step-children, step-siblings, and spouse’s 
+siblings, and 
+(4) 
+any person or entity with whom the retiree has an agreement to share or otherwise profit 
+from the performance of services for a PERA employer by the retiree other than the 
+retiree’s regular salary or compensation. 
+D. 
+When employer contributions or working retiree contributions are due to the Association as a 
+result of services provided by a retiree, the amount of contributions shall be based on the 
+following: 
+(1) 
+If the services provided to a PERA employer by the retiree are the specific subject of an 
+agreement with the PERA employer, the employer shall report the salary to PERA and 
+remit the appropriate contributions. Working retiree contributions shall be based on the 
+amount received by the retiree as specified in the agreement which, if paid directly by a 
+PERA employer, would constitute salary under 24-51-101(42), C.R.S.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+39 
+(2) 
+If the services provided to a PERA employer by a retiree are not the specific subject of an 
+agreement with the PERA employer, then the retiree shall disclose the amount of 
+compensation received by the retiree for services the retiree is providing to the PERA 
+employer. Retiree shall report monthly to the Association and the PERA employer the 
+amount received for the services provided to the PERA employer and shall specify the 
+amount of compensation received which, if paid directly by a PERA employer, would 
+constitute salary under 24-51-101(42), C.R.S. The monthly report to the Association by 
+the retiree shall be in the form specified by the Association. The PERA employer shall 
+remit employer contributions to the Association within 30 days after receipt of the retiree’s 
+disclosure. Working retiree contributions shall also be due in accordance with the 
+provisions of Rule 4.60 and paragraph (F) of this Rule. 
+(3) 
+If a retiree fails to report the compensation required under subsection D.(2) then the 
+retiree shall be responsible to pay the employer contribution required by 24-51-1101(2), 
+C.R.S. together with interest on the employer contribution and the working retiree 
+contribution at PERA’s actuarial investment assumption rate. Any amounts due under this 
+subsection D.(3) shall be collected via an offset of the retirement benefit of the retiree. 
+(4) 
+For purposes of this Rule 11.12 D., “specific subject of an agreement” means that an 
+agreement between the retiree and the PERA employer, whether written or otherwise, 
+contemplates services to be provided by the retiree. If the retiree is receiving 
+compensation reported to the IRS under the retiree’s own social security number or the 
+PERA employer has knowledge of retiree status, the employer shall report under 
+subsection D.(1). 
+E. 
+Regular salary or compensation received by the retiree as an employee of an entity which is not 
+owned or operated by the retiree or any affiliated party shall not be subject to employer 
+contributions or working retiree contributions. 
+F. 
+Working retiree contributions for independent contractors shall be collected via an offset of the 
+retiree’s retirement benefit to the point that the full benefit is offset. 
+11.15 
+Reduction/Offset in Benefits 
+A. 
+Any reduction in benefits due to working in the month of effective date of retirement or due to 
+exceeding the working after retirement limits for an affiliated employer shall take place in the 
+month immediately following the month such work occurs or is reported to PERA. If such benefit 
+reduction cannot completely occur in this month, it shall be applied to future months until the 
+amount due is recovered. 
+B. 
+For disability retirees who exceed the earnings limit for employment after disability retirement, the 
+benefit offset shall take place in the month immediately following the month such work occurs or 
+is reported to PERA. If such benefit offset cannot completely occur in this month, it shall be 
+applied to future month’s benefits. In no case shall the benefit offset exceed the total benefit paid 
+on the retiree account. This paragraph (B) shall not apply to DPS disability retirees whose 
+application was received prior to January 1, 2010. 
+C. 
+For retirees who have multiple benefit segments pursuant to Section 24-51-1103 or 24-51-
+1726.5, C.R.S., all benefit segments shall be offset by any reduction in benefits due to working in 
+the month of effective date of retirement or due to exceeding the working after retirement limits for 
+an affiliated employer.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+40 
+D. 
+Retirees who exceed the working after retirement limits shall report the excess hours or days 
+worked to PERA no later than March 31st of the following year. If the retiree fails to timely report 
+the excess hours or days, interest at PERA’s actuarial investment assumption rate shall be 
+applied to the amount owed pursuant to Section 24-51-1102, C.R.S. Interest shall be calculated 
+retroactively to April 1st of the year in which the reporting was due. The reduction in benefit and 
+any interest due under this subsection D. shall be collected via an offset of the retirement benefit 
+of the retiree. 
+11.16 
+Suspension of Service Retirement 
+A. 
+A service retiree may prospectively suspend receipt of retirement benefits and return to 
+membership. A retiree must return to membership in order to suspend receipt of retirement 
+benefits. No retroactive suspension of benefits is allowed. 
+B. 
+If a retiree suspends receipt of retirement benefits pursuant to 24-51-1103, C.R.S., and returns to 
+work in a different division from which he or she retired, when the retiree resumes receipt of 
+benefits due to re-retirement, the retiree shall remain retired from the division from which he or 
+she originally retired. This Rule shall not apply to retirees who suspend receipt of retirement 
+benefits on or after January 1, 2011. 
+11.20 
+Termination of Employment After Retirement 
+A. 
+PERA Retirees Who Suspend Benefits Before January 1, 2011 
+(1) 
+Employment of Less Than One Year 
+A retiree who earns less than one year of service credit, following suspension of benefits 
+and resumption of employment in a position subject to membership, shall receive a 
+refund of member contributions made during the period of membership together with the 
+amount of matching employer contributions, upon resumption of benefit payments. The 
+amount of matching contributions shall be determined based on the service credit earned 
+during the period of suspension and the age of the retiree. 
+(2) 
+Employment of One Year or More 
+A retiree who earns at least one year of service credit following suspension of benefits 
+and resumption of employment in a position subject to membership shall, upon 
+subsequent retirement, receive a recalculated benefit which reflects the additional service 
+credit earned during the period of membership and any change to the Highest Average 
+Salary. 
+B. 
+PERA Retirees Who Suspend Benefits on or After January 1, 2011 and DPS Retirees 
+(1) 
+Employment of Less Than One Year 
+A retiree who earns less than one year of service credit, following suspension of benefits 
+and resumption of employment in a position subject to membership, shall receive a 
+refund of member contributions made during the period of membership, upon resumption 
+of benefit payments.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+41 
+(2) 
+Employment of One Year or More 
+A retiree who earns at least one year of service credit following suspension of benefits 
+and resumption of employment in a position subject to membership shall build a new 
+benefit segment. Upon termination of employment, the retiree shall have the option to 
+either refund the account pursuant to Section 24-51-1103 or 24-51-1711, C.R.S., 
+whichever is applicable, or elect to receive a second benefit based upon the plan 
+provisions that governed the retiree’s initial retirement benefit. The retiree will be 
+immediately eligible for a second benefit upon termination of employment, regardless of 
+the retiree’s age. Regardless of total years of service credit earned during the second 
+benefit period, the sum of the option 1 benefit or option A benefit, whichever is applicable, 
+calculated pursuant to Part 6 of Article 51 of Title 24, C.R.S., shall not exceed one 
+hundred percent of the largest highest average salary earned in any one benefit 
+segment. 
+11.30 
+Employment After Disability Retirement 
+A retiree receiving a disability retirement benefit may be employed in a position subject to membership 
+under the same conditions applied to service or reduced service retirement. A disability retirement benefit 
+may be suspended following resumption of employment under the conditions specified in 24-51-707, 
+C.R.S. This Rule 11.30 shall not apply to DPS retirees receiving a disability benefit whose disability 
+application was received on or before December 31, 2009. 
+11.40 
+Commencement of Employment After Retirement 
+Employment after retirement may begin no earlier than the second business day of the month in which 
+retirement is effective. If employment begins in the month in which retirement is effective, the benefit of 
+the retiree shall be reduced by 5 percent per day worked during the month of the effective date of 
+retirement. 
+Rule 12: 
+Health Care Program 
+Rule 12 describes requirements for enrollment and payment of premiums for the Health Care Program. 
+For the purposes of Rule 12, the term “member” shall include DPS members and the term “retiree” shall 
+include DPS retirees. 
+12.10 
+Enrollment 
+Enrollment in the Health Care Program is subject to receipt by the Association of the prescribed 
+enrollment form(s). 
+A. 
+Enrollment When First Eligible 
+(1) 
+Enrollment of Benefit Recipients 
+(a) 
+Service retirees and reduced service retirees may enroll themselves and any 
+eligible dependents for whom coverage is desired within 30 days after the date of 
+the first benefit payment. 
+(b) 
+Survivor benefit recipients and disability retirees may enroll within 30 days after 
+the date of the first benefit payment.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+42 
+(c) 
+A surviving cobeneficiary who was not enrolled in the Program may enroll within 
+30 days after the date of the first benefit payment. Coverage and requisite 
+premium deductions will continue for a cobeneficiary whose coverage was in 
+effect at the death of the retiree unless the cobeneficiary requests cancellation of 
+coverage. 
+(2) 
+Enrollment of Spouses Not Receiving Benefits 
+(a) 
+The surviving spouse of a retiree who elected Option 1, or a DPS retiree who 
+elected a single life annuity, must notify the Association in writing within 30 days 
+after the loss of coverage in order to continue the coverage which was in effect at 
+the death of the retiree. 
+(b) 
+The divorced spouse of a retiree must notify the Association in writing within 30 
+days after the loss of coverage in order to continue the coverage which was in 
+effect at the time of the divorce. 
+(c) 
+For purposes of Section 24-51-1204(1)(b), C.R.S., a single life annuity under the 
+DPS benefit structure shall include Option A, Option B, and Option D. 
+(3) 
+Enrollment of New Dependents 
+(a) 
+Newborn or newly adopted children may be enrolled within 30 days after the date 
+of birth or adoption. Other children may be enrolled within 30 days after the date 
+they become qualified as described in 24-51-1204(1)(a), C.R.S. 
+(b) 
+Spouses may be enrolled within 30 days after the date of marriage or civil union. 
+(c) 
+Dependent parents may be enrolled within 30 days after the date they become 
+dependent parents as described in 24-51-101(14), C.R.S. 
+B. 
+Enrollment Upon Loss of Other Coverage 
+Benefit recipients and others eligible for coverage who are not enrolled in the Health Care 
+Program may enroll within 30 days after loss of other coverage. 
+C. 
+Enrollment Upon Reaching Medicare Eligibility 
+(1) 
+Benefit recipients and others eligible for coverage may enroll in the Health Care Program 
+within 30 days after their Medicare effective date. 
+(2) 
+Persons enrolled in the Health Care Program may change coverage from one health plan 
+sponsored by the Program to another within 30 days after reaching Medicare eligibility. 
+D. 
+Open Enrollment 
+A period of open enrollment shall be held annually. Benefit recipients may enroll themselves and 
+their eligible dependents during the annual open enrollment period. 
+12.20 
+Payment of Health Care Premiums by Benefit Recipients 
+Premium payments made by benefit recipients shall be made through deduction from the benefit payment 
+or by direct payment.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+43 
+A. 
+Deductions from Benefit Payments 
+The portion of the monthly premium paid by the benefit recipient shall be deducted from the 
+benefit payment, unless the portion of the premium to be paid by the benefit recipient exceeds the 
+amount of the benefit payment. 
+B. 
+Direct Payment 
+If the portion of the premium to be paid by the benefit recipient exceeds the amount of the benefit 
+payment, the benefit recipient shall make direct payments. 
+12.25 
+Conditions for Direct Payment of Health Care Premiums 
+Direct payment of premium amounts may be made on a monthly or quarterly basis. The Association shall 
+bill the benefit recipient, the surviving spouse or the divorced spouse for the direct payments. 
+A. 
+Requirements for Timely Payments 
+Direct payments are due prior to the month for which coverage is being purchased in accordance 
+with the timeline as determined by the Association. 
+B. 
+Cancellation Due to Non-Payment 
+Payments not made within 30 days of the due date shall result in cancellation of coverage 
+effective at the end of the last month for which premium payments were made. 
+12.30 
+Health Care Premiums for Benefit Recipients Who Have Multiple Benefit Segments 
+When a retiree suspends his or her service retirement or reduced service retirement benefits and builds 
+one or more separate benefit segments pursuant to Section 24-51-1103(1.5) or 24-51-1726.5, C.R.S., 
+whichever is applicable, the service credit in all benefit segments shall be added together by the 
+Association for the purposes of determining payment of premium subsidies for the Health Care Program. 
+Rule 13: 
+Life Insurance Program 
+Rule 13 describes conditions for enrollment for group life insurance coverage, provides for direct payment 
+of premiums, and specifies requirements for designation of beneficiaries. For the purposes of Rule 13, the 
+term “member” shall include DPS members and the term “retiree” shall include DPS retirees. 
+13.10 
+Enrollment 
+Life insurance coverage shall be available to members who voluntarily subscribe. 
+A. 
+Enrollment Upon Becoming a Member 
+A member may enroll within 90 days after becoming a member without proof of insurability. 
+B. 
+Open Enrollment 
+(1) 
+Open enrollment during which proof of insurability will not be required shall be held at 
+times and for a period to be specified by the Association. 
+(2) 
+Open enrollment shall be available to members only.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+44 
+13.20 
+Direct Payment of Premiums for Group Life Insurance 
+A. 
+Members may pay life insurance premiums directly to the life insurance plan in which they are 
+enrolled. Inactive members may continue coverage after termination of employment by paying life 
+insurance premiums directly to the life insurance plan in which they are enrolled, provided they 
+have not received a refund of their account. 
+B. 
+Members on a leave without pay may make payments for the life insurance premiums to their 
+employer, who shall report the payments on the monthly contribution report. 
+C. 
+Retirees whose benefits have been suspended may pay premiums directly to the life insurance 
+plan in which they are enrolled. 
+13.30 
+Designation of Beneficiary for Life Insurance 
+Designation of a beneficiary shall be made in writing and must contain the signature of the member or 
+retiree or the signature of the individual(s) appointed to represent the member or retiree, and the date. 
+Alternatively, designation may be made electronically as prescribed by the Association. Such designation 
+shall take effect upon receipt by the Association. 
+RULE 14: 
+VOLUNTARY INVESTMENT PROGRAM (401(k) PLAN) 
+Rule 14 describes certain requirements of the Voluntary Investment Program, a 401(k) plan established 
+pursuant to Section 401(k) of the Internal Revenue Code of 1986, as amended. In addition to this Rule 14 
+and Part 14 of Article 51 of Title 24, C.R.S., the Voluntary Investment Program, or “401(k) Plan”, is also 
+governed by PERA’s 401(k) and Defined Contribution Plan and Trust Document adopted by the Board 
+(the “Plan document”). 
+14.10 
+Enrollment in the 401(k) Plan 
+A. 
+Any employee of an affiliated employer may enroll in the 401(k) Plan in accordance with the 
+terms of the Plan document. 
+B. 
+A person whose assets are transferred from the state defined contribution match plan to the 
+401(k) Plan pursuant to 24-51-1402(5)(a), C.R.S., shall be automatically enrolled in the 401(k) 
+Plan. 
+14.15 
+Changes in 401(k) Plan Participation 
+Requests for changes in the percent of contributions assigned to each fund or the total amount in each 
+fund must be submitted in the time and manner designated by the Plan Administrator. 
+14.20 
+Suspension of Participation 
+A participant may stop contributions to the 401(k) Plan in accordance with the terms of the Plan 
+document. 
+14.30 
+Contribution Report 
+A. 
+The employer shall deliver all 401(k) Plan contributions, along with the required report, to the 
+service provider designated by the Plan Administrator within five days of the date contributions 
+were deducted from the employee’s salary. If either the report or contributions are delinquent, 
+interest shall be assessed and paid to participants as determined by the Plan Administrator in a 
+manner consistent with the Employee Plans Compliance Resolution System, Rev. Proc. 2016-51, 
+as updated and superseded by future IRS guidance.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+45 
+B. 
+The Plan Administrator shall prescribe the form in which 401(k) Plan contributions shall be 
+reported. Interest on delinquent reports or contributions shall be assessed and paid to the Plan 
+Administrator computed on a daily rate on the contribution amount from the due date to the day 
+that both the required report and contributions are received. The Plan Administrator, in its sole 
+discretion, may waive the interest so computed. 
+14.40 
+Distributions 
+Distribution of a participant’s 401(k) account may commence as specified in the Plan document. 
+14.50 
+Loans 
+All eligible 401(k) participants may borrow monies from the participant’s 401(k) account subject to loan 
+provisions established by the Board and specified in the Plan document. 
+14.65 
+Compliance with Internal Revenue Service Code 
+A participant may only contribute to the plan up to the maximum contribution limits established by the 
+Internal Revenue Service each year. If a participant contributes to another plan subject to the same 
+maximum limit in the same year as the participant contributes to PERA’s 401(k) plan, the participant is 
+responsible for compliance with the Internal Revenue Service Code regarding maximum allowable 
+contributions. 
+14.70 
+Beneficiary Designations 
+Designation of a beneficiary shall be made in the manner prescribed by the Plan document. 
+Rule 15: 
+Domestic Relations Orders (DROs) 
+Rule 15 requires that the standardized form be used by the parties to a domestic relations order, as well 
+as by the court, and includes other rules for administration of domestic relations orders. For the purposes 
+of Rule 15, the term “member” shall include DPS members and the term “retiree” shall include DPS 
+retirees. 
+15.05 
+Definitions 
+A DRO for the PERA defined benefit plan, the PERA defined contribution plan, the PERA 401(k) Plan, or 
+the PERA 457(b) Plan shall consist of: (1) The written agreement for a DRO pursuant to C.R.S. §14-10-
+113(6) (hereinafter “agreement”) and (2) The domestic relations order (hereinafter “order”). 
+15.10 
+Standardized Forms 
+As specified in 14-10-113(6)(d), C.R.S., the standardized agreement and order forms provided by PERA 
+must be used by the parties and by the court, for the agreement and the order to be valid with respect to 
+PERA. The standardized forms must be executed voluntarily by both parties and properly completed to 
+be a valid DRO with respect to PERA, with no changes or alterations to the provisions of the standardized 
+forms. 
+15.20 
+Type of Plan 
+PERA’s required plan is a “defined benefit plan” as defined in 14-10-113(6)(b)(II), C.R.S., and all 
+payments from the Plan shall be considered payments from a defined benefit plan. PERA’s defined 
+contribution plan, PERA’s voluntary plan, the 401(k) Plan, and PERA’s deferred compensation plan, the 
+457(b) Plan, are each a “defined contribution plan” as defined in 14-10-113(6)(b)(III), C.R.S.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+46 
+15.25 
+DRO Submission Requirements 
+A. 
+The parties shall submit the agreement to PERA within 90 days after entry of the decree and the 
+permanent orders regarding property distribution in a proceeding for dissolution of marriage, legal 
+separation or declaration of invalidity of marriage. For the agreement to be valid with respect to 
+PERA, the agreement and order shall be entered by the court upon or before entry of any decree 
+of dissolution of marriage, decree of legal separation, or declaration of invalidity of marriage or 
+within 90 days after entry of the decree and the permanent orders regarding property distribution 
+in a proceeding for dissolution of marriage, legal separation or declaration of invalidity of 
+marriage. Certified copies of the agreement and order shall be received by PERA within 90 days 
+after entry of the order and agreement, but must be received by PERA at least 30 days before 
+PERA shall make its first payment pursuant to the DRO. Notwithstanding the foregoing, a person 
+who was divorced prior to July 1, 2009 and who was a member of: (1) the state defined 
+contribution match plan and whose assets were transferred to the 401(k) Plan pursuant to 24-51-
+1402(5)(a), C.R.S.; (2) the state defined contribution plan and whose assets were transferred to 
+the PERA Defined Contribution Plan pursuant to Section 24-51-1501(2)(a); or (3) the state 
+deferred compensation plan previously administered under Part 1 of Article 52 of Title 24, as said 
+part existed prior to its repeal in 2009 and whose assets were transferred to the PERA 457(b) 
+Plan pursuant to Section 24-51-1601, C.R.S., shall have until July 1, 2010 to submit certified 
+copies of the agreement and the order to PERA with respect to the assets so transferred. 
+B. 
+An existing DRO that is valid with respect to PERA may be modified only by written agreement of 
+the parties to the DRO and approved by the court. The standardized forms provided by PERA 
+must be used by the parties to modify a DRO. Certified copies of the agreement and order shall 
+be submitted to and received by PERA at least 30 days before PERA shall make its first payment 
+pursuant to the modified DRO. 
+15.30 
+Application by Alternate Payee 
+An alternate payee must make application for payment with the forms prescribed by PERA. No payment 
+shall be made by PERA to the alternate payee until after all of the necessary forms have been completed 
+and received by PERA and all other statutory, regulatory, and rule requirements for payment are satisfied. 
+15.40 
+Participant’s Account 
+The member contribution account for the defined benefit plan, the defined contribution account for the 
+defined contribution plan and the member’s account for the 401(k) Plan or the 457(b) Plan shall be 
+reduced by payments made to the alternate payee. 
+15.50 
+Review of DRO Issues 
+Any issue pertaining to PERA and what PERA can or cannot do pursuant to a DRO (including, but not 
+limited to, the validity of any DRO with respect to PERA, whether PERA can make any payment pursuant 
+to any DRO, and what the amount and timing of any payment by PERA can be) shall be resolved through 
+PERA’s administrative review process pursuant to Rule 2.20. 
+15.60 
+DPS Benefit Structure 
+If a member has a member contribution account under both the PERA benefit structure and the DPS 
+benefit structure, the member shall submit a separate DRO agreement with respect to both member 
+contribution accounts. The standardized forms provided by PERA must be used by the parties.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+47 
+RULE 16: 
+DEFINED CONTRIBUTION PLAN 
+16.10 
+Terms 
+A. 
+Defined Contribution Plan means the Association’s defined contribution plan established pursuant 
+to 24-51-1501, C.R.S., as a component of the 401(k) Plan. The Defined Contribution Plan is a 
+separate trust fund within the 401(k) Plan and is also governed by PERA’s 401(k) and Defined 
+Contribution Plan and Trust Document (the “Plan document”). The Defined Contribution Plan is a 
+profit-sharing plan intended to satisfy the requirements of Section 401(a) of the Internal Revenue 
+Code. 
+B. 
+Defined Contribution Account refers to an account containing sums transferred to the account via 
+trustee to trustee transfer together with the contributions to the Defined Contribution Plan on 
+behalf of the member of the Defined Contribution Plan and the earnings thereon less any 
+distributions, any losses, and the member’s allocable portion of the costs and expenses of 
+administering the Plan. 
+C. 
+Commence Employment means the date the employee began actual performance of services in 
+the position eligible for the Defined Contribution Plan and earned salary for such services, 
+regardless of when the payment occurs. 
+D. 
+Community College refers to any Community College in the state system of community and 
+technical colleges governed by the State Board for Community Colleges and Occupational 
+Education which shall include Arapahoe Community College, Colorado Northwestern Community 
+College, the Community College of Aurora, the Community College of Denver, Front Range 
+Community College, Lamar Community College, Morgan Community College, Northeastern 
+Junior College, Otero Junior College, Pikes Peak Community College, Pueblo Community 
+College, Red Rocks Community College, Trinidad State Junior College and the Colorado 
+Community College and occupational education system. 
+E. 
+Member of the Defined Contribution Plan means an employee who elected to participate in the 
+Defined Contribution Plan pursuant to 24-51-1503(1) or 24-51-1506(4), C.R.S., or who became a 
+member pursuant to 24-51-1501(2) or 24-51-1503(3), C.R.S, and is presently performing services 
+for that PERA- affiliated employer for salary resulting in contributions to the Defined Contribution 
+Plan. Member of the Defined Contribution Plan also means, to the extent required, a member 
+who is inactive but who has a Defined Contribution Account. 
+F. 
+Except as expressly provided herein, for purposes of Part 15 of the PERA Statutes and this Rule 
+16, all time periods shall be determined in accordance with 2-4-108, C.R.S. 
+G. 
+Year of Membership in the Defined Contribution Plan means 12 months, not necessarily 
+consecutive, during which contributions are made on the member’s behalf pursuant to 24-51-
+1505(1), C.R.S., to the Defined Contribution Plan. A Defined Contribution Plan member’s total 
+years of membership in the Defined Contribution Plan shall be calculated by dividing the total 
+number of months during which contributions were made on the member’s behalf to the Defined 
+Contribution Plan by 12. Credit shall not be provided for member contributions transferred 
+pursuant to Rule 16.30 D after an employee elects to participate pursuant to 24-51-1506(4), 
+C.R.S. Years of membership before a 12-month break in service shall not be includable for 
+purposes of determining a Defined Contribution Plan member’s years of membership after such 
+12-month break in service. Each time an election is made to participate in the Defined 
+Contribution Plan after a 12-month break in service, the employee shall have a new Defined 
+Contribution Account with a new vesting schedule.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+48 
+H. 
+For purposes of 24-51-1506(4), C.R.S., year of membership in the plan means 12 months of 
+contributions, not necessarily consecutive, with an employer as defined in 24-51-1501(4), C.R.S. 
+A member’s total years of membership in the Defined Benefit Plan shall be calculated by dividing 
+the total number of months of contributions by 12. Years of membership before a 12-month break 
+in membership shall not be includable for purposes of determining a member’s years of 
+membership after such 12-month break in membership. Each time an election is made pursuant 
+to 24-51-1502(1) or 1503(1), C.R.S., after a 12-month break in membership, the employee shall 
+have a new calculation for years of membership for the purposes of 24-51-1506(4), C.R.S. Years 
+of membership with an employer other than an employer defined in 24-51-1501(4), C.R.S., shall 
+not count towards the calculation of years of membership pursuant to 24-51-1506(4), C.R.S. 
+I. 
+For purposes of Rule 16.10 H., reference to 12-month break in membership means 12 
+consecutive months for which no contributions are made on the member’s behalf to the Defined 
+Benefit Plan with an employer defined in 24-51-1501(4), C.R.S. 
+J. 
+12-Month Break in Service means, except as otherwise required by federal law, 12 consecutive 
+months for which no contributions are made on the member’s behalf to the Defined Contribution 
+Plan. 
+K. 
+Transfer Account means an account within the PERA 401(k) account containing the vested 
+portion of the Defined Contribution Account together with any earnings thereon, less any 
+distributions, losses and the member’s allocable portion of the costs and expenses of 
+administering the Plan that is established if there is a 12-Month Break in Service from the Defined 
+Contribution Plan or an election is made to become a member of the Association pursuant to 24-
+51-1506(1), C.R.S., and Rule 16.30 A. The Transfer Account will be an account within the PERA 
+401(k) account but will be subject to the same distribution and investment election rules as the 
+Defined Contribution Account. 
+16.20 
+Initial Election Period 
+A. 
+Election to participate in the Defined Contribution Plan by an eligible employee pursuant to 24-51-
+1503(1), C.R.S., must be made in a manner approved by the Association. Such election must be 
+received by the Association within 60 days from the date the employee commences employment. 
+Such election becomes effective on the first valuation date following the receipt of the election 
+form by the Association. If no such election is received by the Association within 60 days from the 
+date the employee commences employment, the employee will automatically become a member 
+of the Association’s defined benefit plan. 
+B. 
+An eligible employee shall make only a single election pursuant to 24-51-1502(1) and 24-51-
+1503(1), C.R.S. Such an election, once made, may not be withdrawn. 
+C. 
+If member and employer contributions are made to the Association during the initial election 
+period on behalf of an eligible employee who elects to be covered by the Defined Contribution 
+Plan pursuant to 24-51-1502(1), C.R.S., such contributions (without interest) shall be transferred 
+to the plan within 90 days after the eligible employee’s election becomes effective. 
+D. 
+An employee of an employer as defined in 24-51-1501(4), C.R.S., who terminates his or her 
+employment for any reason prior to the expiration of the 60 days pursuant to 24-51-1502(1) or 
+1503(1), C.R.S., and who has not made a choice to become a participant in a retirement plan, 
+shall be deemed to have been a member of the Association from the date of employment to the 
+date of termination and thereafter an inactive member of the Association. 
+E. 
+For purposes of Section 24-51-1747(2)(b)(III), C.R.S., any service performed for DPS prior to the 
+merger date of January 1, 2010 shall count as service for purposes of the twelve month break in 
+service.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+49 
+16.30 
+Additional Choice Within Years Two Through Five 
+A. 
+Election to become a member of the Association pursuant to 24-51-1506(1), C.R.S., must be 
+made in writing in a manner designated by the Association. Membership in the Association is 
+effective on the first date of the pay period following the date the Association receives the form. 
+Such election must be received within the second to fifth year of the employee’s current period of 
+membership in the Defined Contribution Plan. Years of membership in the Defined Contribution 
+Plan shall be determined in accordance with Rule 16.10 G. 
+B. 
+Election to become a member of the Defined Contribution Plan pursuant to 24-51-1506(4), 
+C.R.S., must be made in writing in a manner designated by the Association. Such election 
+becomes effective on the first date of the pay period following the date the Association receives 
+the election form. Such election form must be received within the second to fifth year of the 
+employee’s membership in the Association as determined in accordance with Rule 16.10 H. 
+C. 
+For an employee who becomes a member of the Association pursuant to 24-51-1506(1), C.R.S., 
+the vested portion of his or her Defined Contribution Account pursuant to 24-51-1505(3), C.R.S., 
+shall be transferred into the employee’s Transfer Account. The amount of unvested employer 
+contributions shall be forfeited pursuant to 24-51-1505(3), C.R.S. 
+D. 
+An employee who elects to participate in the Defined Contribution Plan pursuant to 24-51-1503(1) 
+or 1506(4), C.R.S., who has an existing member contribution account and is an inactive member 
+of the Association, may either (i) elect to maintain his or her inactive member contribution account 
+in the Association or (ii) direct that his or her member contribution account be transferred to the 
+Defined Contribution Account; provided that after-tax contributions shall be transferred to an after-
+tax account in the employee’s PERA 401(k) account. If an employee elects to transfer his or her 
+member contribution account pursuant to this subsection (ii), and that employee has two member 
+contribution accounts in the defined benefit plan, both accounts shall be transferred. If an 
+employee elects to transfer his or her member contribution account pursuant to this subsection 
+(ii), the Association will transfer such account within 90 days after the employee’s election 
+becomes effective. 
+E. 
+An employee who elects to become a member of the Association pursuant to 24-51-1506(1), 
+C.R.S., or after a 12-Month Break in Service from the Defined Contribution Plan and who has 
+previously elected to transfer his or her member contribution account to the Defined Contribution 
+Account pursuant to Rule 16.30 D (ii), may reestablish his or her member contribution account 
+and corresponding service credit. The cost to reestablish the member contribution account shall 
+be the amount of money that was originally in the member contribution account, plus interest 
+calculated at the actuarial investment assumption rate pursuant to PERA Rule 2.90 C plus an 
+amount equal to one percent of the member’s highest average salary for each month or partial 
+month of service credit to be reestablished in accordance with 24-51-503(4), C.R.S. An employee 
+who elects to reestablish his or her member contribution account pursuant to this Rule 16.30 E 
+may reestablish a portion of the account. 
+F. 
+A member of the Defined Contribution Plan who elects to receive a distribution of the entire 
+vested balance of his or her Defined Contribution Account pursuant to Rule 16.90 or a member of 
+the Defined Benefit Plan who elects to refund his or her Member Contribution Account pursuant 
+to Rule 4.40, and then subsequently returns to membership in the Association or in the Defined 
+Contribution Plan before there has been a 12-month break in service shall begin with the same 
+number of years of membership he or she had accrued prior to terminating membership for 
+purposes of the additional choice within years two through five as provided for in 24-51-1506, 
+C.R.S. and Rule 16.30. 
+G. 
+Individuals who became members of the Defined Contribution Plan pursuant to section 24-51-
+1501(2) or 24-51-1503(3), C.R.S., are not eligible to make an additional choice within years two 
+through five and this Rule 16.30 is not applicable to them.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+50 
+H. 
+An individual with a DPS inactive account who is a member of the Association’s Defined 
+Contribution Plan on or after January 1, 2010, who elects at any time during the second to fifth 
+year of membership in the Plan, pursuant to Section 24-51-1506, C.R.S., to terminate 
+membership in the Defined Contribution Plan and to become a member of the Association’s 
+Defined Benefit Plan, must make a one-time irrevocable choice between the DPS benefit 
+structure and the PERA benefit structure in accordance with the portability provisions of Section 
+24-51-1747, C.R.S. The provisions of this paragraph (H) only apply to a member who has not 
+already had a one-time irrevocable choice. 
+16.40 
+Investments 
+The investment alternatives available to a member of the Defined Contribution Plan shall be the same as 
+those available in the PERA 401(k) Plan. In the event of a transfer from the Defined Contribution Plan to 
+the Transfer Account, the investment alternatives designated by the member of the Defined Contribution 
+Plan shall remain the same until changed. 
+16.50 
+Beneficiary(ies) 
+Beneficiary designations shall be governed by the terms of the Plan document. 
+16.60 
+Contributions 
+A. 
+The employer shall deliver all Defined Contribution Plan contributions, along with the required 
+report, in the manner designated by the Plan Administrator within five days of the date the 
+member of the Defined Contribution Plan is paid and consistent with the provisions of 24-51-
+401(1.7) (b) to (1.7)(d), C.R.S. If either the payment or the reports or both are late, interest shall 
+be assessed and paid as specified in PERA Rule 14.30. Any resulting expenses incurred by the 
+Plan Administrator (including charges or expenses imposed by third parties) for delinquency or 
+inadequate funding by the employer shall be paid by the employer. The Plan Administrator, in its 
+sole discretion, may waive such expenses. 
+B. 
+For purposes of deferring federal income tax imposed on salary, the employee contributions 
+assumed and paid for by the employer shall be in lieu of paying such amounts as salary and shall 
+be treated as employer contributions pursuant to Section 414(h)(2) of the Internal Revenue Code. 
+For all other purposes, employee contributions assumed and paid for by the employer shall be 
+considered employee contributions. 
+C. 
+Members of the Defined Contribution Plan shall be eligible to make tax- deferred contributions 
+and rollover contributions to the 401(k) Plan. Members of the Defined Contribution Plan shall also 
+be eligible to make tax-deferred contributions and rollover contributions to the 457(b) Plan if they 
+are employed by an Employer that is affiliated with the Plan. 
+D. 
+If a Defined Contribution Plan Participant has assets transferred to the Defined Contribution Plan 
+pursuant to Section 24-51-1501(2), C.R.S., and those assets contain rollover contributions, the 
+rollover contributions will be transferred to the Participant’s 401(k) Account and shall not remain 
+in the Participant’s Defined Contribution Plan Account. 
+16.65 
+Contributions Based on Uniformed Service 
+A. 
+A member of the Defined Contribution Plan who is reemployed and has the rights under 24-51-
+507, C.R.S., and the Uniformed Services Employment and Reemployment Rights Act of 1994 
+(“USERRA”), may elect to make up his or her missed contributions for the period of uniformed 
+service up to five years. Contributions must be made in accordance with USERRA, set forth at 38 
+U.S.C. § 4301, et seq.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+51 
+B. 
+Contributions made by a member of the Defined Contribution Plan pursuant to this Rule must be 
+made during the time period starting with the date of reemployment and continuing for up to three 
+times the length of the member’s immediate past period of uniformed service, with the repayment 
+period not to exceed five years. Makeup contributions may only be made during this period and 
+while the member is employed with the post-service employer. 
+C. 
+Upon PERA’s receipt of the member contributions pursuant to section (A) of this Rule, the 
+employer shall pay the employer contribution attributable to the period of time that the member 
+paid make-up contributions. The employer shall remit the entire amount due pursuant to this 
+section within 30 days from the date the member makes his or her make-up contributions. 
+D. 
+If the employee does not make up all of the contributions attributable to the period of service, his 
+or her defined contribution account may be less than if he or she had done so. Even when the 
+employee and employer make up all contributions attributable to the period of service, the 
+employee’s account may not be the same as if the employee had remained continuously 
+employed because the employee is not permitted to experience gains or losses on the make-up 
+contributions that occurred in his or her defined contribution account during the period of service. 
+16.70 
+Return to Employment 
+A. 
+A member of the Defined Contribution Plan who elects to receive a distribution of the entire 
+vested balance of his or her Defined Contribution Account pursuant to this Rule and then 
+subsequently returns to membership in the Association before there has been a 12-month break 
+in service shall begin a new vesting schedule for future contributions. 
+B. 
+A Member of the Defined Contribution Plan who has elected a lifetime annuity distribution option 
+on or after an age that distributions are exempt from penalty under Internal Revenue Code 
+Section 72(t) shall be deemed to be a Retiree of the Association subject to the provisions of Rule 
+11 and 24-51-1101, et seq., C.R.S. 
+C. 
+A Participant in the state defined contribution plan established pursuant to Part 2 of Article 52 of 
+Title 24, as said part existed prior to its repeal in 2009, who has elected a lifetime annuity 
+distribution option on or after an age that distributions are exempt from penalty under Internal 
+Revenue Code Section 72(t) shall be subject to the provisions of Rule 11 and 24-51-1101, et 
+seq., C.R.S. 
+16.80 
+Forfeiture 
+A. 
+Except as otherwise required by federal law, upon the earlier of (i) a 12-Month Break in Service, 
+(ii) the distribution of the vested portion of the Defined Contribution Plan member’s Defined 
+Contribution Account upon termination of membership in PERA, or (iii) the transfer of the vested 
+portion of the member’s Defined Contribution Account to a Transfer Account, the person shall 
+forfeit the portion of the Defined Contribution Account that is not vested. Forfeitures shall be used 
+to pay Plan expenses. If required by federal law, the forfeited portion of the Defined Contribution 
+Account without earnings shall be reinstated upon the person’s resumption of participation in the 
+Defined Contribution Plan. 
+B. 
+If a person has a 12-Month Break in Service from membership in the Defined Contribution Plan, 
+the vested portion of the Defined Contribution Account will automatically be transferred to a 
+Transfer Account. The amount of unvested employer contributions shall be forfeited pursuant to 
+24-51-1505(3), C.R.S.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+52 
+16.90 
+Distributions Upon Termination of Employment 
+Distribution of a member’s Defined Contribution Account may commence as specified in the Plan 
+document. 
+16.95 
+Miscellaneous 
+A. 
+The Domestic Relations Order requirements in PERA Rule 15 shall be the same for the Defined 
+Contribution Plan as they are for the remainder of the PERA 401(k) Plan. 
+B. 
+A person may retire from the Association or receive a distribution from his or her Defined 
+Contribution Account only if he or she has terminated PERA covered employment and is no 
+longer actively contributing to either the Defined Contribution Plan or the Association’s Defined 
+Benefit Plan. Notwithstanding the foregoing, a person who retired from the Association prior to 
+July 1, 2009, and became a member of the Defined Contribution Plan pursuant to Section 24-51-
+1501(2), C.R.S., and who is actively contributing to the Defined Contribution Plan as of July 1, 
+2009, may continue to be a retiree even though he or she is actively contributing to the Defined 
+Contribution Plan. If such person has terminated employment with the employer that he or she 
+was employed with as of July 1, 2009, and subsequently returns to work, he or she shall be 
+treated as a PERA retiree and may not continue to contribute to the Defined Contribution Plan. 
+C. 
+A member of the Defined Contribution Plan may not obtain a loan from the member’s Defined 
+Contribution Account. 
+D. 
+The lifetime annuity distribution option for members of the Defined Contribution Plan will not be 
+provided by the Association. 
+E. 
+Subject to Rule 16.95 B, an employee of an employer as defined in 24-51-1501(4), C.R.S. who is 
+hired on or after July 1, 2009, and who was an employee of an employer as defined in 24-51-
+1501(4), C.R.S. during the 12 months prior to the date that the employee commences 
+employment shall participate in the Plan that he or she was in based on the prior employment 
+with an employer as defined in 24-51-1501(4), C.R.S. during the last 12 months. Notwithstanding 
+the above, and subject to Rule 16.95 F and G, if the employee has been an active participant in 
+the state defined contribution plan established pursuant to part 2 of article 52 of title 24, as said 
+part existed prior to its repeal in 2009, during the 12 months prior to the date the employee 
+commences employment with an employer, the employee shall be a member of the Association’s 
+Defined Contribution Plan upon commencing employment with the employer, and the employee 
+shall not be considered an eligible employee for purposes of section 24-51-1506(1) and (2), 
+C.R.S. 
+F. 
+An employee who is hired on or after January 1, 2008, by a Community College who was an 
+employee of a Community College during the 12 months prior to the date that the employee 
+commences employment, shall participate in the Plan that he or she was in based on the prior 
+employment with a Community College in the last 12 months. 
+G. 
+An employee who commences employment with a Community College on or after January 1, 
+2008, who has not been employed by a Community College in the last 12 months, but who has 
+been a Member of the Defined Contribution Plan in the last 12 months, shall continue to be a 
+Member of the Defined Contribution Plan upon commencement of employment with the 
+Community College. 
+H. 
+Any person who becomes a candidate for Board election in the State or Local Government 
+Division pursuant to Part 2 of the Association’s Statutes and these Rules must disclose whether 
+he or she is a member of the Defined Contribution Plan or a member in the Defined Benefit Plan.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+53 
+I. 
+Except as required by 24-51-212, C.R.S., none of the moneys, accounts, benefits, or 
+contributions associated with a Defined Contribution Account shall be assignable either in law or 
+in equity or be subject to execution, levy, attachment, garnishment, bankruptcy proceedings, or 
+other legal process. 
+J. 
+A person who no longer has a Defined Contribution Account and has not elected a lifetime 
+annuity distribution option shall not have any rights associated with the Defined Contribution Plan 
+and cannot be a retiree of the Association. 
+K. 
+A person who has a Transfer Account may only rollover the Transfer Account to another Plan not 
+administered by the Association if that person is no longer a member of the Association. A 
+member or inactive member who has a Transfer Account may rollover the Transfer Account or 
+any portion thereof to the PERA 401(k) Plan . 
+L. 
+In the event there is a conflict between these Rules and the Plan Document, these Rules shall 
+govern. 
+RULE 17: 
+DEFERRED COMPENSATION PLAN (457(b) PLAN) 
+Rule 17 describes certain requirements of the Deferred Compensation Plan, which is a 457(b) plan 
+established pursuant to Section 457(b) of the Internal Revenue Code of 1986, as amended. In addition to 
+this Rule 17 and Part 16 of Article 51 of Title 24, C.R.S., the Deferred Compensation Plan, or “457 Plan”, 
+is also governed by the Deferred Compensation Plan document adopted by the Board (the “Plan 
+document”). 
+17.10 
+Enrollment in the 457(b) Plan 
+Any employee of an employer who has affiliated with the Deferred Compensation Plan pursuant to 
+section 24-51-1602, C.R.S. may enroll in accordance with the Plan document. 
+17.20 
+Changes in 457(b) Plan Participation 
+Requests for changes in the amount or investment of contributions must be submitted in the time and 
+manner determined by the Plan Administrator. 
+17.30 
+Suspension of Participation 
+A participant may stop contributions to the 457(b) Plan in accordance with the terms of the Plan 
+document. 
+17.40 
+Contribution Report 
+The employer shall deliver all 457(b) Plan contributions, along with the required report, in the form and 
+manner designated by the Plan Administrator, within five days of the date contributions were deducted 
+from the employee’s salary. If either the report or contributions are delinquent, interest shall be owed to 
+participant accounts, and additional interest shall be assessed and paid to the Association as specified in 
+Rule 4.10. 
+17.50 
+Distribution of Benefits 
+Distribution of a participant’s 457 Plan account may commence as specified in the Plan document.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+54 
+17.60 Loans 
+All eligible participants may borrow monies from the participant’s 457(b) account subject to loan 
+provisions established by the Board and specified in the Plan document. 
+17.70 
+Compliance with Internal Revenue Service Code 
+A participant may only contribute to the 457(b) Plan up to the maximum contribution limits established by 
+the Internal Revenue Service each year. If a person contributes to another 457(b) plan in the same year 
+as they contribute to the PERA 457(b) Plan, the person is responsible for compliance with the Internal 
+Revenue Service Code regarding maximum allowable contributions. 
+17.80 
+Beneficiary Designations 
+Designation of a beneficiary shall be made in the manner prescribed by the Plan document. 
+Rule 18: 
+DPS Members and DPS Retirees 
+Rule 18 describes the rights and benefits of participants in the DPS plan, which was merged with the 
+PERA system effective January 1, 2010, pursuant to Section 24-51-1701, et seq., C.R.S. Rule 18 also 
+details the rules and requirements for portability between the Denver Public Schools Division and the 
+other four divisions within the Association. 
+18.10 
+Data Certification 
+The Denver Public Schools Retirement System (DPSRS) will certify all data of the accounts of DPS 
+members and retirees as of December 31, 2009. The certified data will be used by PERA and will have a 
+presumption of accuracy unless the DPS member or retiree is able to demonstrate otherwise. 
+18.20 
+Plan Selection Due to Failure to Make a One-Time Irrevocable Choice 
+For purposes of Section 24-51-1747(1)(f), C.R.S. regarding one-time irrevocable choice, if the individual 
+fails to make a choice and has service credit in both benefit structures and the amount of service credit in 
+both structures is equal, and both structures have had the most recent contributions at the same time, 
+then the individual shall be enrolled in the PERA benefit structure. 
+18.30 
+Options B, C and E - Commutation Calculations 
+Pursuant to Section 24-51-1718, 1719 and 1721, C.R.S. under Options B, C and E, respectively, where 
+payments become due to the estate of a deceased contingent beneficiary, or to an estate as designated 
+or contingent beneficiary, the payments remaining due shall be commuted. Where payments is due to a 
+trust which is the functional substitute, in the particular case, for a testamentary disposition, the Executive 
+Director may, under appropriate conditions, direct payment to the trustee of such trust. Where the 
+applicable adjustment is the less of 2% or the actual increase in the national consumer price index for 
+urban wage earners and clerical workers (the “Index”), as calculated by the United States Department of 
+Labor, a factor derived as follows shall be used in making the commutation calculation Such factor shall 
+be the average of the annual increases paid for the five calendar years preceding the date of death of 
+such contingent beneficiary, or of the death of the Annuitant or Co-Annuitant resulting in a payment due 
+to an estate as contingent beneficiary, as the case may be, provided that if the change for any such year 
+(i) is less than zero, then zero shall be substituted or (ii) is more than 2%, then 2% shall be substituted. If 
+the death occurs before the Index figure is available for the calendar year prior to the particular death, 
+then the Executive Director may use a period of the most recent 60-month period. In making the 
+commutation calculation, the annual adjustment factor derived as just provided shall be incorporated into 
+an algorithm with the other pertinent factors after consultation with the Association's actuary.
+
+CODE OF COLORADO REGULATIONS 
+8 CCR 1502-1 
+Public Employees’ Retirement Association 
+ 
+55 
+18.40 
+Effective Date of Annual Increase Payable to Members of the DPS Benefit Structure 
+The effective date of the annual increase payable to members of the DPS benefit structure who were 
+hired prior to July 1, 2005, shall be the same date that the annual increase is paid to members of the 
+PERA benefit structure who were hired before January 1, 2007. Notwithstanding the foregoing, effective 
+with the January 2010 benefit payment, eligible benefit recipients under the DPS benefit structure will 
+receive an increase of .5417 percent which signifies two-twelfths of the 3.25 percent annual increase for 
+the months of January and February 2010. 
+_________________________________________________________________________ 
+Editor’s Notes 
+History 
+Rules 1, 2, 16 eff. 01/01/2008. 
+Rules Board, 1, 2, 4, 5, 6, 9, 11, 14, 15, 16 eff. 01/01/2009. 
+Rules 2, 14, 15, 16, 17 emer. rules eff. 07/01/2009. 
+Rules 2.95, 14.10, 14.20, 14.40, 14.70, 15.05, 15.20, 15.25, 15.40, 16.10, 16.20, 16.30, 16.50, 16.60, 
+16.70, 16.95, 17 eff. 09/01/2009. 
+Rules 1, 2.10, 2.15, 2.30, 2.90, 2.95, 3.30, 4.40, 4.50, 5.20, 5.25, 7.90, 8.20, 9.40, 9.50, 11.15, 11.20, 
+11.30, 12.10, 14.65, 15.60, 16.20, 16.30, 18 emer. rules eff. 01/01/2010. 
+Rules 1, 2.10, 2.15, 2.30, 2.90, 2.95, 2.96, 3.30, 4.40, 4.50, 5.20, 5.25, 6.80, 7.90, 8.20, 9.40, 9.50, 10, 
+11.15, 11.20, 11.30, 12.10, 14.65, 15.60, 16.20, 16.30, 18 eff. 02/03/2010. 
+Rule 18.40 eff. 03/18/2010. 
+Rules 1, 1.20, 2, 2.15 C, 4.10, 4.40, 4.60, 8.30, 10, 10.20, 10.30, 11.10, 11.12, 11.15, 11.16, 11.20, 12.30 
+eff. 01/01/2011. 
+Rules 1.2, 2.15, 2.20, 3.40, 4.60, 5.20, 11.12, 18.30 eff. 01/01/2012. 
+Rules 1.20 D, 1.20 F.(1)(b), 1.20 F.(3), 1.20 G.(4)-(5), 2.15, 2.42, 2.70 D, 2.90 C, 6.10, 9.50 A.(3), 10.30, 
+11.20 A.(2) eff. 01/01/2013. 
+Rules 1.20 F.7, 2.15 B, 2.15 C, 2.20 F, 2.20 G.(3)(b), 2.90 C, 4.60 C, 8.30, 11.12 C.(3), 11.12 D.(3), 
+12.10 A.(3)(b) eff. 01/01/2014. 
+Rules 2, 3, 5, 8, 10, 11, 16, 17 eff. 01/01/2016. 
+Rule 2.50 eff. 05/01/2016. 
+Rule 1.20 eff. 01/01/2017. Rule 2.90 C emer. rule eff. 01/01/2017; expired 03/18/2017. 
+Rule 2.90 C eff. 04/01/2017. 
+Rules 1.20 F, 2.15, 2.20 F, 11.10 E, 11.15 D, 14.30 eff. 02/01/2018. 
+Rule 1.20 F.(1) emer. rule eff. 06/22/2018. 
+Rule 1.20 F.(1) eff. 09/01/2018. 
+Rules 1.20 F, 1.20 G, 2.15, 2.20 G(2), 4.10, 4.70, 7.12 B. 7.75 C, 8.30, 10.20, 16.10, 16.30, 16.60 A, 
+16.95 H eff. 01/01/2019. Rules 3.20, 16.10 F repealed eff. 01/01/2019. 
+Rules 2.15, 3.25 A.(1), 4.15 D, 11.10 D, 14, 16.10 A, 16.50, 16.70, 16.90, 17 eff. 01/01/2020. 
+Rules 1.20 F.(2), 1.20 F.(3), 120.F.(7) eff. 01/01/2021. 
+Rules 2.15, 2.98, 7.75 D, 11.12 F, 12.10 C.(1) eff. 01/01/2022. 
+Rules 1.20 F.(1)(a), 2.15, 2.20, 2.35 A, 2.90 D, 8.10, 8.20, 9.10, 11.10 D, 12.10 A, 13.30, 17.80 eff. 
+03/17/2025.

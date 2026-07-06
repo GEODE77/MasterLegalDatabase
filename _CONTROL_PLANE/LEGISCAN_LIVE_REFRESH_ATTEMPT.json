@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-07-02T20:20:00Z",
+  "layer_id": "03_Legislation",
+  "attempted_action": "Legislation live refresh through LegiScan",
+  "status": "blocked_missing_api_key",
+  "required_environment_variable": "LEGISCAN_API_KEY",
+  "environment_check": {
+    "process": "missing",
+    "user": "missing",
+    "machine": "missing"
+  },
+  "official_listing_url": "https://legiscan.com/CO",
+  "official_download_url": "https://api.legiscan.com/",
+  "local_archive_status": {
+    "raw_files_total": 12453,
+    "records_total": 12453,
+    "failed_files": 0,
+    "last_archive_rebuild": "2026-07-02T20:06:54.758230Z"
+  },
+  "next_action": "Configure LEGISCAN_API_KEY in the environment, then rerun the live LegiScan refresh and rebuild the legislation layer.",
+  "boundary": "This records an attempted live refresh that could not authenticate. It does not mark the official LegiScan refresh complete."
+}

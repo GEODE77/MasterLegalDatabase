@@ -1,0 +1,522 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "design_principles_path": "docs/design-principles.md",
+  "reference_decision_path": "_CONTROL_PLANE/AUDIT_REPORTS/REFERENCE_SITE_DECISION_2026-07-01.json",
+  "routes_checked": 32,
+  "routes_requiring_screenshot_review": 32,
+  "rows": [
+    {
+      "route": "/about",
+      "file": "geode/web/src/app/about/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "About route remains outside the app shell as a public trust page."
+    },
+    {
+      "route": "/app/compliance-paths",
+      "file": "geode/web/src/app/app/compliance-paths/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/dashboard",
+      "file": "geode/web/src/app/app/dashboard/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/explore",
+      "file": "geode/web/src/app/app/explore/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/impact",
+      "file": "geode/web/src/app/app/impact/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app",
+      "file": "geode/web/src/app/app/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/relationships",
+      "file": "geode/web/src/app/app/relationships/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/reliance-policy",
+      "file": "geode/web/src/app/app/reliance-policy/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/requirements",
+      "file": "geode/web/src/app/app/requirements/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/review",
+      "file": "geode/web/src/app/app/review/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/review-packets",
+      "file": "geode/web/src/app/app/review-packets/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/reviewer-operations",
+      "file": "geode/web/src/app/app/reviewer-operations/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/settings",
+      "file": "geode/web/src/app/app/settings/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/system",
+      "file": "geode/web/src/app/app/system/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/app/updates",
+      "file": "geode/web/src/app/app/updates/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": true,
+        "app_chrome_available": true,
+        "back_control_available": true,
+        "breadcrumb_available": true,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "App route uses the shared product shell with back and breadcrumb controls."
+    },
+    {
+      "route": "/authorities/[id]",
+      "file": "geode/web/src/app/authorities/[id]/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route has a visible navigation or return path in source."
+    },
+    {
+      "route": "/dashboard",
+      "file": "geode/web/src/app/dashboard/page.tsx",
+      "conformance_status": "needs_return_path_review",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route exists, but source does not show an obvious return path."
+    },
+    {
+      "route": "/debug/onboarding",
+      "file": "geode/web/src/app/debug/onboarding/page.tsx",
+      "conformance_status": "internal_route_static_only",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "Internal route exists; do not treat as public product conformance evidence."
+    },
+    {
+      "route": "/debug/personalization",
+      "file": "geode/web/src/app/debug/personalization/page.tsx",
+      "conformance_status": "internal_route_static_only",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Internal route exists; do not treat as public product conformance evidence."
+    },
+    {
+      "route": "/forum/[id]",
+      "file": "geode/web/src/app/forum/[id]/page.tsx",
+      "conformance_status": "needs_return_path_review",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route exists, but source does not show an obvious return path."
+    },
+    {
+      "route": "/forum",
+      "file": "geode/web/src/app/forum/page.tsx",
+      "conformance_status": "needs_return_path_review",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route exists, but source does not show an obvious return path."
+    },
+    {
+      "route": "/internal/heuristics",
+      "file": "geode/web/src/app/internal/heuristics/page.tsx",
+      "conformance_status": "internal_route_static_only",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Internal route exists; do not treat as public product conformance evidence."
+    },
+    {
+      "route": "/onboarding",
+      "file": "geode/web/src/app/onboarding/page.tsx",
+      "conformance_status": "needs_return_path_review",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route exists, but source does not show an obvious return path."
+    },
+    {
+      "route": "/",
+      "file": "geode/web/src/app/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route exists, but source does not show an obvious return path."
+    },
+    {
+      "route": "/pricing",
+      "file": "geode/web/src/app/pricing/page.tsx",
+      "conformance_status": "needs_return_path_review",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route exists, but source does not show an obvious return path."
+    },
+    {
+      "route": "/profiles/[slug]",
+      "file": "geode/web/src/app/profiles/[slug]/page.tsx",
+      "conformance_status": "needs_return_path_review",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route exists, but source does not show an obvious return path."
+    },
+    {
+      "route": "/query",
+      "file": "geode/web/src/app/query/page.tsx",
+      "conformance_status": "needs_return_path_review",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route exists, but source does not show an obvious return path."
+    },
+    {
+      "route": "/regulations/[id]",
+      "file": "geode/web/src/app/regulations/[id]/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route has a visible navigation or return path in source."
+    },
+    {
+      "route": "/regulations",
+      "file": "geode/web/src/app/regulations/page.tsx",
+      "conformance_status": "needs_return_path_review",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route exists, but source does not show an obvious return path."
+    },
+    {
+      "route": "/settings",
+      "file": "geode/web/src/app/settings/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route has a visible navigation or return path in source."
+    },
+    {
+      "route": "/sign-in",
+      "file": "geode/web/src/app/sign-in/page.tsx",
+      "conformance_status": "passes_static_structure",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": true,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route has a visible navigation or return path in source."
+    },
+    {
+      "route": "/trust",
+      "file": "geode/web/src/app/trust/page.tsx",
+      "conformance_status": "needs_return_path_review",
+      "checks": {
+        "route_exists": true,
+        "app_chrome_expected": false,
+        "app_chrome_available": null,
+        "back_control_available": null,
+        "breadcrumb_available": null,
+        "about_is_exempt_from_app_chrome": true,
+        "visible_return_path": false,
+        "requires_screenshot_review": true
+      },
+      "finding": "Route exists, but source does not show an obvious return path."
+    }
+  ],
+  "boundary": "This table is static source evidence. It does not replace screenshot-based visual conformance review."
+}

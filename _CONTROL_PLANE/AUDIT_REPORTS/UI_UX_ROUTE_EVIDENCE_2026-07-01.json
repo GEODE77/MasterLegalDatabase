@@ -1,0 +1,274 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "design_principles_path": "docs/design-principles.md",
+  "reference_sites": {
+    "ornn": {
+      "status": "not_verified",
+      "reason": "No canonical Ornn reference URL was present in the repository."
+    },
+    "haptic": {
+      "status": "not_verified",
+      "reason": "No canonical Haptic reference URL was present in the repository."
+    }
+  },
+  "routes_checked": 32,
+  "routes": [
+    {
+      "route": "/about",
+      "file": "geode/web/src/app/about/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/compliance-paths",
+      "file": "geode/web/src/app/app/compliance-paths/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/dashboard",
+      "file": "geode/web/src/app/app/dashboard/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/explore",
+      "file": "geode/web/src/app/app/explore/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/impact",
+      "file": "geode/web/src/app/app/impact/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app",
+      "file": "geode/web/src/app/app/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/relationships",
+      "file": "geode/web/src/app/app/relationships/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/reliance-policy",
+      "file": "geode/web/src/app/app/reliance-policy/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/requirements",
+      "file": "geode/web/src/app/app/requirements/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/review",
+      "file": "geode/web/src/app/app/review/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/review-packets",
+      "file": "geode/web/src/app/app/review-packets/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/reviewer-operations",
+      "file": "geode/web/src/app/app/reviewer-operations/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/settings",
+      "file": "geode/web/src/app/app/settings/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/system",
+      "file": "geode/web/src/app/app/system/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/app/updates",
+      "file": "geode/web/src/app/app/updates/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": true,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/authorities/[id]",
+      "file": "geode/web/src/app/authorities/[id]/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/dashboard",
+      "file": "geode/web/src/app/dashboard/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/debug/onboarding",
+      "file": "geode/web/src/app/debug/onboarding/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/debug/personalization",
+      "file": "geode/web/src/app/debug/personalization/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/forum/[id]",
+      "file": "geode/web/src/app/forum/[id]/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/forum",
+      "file": "geode/web/src/app/forum/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/internal/heuristics",
+      "file": "geode/web/src/app/internal/heuristics/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/onboarding",
+      "file": "geode/web/src/app/onboarding/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/",
+      "file": "geode/web/src/app/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/pricing",
+      "file": "geode/web/src/app/pricing/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/profiles/[slug]",
+      "file": "geode/web/src/app/profiles/[slug]/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/query",
+      "file": "geode/web/src/app/query/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/regulations/[id]",
+      "file": "geode/web/src/app/regulations/[id]/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/regulations",
+      "file": "geode/web/src/app/regulations/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/settings",
+      "file": "geode/web/src/app/settings/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/sign-in",
+      "file": "geode/web/src/app/sign-in/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": true,
+      "needs_visual_screenshot": true
+    },
+    {
+      "route": "/trust",
+      "file": "geode/web/src/app/trust/page.tsx",
+      "has_page": true,
+      "uses_product_chrome": false,
+      "has_visible_return_path": false,
+      "needs_visual_screenshot": true
+    }
+  ],
+  "boundary": "This is route inventory evidence. Final pass/fail requires screenshot review."
+}

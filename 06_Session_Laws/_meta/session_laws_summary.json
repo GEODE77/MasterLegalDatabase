@@ -1,0 +1,12 @@
+{
+  "discovered": 437,
+  "downloaded": 437,
+  "failed_downloads": 0,
+  "index_path": "06_Session_Laws/_index.jsonl",
+  "meta_path": "06_Session_Laws/_meta/session_laws_meta.jsonl",
+  "record_count": 437,
+  "raw_dir": "_RAW_ARCHIVE/crs/session_laws",
+  "years": [
+    "2026"
+  ]
+}

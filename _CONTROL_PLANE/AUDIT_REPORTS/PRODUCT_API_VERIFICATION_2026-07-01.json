@@ -1,0 +1,108 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "api_base_url": null,
+  "endpoints_checked": 11,
+  "captured_count": 0,
+  "captures": [
+    {
+      "path": "/api/product/compliance-paths",
+      "route_file": "geode/web/src/app/api/product/compliance-paths/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    },
+    {
+      "path": "/api/product/impact",
+      "route_file": "geode/web/src/app/api/product/impact/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    },
+    {
+      "path": "/api/product/regulations",
+      "route_file": "geode/web/src/app/api/product/regulations/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    },
+    {
+      "path": "/api/product/relationships",
+      "route_file": "geode/web/src/app/api/product/relationships/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    },
+    {
+      "path": "/api/product/reliance-policy",
+      "route_file": "geode/web/src/app/api/product/reliance-policy/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    },
+    {
+      "path": "/api/product/requirements",
+      "route_file": "geode/web/src/app/api/product/requirements/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    },
+    {
+      "path": "/api/product/review-packets",
+      "route_file": "geode/web/src/app/api/product/review-packets/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    },
+    {
+      "path": "/api/product/reviewer-operations",
+      "route_file": "geode/web/src/app/api/product/reviewer-operations/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    },
+    {
+      "path": "/api/product/rule-units",
+      "route_file": "geode/web/src/app/api/product/rule-units/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    },
+    {
+      "path": "/api/product/system",
+      "route_file": "geode/web/src/app/api/product/system/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    },
+    {
+      "path": "/api/product/updates",
+      "route_file": "geode/web/src/app/api/product/updates/route.ts",
+      "route_file_exists": true,
+      "request_url": null,
+      "http_status": null,
+      "response_excerpt": null,
+      "capture_status": "static_only"
+    }
+  ],
+  "boundary": "Static route presence is not the same as a successful live request."
+}

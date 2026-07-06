@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-07-02T15:44:35.330263+00:00",
+  "structured_executive_orders": 534,
+  "raw_pdf_artifacts": 535,
+  "structured_records_with_raw_pdf_source_path": 534,
+  "structured_records_missing_raw_pdf": 0,
+  "unstructured_raw_pdf_artifacts": [
+    "EO-2019-007"
+  ],
+  "known_exceptions": [
+    {
+      "id": "EO-2019-007",
+      "archive_path": "_RAW_ARCHIVE/exec_orders/EO-2019-007.pdf",
+      "reason": "Archived file extracts as a Google Drive sign-in page, not the executive order text.",
+      "next_action": "Replace only through the official EO download workflow when a valid official artifact is available."
+    }
+  ],
+  "boundary": "This report confirms local source anchoring for structured EO records. It does not certify official freshness."
+}

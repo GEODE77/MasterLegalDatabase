@@ -1,0 +1,86 @@
+{
+  "behaviorEvents": [
+    {
+      "eventId": "5c8eca04-4444-474a-9260-86ea92126fd3",
+      "payload": {
+        "queryLength": 42,
+        "industry": "environment"
+      },
+      "recordedAt": "2026-06-25T21:16:38.541Z",
+      "source": "behavior",
+      "type": "query_submitted"
+    },
+    {
+      "eventId": "3a6d0103-37a4-4ea9-a8a7-425a8d32bb4e",
+      "payload": {
+        "pathname": "/query",
+        "secondsOnPage": 65,
+        "scrollDepth": 0.75
+      },
+      "recordedAt": "2026-06-25T21:16:38.541Z",
+      "source": "behavior",
+      "type": "page_engagement"
+    }
+  ],
+  "explicitAnswers": [
+    {
+      "answeredAt": "2026-06-25T21:16:38.537Z",
+      "key": "displayName",
+      "sensitivity": "public",
+      "source": "explicit",
+      "value": "JP"
+    }
+  ],
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-25T21:16:38.541Z",
+  "userId": "anon-3ca8e368-bd63-4d5c-83de-1dd62a45a105",
+  "derived": {
+    "agencyVector": [
+      {
+        "key": "cdphe",
+        "weight": 1
+      }
+    ],
+    "behaviorScore": 12,
+    "confidence": 0.2,
+    "displayName": "JP",
+    "initials": "J",
+    "industryVector": [
+      {
+        "key": "environment",
+        "weight": 0.667
+      },
+      {
+        "key": "advanced ceramics",
+        "weight": 0.333
+      }
+    ],
+    "lastActiveAt": "2026-06-25T21:16:38.541Z",
+    "modelVersion": 2,
+    "preferredTone": "analytical",
+    "primaryInterest": "environment",
+    "readingDensity": "light",
+    "recomputedAt": "2026-06-25T21:16:38.542Z",
+    "roleVector": [],
+    "surfaceVector": [
+      {
+        "key": "query",
+        "weight": 1
+      }
+    ],
+    "topicSignals": [
+      {
+        "key": "environment",
+        "weight": 0.454
+      },
+      {
+        "key": "query",
+        "weight": 0.32
+      },
+      {
+        "key": "advanced ceramics",
+        "weight": 0.226
+      }
+    ]
+  }
+}

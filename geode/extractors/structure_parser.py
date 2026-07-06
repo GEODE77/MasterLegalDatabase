@@ -2,9 +2,22 @@
 
 from __future__ import annotations
 
+import logging
+import re
 from dataclasses import dataclass, field
 
 from geode.extractors.regex_patterns import PATTERNS
+
+LOGGER = logging.getLogger(__name__)
+
+CCR_PAGE_HEADER_RE = re.compile(r"^CODE OF COLORADO REGULATIONS\b", re.IGNORECASE)
+CCR_RULE_HEADING_RE = re.compile(
+    r"^(?P<number>R\s*-?\s*\d+(?:(?:\s*-\s*|\s+)\d+(?:\.\d+)?[A-Za-z]?)+)"
+    r"\s+(?P<heading>\S.*)$"
+)
+PAGE_NUMBER_RE = re.compile(r"^\d{1,4}$")
+SEPARATOR_RE = re.compile(r"^_{4,}$")
+MAX_PLAIN_SECTION_HEADING_LENGTH = 180
 
 
 @dataclass
@@ -41,6 +54,7 @@ class StructureTree:
     parts: list[StructurePart] = field(default_factory=list)
     sections: list[StructureSection] = field(default_factory=list)
 
+
 def split_frontmatter(raw_text: str) -> tuple[dict[str, str], str]:
     """Split simple `key: value` frontmatter from a fixture document."""
 
@@ -61,6 +75,70 @@ def split_frontmatter(raw_text: str) -> tuple[dict[str, str], str]:
     raise ValueError("frontmatter is missing closing delimiter")
 
 
+def _part_from_line(line: str) -> tuple[str, str] | None:
+    """Return a part label and heading from Markdown or plain CCR text."""
+
+    heading = line.removeprefix("### ").strip() if line.startswith("### ") else line
+    match = PATTERNS["part_boundary"].match(heading)
+    if match is None:
+        return None
+    label = heading.split(maxsplit=2)[1].rstrip(".")
+    return label, heading
+
+
+def _section_from_line(line: str) -> tuple[str, str] | None:
+    """Return a section number and heading from supported section boundary lines."""
+
+    if line.startswith("#### "):
+        heading_text = line.removeprefix("#### ").strip()
+        number, _, heading = heading_text.partition(".")
+        return number.strip(), heading.strip()
+
+    ccr_rule_match = CCR_RULE_HEADING_RE.match(line)
+    if ccr_rule_match is not None:
+        heading = ccr_rule_match.group("heading").strip()
+        if _looks_like_plain_section_heading(heading):
+            return _normalize_ccr_rule_number(ccr_rule_match.group("number")), heading
+
+    section_match = PATTERNS["section_number"].match(line)
+    if section_match is None:
+        return None
+
+    heading = line[section_match.end() :].strip()
+    if not _looks_like_plain_section_heading(heading):
+        return None
+    return section_match.group("section"), heading
+
+
+def _normalize_ccr_rule_number(value: str) -> str:
+    """Normalize OCR/PDF spacing around CCR rule identifiers."""
+
+    compacted = re.sub(r"\s+", "", value)
+    if compacted.startswith("R") and not compacted.startswith("R-"):
+        return f"R-{compacted[1:].lstrip('-')}"
+    return compacted
+
+
+def _looks_like_plain_section_heading(heading: str) -> bool:
+    """Guard plain-text section detection against decimal values in body text."""
+
+    if not heading or len(heading) > MAX_PLAIN_SECTION_HEADING_LENGTH:
+        return False
+    if not any(character.isalpha() for character in heading):
+        return False
+    return not heading[0].islower()
+
+
+def _is_navigation_noise(line: str) -> bool:
+    """Return True for recurring PDF page artifacts that are not legal text."""
+
+    return bool(
+        CCR_PAGE_HEADER_RE.match(line)
+        or PAGE_NUMBER_RE.match(line)
+        or SEPARATOR_RE.match(line)
+    )
+
+
 def parse_structure(markdown_text: str) -> StructureTree:
     """Build a part-section-subsection structure from Markdown or numbered text."""
 
@@ -70,6 +148,7 @@ def parse_structure(markdown_text: str) -> StructureTree:
     current_subsection: StructureSubsection | None = None
     section_lines: list[str] = []
     subsection_lines: list[str] = []
+    skip_next_repeated_header_line = False
 
     def flush_subsection() -> None:
         """Store any pending subsection text."""
@@ -110,29 +189,41 @@ def parse_structure(markdown_text: str) -> StructureTree:
         if not line:
             continue
 
-        part_heading = line.startswith("### Part ") or PATTERNS["part_boundary"].match(line)
-        if part_heading:
-            flush_part()
-            if line.startswith("### Part "):
-                heading = line.removeprefix("### ").strip()
-            else:
-                heading = line
-            current_part = StructurePart(label=heading.split()[1], heading=heading)
+        if _is_navigation_noise(line):
+            skip_next_repeated_header_line = bool(CCR_PAGE_HEADER_RE.match(line))
             continue
 
-        if line.startswith("#### "):
-            flush_section()
-            heading_text = line.removeprefix("#### ").strip()
-            number, _, heading = heading_text.partition(".")
-            current_section = StructureSection(number=number.strip(), heading=heading.strip())
-            continue
-
+        part_heading = _part_from_line(line)
+        section_heading = _section_from_line(line)
         subsection_match = (
             PATTERNS["subsection_number"].match(line)
             or PATTERNS["subsection_letter"].match(line)
             or PATTERNS["subsection_roman"].match(line)
             or PATTERNS["subsubsection_letter"].match(line)
         )
+
+        if (
+            skip_next_repeated_header_line
+            and part_heading is None
+            and section_heading is None
+            and subsection_match is None
+        ):
+            skip_next_repeated_header_line = False
+            continue
+        skip_next_repeated_header_line = False
+
+        if part_heading is not None:
+            flush_part()
+            label, heading = part_heading
+            current_part = StructurePart(label=label, heading=heading)
+            continue
+
+        if section_heading is not None:
+            flush_section()
+            number, heading = section_heading
+            current_section = StructureSection(number=number, heading=heading)
+            continue
+
         if subsection_match and current_section is not None:
             flush_subsection()
             label = subsection_match.group(0)
@@ -147,6 +238,18 @@ def parse_structure(markdown_text: str) -> StructureTree:
 
     flush_part()
     flush_section()
+    nested_sections = sum(len(part.sections) for part in tree.parts)
+    subsection_count = sum(
+        len(section.subsections)
+        for part in tree.parts
+        for section in part.sections
+    ) + sum(len(section.subsections) for section in tree.sections)
+    LOGGER.debug(
+        "Structure parse summary parts=%s sections=%s subsections=%s",
+        len(tree.parts),
+        nested_sections + len(tree.sections),
+        subsection_count,
+    )
     return tree
 
 

@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-07-01T20:29:50.146480Z",
+  "agency_to_statute_path": "_CROSSWALKS/agency_to_statute.jsonl",
+  "agency_to_statute_rows": 696,
+  "amendment_history_path": "_CROSSWALKS/amendment_history.jsonl",
+  "amendment_history_rows": 7,
+  "source_boundaries": [
+    "Agency-to-statute rows are derived through regulation-to-statute relationships.",
+    "Amendment-history rows are derived from existing bill-to-statute relationships.",
+    "No direct legal conclusion is added beyond the source-backed relationship chain."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-07-02T20:38:09.851471+00:00",
+  "records_scored": 57154,
+  "average_source_strength_score": 0.987,
+  "level_counts": {
+    "direct_full_text_source": 53034,
+    "official_listing_plus_document": 4120
+  },
+  "layer_counts": {
+    "01_Statutes_CRS": {
+      "direct_full_text_source": 34715,
+      "official_listing_plus_document": 2
+    },
+    "02_Regulations_CCR": {
+      "direct_full_text_source": 1035
+    },
+    "03_Legislation": {
+      "direct_full_text_source": 12453
+    },
+    "04_Rulemaking": {
+      "direct_full_text_source": 3860,
+      "official_listing_plus_document": 4095
+    },
+    "05_Executive_Orders": {
+      "direct_full_text_source": 534
+    },
+    "06_Session_Laws": {
+      "direct_full_text_source": 437
+    },
+    "07_Supplementary": {
+      "official_listing_plus_document": 23
+    }
+  },
+  "index_path": "_CONTROL_PLANE/SOURCE_STRENGTH_INDEX.jsonl",
+  "boundary": "Source strength measures local evidence depth, not legal correctness or official freshness."
+}

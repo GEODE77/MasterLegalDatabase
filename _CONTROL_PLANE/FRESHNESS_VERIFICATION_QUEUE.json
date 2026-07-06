@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-07-02T20:38:09.851471+00:00",
+  "network_refresh_performed": true,
+  "refreshed_sources": [
+    "01_Statutes_CRS",
+    "02_Regulations_CCR",
+    "04_Rulemaking",
+    "06_Session_Laws",
+    "07_Supplementary"
+  ],
+  "items": [
+    {
+      "layer_id": "01_Statutes_CRS",
+      "local_freshness_status": "fresh",
+      "last_checked": "2026-07-02",
+      "network_refresh_required": false,
+      "official_refresh_action": "Completed official OLLS CRS publication confirmation and archived SGML rebuild for this run."
+    },
+    {
+      "layer_id": "02_Regulations_CCR",
+      "local_freshness_status": "fresh",
+      "last_checked": "2026-07-02",
+      "network_refresh_required": false,
+      "official_refresh_action": "Completed official Secretary of State CCR refresh for this run."
+    },
+    {
+      "layer_id": "03_Legislation",
+      "local_freshness_status": "fresh",
+      "last_checked": "2026-07-02",
+      "network_refresh_required": true,
+      "official_refresh_action": "Run LegiScan/current General Assembly refresh window."
+    },
+    {
+      "layer_id": "04_Rulemaking",
+      "local_freshness_status": "fresh",
+      "last_checked": "2026-07-02",
+      "network_refresh_required": false,
+      "official_refresh_action": "Completed official Secretary of State Register/eDocket refresh for this run."
+    },
+    {
+      "layer_id": "05_Executive_Orders",
+      "local_freshness_status": "fresh",
+      "last_checked": "2026-07-02",
+      "network_refresh_required": true,
+      "official_refresh_action": "Replace EO-2019-007 bad artifact and refresh Governor EO index."
+    },
+    {
+      "layer_id": "06_Session_Laws",
+      "local_freshness_status": "fresh",
+      "last_checked": "2026-07-02",
+      "network_refresh_required": false,
+      "official_refresh_action": "Completed official Colorado General Assembly session-law PDF refresh for this run."
+    },
+    {
+      "layer_id": "07_Supplementary",
+      "local_freshness_status": "fresh",
+      "last_checked": "2026-07-02",
+      "network_refresh_required": false,
+      "official_refresh_action": "Completed official AG opinions and COPRRR supplementary refresh for this run."
+    }
+  ],
+  "pending_items": 2,
+  "boundary": "This queue defines required official freshness checks. It does not claim live freshness."
+}

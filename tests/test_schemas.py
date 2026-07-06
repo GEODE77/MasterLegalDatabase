@@ -316,3 +316,31 @@ def test_future_date_fails_validation() -> None:
             source_url="https://www.colorado.gov/governor/executive-orders",
             confidence={"overall": 0.9},
         )
+
+
+def test_regulation_rule_allows_future_effective_date() -> None:
+    """CCR rules may have explicitly published future effective dates."""
+
+    rule = RegulationRule(
+        id="1_CCR_212-3",
+        ccr_number="1 CCR 212-3",
+        title="Future effective regulation",
+        department="Department of Personnel and Administration",
+        department_code="100",
+        agency="Division of Human Resources",
+        agency_code="CDPHE_AQCC",
+        enabling_statutes=[],
+        effective_date="2026-12-31",
+        status="active",
+        full_text="Effective December 31, 2026.",
+        chunk_level_3_summary="Future effective CCR rule.",
+        subject_tags=[],
+        industry_tags=[],
+        compliance_keywords=[],
+        source_url="https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo",
+        source_format="pdf",
+        extraction_method="fixture",
+        confidence={"overall": 0.9},
+    )
+
+    assert rule.effective_date.isoformat() == "2026-12-31"

@@ -74,7 +74,7 @@
 | **Description** | Rulemaking notices: proposed, adopted, emergency |
 | **Owner** | Secretary of State |
 | **Format** | HTML + PDF, twice monthly |
-| **URL** | https://www.sos.state.co.us/pubs/CCR/register.html |
+| **URL** | https://www.sos.state.co.us/CCR/RegisterHome.do |
 | **Coverage** | Archives back to 2012 |
 | **Update** | Twice monthly (~10th and 25th) |
 | **Priority** | IMPORTANT |

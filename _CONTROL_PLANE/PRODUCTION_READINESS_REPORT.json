@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-07-02T20:57:43.567858Z",
+  "system_controls_present": true,
+  "controls": [
+    {
+      "control_id": "RAW-ARCHIVE-PROTECTION",
+      "title": "Raw archive write protection",
+      "status": "ready",
+      "evidence_path": "geode/utils/file_io.py",
+      "detail": "Raw archive write protection exists."
+    },
+    {
+      "control_id": "MANUAL-SOURCE-INTAKE",
+      "title": "Manual official source intake",
+      "status": "ready",
+      "evidence_path": "_CONTROL_PLANE/MANUAL_SOURCE_INTAKE_POLICY.json",
+      "detail": "Manual official source intake controls are present."
+    },
+    {
+      "control_id": "STEP9-GATE",
+      "title": "Relationship health gate",
+      "status": "ready",
+      "evidence_path": "_CONTROL_PLANE/STEP9_READINESS_REPORT.json",
+      "detail": "Step 9 gate is clean."
+    },
+    {
+      "control_id": "REVIEWER-ASSIGNMENTS",
+      "title": "Reviewer assignments",
+      "status": "warning",
+      "evidence_path": "_CONTROL_PLANE/REVIEWER_OPERATIONS_SUMMARY.json",
+      "detail": "3 reviewer roles remain unassigned."
+    },
+    {
+      "control_id": "REVIEW-PACKETS",
+      "title": "Review packet status",
+      "status": "warning",
+      "evidence_path": "02_Regulations_CCR/_meta/rule_units_review_packets_summary.json",
+      "detail": "532 review packets remain pending."
+    },
+    {
+      "control_id": "TEXT-DIFF",
+      "title": "Full text diff foundation",
+      "status": "ready",
+      "evidence_path": "_CONTROL_PLANE/FULL_TEXT_DIFF_SUMMARY.json",
+      "detail": "1106 text files checked for local snapshot diff."
+    },
+    {
+      "control_id": "SOURCE-FRESHNESS",
+      "title": "Source freshness report",
+      "status": "ready",
+      "evidence_path": "_CONTROL_PLANE/SOURCE_FRESHNESS_REPORT.json",
+      "detail": "0 stale layers and 0 unknown layers in local freshness report."
+    },
+    {
+      "control_id": "RETRIEVAL-CATALOG",
+      "title": "Retrieval catalog",
+      "status": "ready",
+      "evidence_path": "_CONTROL_PLANE/RETRIEVAL_CATALOG_SUMMARY.json",
+      "detail": "57154 retrieval records are available."
+    }
+  ],
+  "blockers": [],
+  "warnings": [
+    "3 reviewer roles remain unassigned.",
+    "532 review packets remain pending."
+  ],
+  "boundary": {
+    "meaning": "System controls are present when local gates and control artifacts exist.",
+    "not_implied": "This does not mean Geode is approved for legal advice, external reliance, or unsupervised use.",
+    "external_reliance_condition": "External reliance requires named reviewer assignments, completed review packets, source-refresh checks, and explicit legal reviewer approval."
+  }
+}

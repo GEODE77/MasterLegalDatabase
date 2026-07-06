@@ -1,0 +1,60 @@
+{
+  "checkpoint_id": "DOWNLOAD-SAFETY-CHECKPOINT-2026-07-06",
+  "created_at": "2026-07-06T09:25:27.4907342-06:00",
+  "purpose": "Record the project state before the next major source download.",
+  "status": "active",
+  "current_git_state": {
+    "head": "43012d4",
+    "branch_state": "interactive rebase in progress for main",
+    "working_tree_status": "dirty",
+    "git_status_rows": 349,
+    "untracked_file_count": 4348,
+    "meaning": "The July 2 refresh produced many changed and untracked files while an older interactive rebase was still paused. A major download should not be started until the rebase is completed or otherwise resolved, then this state is either committed, reviewed, or intentionally accepted by the project owner."
+  },
+  "active_rebase_state": {
+    "rebasing_branch": "main",
+    "onto": "c9e3847",
+    "commands_done": 4,
+    "commands_remaining": 2,
+    "current_staged_resolution": "tests/test_ccr_scraper.py",
+    "remaining_commits": [
+      "cd55c0a Finish CCR manifest URL canonicalization",
+      "a1c4684 Fix CCR manifest URL final serialization"
+    ],
+    "execution_rule": "Do not create the broad checkpoint commit until the rebase is completed, aborted by explicit owner approval, or replaced with another owner-approved recovery path."
+  },
+  "latest_known_snapshots": [
+    "_SNAPSHOTS/snapshot_2026-07-02T205812142697Z",
+    "_SNAPSHOTS/snapshot_2026-07-02T205812126773Z",
+    "_SNAPSHOTS/snapshot_2026-07-02T205743587434Z",
+    "_SNAPSHOTS/snapshot_2026-07-02T205743576933Z",
+    "_SNAPSHOTS/snapshot_2026-07-02T205648859421Z"
+  ],
+  "last_completed_pipeline_area": {
+    "layer_id": "05_Executive_Orders",
+    "completed_at": "2026-07-02T20:35:41.231763Z",
+    "summary": "Executive orders were rebuilt from archived source files.",
+    "record_count": 534
+  },
+  "local_system_state": {
+    "local_system_usable": true,
+    "external_reliance_ready": false,
+    "reason_external_reliance_not_ready": [
+      "Source repair items remain open.",
+      "Named reviewer assignments remain missing.",
+      "Live official freshness is not fully verified."
+    ]
+  },
+  "pre_download_gate": {
+    "gate_status": "hold_for_owner_authorization",
+    "owner_decision_needed": "Before running another large download, decide whether to complete the paused rebase and then commit the current refresh state, or proceed knowing the working tree is already dirty.",
+    "safe_to_run_small_manual_repair": true,
+    "safe_to_run_large_live_refresh": false
+  },
+  "protected_boundaries": [
+    "Do not modify files in _RAW_ARCHIVE except through approved download or manual intake workflows.",
+    "Do not invent missing source material.",
+    "Do not treat this checkpoint as legal approval or external reliance approval."
+  ],
+  "next_reference": "_CONTROL_PLANE/NEXT_DOWNLOAD_DASHBOARD.json"
+}

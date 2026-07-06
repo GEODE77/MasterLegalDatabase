@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-06-30T17:00:00.775582Z",
+  "output_root": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode",
+  "status": "completed",
+  "phase_order": [
+    "texts",
+    "amendments",
+    "supplements"
+  ],
+  "batch_size": 1000,
+  "delay": 0.75,
+  "final_delay": 1.6875,
+  "max_retries": 2,
+  "cooldown_seconds": 900.0,
+  "max_rate_limit_pauses": 3,
+  "rate_limit_pauses": 2,
+  "batches_attempted": 24,
+  "run_downloaded": 21129,
+  "run_failed": 0,
+  "run_failed_permanent": 24,
+  "run_pending_retry": 2,
+  "final_downloaded": 61883,
+  "final_failed": 0,
+  "final_failed_permanent": 23965,
+  "final_pending_retry": 0,
+  "final_pending": 0,
+  "final_records_total": 85848,
+  "stopped_reason": null,
+  "report_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/03_Legislation/_documents/safe_bulk_report.json",
+  "batches_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/03_Legislation/_documents/safe_bulk_batches.jsonl",
+  "summary_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/03_Legislation/_documents/bill_document_summary.json"
+}

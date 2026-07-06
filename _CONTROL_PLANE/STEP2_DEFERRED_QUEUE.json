@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-07-01T19:01:13.389978+00:00",
+  "items": [
+    {
+      "id": "STEP2-RU-REVIEW",
+      "title": "Finish rule-unit review queue",
+      "reason": "532 rule units still need review before production use.",
+      "next_action": "Review, approve, revise, split, or quarantine each queued rule unit."
+    },
+    {
+      "id": "STEP2-SEMANTIC-IMPACT",
+      "title": "Add higher-precision impact scoring",
+      "reason": "Current impact scoring is deterministic and source-backed but not deeply semantic.",
+      "next_action": "Add reviewed semantic scoring after enough validated outcomes exist."
+    },
+    {
+      "id": "STEP2-VERSION-DIFFS",
+      "title": "Add source version comparison",
+      "reason": "The detail layer stores source versions but does not yet show full legal text diffs.",
+      "next_action": "Build a source-version diff view for changed statutes and regulations."
+    },
+    {
+      "id": "STEP2-HUMAN-LEGAL-REVIEW",
+      "title": "Add formal legal review before external reliance",
+      "reason": "The app provides research and operating signals, not legal advice.",
+      "next_action": "Define the human review workflow for externally relied-on guidance."
+    }
+  ]
+}

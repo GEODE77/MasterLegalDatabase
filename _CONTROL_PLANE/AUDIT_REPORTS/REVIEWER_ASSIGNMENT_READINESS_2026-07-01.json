@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "assignment_path": "_CONTROL_PLANE/REVIEWER_ASSIGNMENTS.json",
+  "template_path": "docs/templates/REVIEWER_ASSIGNMENT_TEMPLATE.md",
+  "roles_checked": 3,
+  "roles_ready_for_reliance": 0,
+  "items": [
+    {
+      "role_id": "data_reviewer",
+      "label": "Data Reviewer",
+      "assignment_status": "unassigned",
+      "missing_fields": [
+        "name",
+        "email",
+        "effective_date"
+      ],
+      "ready_for_reliance": false,
+      "policy_reference": "GEODE-RELIANCE-POLICY@2026-07-01#data_reviewer"
+    },
+    {
+      "role_id": "corpus_maintainer",
+      "label": "Corpus Maintainer",
+      "assignment_status": "unassigned",
+      "missing_fields": [
+        "name",
+        "email",
+        "effective_date"
+      ],
+      "ready_for_reliance": false,
+      "policy_reference": "GEODE-RELIANCE-POLICY@2026-07-01#corpus_maintainer"
+    },
+    {
+      "role_id": "legal_reviewer",
+      "label": "Legal Reviewer",
+      "assignment_status": "unassigned",
+      "missing_fields": [
+        "name",
+        "email",
+        "effective_date"
+      ],
+      "ready_for_reliance": false,
+      "policy_reference": "GEODE-RELIANCE-POLICY@2026-07-01#legal_reviewer"
+    }
+  ],
+  "boundary": "No reviewer is treated as assigned until name, email, and effective date are present."
+}

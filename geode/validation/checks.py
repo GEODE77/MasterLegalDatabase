@@ -150,6 +150,12 @@ def _date_values(record: dict[str, Any]) -> dict[str, date]:
     return dates
 
 
+def _allows_future_date(record: dict[str, Any], field_name: str) -> bool:
+    """Return whether a date field may legitimately be future-dated."""
+
+    return record.get("entity_type") == "regulation_rule" and field_name == "effective_date"
+
+
 def check_schema_compliance(record: dict[str, Any]) -> ValidationResult:
     """Check one record against its Pydantic schema."""
 
@@ -227,7 +233,7 @@ def check_date_logic(record: dict[str, Any]) -> ValidationResult:
     today = date.today()
     minimum = date(1876, 8, 1)
     for key, value in dates.items():
-        if value > today:
+        if value > today and not _allows_future_date(_corpus_record(record), key):
             result.add_issue("error", "record", f"{key} cannot be in the future")
         if value < minimum:
             result.add_issue("error", "record", f"{key} predates Colorado statehood")

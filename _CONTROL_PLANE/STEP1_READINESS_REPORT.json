@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-06-30T23:22:58.309635Z",
+  "ready_for_step_2": true,
+  "complete_layers": 0,
+  "ready_layers": 7,
+  "partial_layers": 0,
+  "blocked_layers": 0,
+  "empty_layers": 0,
+  "layer_count": 7,
+  "layers": [
+    {
+      "layer_id": "01_Statutes_CRS",
+      "status_level": "ready",
+      "manifest_record_count": 34717,
+      "manifest_status": "ready",
+      "index_record_count": 34717,
+      "raw_archive_file_count": 70,
+      "ready": true,
+      "blockers": [],
+      "warnings": []
+    },
+    {
+      "layer_id": "02_Regulations_CCR",
+      "status_level": "ready",
+      "manifest_record_count": 1035,
+      "manifest_status": "ready",
+      "index_record_count": 1035,
+      "raw_archive_file_count": 1042,
+      "ready": true,
+      "blockers": [],
+      "warnings": []
+    },
+    {
+      "layer_id": "03_Legislation",
+      "status_level": "ready",
+      "manifest_record_count": 12453,
+      "manifest_status": "ready",
+      "index_record_count": 12453,
+      "raw_archive_file_count": 93022,
+      "ready": true,
+      "blockers": [],
+      "warnings": []
+    },
+    {
+      "layer_id": "04_Rulemaking",
+      "status_level": "ready",
+      "manifest_record_count": 7933,
+      "manifest_status": "ready",
+      "index_record_count": 7933,
+      "raw_archive_file_count": 1267,
+      "ready": true,
+      "blockers": [],
+      "warnings": []
+    },
+    {
+      "layer_id": "05_Executive_Orders",
+      "status_level": "ready",
+      "manifest_record_count": 533,
+      "manifest_status": "ready",
+      "index_record_count": 533,
+      "raw_archive_file_count": 535,
+      "ready": true,
+      "blockers": [],
+      "warnings": []
+    },
+    {
+      "layer_id": "06_Session_Laws",
+      "status_level": "ready",
+      "manifest_record_count": 437,
+      "manifest_status": "ready",
+      "index_record_count": 437,
+      "raw_archive_file_count": 70,
+      "ready": true,
+      "blockers": [],
+      "warnings": []
+    },
+    {
+      "layer_id": "07_Supplementary",
+      "status_level": "ready",
+      "manifest_record_count": 19,
+      "manifest_status": "ready",
+      "index_record_count": 19,
+      "raw_archive_file_count": 23,
+      "ready": true,
+      "blockers": [],
+      "warnings": []
+    }
+  ],
+  "blockers": [],
+  "warnings": [],
+  "next_step": "Step 2 can begin: build query and retrieval over the completed corpus."
+}

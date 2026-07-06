@@ -51,7 +51,10 @@ def _convert_with_markitdown(path: Path) -> str | None:
         from markitdown import MarkItDown
     except ImportError:
         return None
-    result = MarkItDown().convert(str(path))
+    try:
+        result = MarkItDown().convert(str(path))
+    except Exception:
+        return None
     return str(result.text_content)
 
 

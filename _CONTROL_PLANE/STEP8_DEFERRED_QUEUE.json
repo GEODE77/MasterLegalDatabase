@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-07-01T20:05:41.225384+00:00",
+  "items": [
+    {
+      "id": "STEP8-FULL-TEXT-DIFF",
+      "title": "Add full legal text diff",
+      "reason": "The update ledger tracks source-backed events, but not exact text-level changes.",
+      "next_action": "Create source snapshots and compare prior and current canonical text."
+    },
+    {
+      "id": "STEP8-SNAPSHOT-COMPARISON",
+      "title": "Add stable snapshot comparison",
+      "reason": "Reliable full diff needs stable prior snapshots for each corpus layer.",
+      "next_action": "Define snapshot retention and comparison policy before computing diffs."
+    },
+    {
+      "id": "STEP8-HUMAN-REVIEW-DEPENDENCY",
+      "title": "Complete human review dependency",
+      "reason": "Step 7 packet decisions and reviewer assignments still require real people.",
+      "next_action": "Assign reviewers and process the pending review packet queue."
+    }
+  ]
+}

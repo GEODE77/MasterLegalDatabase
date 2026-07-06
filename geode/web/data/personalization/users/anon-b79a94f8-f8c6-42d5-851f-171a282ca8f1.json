@@ -1,0 +1,74 @@
+{
+  "behaviorEvents": [
+    {
+      "eventId": "cf01b60e-35d1-40b5-98cf-c53c70100c76",
+      "payload": {
+        "surface": "document_drop"
+      },
+      "recordedAt": "2026-06-25T22:19:11.693Z",
+      "source": "behavior",
+      "type": "onboarding_entry_viewed"
+    },
+    {
+      "eventId": "5708c64b-a937-4120-8e94-4e1688c1c59c",
+      "payload": {
+        "pathname": "/onboarding"
+      },
+      "recordedAt": "2026-06-25T22:19:11.693Z",
+      "source": "behavior",
+      "type": "route_view"
+    }
+  ],
+  "explicitAnswers": [
+    {
+      "answeredAt": "2026-06-25T22:19:11.687Z",
+      "key": "displayName",
+      "sensitivity": "public",
+      "source": "explicit",
+      "value": "JP"
+    }
+  ],
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-25T22:19:11.693Z",
+  "userId": "anon-b79a94f8-f8c6-42d5-851f-171a282ca8f1",
+  "derived": {
+    "agencyVector": [],
+    "behaviorScore": 12,
+    "confidence": 0.2,
+    "displayName": "JP",
+    "initials": "J",
+    "industryVector": [],
+    "lastActiveAt": "2026-06-25T22:19:11.693Z",
+    "modelVersion": 2,
+    "preferredTone": "direct",
+    "primaryInterest": "onboarding",
+    "readingDensity": "light",
+    "recomputedAt": "2026-06-25T22:19:11.694Z",
+    "roleVector": [
+      {
+        "key": "executive",
+        "weight": 1
+      }
+    ],
+    "surfaceVector": [
+      {
+        "key": "onboarding",
+        "weight": 0.5
+      },
+      {
+        "key": "dashboard",
+        "weight": 0.5
+      }
+    ],
+    "topicSignals": [
+      {
+        "key": "onboarding",
+        "weight": 0.5
+      },
+      {
+        "key": "dashboard",
+        "weight": 0.5
+      }
+    ]
+  }
+}

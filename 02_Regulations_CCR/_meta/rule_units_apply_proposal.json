@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-06-30T21:11:31.202968Z",
+  "source_rule_units_path": "02_Regulations_CCR/_meta/rule_units.jsonl",
+  "decision_log_path": "02_Regulations_CCR/_meta/rule_units_review_decisions.jsonl",
+  "proposal_path": "02_Regulations_CCR/_meta/rule_units_apply_proposal.json",
+  "source_rule_units": 13059,
+  "resulting_rule_units": 13059,
+  "decisions_considered": 0,
+  "changes": [],
+  "validation_errors": [],
+  "ready_to_apply": true
+}

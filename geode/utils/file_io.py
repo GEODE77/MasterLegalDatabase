@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import os
+import time
+import uuid
 from collections.abc import Generator, Iterable, Iterator
 from datetime import datetime, timezone
 from pathlib import Path
@@ -12,6 +14,9 @@ from typing import Any
 from pydantic import BaseModel
 
 from geode.constants import RAW_ARCHIVE_DIR, SNAPSHOTS_DIR
+
+ATOMIC_REPLACE_ATTEMPTS = 5
+ATOMIC_REPLACE_DELAY_SECONDS = 0.1
 
 
 class RawArchiveWriteError(ValueError):
@@ -58,13 +63,26 @@ def atomic_write_text(target: Path, content: str, root: Path) -> None:
     ensure_not_raw_archive(target, root)
     target.parent.mkdir(parents=True, exist_ok=True)
     snapshot_existing_file(target, root)
-    tmp_path = target.with_name(f"{target.name}.tmp")
+    tmp_path = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
     try:
         tmp_path.write_text(content, encoding="utf-8", newline="\n")
-        os.replace(tmp_path, target)
+        _replace_with_retry(tmp_path, target)
     finally:
         if tmp_path.exists():
             tmp_path.unlink()
+
+
+def _replace_with_retry(source: Path, target: Path) -> None:
+    """Replace a file, tolerating short-lived Windows/OneDrive file locks."""
+
+    for attempt in range(1, ATOMIC_REPLACE_ATTEMPTS + 1):
+        try:
+            os.replace(source, target)
+            return
+        except PermissionError:
+            if attempt == ATOMIC_REPLACE_ATTEMPTS:
+                raise
+            time.sleep(ATOMIC_REPLACE_DELAY_SECONDS * attempt)
 
 
 JsonRecord = BaseModel | dict[str, Any]

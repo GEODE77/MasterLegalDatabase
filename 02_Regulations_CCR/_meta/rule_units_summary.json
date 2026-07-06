@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-06-30T20:25:48.029934Z",
+  "output_root": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode",
+  "records_considered": 1035,
+  "records_with_units": 652,
+  "rule_units": 13059,
+  "skipped_records": 0,
+  "failed_records": 0,
+  "high_quality_units": 9228,
+  "medium_quality_units": 3299,
+  "needs_review_units": 532,
+  "dry_run": false,
+  "rule_units_path": "02_Regulations_CCR/_meta/rule_units.jsonl",
+  "quality_path": "02_Regulations_CCR/_meta/rule_units_quality.jsonl",
+  "review_queue_items": 532,
+  "review_queue_path": "02_Regulations_CCR/_meta/rule_units_review_queue.jsonl",
+  "review_summary_path": "02_Regulations_CCR/_meta/rule_units_review_summary.json",
+  "summary_path": "02_Regulations_CCR/_meta/rule_units_summary.json",
+  "failed_ids": []
+}

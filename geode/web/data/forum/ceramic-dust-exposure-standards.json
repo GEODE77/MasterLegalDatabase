@@ -1,0 +1,34 @@
+{
+  "id": "ceramic-dust-exposure-standards",
+  "title": "How are teams interpreting ceramic dust exposure obligations across plants?",
+  "excerpt": "We have strong internal controls, but the practical question is how often peer manufacturers are refreshing monitoring, training, and documentation when production mixes change.",
+  "body": "We have strong internal controls, but the practical question is how often peer manufacturers are refreshing monitoring, training, and documentation when production mixes change.\n\nThe legal text tells us what has to be controlled. The operational judgment is how to prove that the controls remain current across different facilities, shifts, and materials. I would be interested in how other teams are treating trigger events: new raw materials, equipment moves, maintenance changes, and process experiments.",
+  "author": "Jordan Pierce",
+  "createdAt": "2026-06-24T15:20:00.000Z",
+  "updatedAt": "2026-06-25T16:02:51.835Z",
+  "votes": 18,
+  "tags": [
+    "advanced-ceramics",
+    "manufacturing",
+    "workforce",
+    "interpretation"
+  ],
+  "replies": [
+    {
+      "id": "reply-industrial-hygiene-cycle",
+      "author": "Mara Chen",
+      "body": "We treat material changes and major process changes as automatic review points. The valuable part has been tying the review to the management-of-change record, not leaving it as a separate compliance reminder.",
+      "createdAt": "2026-06-24T17:04:00.000Z",
+      "parentId": null,
+      "votes": 9
+    },
+    {
+      "id": "reply-operator-training",
+      "author": "Elliot Ray",
+      "body": "The training refresh matters as much as the sampling. If the shop floor can explain why the control exists, the audit conversation is much cleaner.",
+      "createdAt": "2026-06-24T19:42:00.000Z",
+      "parentId": "reply-industrial-hygiene-cycle",
+      "votes": 6
+    }
+  ]
+}

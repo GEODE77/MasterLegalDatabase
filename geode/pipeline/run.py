@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from geode.connectors.crs_bulk import run_crs_bulk_pipeline
 from geode.connectors.crs_parser import parse_crs_fixture
 from geode.constants import CRS_LAYER
 from geode.pipeline.ccr import run_ccr_pipeline
@@ -129,13 +130,50 @@ def build_parser() -> argparse.ArgumentParser:
         help='Pipeline layer. Use "crs" for fixture CRS ingestion.',
     )
     parser.add_argument("--input", type=Path)
+    parser.add_argument("--input-dir", type=Path)
     parser.add_argument("--title")
     parser.add_argument("--publication-year", type=int)
+    parser.add_argument(
+        "--bulk",
+        action="store_true",
+        help="For --layer crs, process every supported source file under _RAW_ARCHIVE/crs.",
+    )
+    parser.add_argument(
+        "--skip-crs-crosswalks",
+        action="store_true",
+        help="For --layer crs --bulk, skip statute-to-regulation crosswalk rebuild.",
+    )
     parser.add_argument(
         "--rule-id",
         help="CCR rule identifier (numeric). Required for --layer ccr.",
     )
+    parser.add_argument(
+        "--normalize-text",
+        action="store_true",
+        help="For --layer ccr, convert downloaded CCR archive files into regulation records.",
+    )
+    parser.add_argument(
+        "--pilot",
+        action="store_true",
+        help="For --layer ccr --normalize-text, process the CCR pilot set only.",
+    )
+    parser.add_argument(
+        "--max-items",
+        type=int,
+        help="Optional cap for CCR text normalization.",
+    )
+    parser.add_argument(
+        "--record-id",
+        action="append",
+        default=[],
+        help="Canonical CCR ID to process during CCR text normalization.",
+    )
     parser.add_argument("--root", default=Path.cwd(), type=Path)
+    parser.add_argument(
+        "--output-dir",
+        default="data",
+        help='Legacy single-rule CCR output directory. Default: "data".',
+    )
     parser.add_argument(
         "--sample",
         action="store_true",
@@ -316,7 +354,7 @@ def _stage_callable(
         try:
             from geode.scoring.industry_tagger import tag_all
         except ImportError as exc:
-            def skipped() -> dict[str, Any]:
+            def skipped(exc: ImportError = exc) -> dict[str, Any]:
                 print(f"TAGGING skipped — industry tagger not available: {exc}")
                 return {"skipped": True, "reason": str(exc)}
 
@@ -463,19 +501,41 @@ def main() -> int:
     now = datetime.now(timezone.utc)
 
     if args.layer == "ccr":
+        if args.normalize_text or args.pilot:
+            from geode.pipeline.ccr_text import normalize_ccr_text_records
+
+            summary = normalize_ccr_text_records(
+                root,
+                max_items=args.max_items,
+                record_ids=args.record_id,
+                pilot_only=args.pilot,
+                dry_run=args.dry_run,
+            )
+            _print_summary(summary.model_dump(mode="json"))
+            return 0 if summary.failed == 0 else 2
         if not args.rule_id:
             LOGGER.error("--layer ccr requires --rule-id.")
             return 2
         return run_ccr_pipeline(
             root=args.root,
             rule_id=args.rule_id,
-            output_dir=args.output_dir if hasattr(args, "output_dir") else "data",
+            output_dir=args.output_dir,
             taxonomy_dir=args.taxonomy_dir,
             dry_run=args.dry_run,
             fmt=args.format,
         )
 
     if args.layer == "crs":
+        if args.bulk:
+            summary = run_crs_bulk_pipeline(
+                root,
+                input_dir=args.input_dir,
+                publication_year=args.publication_year,
+                dry_run=args.dry_run,
+                rebuild_crosswalks=not args.skip_crs_crosswalks,
+            )
+            _print_summary(summary.model_dump(mode="json"))
+            return 0 if summary.failed_files == 0 else 1
         try:
             _validate_crs_args(args)
         except PipelineConfigurationError as exc:

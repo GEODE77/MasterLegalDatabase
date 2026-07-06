@@ -6,13 +6,14 @@ import json
 from pathlib import Path
 
 from geode.connectors.legiscan_client import (
+    download_all_sessions,
     get_bill_detail,
     get_session_bills,
     get_session_list,
 )
 from geode.connectors.legiscan_transformer import transform_bill
 from geode.schemas.validators import validate_record
-from geode.utils.file_io import load_json
+from geode.utils.file_io import iter_jsonl, load_json
 
 
 class FakeResponse:
@@ -36,10 +37,11 @@ class FakeResponse:
 class FakeClient:
     """Fake LegiScan API client keyed by operation."""
 
-    def __init__(self, bill_fixture: dict) -> None:
+    def __init__(self, bill_fixture: dict, fail_get_bill_attempts: int = 0) -> None:
         """Create fake client with one bill fixture."""
 
         self.bill_fixture = bill_fixture
+        self.fail_get_bill_attempts = fail_get_bill_attempts
         self.calls: list[str] = []
 
     def get(self, url: str, params: dict) -> FakeResponse:
@@ -74,6 +76,9 @@ class FakeClient:
                     }
                 }
             )
+        if self.fail_get_bill_attempts:
+            self.fail_get_bill_attempts -= 1
+            raise RuntimeError("temporary getBill failure")
         return FakeResponse(self.bill_fixture)
 
 
@@ -93,6 +98,25 @@ def test_legiscan_client_uses_injected_client(
     assert client.calls == ["getSessionList", "getMasterList", "getBill"]
 
 
+def test_legiscan_client_accepts_live_bill_number_shape() -> None:
+    """Bill detail accepts LegiScan's live ``bill_number`` field."""
+
+    client = FakeClient(
+        {
+            "bill": {
+                "bill_id": 2042497,
+                "bill_number": "HB1001",
+                "title": "Concerning Public Policy",
+            }
+        }
+    )
+
+    detail = get_bill_detail(2042497, api_key="test", client=client)
+
+    assert detail.number == "HB1001"
+    assert detail.bill_id == 2042497
+
+
 def test_transform_bill_fixture_validates(
     legiscan_fixture_path: Path,
     project_root: Path,
@@ -107,3 +131,202 @@ def test_transform_bill_fixture_validates(
     assert record["id"] == "SB23-016"
     assert record["statutes_amended"] == ["CRS-25-7-109"]
     assert "air_quality" in record["subject_tags"]
+
+
+def test_transform_bill_preserves_four_digit_bill_numbers(project_root: Path) -> None:
+    """LegiScan bill numbers such as HB1001 normalize to HB25-1001."""
+
+    ontology = load_json(project_root / "_CONTROL_PLANE" / "ONTOLOGY.json")
+    record = transform_bill(
+        {
+            "bill": {
+                "bill_id": 2042497,
+                "bill_number": "HB1001",
+                "session": {"year_start": 2025, "year_end": 2025},
+                "title": "Concerning Public Policy",
+                "status": "Introduced",
+                "status_date": "2025-01-08",
+                "introduced_date": "2025-01-08",
+                "url": "https://legiscan.com/CO/bill/HB1001/2025",
+            }
+        },
+        ontology,
+    )
+
+    assert record["id"] == "HB25-1001"
+    assert record["bill_number"] == "1001"
+
+
+def test_transform_bill_uses_sponsor_role_for_chamber(project_root: Path) -> None:
+    """LegiScan sponsor role values distinguish House and Senate sponsors."""
+
+    ontology = load_json(project_root / "_CONTROL_PLANE" / "ONTOLOGY.json")
+    record = transform_bill(
+        {
+            "bill": {
+                "bill_id": 2042498,
+                "bill_number": "HB1002",
+                "session": {"year_start": 2025, "year_end": 2025},
+                "title": "Concerning Public Policy",
+                "status": "Introduced",
+                "status_date": "2025-01-08",
+                "introduced_date": "2025-01-08",
+                "sponsors": [
+                    {"name": "House Sponsor", "party": "D", "role": "Rep", "role_id": 1},
+                    {"name": "Senate Sponsor", "party": "D", "role": "Sen", "role_id": 2},
+                ],
+                "url": "https://legiscan.com/CO/bill/HB1002/2025",
+            }
+        },
+        ontology,
+    )
+
+    assert record["sponsors"][0]["chamber"] == "House"
+    assert record["sponsors"][1]["chamber"] == "Senate"
+
+
+def test_transform_bill_accepts_resolution_and_memorial_prefixes(project_root: Path) -> None:
+    """LegiScan resolution and memorial records are valid legislation items."""
+
+    ontology = load_json(project_root / "_CONTROL_PLANE" / "ONTOLOGY.json")
+    examples = {
+        "HR1001": "HR26-1001",
+        "HM1001": "HM26-1001",
+        "SR1001": "SR26-1001",
+        "SM1001": "SM26-1001",
+        "HJM1001": "HJM26-1001",
+        "SJM001": "SJM26-001",
+    }
+
+    for raw_number, expected_id in examples.items():
+        record = transform_bill(
+            {
+                "bill": {
+                    "bill_id": 2043000,
+                    "bill_number": raw_number,
+                    "session": {"year_start": 2026, "year_end": 2026},
+                    "title": "Concerning Public Policy",
+                    "status": "Introduced",
+                    "status_date": "2026-01-08",
+                    "introduced_date": "2026-01-08",
+                    "url": f"https://legiscan.com/CO/bill/{raw_number}/2026",
+                }
+            },
+            ontology,
+        )
+
+        assert record["id"] == expected_id
+
+
+def test_transform_bill_adds_special_session_suffix(project_root: Path) -> None:
+    """Special-session bill IDs stay distinct from regular-session bill IDs."""
+
+    ontology = load_json(project_root / "_CONTROL_PLANE" / "ONTOLOGY.json")
+    record = transform_bill(
+        {
+            "bill": {
+                "bill_id": 2042497,
+                "bill_number": "HB1001",
+                "session": {
+                    "year_start": 2025,
+                    "year_end": 2025,
+                    "special": 1,
+                    "session_tag": "1st Special Session",
+                },
+                "title": "Qualified Business Income Deduction Add-Back",
+                "status": "Introduced",
+                "status_date": "2025-08-28",
+                "introduced_date": "2025-08-21",
+                "url": "https://legiscan.com/CO/bill/HB1001/2025/X1",
+            }
+        },
+        ontology,
+    )
+
+    assert record["id"] == "HB25X1-1001"
+
+
+def test_legiscan_download_all_sessions_resumes_without_duplicate_get_bill(
+    legiscan_fixture_path: Path,
+    tmp_path: Path,
+) -> None:
+    """Manifest-backed LegiScan reruns skip already archived bill JSON."""
+
+    fixture = json.loads(legiscan_fixture_path.read_text(encoding="utf-8"))
+    client = FakeClient(fixture)
+
+    first = download_all_sessions(tmp_path, api_key="test", client=client, delay=0)
+    get_bill_calls = client.calls.count("getBill")
+    second = download_all_sessions(tmp_path, api_key="test", client=client, delay=0)
+
+    assert first.bills == 1
+    assert first.skipped == 0
+    assert second.bills == 1
+    assert second.skipped == 1
+    assert client.calls.count("getBill") == get_bill_calls
+    assert client.calls.count("getSessionList") == 2
+    assert len(list(iter_jsonl(tmp_path / "download_manifest.jsonl"))) == 1
+
+
+def test_legiscan_max_downloads_caps_get_bill_calls(
+    legiscan_fixture_path: Path,
+    tmp_path: Path,
+) -> None:
+    """LegiScan capped runs avoid bill-detail calls until allowed."""
+
+    fixture = json.loads(legiscan_fixture_path.read_text(encoding="utf-8"))
+    client = FakeClient(fixture)
+
+    capped = download_all_sessions(
+        tmp_path,
+        api_key="test",
+        client=client,
+        delay=0,
+        max_downloads=0,
+    )
+    get_bill_after_cap = client.calls.count("getBill")
+    resumed = download_all_sessions(
+        tmp_path,
+        api_key="test",
+        client=client,
+        delay=0,
+        max_downloads=1,
+    )
+
+    assert capped.attempted == 0
+    assert capped.bills == 0
+    assert get_bill_after_cap == 0
+    assert client.calls.count("getBill") == 1
+    assert resumed.attempted == 1
+    assert resumed.bills == 1
+
+
+def test_legiscan_failed_bill_is_recorded_and_retried(
+    legiscan_fixture_path: Path,
+    tmp_path: Path,
+) -> None:
+    """Failed LegiScan bill attempts are retained and retried on the next run."""
+
+    fixture = json.loads(legiscan_fixture_path.read_text(encoding="utf-8"))
+    client = FakeClient(fixture, fail_get_bill_attempts=1)
+
+    first = download_all_sessions(tmp_path, api_key="test", client=client, delay=0)
+    second = download_all_sessions(tmp_path, api_key="test", client=client, delay=0)
+    rows = list(iter_jsonl(tmp_path / "download_manifest.jsonl"))
+
+    assert first.bills == 0
+    assert first.failed == 1
+    assert "temporary getBill failure" in first.errors[0]
+    assert second.bills == 1
+    assert second.failed == 0
+    assert [row["status"] for row in rows] == ["failed", "downloaded"]
+    assert rows[0]["jurisdiction"] == "Colorado"
+    assert rows[0]["source_type"] == "bill"
+    assert rows[0]["document_id"] == "12345"
+    assert rows[0]["document_name"] == "Air Quality Control Amendments"
+    assert rows[0]["source_format"] == "json"
+    assert rows[0]["missing_metadata"] == []
+    assert rows[1]["jurisdiction"] == "Colorado"
+    assert rows[1]["source_type"] == "bill"
+    assert rows[1]["document_id"] == "12345"
+    assert rows[1]["source_format"] == "json"

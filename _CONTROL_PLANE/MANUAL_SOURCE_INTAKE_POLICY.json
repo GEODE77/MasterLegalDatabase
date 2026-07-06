@@ -1,0 +1,32 @@
+{
+  "policy_id": "MANUAL_SOURCE_INTAKE",
+  "status": "active",
+  "purpose": "Preserve official source artifacts that cannot be collected by automated downloaders, without weakening raw-source custody rules.",
+  "allowed_use": [
+    "Blocked official downloads such as EO-2019-007.",
+    "Official files received from a source owner, State Archives, or a public-records response.",
+    "Manual official downloads when automated access is blocked but a human can retrieve the file."
+  ],
+  "not_allowed": [
+    "Unofficial replacement files.",
+    "Edited, OCR-corrected, summarized, or reformatted copies as raw source evidence.",
+    "Overwriting an existing raw archive artifact.",
+    "Using manual intake as proof of legal correctness without later validation."
+  ],
+  "required_metadata": [
+    "record_id",
+    "layer_id",
+    "official_source_name",
+    "acquisition_method",
+    "received_from",
+    "reviewer_name",
+    "custody_note",
+    "sha256"
+  ],
+  "output_artifacts": [
+    "_RAW_ARCHIVE/manual_intake/manual_source_intake_manifest.jsonl",
+    "_CONTROL_PLANE/MANUAL_SOURCE_INTAKE_LEDGER.jsonl",
+    "_CONTROL_PLANE/MANUAL_SOURCE_INTAKE_REPORT.json"
+  ],
+  "boundary": "Manual intake archives evidence only. A separate connector or pipeline rebuild must use the artifact, validate output, and refresh source-to-output audits."
+}

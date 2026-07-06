@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-07-02T20:40:03.757881Z",
+  "diff_path": "_CONTROL_PLANE/FULL_TEXT_DIFF.jsonl",
+  "files_checked": 1106,
+  "files_with_prior_snapshot": 553,
+  "files_changed": 53,
+  "files_without_snapshot": 553,
+  "diff_ready": true,
+  "boundary": "This is a local current-vs-snapshot diff foundation. It does not fetch new law and does not prove official source changes unless snapshots exist."
+}

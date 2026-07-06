@@ -1,0 +1,72 @@
+{
+  "behaviorEvents": [
+    {
+      "eventId": "c5bbb4cc-57e4-461c-a46d-b1bc28e0772a",
+      "payload": {
+        "pathname": "/"
+      },
+      "recordedAt": "2026-06-26T21:37:13.698Z",
+      "source": "behavior",
+      "type": "route_view"
+    },
+    {
+      "eventId": "28f57884-c0af-4551-a191-fff43ce64907",
+      "payload": {
+        "pathname": "/",
+        "scrollDepth": 0,
+        "secondsOnPage": 0
+      },
+      "recordedAt": "2026-06-26T21:37:13.698Z",
+      "source": "behavior",
+      "type": "page_engagement"
+    },
+    {
+      "eventId": "73fdf1f8-915a-49b4-a0f0-6b79ec1d9b57",
+      "payload": {
+        "pathname": "/"
+      },
+      "recordedAt": "2026-06-26T21:37:13.698Z",
+      "source": "behavior",
+      "type": "route_view"
+    }
+  ],
+  "explicitAnswers": [
+    {
+      "answeredAt": "2026-06-26T21:37:13.697Z",
+      "key": "displayName",
+      "sensitivity": "public",
+      "source": "explicit",
+      "value": "JP"
+    }
+  ],
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-26T21:37:13.698Z",
+  "userId": "anon-15153cf3-63e6-478e-ac33-111958d4d13a",
+  "derived": {
+    "agencyVector": [],
+    "behaviorScore": 13,
+    "confidence": 0.22,
+    "displayName": "JP",
+    "initials": "J",
+    "industryVector": [],
+    "lastActiveAt": "2026-06-26T21:37:13.698Z",
+    "modelVersion": 2,
+    "preferredTone": "direct",
+    "primaryInterest": "dashboard",
+    "readingDensity": "light",
+    "recomputedAt": "2026-06-26T21:37:13.699Z",
+    "roleVector": [],
+    "surfaceVector": [
+      {
+        "key": "dashboard",
+        "weight": 1
+      }
+    ],
+    "topicSignals": [
+      {
+        "key": "dashboard",
+        "weight": 1
+      }
+    ]
+  }
+}

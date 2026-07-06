@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "status": "remediation_package_generated",
+  "findings": [
+    {
+      "severity": "high",
+      "title": "External reliance is not authorized",
+      "evidence_path": "_CONTROL_PLANE/CRS_PUBLISHING_AUTHORIZATION.json",
+      "status": "tracked"
+    },
+    {
+      "severity": "high",
+      "title": "Snapshot baselines are incomplete",
+      "evidence_path": "_CONTROL_PLANE/SNAPSHOT_BASELINE_BACKFILL_QUEUE.json",
+      "status": "queued"
+    },
+    {
+      "severity": "medium",
+      "title": "CCR relationship coverage has known gaps",
+      "evidence_path": "_CONTROL_PLANE/CCR_COVERAGE_CLOSURE_PLAN.json",
+      "status": "queued"
+    },
+    {
+      "severity": "medium",
+      "title": "Reference-site comparison needs owner-supplied references",
+      "evidence_path": "docs/audits/REFERENCE_SITE_COMPARISON.md",
+      "status": "queued"
+    }
+  ]
+}

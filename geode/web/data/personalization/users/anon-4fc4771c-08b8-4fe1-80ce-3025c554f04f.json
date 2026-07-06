@@ -1,0 +1,83 @@
+{
+  "behaviorEvents": [
+    {
+      "eventId": "a11b2c38-3182-41b5-a0a0-2ecd0b56b671",
+      "payload": {
+        "pathname": "/",
+        "scrollDepth": 0.11,
+        "secondsOnPage": 3
+      },
+      "recordedAt": "2026-06-26T19:49:18.281Z",
+      "source": "behavior",
+      "type": "page_engagement"
+    },
+    {
+      "eventId": "952dc57e-99bc-44de-bdbc-4f35621ccb31",
+      "payload": {
+        "pathname": "/sign-in"
+      },
+      "recordedAt": "2026-06-26T19:49:18.281Z",
+      "source": "behavior",
+      "type": "route_view"
+    },
+    {
+      "eventId": "cc003e77-3788-4392-8a64-394ed7b64004",
+      "payload": {
+        "pathname": "/sign-in",
+        "scrollDepth": 0,
+        "secondsOnPage": 4
+      },
+      "recordedAt": "2026-06-26T19:49:18.281Z",
+      "source": "behavior",
+      "type": "page_engagement"
+    },
+    {
+      "eventId": "86b4aad8-17f7-499f-b609-881cb7670902",
+      "payload": {
+        "pathname": "/"
+      },
+      "recordedAt": "2026-06-26T19:49:18.281Z",
+      "source": "behavior",
+      "type": "route_view"
+    }
+  ],
+  "explicitAnswers": [
+    {
+      "answeredAt": "2026-06-26T19:49:18.279Z",
+      "key": "displayName",
+      "sensitivity": "public",
+      "source": "explicit",
+      "value": "JP"
+    }
+  ],
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-26T19:49:18.281Z",
+  "userId": "anon-4fc4771c-08b8-4fe1-80ce-3025c554f04f",
+  "derived": {
+    "agencyVector": [],
+    "behaviorScore": 14,
+    "confidence": 0.25,
+    "displayName": "JP",
+    "initials": "J",
+    "industryVector": [],
+    "lastActiveAt": "2026-06-26T19:49:18.281Z",
+    "modelVersion": 2,
+    "preferredTone": "direct",
+    "primaryInterest": "dashboard",
+    "readingDensity": "light",
+    "recomputedAt": "2026-06-26T19:49:18.282Z",
+    "roleVector": [],
+    "surfaceVector": [
+      {
+        "key": "dashboard",
+        "weight": 1
+      }
+    ],
+    "topicSignals": [
+      {
+        "key": "dashboard",
+        "weight": 1
+      }
+    ]
+  }
+}

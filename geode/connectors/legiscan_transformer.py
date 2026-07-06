@@ -14,14 +14,15 @@ SUBJECT_TAG_HINTS = {
     "environment": "environment",
     "water": "water_quality",
     "health": "public_health",
-    "labor": "employment_standards",
-    "employment": "employment_standards",
+    "labor": "labor_employment",
+    "employment": "labor_employment",
     "housing": "housing",
     "energy": "energy",
     "transportation": "transportation",
     "education": "education",
-    "tax": "taxation",
 }
+
+BILL_PREFIX_PATTERN = r"(SB|HB|SCR|HCR|SJR|HJR|SJM|HJM|SR|HR|SM|HM)"
 
 
 def transform_bill(raw_bill: dict[str, Any], ontology: dict[str, Any]) -> dict[str, Any]:
@@ -31,8 +32,10 @@ def transform_bill(raw_bill: dict[str, Any], ontology: dict[str, Any]) -> dict[s
     if not isinstance(bill, dict):
         raise ValueError("raw_bill must contain a bill object")
     session_year = _session_year(bill)
-    prefix, bill_number = _bill_prefix_and_number(str(bill.get("number", "")), session_year)
-    bill_id = f"{prefix}{str(session_year)[-2:]}-{bill_number}"
+    raw_number = bill.get("number") or bill.get("bill_number") or ""
+    prefix, bill_number = _bill_prefix_and_number(str(raw_number), session_year)
+    session_code = _session_code(bill, session_year)
+    bill_id = f"{prefix}{session_code}-{bill_number}"
     text = _bill_text(bill)
     citations = sorted({citation.canonical_form for citation in extract_crs_citations(text)})
     source_url = bill.get("url") or f"https://legiscan.com/CO/bill/{bill_id}/{session_year}"
@@ -79,12 +82,42 @@ def _bill_prefix_and_number(number: str, session_year: int) -> tuple[str, str]:
     """Normalize LegiScan bill numbers to Geode ID parts."""
 
     compact = re.sub(r"\s+", "", number.upper())
-    match = re.match(r"^(SB|HB|SCR|HCR|SJR|HJR)(?:\d{2}-?)?(\d+)$", compact)
-    if not match:
+    dated_match = re.match(rf"^{BILL_PREFIX_PATTERN}(\d{{2}})-(\d+)$", compact)
+    if dated_match:
+        prefix = dated_match.group(1)
+        numeric = int(dated_match.group(3))
+        return prefix, f"{numeric:03d}"
+    match = re.match(rf"^{BILL_PREFIX_PATTERN}(\d+)$", compact)
+    if match:
+        prefix = match.group(1)
+        numeric = int(match.group(2))
+        return prefix, f"{numeric:03d}"
+    spaced_match = re.match(rf"^{BILL_PREFIX_PATTERN}-?(\d+)$", compact)
+    if not spaced_match:
         raise ValueError(f"unsupported Colorado bill number: {number}")
-    prefix = match.group(1)
-    numeric = int(match.group(2))
+    prefix = spaced_match.group(1)
+    numeric = int(spaced_match.group(2))
     return prefix, f"{numeric:03d}"
+
+
+def _session_code(bill: dict[str, Any], session_year: int) -> str:
+    """Return Geode's bill session code, including special-session suffix when needed."""
+
+    year_code = str(session_year)[-2:]
+    source_url = str(bill.get("url", ""))
+    url_match = re.search(r"/\d{4}/(X\d+)(?:/)?$", source_url, flags=re.IGNORECASE)
+    if url_match:
+        return f"{year_code}{url_match.group(1).upper()}"
+    session = bill.get("session")
+    if isinstance(session, dict) and session.get("special"):
+        session_text = " ".join(
+            str(session.get(key, ""))
+            for key in ("session_tag", "session_title", "session_name")
+        )
+        ordinal_match = re.search(r"(\d+)(?:st|nd|rd|th)?\s+Special", session_text)
+        special_number = ordinal_match.group(1) if ordinal_match else "1"
+        return f"{year_code}X{special_number}"
+    return year_code
 
 
 def _bill_text(bill: dict[str, Any]) -> str:
@@ -110,12 +143,12 @@ def _sponsors(bill: dict[str, Any], prefix: str) -> list[dict[str, Any]]:
     for sponsor in bill.get("sponsors", []) or []:
         if not isinstance(sponsor, dict):
             continue
-        chamber = str(sponsor.get("chamber", sponsor.get("type", default_chamber)))
+        chamber = _sponsor_chamber(sponsor, default_chamber)
         sponsors.append(
             {
                 "name": str(sponsor.get("name", "Unknown sponsor")),
                 "party": sponsor.get("party"),
-                "chamber": "Senate" if chamber.lower().startswith("s") else "House",
+                "chamber": chamber,
                 "role": str(sponsor.get("role", "primary")),
             }
         )
@@ -129,6 +162,28 @@ def _sponsors(bill: dict[str, Any], prefix: str) -> list[dict[str, Any]]:
             }
         )
     return sponsors
+
+
+def _sponsor_chamber(sponsor: dict[str, Any], default_chamber: str) -> str:
+    """Infer sponsor chamber from LegiScan role, role ID, district, or chamber fields."""
+
+    role = str(sponsor.get("role", "")).casefold()
+    if role.startswith("sen"):
+        return "Senate"
+    if role.startswith("rep"):
+        return "House"
+    role_id = str(sponsor.get("role_id", ""))
+    if role_id == "2":
+        return "Senate"
+    if role_id == "1":
+        return "House"
+    district = str(sponsor.get("district", "")).casefold()
+    if district.startswith("sd"):
+        return "Senate"
+    if district.startswith("hd"):
+        return "House"
+    chamber = str(sponsor.get("chamber", sponsor.get("type", default_chamber))).casefold()
+    return "Senate" if chamber.startswith("s") else "House"
 
 
 def _status(bill: dict[str, Any]) -> str:

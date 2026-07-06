@@ -8,7 +8,7 @@ from pathlib import Path
 from geode.schemas import CrosswalkEntry, TimelineEvent
 from geode.pipeline.run import run_crs_pipeline
 from geode.utils.file_io import atomic_write_jsonl
-from geode.validation.checks import validate_project
+from geode.validation.checks import run_all_checks, validate_project
 from geode.validation.integrity import run_integrity_checks
 
 
@@ -76,4 +76,39 @@ def test_crosswalk_and_timeline_validation_accepts_design_records(project_root: 
     )
 
     result = validate_project(project_root, "all")
+    assert result.valid, result.issues
+
+
+def test_regulation_rule_future_effective_date_passes_prewrite_checks(
+    project_root: Path,
+) -> None:
+    """Writer validation permits explicitly future-effective CCR rules."""
+
+    result = run_all_checks(
+        {
+            "entity_type": "regulation_rule",
+            "id": "1_CCR_212-3",
+            "ccr_number": "1 CCR 212-3",
+            "title": "Future effective regulation",
+            "department": "Department of Personnel and Administration",
+            "department_code": "5",
+            "agency": "Division of Human Resources",
+            "agency_code": "CDPHE_DEPT",
+            "enabling_statutes": [],
+            "effective_date": "2026-12-31",
+            "status": "active",
+            "full_text": "Effective December 31, 2026.",
+            "chunk_level_3_summary": "Future effective CCR rule.",
+            "subject_tags": [],
+            "industry_tags": [],
+            "compliance_keywords": [],
+            "source_url": "https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo",
+            "source_format": "pdf",
+            "extraction_method": "fixture",
+            "confidence": {"overall": 0.9},
+        },
+        project_root,
+        allow_existing=True,
+    )
+
     assert result.valid, result.issues
