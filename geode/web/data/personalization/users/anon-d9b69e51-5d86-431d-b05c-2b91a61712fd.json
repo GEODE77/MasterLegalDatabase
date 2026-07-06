@@ -1,0 +1,32 @@
+{
+  "behaviorEvents": [],
+  "explicitAnswers": [
+    {
+      "answeredAt": "2026-06-29T16:49:26.591Z",
+      "key": "displayName",
+      "sensitivity": "public",
+      "source": "explicit",
+      "value": "JP"
+    }
+  ],
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-29T16:49:26.591Z",
+  "userId": "anon-d9b69e51-5d86-431d-b05c-2b91a61712fd",
+  "derived": {
+    "agencyVector": [],
+    "behaviorScore": 0,
+    "confidence": 0.15,
+    "displayName": "JP",
+    "initials": "J",
+    "industryVector": [],
+    "lastActiveAt": "2026-06-29T16:49:26.591Z",
+    "modelVersion": 2,
+    "preferredTone": "direct",
+    "primaryInterest": null,
+    "readingDensity": "light",
+    "recomputedAt": "2026-06-29T16:49:26.592Z",
+    "roleVector": [],
+    "surfaceVector": [],
+    "topicSignals": []
+  }
+}

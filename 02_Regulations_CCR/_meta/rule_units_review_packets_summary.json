@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-07-01T19:35:31.760909Z",
+  "packet_path": "02_Regulations_CCR/_meta/rule_units_review_packets.jsonl",
+  "packets_written": 532,
+  "pending": 532,
+  "approved": 0,
+  "revised": 0,
+  "split": 0,
+  "quarantined": 0,
+  "canonical_change_ready": 0,
+  "reliance_boundary": "This packet supports review of extracted rule-unit data. It is not legal advice, does not change canonical law, and should not be externally relied on until reviewed."
+}

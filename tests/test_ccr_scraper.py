@@ -559,7 +559,7 @@ def test_download_rule_canonicalizes_existing_manifest_rows(tmp_path: Path) -> N
             "&amp;amp;fileName=5%20CCR%201001-9&amp;type=word"
         ),
     )
-    client = FakeClient({str(entry.docx_url): FakeResponse(content=b"docx")})
+    client = FakeClient({str(entry.docx_url): FakeResponse(content=b"PK\x03\x04docx")})
 
     download_rule(entry, tmp_path, client=client)
     raw_manifest = manifest_path.read_text(encoding="utf-8")

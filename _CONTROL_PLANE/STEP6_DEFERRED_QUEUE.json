@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-07-01T19:55:17.680405+00:00",
+  "items": [
+    {
+      "id": "STEP6-NAME-REVIEWERS",
+      "title": "Name real reviewers",
+      "reason": "3 reviewer roles are ready but still unassigned.",
+      "next_action": "Project owner assigns named people to data reviewer, corpus maintainer, and legal reviewer roles."
+    },
+    {
+      "id": "STEP6-TRAIN-REVIEWERS",
+      "title": "Train reviewers on the SOP",
+      "reason": "The SOP exists, but people still need to be trained before live packet review.",
+      "next_action": "Walk reviewers through packet review, decision logging, escalation, and guarded apply."
+    },
+    {
+      "id": "STEP6-START-PACKET-REVIEW",
+      "title": "Start packet review",
+      "reason": "The system is ready, but the 532 pending packets still need actual decisions.",
+      "next_action": "Use /app/review-packets and /app/review after reviewers are assigned."
+    }
+  ]
+}

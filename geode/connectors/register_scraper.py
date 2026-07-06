@@ -10,8 +10,8 @@ import time
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import Any
-from urllib.parse import urljoin
+from typing import Any, Iterable
+from urllib.parse import parse_qs, unquote_plus, urlencode, urljoin, urlparse, urlunparse
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
 
@@ -31,6 +31,8 @@ from geode.connectors.download_metadata import (
 from geode.net.http_client import (
     DEFAULT_MAX_RETRY_DELAY_SECONDS,
     DEFAULT_TIMEOUT_SECONDS,
+    GeodeBlockedError,
+    GeodeInvalidContentError,
     build_session,
     polite_get,
 )
@@ -40,7 +42,7 @@ from geode.utils.hashing import sha256_file
 
 LOGGER = logging.getLogger(__name__)
 
-REGISTER_URL = "https://www.sos.state.co.us/pubs/CCR/register.html"
+REGISTER_URL = "https://www.sos.state.co.us/CCR/RegisterHome.do"
 DOWNLOAD_MANIFEST = DOWNLOAD_MANIFEST_NAME
 FAILURE_MANIFEST = FAILURE_MANIFEST_NAME
 NOTICE_LINE_RE = re.compile(
@@ -180,12 +182,29 @@ class _LinkParser(HTMLParser):
 def discover_publications(
     client: Any | None = None,
     index_url: str = REGISTER_URL,
+    years: Iterable[int] | None = None,
     max_retries: int = 4,
     base_delay: float = 2.0,
     timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
     max_retry_delay_seconds: float | None = DEFAULT_MAX_RETRY_DELAY_SECONDS,
 ) -> list[RegisterPublication]:
     """Discover Colorado Register publication links from an index page."""
+
+    if years is not None:
+        publications: list[RegisterPublication] = []
+        for year in years:
+            publications.extend(
+                discover_publications(
+                    client=client,
+                    index_url=_register_year_url(index_url, year),
+                    years=None,
+                    max_retries=max_retries,
+                    base_delay=base_delay,
+                    timeout_seconds=timeout_seconds,
+                    max_retry_delay_seconds=max_retry_delay_seconds,
+                )
+            )
+        return _dedupe_publications(publications)
 
     html = _fetch_text(
         index_url,
@@ -195,20 +214,69 @@ def discover_publications(
         timeout_seconds=timeout_seconds,
         max_retry_delay_seconds=max_retry_delay_seconds,
     )
+    _validate_register_index_html(html, index_url)
     parser = _LinkParser()
     parser.feed(html)
     publications = []
     for href, text in parser.links:
         absolute = urljoin(index_url, href)
-        if not any(token in absolute.lower() for token in (".pdf", ".html", ".htm")):
+        if not _is_register_publication_url(absolute):
             continue
         publication_date = _date_from_text(text) or _date_from_text(absolute)
         if not publication_date:
             continue
         publications.append(
-            RegisterPublication(title=text, publication_date=publication_date, url=absolute)
+            RegisterPublication(
+                title=_publication_title(text, publication_date),
+                publication_date=publication_date,
+                url=absolute,
+            )
         )
     return publications
+
+
+def _validate_register_index_html(html: str, index_url: str) -> None:
+    """Reject blocked or unexpected Register index responses."""
+
+    lowered = html.casefold()
+    blocked_markers = (
+        "attention required",
+        "cloudflare",
+        "cf-wrapper",
+        "access denied",
+        "enable cookies",
+    )
+    if any(marker in lowered for marker in blocked_markers):
+        raise GeodeBlockedError(
+            f"Colorado Register discovery blocked or challenged at {index_url}",
+            url=index_url,
+            retry_reason="blocked_content",
+        )
+    if "colorado register" not in lowered and "register" not in lowered:
+        raise GeodeInvalidContentError(
+            f"Colorado Register discovery returned unexpected content at {index_url}",
+            url=index_url,
+            retry_reason="unexpected_register_index",
+        )
+
+
+def _register_year_url(index_url: str, year: int) -> str:
+    """Return a RegisterHome URL for one publication year."""
+
+    parsed = urlparse(index_url)
+    query = parse_qs(parsed.query)
+    query["pyear"] = [str(year)]
+    flattened = [(key, value) for key, values in query.items() for value in values]
+    return urlunparse(parsed._replace(query=urlencode(flattened)))
+
+
+def _dedupe_publications(publications: list[RegisterPublication]) -> list[RegisterPublication]:
+    """Collapse duplicate Register publication URLs."""
+
+    deduped: dict[str, RegisterPublication] = {}
+    for publication in publications:
+        deduped[str(publication.url)] = publication
+    return [deduped[key] for key in sorted(deduped)]
 
 
 def download_all_publications(
@@ -216,6 +284,7 @@ def download_all_publications(
     delay: float = 1.0,
     client: Any | None = None,
     index_url: str = REGISTER_URL,
+    years: Iterable[int] | None = None,
     max_retries: int = 4,
     base_delay: float = 2.0,
     timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
@@ -229,6 +298,7 @@ def download_all_publications(
     publications = discover_publications(
         client=session,
         index_url=index_url,
+        years=years,
         max_retries=max_retries,
         base_delay=base_delay,
         timeout_seconds=timeout_seconds,
@@ -496,10 +566,82 @@ def _session_or_client(client: Any | None) -> Any:
 def _date_from_text(text: str) -> str | None:
     """Extract an ISO date from text."""
 
+    parsed = urlparse(text)
+    query = parse_qs(parsed.query)
+    publication_day = query.get("publicationDay", [""])[0]
+    if publication_day:
+        from_query = _date_from_us_text(unquote_plus(publication_day))
+        if from_query:
+            return from_query
+
     match = re.search(r"\b(20\d{2})[-_/](\d{2})[-_/](\d{2})\b", text)
-    if not match:
+    if match:
+        return f"{match.group(1)}-{match.group(2)}-{match.group(3)}"
+    return _date_from_us_text(text)
+
+
+def _is_register_publication_url(url: str) -> bool:
+    """Return whether a URL points to a Register publication resource."""
+
+    lowered = url.casefold()
+    return any(
+        token in lowered
+        for token in (
+            ".pdf",
+            ".html",
+            ".htm",
+            "registercontents.do",
+            "registerpdfcontents.do",
+        )
+    )
+
+
+def _publication_title(text: str, publication_date: str) -> str:
+    """Return a useful title for a Register publication link."""
+
+    cleaned = _normalize_space(text)
+    if cleaned and cleaned.casefold() not in {"html", "pdf"}:
+        return cleaned
+    return f"Colorado Register {publication_date}"
+
+
+def _normalize_space(value: str) -> str:
+    """Collapse whitespace for parsed Register labels."""
+
+    return re.sub(r"\s+", " ", value or "").strip()
+
+
+def _date_from_us_text(text: str) -> str | None:
+    """Extract an ISO date from US numeric or long-month text."""
+
+    numeric = re.search(r"\b(\d{1,2})/(\d{1,2})/(20\d{2})\b", text)
+    if numeric:
+        return f"{numeric.group(3)}-{int(numeric.group(1)):02d}-{int(numeric.group(2)):02d}"
+
+    month_names = (
+        "january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+    )
+    month_pattern = "|".join(month_names)
+    named = re.search(
+        rf"\b({month_pattern})\s+(\d{{1,2}}),\s*(20\d{{2}})\b",
+        text,
+        re.IGNORECASE,
+    )
+    if not named:
         return None
-    return f"{match.group(1)}-{match.group(2)}-{match.group(3)}"
+    month = month_names.index(named.group(1).casefold()) + 1
+    return f"{named.group(3)}-{month:02d}-{int(named.group(2)):02d}"
 
 
 def _optional_date(value: str | None) -> str | None:

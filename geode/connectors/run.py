@@ -75,6 +75,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="Seconds to wait between CCR discovery pages.",
     )
     parser.add_argument(
+        "--delay-jitter",
+        type=float,
+        help="Maximum jitter seconds added to --delay for paced item downloads.",
+    )
+    parser.add_argument(
+        "--discovery-delay-jitter",
+        type=float,
+        help="Maximum jitter seconds added to --discovery-delay for CCR HTML pages.",
+    )
+    parser.add_argument(
         "--max-downloads",
         type=int,
         help=(
@@ -101,6 +111,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--http-max-retry-delay-seconds",
         type=float,
         help="Maximum retry backoff delay in seconds for hardened connectors.",
+    )
+    parser.add_argument(
+        "--http-retry-jitter-ratio",
+        type=float,
+        help="Maximum retry jitter as a ratio of --http-base-delay.",
     )
     parser.add_argument(
         "--legiscan-api-key",
@@ -137,6 +152,16 @@ def config_from_args(args: argparse.Namespace) -> dict[str, Any]:
 
     if args.max_downloads is not None and args.max_downloads < 0:
         raise BulkDownloadCommandError("--max-downloads cannot be negative")
+    if args.delay is not None and args.delay < 0:
+        raise BulkDownloadCommandError("--delay cannot be negative")
+    if args.discovery_delay is not None and args.discovery_delay < 0:
+        raise BulkDownloadCommandError("--discovery-delay cannot be negative")
+    if args.delay_jitter is not None and args.delay_jitter < 0:
+        raise BulkDownloadCommandError("--delay-jitter cannot be negative")
+    if args.discovery_delay_jitter is not None and args.discovery_delay_jitter < 0:
+        raise BulkDownloadCommandError("--discovery-delay-jitter cannot be negative")
+    if args.http_retry_jitter_ratio is not None and args.http_retry_jitter_ratio < 0:
+        raise BulkDownloadCommandError("--http-retry-jitter-ratio cannot be negative")
 
     config: dict[str, Any] = {
         "root": args.root,
@@ -146,11 +171,14 @@ def config_from_args(args: argparse.Namespace) -> dict[str, Any]:
     optional_values = {
         "delay": args.delay,
         "discovery_delay": args.discovery_delay,
+        "delay_jitter": args.delay_jitter,
+        "discovery_delay_jitter": args.discovery_delay_jitter,
         "max_downloads": args.max_downloads,
         "http_timeout_seconds": args.http_timeout_seconds,
         "http_max_retries": args.http_max_retries,
         "http_base_delay": args.http_base_delay,
         "http_max_retry_delay_seconds": args.http_max_retry_delay_seconds,
+        "http_retry_jitter_ratio": args.http_retry_jitter_ratio,
         "legiscan_api_key": args.legiscan_api_key,
         "register_index_url": args.register_index_url,
         "executive_orders_index_url": args.executive_orders_index_url,
@@ -300,7 +328,15 @@ def _metric_text(summary: dict[str, Any]) -> str:
     """Return compact count text for one connector summary."""
 
     fields = []
-    for key in ("discovered", "attempted", "downloaded", "failed", "skipped"):
+    for key in (
+        "discovered",
+        "attempted",
+        "downloaded",
+        "failed",
+        "blocked",
+        "skipped",
+        "retry_count",
+    ):
         value = summary.get(key)
         if isinstance(value, bool):
             continue

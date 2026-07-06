@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-07-01T21:12:34.640958+00:00",
+  "items": [
+    {
+      "id": "STEP9-VISUAL-GRAPH",
+      "title": "Defer visual graph",
+      "reason": "The useful first product is a structured relationship panel, not a network view.",
+      "next_action": "Build a visual graph only after relationship coverage and target resolution are stronger."
+    }
+  ]
+}

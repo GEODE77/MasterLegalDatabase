@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-07-02T16:23:21.150150Z",
+  "source_publications_total": 438,
+  "records_total": 7955,
+  "publications_with_notices": 438,
+  "publications_without_notices": 0,
+  "extraction_failures": 0,
+  "edocket_references_total": 315,
+  "ccr_crosswalk_rows_total": 7955,
+  "gap_rows_total": 0,
+  "quarantine_rows_total": 0,
+  "method_counts": {
+    "register_table_row": 7955
+  },
+  "notice_type_counts": {
+    "adopted": 7574,
+    "emergency": 6,
+    "hearing": 109,
+    "proposed": 82,
+    "repealed": 1,
+    "rulemaking": 183
+  },
+  "confidence_buckets": {
+    "high": 7955
+  },
+  "missing_field_counts": {
+    "edocket_tracking_number": 7640,
+    "effective_date": 375,
+    "hearing_date": 7764
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "discovered": 6,
+  "downloaded": 6,
+  "failed": 0,
+  "index_path": "07_Supplementary/_index.jsonl",
+  "meta_path": "07_Supplementary/_meta/ag_opinions_meta.jsonl",
+  "record_count": 6,
+  "raw_dir": "_RAW_ARCHIVE/supplementary/ag_opinions",
+  "years": [
+    "2021",
+    "2023",
+    "2024",
+    "2026"
+  ]
+}

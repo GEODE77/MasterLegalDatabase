@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-07-01T21:12:21.469512Z",
+  "assignment_path": "_CONTROL_PLANE/REVIEWER_ASSIGNMENTS.json",
+  "sop_path": "docs/GEODE_REVIEWER_SOP.md",
+  "required_roles": 3,
+  "assigned_roles": 0,
+  "unassigned_roles": 3,
+  "ready_for_human_assignment": true,
+  "boundary": "Reviewer slots are prepared but no real person is assigned until a project owner authorizes named reviewers."
+}

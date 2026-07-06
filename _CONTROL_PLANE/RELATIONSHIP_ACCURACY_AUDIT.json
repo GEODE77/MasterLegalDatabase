@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-07-02T20:38:09.851471+00:00",
+  "relationships_checked": 9980,
+  "strong_relationships": 7969,
+  "review_relationships": 2011,
+  "file_summaries": [
+    {
+      "crosswalk_file": "regulation_to_statute.jsonl",
+      "rows_checked": 696,
+      "endpoint_coverage": 1.0,
+      "evidence_coverage": 1.0,
+      "high_confidence_ratio": 0.0,
+      "known_source_ratio": 1.0,
+      "known_target_ratio": 0.8793,
+      "review_rows": 696
+    },
+    {
+      "crosswalk_file": "statute_to_regulation.jsonl",
+      "rows_checked": 619,
+      "endpoint_coverage": 1.0,
+      "evidence_coverage": 1.0,
+      "high_confidence_ratio": 0.0,
+      "known_source_ratio": 0.9564,
+      "known_target_ratio": 1.0,
+      "review_rows": 619
+    },
+    {
+      "crosswalk_file": "bill_to_statute.jsonl",
+      "rows_checked": 7,
+      "endpoint_coverage": 1.0,
+      "evidence_coverage": 1.0,
+      "high_confidence_ratio": 1.0,
+      "known_source_ratio": 1.0,
+      "known_target_ratio": 0.2857,
+      "review_rows": 0
+    },
+    {
+      "crosswalk_file": "rulemaking_to_regulation.jsonl",
+      "rows_checked": 7955,
+      "endpoint_coverage": 1.0,
+      "evidence_coverage": 1.0,
+      "high_confidence_ratio": 1.0,
+      "known_source_ratio": 1.0,
+      "known_target_ratio": 0.9992,
+      "review_rows": 0
+    },
+    {
+      "crosswalk_file": "agency_to_statute.jsonl",
+      "rows_checked": 696,
+      "endpoint_coverage": 1.0,
+      "evidence_coverage": 1.0,
+      "high_confidence_ratio": 0.0,
+      "known_source_ratio": 0.0,
+      "known_target_ratio": 0.8793,
+      "review_rows": 696
+    },
+    {
+      "crosswalk_file": "amendment_history.jsonl",
+      "rows_checked": 7,
+      "endpoint_coverage": 1.0,
+      "evidence_coverage": 1.0,
+      "high_confidence_ratio": 1.0,
+      "known_source_ratio": 1.0,
+      "known_target_ratio": 0.2857,
+      "review_rows": 0
+    }
+  ],
+  "rows_path": "_CONTROL_PLANE/RELATIONSHIP_ACCURACY_AUDIT.jsonl",
+  "boundary": "Relationship accuracy verifies endpoints, evidence, and confidence. It does not interpret legal effect."
+}

@@ -14,6 +14,7 @@ RAW_CONNECTOR_DIRS = {
     "legiscan": "legiscan",
     "colorado_register": "register",
     "register": "register",
+    "edocket": "edocket",
     "executive_orders": "exec_orders",
     "exec_orders": "exec_orders",
     "coprrr": "supplementary/coprrr",
@@ -66,6 +67,8 @@ def register_publication_path(
 
     stem = safe_archive_stem(publication_date)
     suffix = url_suffix(source_url, ".html")
+    if suffix == ".do":
+        suffix = ".html"
     return archive_dir / f"register_{stem}{suffix}"
 
 

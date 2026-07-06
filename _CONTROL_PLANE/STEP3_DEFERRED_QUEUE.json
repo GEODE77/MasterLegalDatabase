@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-07-01T19:25:56.249426+00:00",
+  "items": [
+    {
+      "id": "STEP3-RU-DECISIONS",
+      "title": "Work the remaining rule-unit review decisions",
+      "reason": "532 queue items still need approve, revise, split, or quarantine decisions.",
+      "next_action": "Use /app/review filters to work pending items and rebuild the apply proposal."
+    },
+    {
+      "id": "STEP3-CANONICAL-APPLY",
+      "title": "Apply reviewed canonical changes only after decisions exist",
+      "reason": "The guarded apply path is ready, but no canonical changes should be applied without real decisions.",
+      "next_action": "Apply only batches with valid replacement records and the confirmation phrase."
+    },
+    {
+      "id": "STEP3-LEGAL-REVIEW",
+      "title": "Add formal legal review before reliance",
+      "reason": "Reviewed rule units improve data quality but do not replace legal review.",
+      "next_action": "Define who can approve production-ready legal guidance."
+    }
+  ]
+}

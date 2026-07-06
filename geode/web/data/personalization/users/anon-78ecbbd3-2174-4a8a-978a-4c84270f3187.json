@@ -1,0 +1,52 @@
+{
+  "behaviorEvents": [
+    {
+      "eventId": "97cb96e5-5b73-4aee-ae2d-e2559cf24563",
+      "payload": {
+        "pathname": "/about"
+      },
+      "recordedAt": "2026-06-26T21:33:28.146Z",
+      "source": "behavior",
+      "type": "route_view"
+    }
+  ],
+  "explicitAnswers": [
+    {
+      "answeredAt": "2026-06-26T21:33:28.142Z",
+      "key": "displayName",
+      "sensitivity": "public",
+      "source": "explicit",
+      "value": "JP"
+    }
+  ],
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-26T21:33:28.146Z",
+  "userId": "anon-78ecbbd3-2174-4a8a-978a-4c84270f3187",
+  "derived": {
+    "agencyVector": [],
+    "behaviorScore": 11,
+    "confidence": 0.17,
+    "displayName": "JP",
+    "initials": "J",
+    "industryVector": [],
+    "lastActiveAt": "2026-06-26T21:33:28.146Z",
+    "modelVersion": 2,
+    "preferredTone": "direct",
+    "primaryInterest": "dashboard",
+    "readingDensity": "light",
+    "recomputedAt": "2026-06-26T21:33:28.146Z",
+    "roleVector": [],
+    "surfaceVector": [
+      {
+        "key": "dashboard",
+        "weight": 1
+      }
+    ],
+    "topicSignals": [
+      {
+        "key": "dashboard",
+        "weight": 1
+      }
+    ]
+  }
+}

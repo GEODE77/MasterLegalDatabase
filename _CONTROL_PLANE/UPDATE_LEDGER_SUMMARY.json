@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-07-01T20:43:52.294058Z",
+  "ledger_path": "_CONTROL_PLANE/UPDATE_LEDGER.jsonl",
+  "events_written": 2619,
+  "manifest_layer_events": 7,
+  "update_log_events": 2338,
+  "timeline_events": 266,
+  "step_gate_events": 8,
+  "full_diff_ready": false,
+  "diff_status": "not_started",
+  "next_action": "Use this ledger for update awareness now; add full text diff after stable source snapshots are available."
+}

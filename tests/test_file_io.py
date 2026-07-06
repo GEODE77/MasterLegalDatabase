@@ -9,6 +9,7 @@ import pytest
 
 from geode.constants import CRS_LAYER
 from geode.schemas import SourceDocument
+from geode.utils import file_io
 from geode.utils.file_io import (
     RawArchiveWriteError,
     atomic_write_jsonl,
@@ -56,3 +57,29 @@ def test_jsonl_writer_has_no_blank_lines(project_root: Path) -> None:
     atomic_write_jsonl(target, [record], project_root)
     assert "\n\n" not in target.read_text(encoding="utf-8")
     assert len(list(iter_jsonl(target))) == 1
+
+
+def test_atomic_write_retries_transient_permission_error(
+    project_root: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A transient Windows file lock during replace is retried."""
+
+    target = project_root / "01_Statutes_CRS" / "retry.md"
+    real_replace = file_io.os.replace
+    attempts = 0
+
+    def flaky_replace(source: Path, destination: Path) -> None:
+        nonlocal attempts
+        attempts += 1
+        if attempts == 1:
+            raise PermissionError("locked")
+        real_replace(source, destination)
+
+    monkeypatch.setattr(file_io.os, "replace", flaky_replace)
+    monkeypatch.setattr(file_io.time, "sleep", lambda _seconds: None)
+
+    atomic_write_text(target, "ok\n", project_root)
+
+    assert attempts == 2
+    assert target.read_text(encoding="utf-8") == "ok\n"

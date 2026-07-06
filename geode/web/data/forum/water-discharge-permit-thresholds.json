@@ -1,0 +1,21 @@
+{
+  "id": "water-discharge-permit-thresholds",
+  "title": "When does a manufacturing water discharge review become board-level risk?",
+  "excerpt": "The threshold is not only whether a permit is required. It is whether the operating pattern creates a repeatable risk that could interrupt production or capital plans.",
+  "body": "The threshold is not only whether a permit is required. It is whether the operating pattern creates a repeatable risk that could interrupt production or capital plans.\n\nFor manufacturing sites, discharge questions often start as environmental operations questions and become executive questions when expansion, equipment change, or customer requirements depend on permit timing. How are teams deciding when to elevate these reviews?",
+  "author": "Priya Shah",
+  "createdAt": "2026-06-23T21:12:00.000Z",
+  "updatedAt": "2026-06-25T00:18:00.000Z",
+  "votes": 27,
+  "tags": ["environment", "manufacturing", "enforcement", "case-study"],
+  "replies": [
+    {
+      "id": "reply-capital-planning",
+      "author": "James Voss",
+      "body": "We elevate when the answer could affect a capital decision, customer commitment, or promised launch date. That framing has been easier for executives than debating permit language in isolation.",
+      "createdAt": "2026-06-24T01:38:00.000Z",
+      "parentId": null,
+      "votes": 11
+    }
+  ]
+}

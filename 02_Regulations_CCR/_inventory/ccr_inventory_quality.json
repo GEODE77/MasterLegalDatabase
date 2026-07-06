@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-07-02T17:36:25.767391Z",
+  "output_root": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode",
+  "inventory_manifest_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/02_Regulations_CCR/_inventory/ccr_inventory_manifest.jsonl",
+  "queue_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/ccr/ccr_bulk_queue.jsonl",
+  "run_status": "completed",
+  "max_items": null,
+  "max_agencies": null,
+  "run_capped_by_max_items": false,
+  "run_capped_by_max_agencies": false,
+  "uncapped_discovery_requested": true,
+  "uncapped_discovery_completed": true,
+  "traversal_validation_status": "uncapped_discovery_completed",
+  "field_population_status": "critical_fields_populated",
+  "queue_items_total": 1035,
+  "inventory_rows_total": 2070,
+  "download_targets_total": 2070,
+  "unique_department_names_total": 25,
+  "unique_department_ids_total": 25,
+  "unique_agency_names_total": 208,
+  "unique_agency_ids_total": 208,
+  "unique_browse_source_urls_total": 208,
+  "unique_rule_series_total": 1035,
+  "unique_rule_detail_urls_total": 1035,
+  "asset_format_counts": {
+    "docx": 1035,
+    "pdf": 1035
+  },
+  "queue_status_counts": {
+    "skipped_existing": 1035
+  },
+  "inventory_status_counts": {
+    "skipped_existing": 2070
+  },
+  "field_coverage": {
+    "department_name": {
+      "field_name": "department_name",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "department_id": {
+      "field_name": "department_id",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "agency_name": {
+      "field_name": "agency_name",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "agency_id": {
+      "field_name": "agency_id",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "browse_source_url": {
+      "field_name": "browse_source_url",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "ccr_number": {
+      "field_name": "ccr_number",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "rule_detail_url": {
+      "field_name": "rule_detail_url",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "rule_id": {
+      "field_name": "rule_id",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "asset_format": {
+      "field_name": "asset_format",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "download_url": {
+      "field_name": "download_url",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "source_page_url": {
+      "field_name": "source_page_url",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    },
+    "discovered_at": {
+      "field_name": "discovered_at",
+      "total": 2070,
+      "populated": 2070,
+      "missing": 0,
+      "populated_ratio": 1.0
+    }
+  },
+  "duplicate_manifest_row_ids": [],
+  "warnings": []
+}

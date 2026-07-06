@@ -98,6 +98,25 @@ def test_legiscan_client_uses_injected_client(
     assert client.calls == ["getSessionList", "getMasterList", "getBill"]
 
 
+def test_legiscan_client_accepts_live_bill_number_shape() -> None:
+    """Bill detail accepts LegiScan's live ``bill_number`` field."""
+
+    client = FakeClient(
+        {
+            "bill": {
+                "bill_id": 2042497,
+                "bill_number": "HB1001",
+                "title": "Concerning Public Policy",
+            }
+        }
+    )
+
+    detail = get_bill_detail(2042497, api_key="test", client=client)
+
+    assert detail.number == "HB1001"
+    assert detail.bill_id == 2042497
+
+
 def test_transform_bill_fixture_validates(
     legiscan_fixture_path: Path,
     project_root: Path,
@@ -112,6 +131,119 @@ def test_transform_bill_fixture_validates(
     assert record["id"] == "SB23-016"
     assert record["statutes_amended"] == ["CRS-25-7-109"]
     assert "air_quality" in record["subject_tags"]
+
+
+def test_transform_bill_preserves_four_digit_bill_numbers(project_root: Path) -> None:
+    """LegiScan bill numbers such as HB1001 normalize to HB25-1001."""
+
+    ontology = load_json(project_root / "_CONTROL_PLANE" / "ONTOLOGY.json")
+    record = transform_bill(
+        {
+            "bill": {
+                "bill_id": 2042497,
+                "bill_number": "HB1001",
+                "session": {"year_start": 2025, "year_end": 2025},
+                "title": "Concerning Public Policy",
+                "status": "Introduced",
+                "status_date": "2025-01-08",
+                "introduced_date": "2025-01-08",
+                "url": "https://legiscan.com/CO/bill/HB1001/2025",
+            }
+        },
+        ontology,
+    )
+
+    assert record["id"] == "HB25-1001"
+    assert record["bill_number"] == "1001"
+
+
+def test_transform_bill_uses_sponsor_role_for_chamber(project_root: Path) -> None:
+    """LegiScan sponsor role values distinguish House and Senate sponsors."""
+
+    ontology = load_json(project_root / "_CONTROL_PLANE" / "ONTOLOGY.json")
+    record = transform_bill(
+        {
+            "bill": {
+                "bill_id": 2042498,
+                "bill_number": "HB1002",
+                "session": {"year_start": 2025, "year_end": 2025},
+                "title": "Concerning Public Policy",
+                "status": "Introduced",
+                "status_date": "2025-01-08",
+                "introduced_date": "2025-01-08",
+                "sponsors": [
+                    {"name": "House Sponsor", "party": "D", "role": "Rep", "role_id": 1},
+                    {"name": "Senate Sponsor", "party": "D", "role": "Sen", "role_id": 2},
+                ],
+                "url": "https://legiscan.com/CO/bill/HB1002/2025",
+            }
+        },
+        ontology,
+    )
+
+    assert record["sponsors"][0]["chamber"] == "House"
+    assert record["sponsors"][1]["chamber"] == "Senate"
+
+
+def test_transform_bill_accepts_resolution_and_memorial_prefixes(project_root: Path) -> None:
+    """LegiScan resolution and memorial records are valid legislation items."""
+
+    ontology = load_json(project_root / "_CONTROL_PLANE" / "ONTOLOGY.json")
+    examples = {
+        "HR1001": "HR26-1001",
+        "HM1001": "HM26-1001",
+        "SR1001": "SR26-1001",
+        "SM1001": "SM26-1001",
+        "HJM1001": "HJM26-1001",
+        "SJM001": "SJM26-001",
+    }
+
+    for raw_number, expected_id in examples.items():
+        record = transform_bill(
+            {
+                "bill": {
+                    "bill_id": 2043000,
+                    "bill_number": raw_number,
+                    "session": {"year_start": 2026, "year_end": 2026},
+                    "title": "Concerning Public Policy",
+                    "status": "Introduced",
+                    "status_date": "2026-01-08",
+                    "introduced_date": "2026-01-08",
+                    "url": f"https://legiscan.com/CO/bill/{raw_number}/2026",
+                }
+            },
+            ontology,
+        )
+
+        assert record["id"] == expected_id
+
+
+def test_transform_bill_adds_special_session_suffix(project_root: Path) -> None:
+    """Special-session bill IDs stay distinct from regular-session bill IDs."""
+
+    ontology = load_json(project_root / "_CONTROL_PLANE" / "ONTOLOGY.json")
+    record = transform_bill(
+        {
+            "bill": {
+                "bill_id": 2042497,
+                "bill_number": "HB1001",
+                "session": {
+                    "year_start": 2025,
+                    "year_end": 2025,
+                    "special": 1,
+                    "session_tag": "1st Special Session",
+                },
+                "title": "Qualified Business Income Deduction Add-Back",
+                "status": "Introduced",
+                "status_date": "2025-08-28",
+                "introduced_date": "2025-08-21",
+                "url": "https://legiscan.com/CO/bill/HB1001/2025/X1",
+            }
+        },
+        ontology,
+    )
+
+    assert record["id"] == "HB25X1-1001"
 
 
 def test_legiscan_download_all_sessions_resumes_without_duplicate_get_bill(

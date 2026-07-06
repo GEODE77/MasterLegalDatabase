@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "backend": {
+    "status": "measured",
+    "tool": "pytest-cov/coverage.py",
+    "evidence_path": "_CONTROL_PLANE/AUDIT_REPORTS/backend_coverage.json",
+    "tests_passed": 317,
+    "line_coverage_percent": "75",
+    "branch_coverage_percent": 59.54,
+    "num_statements": 15551,
+    "missing_lines": 3184
+  },
+  "frontend": {
+    "status": "not_measured",
+    "tool": null,
+    "reason": "No vitest, c8, or equivalent frontend coverage script is configured in geode/web/package.json.",
+    "next_action": "Add a frontend test runner with coverage and rerun this audit."
+  },
+  "boundary": "Backend coverage is measured from the latest local pytest-cov run. Frontend coverage is explicitly not claimed."
+}

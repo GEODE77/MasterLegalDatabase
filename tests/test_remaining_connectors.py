@@ -6,8 +6,11 @@ import json
 import logging
 from pathlib import Path
 
+import pytest
+
 from geode.connectors.crs_parser import parse_crs_sgml, write_crs_sgml_title
 from geode.connectors.exec_orders_scraper import (
+    _invalid_executive_order_content_reason,
     download_all_executive_orders,
     discover_executive_orders,
     download_executive_order,
@@ -21,6 +24,7 @@ from geode.connectors.register_scraper import (
     download_publication,
     extract_rulemaking_notices,
 )
+from geode.net.http_client import GeodeBlockedError
 from geode.schemas.validators import validate_record
 from geode.utils.file_io import iter_jsonl, load_json
 
@@ -61,7 +65,7 @@ class FakeClient:
 def test_register_scraper_processes_sample(tmp_path: Path) -> None:
     """Register connector discovers, downloads, and extracts notices."""
 
-    index_url = "https://www.sos.state.co.us/pubs/CCR/register.html"
+    index_url = "https://www.sos.state.co.us/CCR/RegisterHome.do"
     pub_url = "https://www.sos.state.co.us/pubs/CCR/register_2024-01-10.html"
     html = f'<a href="{pub_url}">Colorado Register 2024-01-10</a>'
     notice_text = (
@@ -97,7 +101,7 @@ def test_register_scraper_processes_sample(tmp_path: Path) -> None:
 def test_register_bulk_download_resumes_from_manifest(tmp_path: Path) -> None:
     """Register bulk downloads skip already fingerprinted publications."""
 
-    index_url = "https://www.sos.state.co.us/pubs/CCR/register.html"
+    index_url = "https://www.sos.state.co.us/CCR/RegisterHome.do"
     pub_url = "https://www.sos.state.co.us/pubs/CCR/register_2024-01-10.html"
     html = f'<a href="{pub_url}">Colorado Register 2024-01-10</a>'
     client = FakeClient(
@@ -119,13 +123,64 @@ def test_register_bulk_download_resumes_from_manifest(tmp_path: Path) -> None:
     assert len(list(iter_jsonl(tmp_path / "download_manifest.jsonl"))) == 1
 
 
+def test_register_discovery_parses_register_contents_links() -> None:
+    """Register discovery supports the live RegisterHome.do link shape."""
+
+    index_url = "https://www.sos.state.co.us/CCR/RegisterHome.do"
+    href = (
+        "/CCR/RegisterContents.do?publicationDay=01/10/2026&Volume=49"
+        "&yearPublishNumber=1&Month=1&Year=2026"
+    )
+    html = f'<a href="{href}"><span>HTML</span></a>'
+    client = FakeClient({index_url: FakeResponse(text=html)})
+
+    publications = discover_publications(client=client, index_url=index_url)
+
+    assert len(publications) == 1
+    assert publications[0].publication_date == "2026-01-10"
+    assert publications[0].title == "Colorado Register 2026-01-10"
+    assert str(publications[0].url).startswith(
+        "https://www.sos.state.co.us/CCR/RegisterContents.do"
+    )
+
+
+def test_register_discovery_supports_year_ranges() -> None:
+    """Register discovery can traverse explicit back-issue years."""
+
+    index_url = "https://www.sos.state.co.us/CCR/RegisterHome.do"
+    url_2025 = f"{index_url}?pyear=2025"
+    url_2026 = f"{index_url}?pyear=2026"
+    html_2025 = (
+        '<a href="/CCR/RegisterContents.do?publicationDay=01/10/2025&Volume=48">'
+        "<span>HTML</span></a>"
+    )
+    html_2026 = (
+        '<a href="/CCR/RegisterContents.do?publicationDay=01/10/2026&Volume=49">'
+        "<span>HTML</span></a>"
+    )
+    client = FakeClient(
+        {
+            url_2025: FakeResponse(text=html_2025),
+            url_2026: FakeResponse(text=html_2026),
+        }
+    )
+
+    publications = discover_publications(client=client, index_url=index_url, years=[2025, 2026])
+
+    assert [publication.publication_date for publication in publications] == [
+        "2025-01-10",
+        "2026-01-10",
+    ]
+    assert client.calls == [url_2025, url_2026]
+
+
 def test_register_bulk_download_does_not_sleep_for_skipped_items(
     tmp_path: Path,
     monkeypatch,
 ) -> None:
     """Manifest-complete reruns do not burn pacing delay on skipped items."""
 
-    index_url = "https://www.sos.state.co.us/pubs/CCR/register.html"
+    index_url = "https://www.sos.state.co.us/CCR/RegisterHome.do"
     pub_url = "https://www.sos.state.co.us/pubs/CCR/register_2024-01-10.html"
     html = f'<a href="{pub_url}">Colorado Register 2024-01-10</a>'
     client = FakeClient(
@@ -150,7 +205,7 @@ def test_register_bulk_download_max_downloads_caps_network_attempts(
 ) -> None:
     """A capped run pauses after non-skipped downloads and resumes later."""
 
-    index_url = "https://www.sos.state.co.us/pubs/CCR/register.html"
+    index_url = "https://www.sos.state.co.us/CCR/RegisterHome.do"
     pub_one = "https://www.sos.state.co.us/pubs/CCR/register_2024-01-10.html"
     pub_two = "https://www.sos.state.co.us/pubs/CCR/register_2024-02-10.html"
     html = (
@@ -206,7 +261,7 @@ def test_register_bulk_download_records_failed_items(tmp_path: Path, caplog) -> 
     """Register publication failures are persisted for later review."""
 
     caplog.set_level(logging.WARNING)
-    index_url = "https://www.sos.state.co.us/pubs/CCR/register.html"
+    index_url = "https://www.sos.state.co.us/CCR/RegisterHome.do"
     pub_url = "https://www.sos.state.co.us/pubs/CCR/register_2024-01-10.html"
     html = f'<a href="{pub_url}">Colorado Register 2024-01-10</a>'
     client = FakeClient({index_url: FakeResponse(text=html)})
@@ -224,6 +279,22 @@ def test_register_bulk_download_records_failed_items(tmp_path: Path, caplog) -> 
     log_messages = "\n".join(record.getMessage() for record in caplog.records)
     assert f"source_url={pub_url}" in log_messages
     assert "archive_path=" in log_messages
+
+
+def test_register_discovery_rejects_challenge_page() -> None:
+    """Blocked Register index pages cannot masquerade as empty discovery."""
+
+    index_url = "https://www.sos.state.co.us/CCR/RegisterHome.do"
+    client = FakeClient(
+        {
+            index_url: FakeResponse(
+                text="<html><title>Attention Required! | Cloudflare</title><div id='cf-wrapper'>"
+            )
+        }
+    )
+
+    with pytest.raises(GeodeBlockedError):
+        discover_publications(client=client, index_url=index_url)
 
 
 def test_crs_sgml_parser_outputs_markdown_and_metadata(project_root: Path) -> None:
@@ -279,6 +350,26 @@ def test_exec_order_scraper_processes_sample(tmp_path: Path) -> None:
     assert valid, errors
 
 
+def test_exec_order_metadata_prefers_governor_signature_block() -> None:
+    """Executive-order dates come from the signing block, not background dates."""
+
+    text = (
+        "D 2021 046\n"
+        "EXECUTIVE ORDER\n"
+        "Extending Executive Orders D 2020 260 and D 2020 286\n"
+        "On March 5, 2020, the first presumptive case was confirmed.\n"
+        "On March 10, 2020, the Governor took earlier action.\n"
+        "GIVEN under my hand and the Executive Seal of the State of Colorado, "
+        "this eighteenth day of February, 2021.\n"
+        "Jared Polis\nGovernor\n"
+    )
+
+    record = extract_order_metadata(text, "https://www.colorado.gov/governor/test.pdf")
+
+    assert record["id"] == "EO-2021-046"
+    assert record["signed_date"] == "2021-02-18"
+
+
 def test_exec_order_bulk_download_resumes_from_manifest(tmp_path: Path) -> None:
     """Executive order bulk downloads skip already fingerprinted PDFs."""
 
@@ -319,6 +410,144 @@ def test_exec_order_bulk_download_records_failed_items(tmp_path: Path) -> None:
     assert report.failed == 1
     assert rows[0]["entry"]["pdf_url"] == pdf_url
     assert rows[0]["error"]
+
+
+def test_exec_order_download_rejects_google_sign_in_artifacts(tmp_path: Path) -> None:
+    """Google sign-in pages are failures, not executive-order PDFs."""
+
+    index_url = "https://www.colorado.gov/governor/executive-orders"
+    pdf_url = "https://www.colorado.gov/governor/eo/D2019007.pdf"
+    html = f'<a href="{pdf_url}">D 2019 007</a>'
+    client = FakeClient(
+        {
+            index_url: FakeResponse(text=html),
+            pdf_url: FakeResponse(content=b"<html>Google Drive sign-in page</html>"),
+        }
+    )
+
+    report = download_all_executive_orders(tmp_path, delay=0, client=client, index_url=index_url)
+
+    assert report.downloaded == 0
+    assert report.failed == 1
+    assert not (tmp_path / "EO-2019-007.pdf").exists()
+    rows = list(iter_jsonl(tmp_path / "download_failures.jsonl"))
+    assert "sign-in" in rows[0]["error"]
+
+
+def test_exec_order_rejects_google_drive_text_marker() -> None:
+    """The observed Google Drive sign-in wording is blocked."""
+
+    content = b"Loading\nSign in\nto continue to Google Drive\nForgot email?"
+
+    reason = _invalid_executive_order_content_reason(content)
+
+    assert reason is not None
+    assert "sign-in" in reason
+
+
+def test_exec_order_bulk_retries_invalid_manifest_artifact_without_overwrite(
+    tmp_path: Path,
+) -> None:
+    """Bad archived sign-in files do not count as valid resume evidence."""
+
+    index_url = "https://www.colorado.gov/governor/executive-orders"
+    pdf_url = "https://www.colorado.gov/governor/eo/D2019007.pdf"
+    html = f'<a href="{pdf_url}">D 2019 007</a>'
+    bad_target = tmp_path / "EO-2019-007.pdf"
+    bad_target.write_bytes(b"<html>Google Drive sign-in page</html>")
+    (tmp_path / "download_manifest.jsonl").write_text(
+        json.dumps(
+            {
+                "jurisdiction": "Colorado",
+                "source_type": "executive_order",
+                "document_id": "EO-2019-007",
+                "document_name": "D 2019 007",
+                "entry": {
+                    "order_number": "D 2019 007",
+                    "title": "D 2019 007",
+                    "signed_date": None,
+                    "source_page_url": index_url,
+                    "pdf_url": pdf_url,
+                },
+                "source_url": pdf_url,
+                "source_page_url": index_url,
+                "source_format": "pdf",
+                "signed_date": None,
+                "archive_path": bad_target.as_posix(),
+                "sha256": "0" * 64,
+                "downloaded_at": "2026-07-02T00:00:00Z",
+                "missing_metadata": ["signed_date"],
+            },
+            separators=(",", ":"),
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    client = FakeClient(
+        {
+            index_url: FakeResponse(text=html),
+            pdf_url: FakeResponse(content=b"%PDF-1.7\nrecovered"),
+        }
+    )
+
+    report = download_all_executive_orders(tmp_path, delay=0, client=client, index_url=index_url)
+
+    assert report.downloaded == 1
+    assert bad_target.read_bytes() == b"<html>Google Drive sign-in page</html>"
+    assert len(list(tmp_path.glob("EO-2019-007_*.pdf"))) == 1
+
+
+def test_exec_order_bulk_records_failure_when_invalid_retry_remains_invalid(
+    tmp_path: Path,
+) -> None:
+    """A bad archived file plus a bad retry is queued as a failure."""
+
+    index_url = "https://www.colorado.gov/governor/executive-orders"
+    pdf_url = "https://www.colorado.gov/governor/eo/D2019007.pdf"
+    html = f'<a href="{pdf_url}">D 2019 007</a>'
+    bad_target = tmp_path / "EO-2019-007.pdf"
+    bad_target.write_bytes(b"<html>Google Drive sign-in page</html>")
+    (tmp_path / "download_manifest.jsonl").write_text(
+        json.dumps(
+            {
+                "jurisdiction": "Colorado",
+                "source_type": "executive_order",
+                "document_id": "EO-2019-007",
+                "document_name": "D 2019 007",
+                "entry": {
+                    "order_number": "D 2019 007",
+                    "title": "D 2019 007",
+                    "signed_date": None,
+                    "source_page_url": index_url,
+                    "pdf_url": pdf_url,
+                },
+                "source_url": pdf_url,
+                "source_page_url": index_url,
+                "source_format": "pdf",
+                "signed_date": None,
+                "archive_path": bad_target.as_posix(),
+                "sha256": "0" * 64,
+                "downloaded_at": "2026-07-02T00:00:00Z",
+                "missing_metadata": ["signed_date"],
+            },
+            separators=(",", ":"),
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    client = FakeClient(
+        {
+            index_url: FakeResponse(text=html),
+            pdf_url: FakeResponse(content=b"<html>to continue to Google Drive</html>"),
+        }
+    )
+
+    report = download_all_executive_orders(tmp_path, delay=0, client=client, index_url=index_url)
+
+    assert report.downloaded == 0
+    assert report.failed == 1
+    assert bad_target.read_bytes() == b"<html>Google Drive sign-in page</html>"
+    assert list(tmp_path.glob("EO-2019-007_*.pdf")) == []
 
 
 def test_orchestrator_runs_injected_connectors(project_root: Path) -> None:
@@ -391,7 +620,7 @@ def test_orchestrator_logs_end_of_run_summary(project_root: Path, caplog) -> Non
 def test_orchestrator_writes_bulk_quality_report(project_root: Path) -> None:
     """A bulk run writes a machine-readable quality report."""
 
-    index_url = "https://www.sos.state.co.us/pubs/CCR/register.html"
+    index_url = "https://www.sos.state.co.us/CCR/RegisterHome.do"
     pub_url = "https://www.sos.state.co.us/pubs/CCR/register_2024-01-10.html"
     html = f'<a href="{pub_url}">Colorado Register 2024-01-10</a>'
     client = FakeClient(
@@ -551,20 +780,26 @@ def test_orchestrator_passes_hardened_http_options_to_ccr(
             "connectors": ["ccr"],
             "delay": 1.25,
             "discovery_delay": 0.75,
+            "delay_jitter": 0.2,
+            "discovery_delay_jitter": 0.1,
             "max_downloads": 3,
             "http_max_retries": 6,
             "http_base_delay": 0.5,
             "http_timeout_seconds": 8.0,
             "http_max_retry_delay_seconds": 13.0,
+            "http_retry_jitter_ratio": 0.0,
         }
     )
 
     assert captured["raw_dir"] == project_root / "_RAW_ARCHIVE" / "ccr"
     assert captured["delay"] == 1.25
     assert captured["discovery_delay"] == 0.75
+    assert captured["delay_jitter_seconds"] == 0.2
+    assert captured["discovery_delay_jitter_seconds"] == 0.1
     assert captured["max_downloads"] == 3
     assert captured["max_retries"] == 6
     assert captured["base_delay"] == 0.5
     assert captured["timeout_seconds"] == 8.0
     assert captured["max_retry_delay_seconds"] == 13.0
+    assert captured["retry_jitter_ratio"] == 0.0
     assert report.results[0].status == "completed"

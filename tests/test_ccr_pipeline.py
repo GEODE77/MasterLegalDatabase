@@ -84,7 +84,7 @@ def test_run_ccr_pipeline_happy_path(monkeypatch, tmp_path: Path) -> None:
 
     session = FakeSession()
     entry = ccr.CCRRuleEntry(
-        ccr_number="3154",
+        ccr_number="7 CCR 1103-1",
         department="Department of Labor and Employment",
         agency="Division of Labor Standards and Statistics",
         source_page_url=EXPECTED_RULE_URL,
@@ -108,8 +108,10 @@ def test_run_ccr_pipeline_happy_path(monkeypatch, tmp_path: Path) -> None:
     assert exit_code == 0
     assert session.closed is True
     assert (tmp_path / "out" / "raw" / "Colorado" / "CCR" / "ccr_rule_3154.docx").exists()
-    assert (tmp_path / "out" / "normalized" / "Colorado" / "CCR" / "ccr_rule_3154.md").exists()
-    assert (tmp_path / "out" / "tagged" / "ccr_rule_3154_tags.json").exists()
+    assert (
+        tmp_path / "out" / "normalized" / "Colorado" / "CCR" / "ccr_rule_7_CCR_1103-1.md"
+    ).exists()
+    assert (tmp_path / "out" / "tagged" / "ccr_rule_7_CCR_1103-1_tags.json").exists()
 
 
 def test_run_ccr_pipeline_scraper_failure(monkeypatch, tmp_path: Path) -> None:

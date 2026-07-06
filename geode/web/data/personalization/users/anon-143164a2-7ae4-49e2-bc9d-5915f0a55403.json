@@ -1,0 +1,108 @@
+{
+  "behaviorEvents": [
+    {
+      "eventId": "51050726-e666-4ec0-86bf-d8201079faf1",
+      "payload": {
+        "pathname": "/app/impact",
+        "scrollDepth": 0,
+        "secondsOnPage": 3
+      },
+      "recordedAt": "2026-07-01T22:22:37.371Z",
+      "source": "behavior",
+      "type": "page_engagement"
+    },
+    {
+      "eventId": "7462c2cc-89e7-48ab-b9f3-6140a493d0ec",
+      "payload": {
+        "pathname": "/app/requirements"
+      },
+      "recordedAt": "2026-07-01T22:22:37.371Z",
+      "source": "behavior",
+      "type": "route_view"
+    },
+    {
+      "eventId": "f9100060-d1bc-45c8-832c-2302da2aaef0",
+      "payload": {
+        "pathname": "/app/compliance-paths"
+      },
+      "recordedAt": "2026-07-01T22:22:37.371Z",
+      "source": "behavior",
+      "type": "route_view"
+    },
+    {
+      "eventId": "b291dda6-e9e1-41ea-9d8f-9de9c5efac3c",
+      "payload": {
+        "pathname": "/app/requirements",
+        "scrollDepth": 0,
+        "secondsOnPage": 3
+      },
+      "recordedAt": "2026-07-01T22:22:37.371Z",
+      "source": "behavior",
+      "type": "page_engagement"
+    },
+    {
+      "eventId": "70b700fb-d387-4821-bf5f-d5e68d7bdc59",
+      "payload": {
+        "pathname": "/app/compliance-paths",
+        "scrollDepth": 0,
+        "secondsOnPage": 2
+      },
+      "recordedAt": "2026-07-01T22:22:37.371Z",
+      "source": "behavior",
+      "type": "page_engagement"
+    },
+    {
+      "eventId": "0f9697ad-3979-4cc6-9471-0bcebf3a0666",
+      "payload": {
+        "pathname": "/app/relationships"
+      },
+      "recordedAt": "2026-07-01T22:22:37.371Z",
+      "source": "behavior",
+      "type": "route_view"
+    }
+  ],
+  "explicitAnswers": [
+    {
+      "answeredAt": "2026-07-01T22:22:37.369Z",
+      "key": "displayName",
+      "sensitivity": "public",
+      "source": "explicit",
+      "value": "JP"
+    }
+  ],
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-01T22:22:37.371Z",
+  "userId": "anon-143164a2-7ae4-49e2-bc9d-5915f0a55403",
+  "derived": {
+    "agencyVector": [],
+    "behaviorScore": 16,
+    "confidence": 0.3,
+    "displayName": "JP",
+    "initials": "J",
+    "industryVector": [],
+    "lastActiveAt": "2026-07-01T22:22:37.371Z",
+    "modelVersion": 2,
+    "preferredTone": "direct",
+    "primaryInterest": "dashboard",
+    "readingDensity": "light",
+    "recomputedAt": "2026-07-01T22:22:37.372Z",
+    "roleVector": [
+      {
+        "key": "compliance-lead",
+        "weight": 1
+      }
+    ],
+    "surfaceVector": [
+      {
+        "key": "dashboard",
+        "weight": 1
+      }
+    ],
+    "topicSignals": [
+      {
+        "key": "dashboard",
+        "weight": 1
+      }
+    ]
+  }
+}

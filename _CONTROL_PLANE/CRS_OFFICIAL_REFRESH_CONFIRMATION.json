@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-07-02T19:55:00Z",
+  "layer_id": "01_Statutes_CRS",
+  "status": "confirmed_current_publication",
+  "official_public_page_url": "https://content.leg.colorado.gov/agencies/office-legislative-legal-services/colorado-revised-statutes",
+  "official_titles_page_url": "https://content.leg.colorado.gov/agencies/office-legislative-legal-services/2025-crs-titles-download",
+  "official_data_page_url": "https://content.leg.colorado.gov/agencies/office-legislative-legal-services/colorado-revised-statutes-data",
+  "confirmed_publication_year": 2025,
+  "confirmed_publication_note": "The official CRS title download page is labeled 2025 and states the set is current with changes made by the Seventy-fifth General Assembly at its First Extraordinary Session in August 2025.",
+  "archived_source_package": "_RAW_ARCHIVE/crs/2025-10-01/CRSDATA20251001.zip",
+  "archived_titles_dir": "_RAW_ARCHIVE/crs/2025-10-01/extracted/TITLES",
+  "archived_index_path": "_RAW_ARCHIVE/crs/2025-10-01/extracted/INDEX/index.txt",
+  "source_boundary": "The official CRS data page states the statutory database is available as SGML text files in a zip file. This confirmation uses the already preserved official SGML archive and does not claim that a newer SGML package was downloaded on this run."
+}

@@ -1,0 +1,24 @@
+{
+  "behaviorEvents": [],
+  "explicitAnswers": [
+    {
+      "answeredAt": "2026-06-25T20:39:58.300Z",
+      "key": "displayName",
+      "sensitivity": "public",
+      "source": "explicit",
+      "value": "JP"
+    }
+  ],
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-25T20:39:58.300Z",
+  "userId": "anon-48de4e21-5fd1-45e5-bf1e-3b5acb529509",
+  "derived": {
+    "behaviorScore": 0,
+    "displayName": "JP",
+    "initials": "J",
+    "lastActiveAt": "2026-06-25T20:39:58.300Z",
+    "primaryInterest": null,
+    "preferredTone": "direct",
+    "topicSignals": []
+  }
+}

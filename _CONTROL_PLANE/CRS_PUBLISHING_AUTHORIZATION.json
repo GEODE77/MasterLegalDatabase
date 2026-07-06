@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "authorization_id": "CRS-PUBLISHING-AUTHORIZATION-2026-07-01",
+  "source_owner": "Colorado Office of Legislative Legal Services",
+  "corpus": "Colorado Revised Statutes",
+  "submission_state": "not_submitted",
+  "authorization_state": "not_authorized",
+  "authorized_uses": [],
+  "prohibited_until_authorized": [
+    "external publishing as an official CRS substitute",
+    "external reliance without source-owner authorization and legal review",
+    "removing CRS source attribution from derived outputs"
+  ],
+  "evidence": [],
+  "required_next_actions": [
+    "Project owner identifies CRS publishing contact.",
+    "Project owner submits intended-use request.",
+    "Legal reviewer records authorization outcome before external CRS reliance."
+  ],
+  "boundary": "CRS is preserved and structured for internal research. No publishing authorization is claimed."
+}

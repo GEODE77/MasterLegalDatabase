@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-06-30T20:25:48.029934Z",
+  "queue_path": "02_Regulations_CCR/_meta/rule_units_review_queue.jsonl",
+  "pending_items": 532,
+  "approve_candidates": 0,
+  "split_candidates": 67,
+  "revise_candidates": 532,
+  "quarantine_candidates": 1
+}

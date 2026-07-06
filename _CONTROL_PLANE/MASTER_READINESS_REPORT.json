@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-07-02T20:38:09.851471+00:00",
+  "local_system_usable": true,
+  "external_reliance_ready": false,
+  "blockers": [
+    "source_repair_items_open",
+    "named_reviewer_assignments_missing",
+    "live_official_freshness_not_verified"
+  ],
+  "source_strength": {
+    "records_scored": 57154,
+    "average_score": 0.987,
+    "level_counts": {
+      "direct_full_text_source": 53034,
+      "official_listing_plus_document": 4120
+    }
+  },
+  "relationships": {
+    "relationships_checked": 9980,
+    "strong_relationships": 7969,
+    "review_relationships": 2011
+  },
+  "golden_samples": {
+    "generated_at": "2026-07-02T20:38:09.851471+00:00",
+    "samples_written": 130,
+    "target_counts": {
+      "01_Statutes_CRS": 25,
+      "02_Regulations_CCR": 25,
+      "03_Legislation": 25,
+      "04_Rulemaking": 25,
+      "05_Executive_Orders": 10,
+      "06_Session_Laws": 10,
+      "07_Supplementary": 10
+    },
+    "sample_path": "_CONTROL_PLANE/GOLDEN_SAMPLE_REVIEW_SET.jsonl",
+    "boundary": "Golden samples are queued for human benchmark review and are not certified yet."
+  },
+  "freshness": {
+    "network_refresh_performed": true,
+    "items": 2
+  },
+  "human_review": {
+    "required_roles": 3,
+    "unassigned_roles": 3
+  },
+  "boundary": "Local usability is not external reliance readiness. Live freshness and named reviewer approval remain required."
+}

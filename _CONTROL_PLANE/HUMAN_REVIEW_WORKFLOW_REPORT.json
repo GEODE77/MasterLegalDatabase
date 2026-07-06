@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-07-02T20:38:09.851471+00:00",
+  "required_roles": 3,
+  "unassigned_roles": 3,
+  "golden_samples_queued": 130,
+  "review_packet_queue": "02_Regulations_CCR/_meta/rule_units_review_queue.jsonl",
+  "decision_log": "02_Regulations_CCR/_meta/rule_units_review_decisions.jsonl",
+  "workflow_steps": [
+    "Assign named reviewers with effective dates and reliance-policy references.",
+    "Review golden samples first to establish benchmark expectations.",
+    "Review rule-unit packets and log approve, revise, split, or quarantine decisions.",
+    "Apply canonical changes only after validation and snapshot controls pass.",
+    "Require legal reviewer approval before external reliance."
+  ],
+  "ready_for_reliance": false,
+  "boundary": "The workflow is operationally prepared, but real people must be assigned before reliance review is complete."
+}

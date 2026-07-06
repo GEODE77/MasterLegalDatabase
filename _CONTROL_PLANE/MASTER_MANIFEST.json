@@ -10,106 +10,136 @@
       "id": "01_Statutes_CRS",
       "path": "01_Statutes_CRS",
       "entity_type": "statute_section",
-      "record_count": 0,
+      "record_count": 34717,
       "source": "crs",
-      "format": ["markdown", "jsonl"],
-      "last_ingested": null,
-      "currency": null,
+      "format": [
+        "markdown",
+        "jsonl"
+      ],
+      "last_ingested": "2026-07-02",
+      "currency": "2025",
       "index_file": "01_Statutes_CRS/_index.jsonl",
-      "known_gaps": ["No versioned historical snapshots in machine-readable form."],
-      "last_checked": null,
-      "staleness_days": null,
-      "status": "empty"
+      "known_gaps": [
+        "No versioned historical snapshots in machine-readable form."
+      ],
+      "last_checked": "2026-07-02",
+      "staleness_days": 0,
+      "status": "ready"
     },
     {
       "id": "02_Regulations_CCR",
       "path": "02_Regulations_CCR",
       "entity_type": "regulation_rule",
-      "record_count": 0,
+      "record_count": 1035,
       "source": "ccr",
-      "format": ["markdown", "jsonl"],
-      "last_ingested": null,
+      "format": [
+        "markdown",
+        "jsonl"
+      ],
+      "last_ingested": "2026-07-02",
       "currency": null,
       "index_file": "02_Regulations_CCR/_index.jsonl",
-      "known_gaps": ["No centralized statute-to-regulation crosswalk."],
-      "last_checked": null,
-      "staleness_days": null,
-      "status": "empty"
+      "known_gaps": [
+        "No centralized statute-to-regulation crosswalk."
+      ],
+      "last_checked": "2026-07-02",
+      "staleness_days": 0,
+      "status": "ready"
     },
     {
       "id": "03_Legislation",
       "path": "03_Legislation",
       "entity_type": "bill",
-      "record_count": 0,
+      "record_count": 12453,
       "source": "legiscan",
-      "format": ["jsonl"],
-      "last_ingested": null,
+      "format": [
+        "jsonl"
+      ],
+      "last_ingested": "2026-07-02",
       "currency": null,
       "index_file": "03_Legislation/_index.jsonl",
-      "known_gaps": ["Pre-2010 coverage requires historical session-law sources."],
-      "last_checked": null,
-      "staleness_days": null,
-      "status": "empty"
+      "known_gaps": [
+        "Pre-2010 coverage requires historical session-law sources."
+      ],
+      "last_checked": "2026-07-02",
+      "staleness_days": 0,
+      "status": "ready"
     },
     {
       "id": "04_Rulemaking",
       "path": "04_Rulemaking",
       "entity_type": "rulemaking_notice",
-      "record_count": 0,
+      "record_count": 7955,
       "source": "colorado_register",
-      "format": ["jsonl"],
-      "last_ingested": null,
+      "format": [
+        "jsonl"
+      ],
+      "last_ingested": "2026-07-02",
       "currency": null,
       "index_file": "04_Rulemaking/_index.jsonl",
-      "known_gaps": ["Notice-to-regulation crosswalk must be extracted."],
-      "last_checked": null,
-      "staleness_days": null,
-      "status": "empty"
+      "known_gaps": [
+        "Notice-to-regulation crosswalk must be extracted."
+      ],
+      "last_checked": "2026-07-02",
+      "staleness_days": 0,
+      "status": "ready"
     },
     {
       "id": "05_Executive_Orders",
       "path": "05_Executive_Orders",
       "entity_type": "executive_order",
-      "record_count": 0,
+      "record_count": 534,
       "source": "executive_orders",
-      "format": ["jsonl"],
-      "last_ingested": null,
+      "format": [
+        "jsonl"
+      ],
+      "last_ingested": "2026-07-02",
       "currency": null,
       "index_file": "05_Executive_Orders/_index.jsonl",
-      "known_gaps": ["Historical executive orders may require archive discovery."],
-      "last_checked": null,
-      "staleness_days": null,
-      "status": "empty"
+      "known_gaps": [
+        "Historical executive orders may require archive discovery."
+      ],
+      "last_checked": "2026-07-02",
+      "staleness_days": 0,
+      "status": "ready"
     },
     {
       "id": "06_Session_Laws",
       "path": "06_Session_Laws",
       "entity_type": "session_law",
-      "record_count": 0,
+      "record_count": 437,
       "source": "crs",
-      "format": ["jsonl"],
-      "last_ingested": null,
+      "format": [
+        "jsonl"
+      ],
+      "last_ingested": "2026-07-02",
       "currency": null,
       "index_file": "06_Session_Laws/_index.jsonl",
-      "known_gaps": ["Older session laws require separate historical collection."],
-      "last_checked": null,
-      "staleness_days": null,
-      "status": "empty"
+      "known_gaps": [
+        "Older session laws require separate historical collection."
+      ],
+      "last_checked": "2026-07-02",
+      "staleness_days": 0,
+      "status": "ready"
     },
     {
       "id": "07_Supplementary",
       "path": "07_Supplementary",
       "entity_type": "supplementary_document",
-      "record_count": 0,
+      "record_count": 23,
       "source": "coprrr, ag_opinions",
-      "format": ["jsonl"],
-      "last_ingested": null,
+      "format": [
+        "jsonl"
+      ],
+      "last_ingested": "2026-07-02",
       "currency": null,
       "index_file": "07_Supplementary/_index.jsonl",
-      "known_gaps": ["Program-to-statute links require extraction from report text."],
-      "last_checked": null,
-      "staleness_days": null,
-      "status": "empty"
+      "known_gaps": [
+        "Program-to-statute links require extraction from report text."
+      ],
+      "last_checked": "2026-07-02",
+      "staleness_days": 0,
+      "status": "ready"
     }
   ],
   "crosswalks_available": [
@@ -121,13 +151,34 @@
     "amendment_history.jsonl"
   ],
   "freshness_policy": {
-    "statutes": {"max_staleness_days": 365, "alert_after_days": 330},
-    "regulations": {"max_staleness_days": 45, "alert_after_days": 30},
-    "legislation": {"max_staleness_days": 14, "alert_after_days": 10},
-    "rulemaking": {"max_staleness_days": 20, "alert_after_days": 15},
-    "exec_orders": {"max_staleness_days": 60, "alert_after_days": 45},
-    "session_laws": {"max_staleness_days": 365, "alert_after_days": 330},
-    "supplementary": {"max_staleness_days": 120, "alert_after_days": 90}
+    "statutes": {
+      "max_staleness_days": 365,
+      "alert_after_days": 330
+    },
+    "regulations": {
+      "max_staleness_days": 45,
+      "alert_after_days": 30
+    },
+    "legislation": {
+      "max_staleness_days": 14,
+      "alert_after_days": 10
+    },
+    "rulemaking": {
+      "max_staleness_days": 20,
+      "alert_after_days": 15
+    },
+    "exec_orders": {
+      "max_staleness_days": 60,
+      "alert_after_days": 45
+    },
+    "session_laws": {
+      "max_staleness_days": 365,
+      "alert_after_days": 330
+    },
+    "supplementary": {
+      "max_staleness_days": 120,
+      "alert_after_days": 90
+    }
   },
   "system_info": {
     "pipeline_version": "0.1.0",

@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from geode.connectors.ccr_identity import canonical_ccr_id
 from geode.connectors.ccr_scraper import CCRRuleEntry, download_rule, resolve_rule_info_page
 from geode.extractors.converter import (
     ConversionResult,
@@ -98,10 +99,14 @@ def run_ccr_pipeline(
 
         LOGGER.info("tag: tagging converted CCR text")
         taxonomy_path = _resolve_optional_root_path(root, taxonomy_dir)
-        tag_record = tag_bill(_taggable_record(rule_id, conversion), load_taxonomies(str(taxonomy_path)))
+        record_id = resolved_entry.canonical_id
+        tag_record = tag_bill(
+            _taggable_record(resolved_entry.ccr_number, conversion),
+            load_taxonomies(str(taxonomy_path)),
+        )
 
         LOGGER.info("write: writing normalized and tagged outputs")
-        _write_outputs(paths, rule_id, source_url, raw_path, conversion, tag_record, fmt)
+        _write_outputs(paths, record_id, source_url, raw_path, conversion, tag_record, fmt)
     except Exception as exc:
         LOGGER.error("CCR pipeline failed for rule %s: %s", rule_id, exc, exc_info=True)
         return 1
@@ -155,9 +160,10 @@ def _taggable_record(rule_id: str, conversion: ConversionResult) -> dict[str, An
     """Build the minimal record shape accepted by the deterministic tagger."""
 
     markdown = conversion.markdown_text
+    record_id = canonical_ccr_id(rule_id)
     return {
-        "bill_number": f"CCR-{rule_id}",
-        "title": _first_title(markdown) or f"CCR-{rule_id}",
+        "bill_number": record_id,
+        "title": _first_title(markdown) or record_id,
         "crs_references": _extract_crs_references(markdown),
         "committees": [],
     }

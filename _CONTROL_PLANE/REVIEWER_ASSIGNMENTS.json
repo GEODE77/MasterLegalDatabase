@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-07-01T21:12:21.469512Z",
+  "source_policy_id": "GEODE-RELIANCE-POLICY",
+  "source_policy_version": "2026-07-01",
+  "assignments": [
+    {
+      "role_id": "data_reviewer",
+      "label": "Data Reviewer",
+      "assignment_status": "unassigned",
+      "assigned_to": null,
+      "name": null,
+      "email": null,
+      "effective_date": null,
+      "revocation_date": null,
+      "reliance_policy_back_reference": "GEODE-RELIANCE-POLICY@2026-07-01#data_reviewer",
+      "responsibilities": [
+        "Review packet source fidelity.",
+        "Confirm extraction quality issues before logging a decision.",
+        "Escalate unclear legal meaning instead of interpreting it."
+      ],
+      "escalation_path": [
+        "corpus_maintainer",
+        "legal_reviewer"
+      ],
+      "can_log_decisions": true,
+      "can_apply_canonical_changes": false,
+      "can_approve_external_reliance": false
+    },
+    {
+      "role_id": "corpus_maintainer",
+      "label": "Corpus Maintainer",
+      "assignment_status": "unassigned",
+      "assigned_to": null,
+      "name": null,
+      "email": null,
+      "effective_date": null,
+      "revocation_date": null,
+      "reliance_policy_back_reference": "GEODE-RELIANCE-POLICY@2026-07-01#corpus_maintainer",
+      "responsibilities": [
+        "Apply only validated canonical changes.",
+        "Confirm snapshot and guarded apply behavior before writing canonical files.",
+        "Stop apply work when replacement records fail validation."
+      ],
+      "escalation_path": [
+        "legal_reviewer"
+      ],
+      "can_log_decisions": true,
+      "can_apply_canonical_changes": true,
+      "can_approve_external_reliance": false
+    },
+    {
+      "role_id": "legal_reviewer",
+      "label": "Legal Reviewer",
+      "assignment_status": "unassigned",
+      "assigned_to": null,
+      "name": null,
+      "email": null,
+      "effective_date": null,
+      "revocation_date": null,
+      "reliance_policy_back_reference": "GEODE-RELIANCE-POLICY@2026-07-01#legal_reviewer",
+      "responsibilities": [
+        "Approve or reject production reliance on reviewed outputs.",
+        "Confirm that external guidance preserves citations and reliance boundaries.",
+        "Escalate unresolved ambiguity before external use."
+      ],
+      "escalation_path": [
+        "project_owner"
+      ],
+      "can_log_decisions": true,
+      "can_apply_canonical_changes": false,
+      "can_approve_external_reliance": true
+    }
+  ],
+  "assignment_boundary": "Reviewer slots are prepared but no real person is assigned until a project owner authorizes named reviewers."
+}

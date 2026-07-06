@@ -6,6 +6,7 @@ import json
 import logging
 import os
 import time
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -17,7 +18,6 @@ from geode.connectors.archive_paths import (
     DOWNLOAD_MANIFEST_NAME,
     download_manifest_path,
     legiscan_bill_json_path,
-    temp_path_for,
 )
 from geode.connectors.download_metadata import (
     COLORADO_JURISDICTION,
@@ -31,6 +31,8 @@ LOGGER = logging.getLogger(__name__)
 
 LEGISCAN_API_URL = "https://api.legiscan.com/"
 DOWNLOAD_MANIFEST = DOWNLOAD_MANIFEST_NAME
+ARCHIVE_REPLACE_ATTEMPTS = 10
+ARCHIVE_REPLACE_DELAY_SECONDS = 0.2
 
 
 class LegiScanError(RuntimeError):
@@ -164,9 +166,12 @@ def get_bill_detail(
     raw_bill = payload.get("bill", payload)
     if not isinstance(raw_bill, dict):
         raise LegiScanError("LegiScan getBill response did not contain a bill object")
+    number = raw_bill.get("number") or raw_bill.get("bill_number")
+    if not number:
+        raise LegiScanError(f"LegiScan getBill response missing bill number for {bill_id}")
     return BillDetail(
         bill_id=int(raw_bill["bill_id"]),
-        number=str(raw_bill["number"]),
+        number=str(number),
         title=raw_bill.get("title"),
         raw=raw_bill,
     )
@@ -190,6 +195,26 @@ def download_session(
         delay=delay,
         max_downloads=max_downloads,
     ).raw_bills
+
+
+def download_session_report(
+    session_year: int,
+    archive_dir: Path,
+    api_key: str | None = None,
+    client: Any | None = None,
+    delay: float = 0.25,
+    max_downloads: int | None = None,
+) -> SessionDownloadResult:
+    """Download one Colorado session and return detailed resume/failure accounting."""
+
+    return _download_session_with_result(
+        session_year,
+        archive_dir,
+        api_key=api_key,
+        client=client,
+        delay=delay,
+        max_downloads=max_downloads,
+    )
 
 
 def _download_session_with_result(
@@ -468,13 +493,13 @@ def _write_raw_json(path: Path, payload: dict[str, Any]) -> None:
     """Write raw LegiScan JSON atomically."""
 
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp_path = temp_path_for(path)
+    tmp_path = _unique_temp_path(path)
     try:
         tmp_path.write_text(
             json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        os.replace(tmp_path, path)
+        _replace_with_retry(tmp_path, path)
     finally:
         if tmp_path.exists():
             tmp_path.unlink()
@@ -544,10 +569,29 @@ def _append_manifest(path: Path, entry: DownloadManifestEntry) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     existing = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
     existing.append(entry.model_dump_json())
-    tmp_path = temp_path_for(path)
+    tmp_path = _unique_temp_path(path)
     try:
         tmp_path.write_text("\n".join(existing) + "\n", encoding="utf-8", newline="\n")
-        os.replace(tmp_path, path)
+        _replace_with_retry(tmp_path, path)
     finally:
         if tmp_path.exists():
             tmp_path.unlink()
+
+
+def _unique_temp_path(target: Path) -> Path:
+    """Return a unique adjacent temp path for raw archive writes."""
+
+    return target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
+
+
+def _replace_with_retry(source: Path, target: Path) -> None:
+    """Replace a raw archive file, tolerating short-lived Windows/OneDrive locks."""
+
+    for attempt in range(1, ARCHIVE_REPLACE_ATTEMPTS + 1):
+        try:
+            os.replace(source, target)
+            return
+        except PermissionError:
+            if attempt == ARCHIVE_REPLACE_ATTEMPTS:
+                raise
+            time.sleep(ARCHIVE_REPLACE_DELAY_SECONDS * attempt)

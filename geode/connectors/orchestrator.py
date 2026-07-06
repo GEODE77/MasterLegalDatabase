@@ -199,6 +199,8 @@ def _run_ccr(raw_dir: Path, config: dict[str, Any]) -> Any:
         delay=float(config.get("delay", 1.0)),
         client=config.get("http_client"),
         discovery_delay=float(config.get("discovery_delay", 0.0)),
+        delay_jitter_seconds=float(config.get("delay_jitter", 0.0)),
+        discovery_delay_jitter_seconds=float(config.get("discovery_delay_jitter", 0.0)),
         max_downloads=_optional_int(config, "max_downloads"),
         **_http_options(config),
     )
@@ -359,6 +361,10 @@ def _output_locations(result: ConnectorRunResult) -> list[str]:
         value = result.summary.get(key)
         if isinstance(value, str) and value:
             locations.append(value)
+    for key in ("failure_manifest_path", "summary_path", "checkpoint_path", "log_path"):
+        value = result.summary.get(key)
+        if isinstance(value, str) and value:
+            locations.append(value)
     return locations
 
 
@@ -373,6 +379,7 @@ def _http_options(config: dict[str, Any]) -> dict[str, Any]:
         "http_base_delay": "base_delay",
         "http_timeout_seconds": "timeout_seconds",
         "http_max_retry_delay_seconds": "max_retry_delay_seconds",
+        "http_retry_jitter_ratio": "retry_jitter_ratio",
     }
     for config_key, option_key in int_fields.items():
         if config.get(config_key) is not None:

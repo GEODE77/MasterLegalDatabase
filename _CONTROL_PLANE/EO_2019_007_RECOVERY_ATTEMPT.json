@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-07-02T16:03:13.889354+00:00",
+  "record_id": "EO-2019-007",
+  "official_listing_url": "https://www.colorado.gov/governor/2019-executive-orders",
+  "official_download_url": "https://drive.google.com/uc?export=download&id=0B7w3bkFgg92dZ1ZiX2pKb1Z0eDdVZTdndmFaN1pLNEE2bnZj",
+  "quarantine_path": "_QUARANTINE/eo_recovery/EO-2019-007.downloaded.pdf",
+  "downloaded_bytes": 939432,
+  "sha256": "ca8f8543db77fac7d1acbbd9790a66ac010a1c14347cfd60a17e3e17ca318b6c",
+  "result": "blocked_official_link_returns_sign_in",
+  "text_probe": "Google Drive sign-in page",
+  "next_action": "Request a valid official copy from the Governor's Office or State Archives before raw archive replacement."
+}

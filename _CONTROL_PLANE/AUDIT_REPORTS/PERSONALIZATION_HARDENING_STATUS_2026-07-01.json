@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "data_handling_doc": "docs/personalization/DATA_HANDLING.md",
+  "source_file": "geode/web/src/lib/personalization/server.ts",
+  "controls": [
+    {
+      "control": "application_layer_encryption",
+      "status": "not_implemented",
+      "evidence": null,
+      "finding": "Personalization JSON is stored locally without application-layer encryption."
+    },
+    {
+      "control": "behavior_event_retention_cap",
+      "status": "implemented",
+      "evidence": "MAX_BEHAVIOR_EVENTS with slice(-MAX_BEHAVIOR_EVENTS)",
+      "finding": "Behavior events are capped in code."
+    },
+    {
+      "control": "user_delete_path",
+      "status": "implemented",
+      "evidence": "deleteSnapshot uses fs.unlinkSync",
+      "finding": "A local profile deletion path exists."
+    },
+    {
+      "control": "access_control_model",
+      "status": "documented_not_enforced",
+      "evidence": "docs/personalization/DATA_HANDLING.md",
+      "finding": "Access control is described as an operating model, not enforced by identity roles."
+    }
+  ],
+  "overall_status": "design_defect_open",
+  "required_next_action": "Add encrypted production profile storage or app-layer encryption before external reliance on personalization data."
+}

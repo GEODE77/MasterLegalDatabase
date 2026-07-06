@@ -6,7 +6,19 @@ import importlib
 
 import pytest
 
-from geode.net.http_client import BROWSER_HEADERS, GeodeFetchError, build_session, polite_get
+from geode.net.http_client import (
+    BROWSER_HEADERS,
+    REQUESTS_ACCEPT_ENCODING,
+    GeodeBlockedError,
+    GeodeFetchError,
+    GeodeHttpClient,
+    GeodeHttpClientConfig,
+    GeodeHttpResponse,
+    GeodeHttpStatusError,
+    GeodeInvalidContentError,
+    build_session,
+    polite_get,
+)
 
 
 class FakeResponse:
@@ -71,6 +83,7 @@ def test_build_session_falls_back_to_requests_with_browser_user_agent(monkeypatc
     try:
         assert session.headers["User-Agent"] == BROWSER_HEADERS["User-Agent"]
         assert "Chrome/120.0.0.0" in session.headers["User-Agent"]
+        assert session.headers["Accept-Encoding"] == REQUESTS_ACCEPT_ENCODING
     finally:
         session.close()
 
@@ -91,6 +104,79 @@ def test_polite_get_retries_403_then_succeeds(monkeypatch) -> None:
     assert session.calls[0]["headers"]["User-Agent"] == BROWSER_HEADERS["User-Agent"]
 
 
+def test_http_client_exposes_stable_response_and_hooks() -> None:
+    """The reusable client applies headers and exposes hook-friendly response data."""
+
+    response_events: list[GeodeHttpResponse] = []
+    throttle_attempts: list[int] = []
+    session = FakeSession([200], response_headers=[{"Content-Type": "text/html"}])
+    client = GeodeHttpClient(
+        session=session,
+        config=GeodeHttpClientConfig(
+            default_headers={"X-Geode": "test"},
+            response_hook=response_events.append,
+            throttle_hook=lambda request: throttle_attempts.append(request.attempt),
+        ),
+    )
+
+    response = client.get(
+        "https://example.test/page",
+        referer="https://example.test/",
+        if_none_match='"version-1"',
+        allowed_content_types={"text/html"},
+    )
+
+    headers = session.calls[0]["headers"]
+    assert response.status_code == 200
+    assert response.raw_response.status_code == 200
+    assert response.attempts == 1
+    assert headers["User-Agent"] == BROWSER_HEADERS["User-Agent"]
+    assert headers["X-Geode"] == "test"
+    assert headers["Referer"] == "https://example.test/"
+    assert headers["If-None-Match"] == '"version-1"'
+    assert throttle_attempts == [1]
+    assert response_events == [response]
+
+
+def test_http_client_retry_hook_receives_retry_context(monkeypatch) -> None:
+    """Retry hooks receive method, status, attempt, reason, and delay context."""
+
+    sleeps: list[float] = []
+    retry_events = []
+    monkeypatch.setattr("geode.net.http_client.random.uniform", lambda *_args: 0.0)
+    monkeypatch.setattr("geode.net.http_client.time.sleep", sleeps.append)
+    session = FakeSession([503, 200])
+    client = GeodeHttpClient(
+        session=session,
+        config=GeodeHttpClientConfig(retry_hook=retry_events.append),
+    )
+
+    client.get("https://example.test/retry", max_retries=2, base_delay=1.0)
+
+    assert sleeps == [1.0]
+    assert len(retry_events) == 1
+    assert retry_events[0].method == "GET"
+    assert retry_events[0].status_code == 503
+    assert retry_events[0].attempt == 1
+    assert retry_events[0].retry_reason == "status_503"
+    assert retry_events[0].delay_seconds == 1.0
+
+
+def test_http_client_raises_status_and_content_errors() -> None:
+    """Status and content validation failures have explicit exception types."""
+
+    with pytest.raises(GeodeHttpStatusError):
+        GeodeHttpClient(session=FakeSession([404])).get("https://example.test/missing")
+
+    with pytest.raises(GeodeInvalidContentError):
+        GeodeHttpClient(
+            session=FakeSession([200], response_headers=[{"Content-Type": "application/pdf"}])
+        ).get(
+            "https://example.test/file",
+            allowed_content_types={"text/html"},
+        )
+
+
 def test_polite_get_raises_after_retry_exhaustion(monkeypatch) -> None:
     """Persistent retryable statuses raise GeodeFetchError after max attempts."""
 
@@ -102,6 +188,7 @@ def test_polite_get_raises_after_retry_exhaustion(monkeypatch) -> None:
     with pytest.raises(GeodeFetchError) as exc_info:
         polite_get(session, "https://example.test/blocked", max_retries=2, base_delay=1.5)
 
+    assert isinstance(exc_info.value, GeodeBlockedError)
     assert exc_info.value.status_code == 403
     assert exc_info.value.attempts == 2
     assert len(session.calls) == 2
@@ -119,6 +206,25 @@ def test_polite_get_backoff_includes_exponential_delay_and_jitter(monkeypatch) -
     polite_get(session, "https://example.test/retry", max_retries=3, base_delay=2.0)
 
     assert sleeps == [2.25, 4.25]
+
+
+def test_polite_get_can_disable_retry_jitter(monkeypatch) -> None:
+    """Retry jitter is configurable for deterministic downloader runs."""
+
+    sleeps: list[float] = []
+    monkeypatch.setattr("geode.net.http_client.random.uniform", lambda *_args: 99.0)
+    monkeypatch.setattr("geode.net.http_client.time.sleep", sleeps.append)
+    session = FakeSession([503, 200])
+
+    polite_get(
+        session,
+        "https://example.test/retry",
+        max_retries=2,
+        base_delay=2.0,
+        retry_jitter_ratio=0.0,
+    )
+
+    assert sleeps == [2.0]
 
 
 def test_polite_get_passes_configured_timeout() -> None:

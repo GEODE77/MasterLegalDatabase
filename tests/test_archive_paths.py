@@ -23,6 +23,7 @@ def test_raw_connector_dirs_match_project_layout() -> None:
 
     assert raw_connector_dir(raw_root, "ccr") == Path("_RAW_ARCHIVE/ccr")
     assert raw_connector_dir(raw_root, "colorado_register") == Path("_RAW_ARCHIVE/register")
+    assert raw_connector_dir(raw_root, "edocket") == Path("_RAW_ARCHIVE/edocket")
     assert raw_connector_dir(raw_root, "executive_orders") == Path("_RAW_ARCHIVE/exec_orders")
     assert raw_connector_dir(raw_root, "coprrr") == Path("_RAW_ARCHIVE/supplementary/coprrr")
 
@@ -38,6 +39,11 @@ def test_source_artifact_paths_are_stable_and_predictable() -> None:
         "2024-01-10",
         "https://www.sos.state.co.us/pubs/CCR/register_2024-01-10.html?download=1",
     ) == Path("register/register_2024-01-10.html")
+    assert register_publication_path(
+        Path("register"),
+        "2026-01-10",
+        "https://www.sos.state.co.us/CCR/RegisterContents.do?publicationDay=01/10/2026",
+    ) == Path("register/register_2026-01-10.html")
     assert executive_order_pdf_path(Path("exec_orders"), "EO-2024-001") == Path(
         "exec_orders/EO-2024-001.pdf"
     )

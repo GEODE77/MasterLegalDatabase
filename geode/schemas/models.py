@@ -11,11 +11,12 @@ from pydantic import (
     ConfigDict,
     Field,
     HttpUrl,
+    ValidationInfo,
     field_validator,
     model_validator,
 )
 
-from geode.constants import ALL_LAYERS, CRS_LAYER
+from geode.constants import ALL_LAYERS
 from geode.schemas.ontology import (
     COMPLIANCE_KEYWORDS,
     EVENT_TYPES,
@@ -78,9 +79,18 @@ class GeodeModel(BaseModel):
         check_fields=False,
     )
     @classmethod
-    def validate_not_future_date(cls, value: date | None) -> date | None:
+    def validate_not_future_date(cls, value: date | None, info: ValidationInfo) -> date | None:
         """Reject impossible future dates."""
 
+        if cls.__name__ == "RegulationRule" and info.field_name == "effective_date":
+            return value
+        if cls.__name__ == "SessionLaw" and info.field_name == "effective_date":
+            return value
+        if cls.__name__ == "RulemakingNotice" and info.field_name in {
+            "hearing_date",
+            "effective_date",
+        }:
+            return value
         return require_not_future_date(value)
 
 
@@ -304,7 +314,7 @@ class RegulationRule(GeodeModel):
     agency: str = Field(min_length=1)
     agency_code: str = Field(min_length=1)
     enabling_statutes: list[str]
-    effective_date: date
+    effective_date: date | None = None
     status: str
     full_text: str = Field(min_length=1)
     chunk_level_3_summary: str = Field(min_length=1)
@@ -312,7 +322,7 @@ class RegulationRule(GeodeModel):
     industry_tags: list[str]
     compliance_keywords: list[str] = Field(default_factory=list)
     source_url: HttpUrl
-    source_format: Literal["pdf", "docx"]
+    source_format: Literal["pdf", "docx", "doc"]
     extraction_method: str = Field(min_length=1)
     confidence: ConfidenceScores
 
@@ -373,10 +383,12 @@ class Bill(GeodeModel):
     """Design-schema metadata for one legislative bill."""
 
     entity_type: Literal["bill"] = "bill"
-    id: str = Field(pattern=r"^(SB|HB|SCR|HCR|SJR|HJR)\d{2}-\d{3}$")
+    id: str = Field(
+        pattern=r"^(SB|HB|SCR|HCR|SJR|HJR|SJM|HJM|SR|HR|SM|HM)\d{2}(?:X\d+)?-\d{3,4}$"
+    )
     session: str = Field(pattern=r"^\d{4}$")
     chamber: Literal["Senate", "House"]
-    bill_number: str = Field(pattern=r"^\d{3}$")
+    bill_number: str = Field(pattern=r"^\d{3,4}$")
     title: str = Field(min_length=1)
     sponsors: list[Sponsor]
     status: str
@@ -424,15 +436,28 @@ class RulemakingNotice(GeodeModel):
 
     entity_type: Literal["rulemaking_notice"] = "rulemaking_notice"
     id: str = Field(pattern=r"^RM-\d{4}-[A-Za-z0-9_-]+$")
+    title: str | None = None
     notice_type: str = Field(min_length=1)
     ccr_rule_affected: str = Field(min_length=1)
+    ccr_citation: str | None = None
     agency_code: str = Field(min_length=1)
+    agency: str | None = None
     summary: str = Field(min_length=1)
+    source_section_heading: str | None = None
+    source_row_number: int | None = Field(default=None, ge=1)
+    source_evidence: str | None = None
+    notice_type_source: str | None = None
     hearing_date: date | None = None
     effective_date: date | None = None
     publication_date: date
+    edocket_tracking_number: str | None = None
+    edocket_url: HttpUrl | None = None
     subject_tags: list[str]
     source_url: HttpUrl
+    source_path: str | None = None
+    raw_text_path: str | None = None
+    extraction_method: str | None = None
+    field_confidence: dict[str, float] = Field(default_factory=dict)
     confidence: ConfidenceScores
 
     @field_validator("subject_tags")
@@ -448,6 +473,25 @@ class RulemakingNotice(GeodeModel):
         """Require official source URLs."""
 
         require_official_source_url(str(value).rstrip("/"))
+        return value
+
+    @field_validator("edocket_url")
+    @classmethod
+    def validate_edocket_url(cls, value: HttpUrl | None) -> HttpUrl | None:
+        """Require official source URLs for eDocket references."""
+
+        if value is not None:
+            require_official_source_url(str(value).rstrip("/"))
+        return value
+
+    @field_validator("field_confidence")
+    @classmethod
+    def validate_field_confidence(cls, value: dict[str, float]) -> dict[str, float]:
+        """Require field confidence scores to be normalized."""
+
+        invalid = {key: score for key, score in value.items() if score < 0.0 or score > 1.0}
+        if invalid:
+            raise ValueError(f"field_confidence scores out of range: {sorted(invalid)}")
         return value
 
     @field_validator("confidence", mode="before")
@@ -473,6 +517,7 @@ class ExecutiveOrder(GeodeModel):
     statutes_cited: list[str] = Field(default_factory=list)
     subject_tags: list[str]
     source_url: HttpUrl
+    source_path: str | None = None
     confidence: ConfidenceScores
 
     @field_validator("status")

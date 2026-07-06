@@ -36,6 +36,7 @@ AUTHORIZED_SOURCE_HOSTS = frozenset(
         "dnr.colorado.gov",
         "dora.colorado.gov",
         "dpa.colorado.gov",
+        "drive.google.com",
         "hcpf.colorado.gov",
         "highered.colorado.gov",
         "api.legiscan.com",

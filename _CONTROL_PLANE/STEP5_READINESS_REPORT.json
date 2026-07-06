@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-07-01T19:45:51.080814Z",
+  "ready_for_step_5_completion": true,
+  "checks": [
+    {
+      "name": "Step 4 gate",
+      "ready": true,
+      "detail": "Step 4 gate is clean."
+    },
+    {
+      "name": "Reliance policy",
+      "ready": true,
+      "detail": "Reliance policy exists with ID and version."
+    },
+    {
+      "name": "Reviewer roles",
+      "ready": true,
+      "detail": "Reviewer roles cover data review, canonical apply, and external reliance approval."
+    },
+    {
+      "name": "Approval criteria",
+      "ready": true,
+      "detail": "Approval criteria cover internal review and production reliance."
+    },
+    {
+      "name": "External-use limits",
+      "ready": true,
+      "detail": "External-use limits and canonical-change rules are explicit."
+    },
+    {
+      "name": "Reliance policy API",
+      "ready": true,
+      "detail": "Reliance policy API implementation markers are present."
+    },
+    {
+      "name": "Reliance policy UI",
+      "ready": true,
+      "detail": "Reliance policy UI implementation markers are present."
+    }
+  ],
+  "blockers": [],
+  "warnings": [
+    "The policy defines approval boundaries, but actual packet decisions remain pending."
+  ],
+  "deferred_items": [
+    {
+      "id": "STEP5-ASSIGN-REVIEWERS",
+      "title": "Assign real reviewers to roles",
+      "reason": "The policy defines roles, but named reviewers have not been assigned.",
+      "next_action": "Assign data reviewers, corpus maintainers, and legal reviewers."
+    },
+    {
+      "id": "STEP5-WORK-PACKETS",
+      "title": "Work the formal review packets",
+      "reason": "The 532 review packets still require actual decisions.",
+      "next_action": "Use /app/review-packets and /app/review to log packet decisions."
+    },
+    {
+      "id": "STEP5-PUBLISH-RELIANCE-SOP",
+      "title": "Publish an operating SOP",
+      "reason": "The machine-readable policy exists, but operational SOP training is separate.",
+      "next_action": "Write reviewer training and escalation instructions for production use."
+    }
+  ],
+  "next_step": "Step 5 reliance policy is complete; review packets can now be worked under explicit boundaries."
+}

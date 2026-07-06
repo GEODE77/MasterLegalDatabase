@@ -512,15 +512,15 @@ def write_crs_title(root: Path, document: CRSTitleDocument) -> list[Path]:
                 layer["currency"] = str(document.publication_year)
                 layer["last_checked"] = now.date().isoformat()
                 layer["staleness_days"] = 0
-                layer["status"] = "fixture_ready"
+                layer["status"] = "ready"
                 break
     atomic_write_json(manifest_path, manifest, root)
 
     output_paths = [title_path, meta_path, index_path, manifest_path]
     event = UpdateLogRecord(
-        event_id=f"UL-{now.strftime('%Y%m%dT%H%M%S%fZ')}-{document.title_number}",
+        event_id=f"UL-{now.strftime('%Y%m%dT%H%M%S%fZ')}-{stem}",
         timestamp=now,
-        event_type="crs_fixture_ingested",
+        event_type="crs_title_ingested",
         layer=CRS_LAYER,
         entity_id=document.entity_id,
         action="write_crs_title",
@@ -528,7 +528,7 @@ def write_crs_title(root: Path, document: CRSTitleDocument) -> list[Path]:
         output_paths=[relative_path(path, root) for path in output_paths],
         record_count=len(document.sections),
         sha256=sha256_text(markdown),
-        message=f"Ingested CRS Title {document.title_number} fixture.",
+        message=f"Ingested CRS Title {document.title_number}.",
     )
     append_jsonl_record_atomic(update_log_path, event, root)
     return output_paths + [update_log_path]

@@ -18,6 +18,16 @@ htmlcov/
 .env
 .env.*
 
+# Frontend
+apps/web/node_modules/
+apps/web/.next/
+apps/web/out/
+geode/web/node_modules/
+geode/web/.next/
+geode/web/.next-build/
+geode/web/.next-codex*/
+geode/web/data/structured_output/*.sqlite3
+
 # IDE
 .vscode/
 .idea/

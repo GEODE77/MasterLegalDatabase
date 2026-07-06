@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "verification_status": "byte_identical",
+  "manifest_path": "_CONTROL_PLANE/RAW_SOURCE_HASH_MANIFEST.json",
+  "files_in_manifest": 95965,
+  "files_compared": 95965,
+  "drift_count": 0,
+  "missing_count": 0,
+  "extra_count": 0,
+  "raw_archive_changed_during_audit": false,
+  "drift_examples": [],
+  "missing_examples": [],
+  "extra_examples": [],
+  "boundary": "Current raw bytes were rehashed and compared to the stored before-audit hashes."
+}

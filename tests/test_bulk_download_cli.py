@@ -25,10 +25,16 @@ def test_bulk_download_config_canonicalizes_source_selection(tmp_path: Path) -> 
             "exec-orders",
             "--delay",
             "0.5",
+            "--delay-jitter",
+            "0.2",
+            "--discovery-delay-jitter",
+            "0.1",
             "--max-downloads",
             "25",
             "--http-max-retries",
             "4",
+            "--http-retry-jitter-ratio",
+            "0",
             "--no-quality-report",
         ]
     )
@@ -38,8 +44,11 @@ def test_bulk_download_config_canonicalizes_source_selection(tmp_path: Path) -> 
     assert config["root"] == tmp_path
     assert config["connectors"] == ["ccr", "colorado_register", "executive_orders"]
     assert config["delay"] == 0.5
+    assert config["delay_jitter"] == 0.2
+    assert config["discovery_delay_jitter"] == 0.1
     assert config["max_downloads"] == 25
     assert config["http_max_retries"] == 4
+    assert config["http_retry_jitter_ratio"] == 0.0
     assert config["write_quality_report"] is False
 
 
@@ -62,6 +71,16 @@ def test_bulk_download_config_rejects_negative_download_cap() -> None:
 
     parser = bulk_run.build_parser()
     args = parser.parse_args(["--connectors", "ccr", "--max-downloads", "-1"])
+
+    with pytest.raises(bulk_run.BulkDownloadCommandError):
+        bulk_run.config_from_args(args)
+
+
+def test_bulk_download_config_rejects_negative_jitter() -> None:
+    """Throttle jitter options must be non-negative."""
+
+    parser = bulk_run.build_parser()
+    args = parser.parse_args(["--connectors", "ccr", "--delay-jitter", "-0.1"])
 
     with pytest.raises(bulk_run.BulkDownloadCommandError):
         bulk_run.config_from_args(args)

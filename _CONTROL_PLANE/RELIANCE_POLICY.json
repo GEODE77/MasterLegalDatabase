@@ -1,0 +1,93 @@
+{
+  "policy_id": "GEODE-RELIANCE-POLICY",
+  "version": "2026-07-01",
+  "generated_at": "2026-07-01T19:45:44.109374Z",
+  "purpose": "Define when Geode review outputs are research-only, when they are ready for internal review, and when they may support externally relied-on guidance.",
+  "reviewer_roles": [
+    {
+      "role_id": "data_reviewer",
+      "label": "Data Reviewer",
+      "may_log_decisions": true,
+      "may_apply_canonical_changes": false,
+      "may_approve_external_reliance": false,
+      "description": "Reviews source fidelity, extraction quality, and packet completeness."
+    },
+    {
+      "role_id": "corpus_maintainer",
+      "label": "Corpus Maintainer",
+      "may_log_decisions": true,
+      "may_apply_canonical_changes": true,
+      "may_approve_external_reliance": false,
+      "description": "Applies reviewed canonical changes through guarded commands only."
+    },
+    {
+      "role_id": "legal_reviewer",
+      "label": "Legal Reviewer",
+      "may_log_decisions": true,
+      "may_apply_canonical_changes": false,
+      "may_approve_external_reliance": true,
+      "description": "Approves whether reviewed outputs may support externally relied-on guidance."
+    }
+  ],
+  "approval_criteria": [
+    {
+      "criterion_id": "source_fidelity",
+      "label": "Source fidelity",
+      "required_for": "internal_review",
+      "description": "Every claim must be traceable to the cited source sentence or document."
+    },
+    {
+      "criterion_id": "canonical_validation",
+      "label": "Canonical validation",
+      "required_for": "internal_review",
+      "description": "Any canonical change must validate against the rule-unit schema."
+    },
+    {
+      "criterion_id": "review_decision_logged",
+      "label": "Review decision logged",
+      "required_for": "internal_review",
+      "description": "A packet must have an append-only review decision before canonical apply."
+    },
+    {
+      "criterion_id": "legal_reviewer_approval",
+      "label": "Legal reviewer approval",
+      "required_for": "production_reliance",
+      "description": "Externally relied-on guidance requires explicit legal reviewer approval."
+    }
+  ],
+  "reliance_boundaries": [
+    {
+      "output_type": "review_packet",
+      "default_level": "research_only",
+      "boundary": "Review packets organize extraction review. They are not legal advice and do not change canonical law."
+    },
+    {
+      "output_type": "compliance_path",
+      "default_level": "research_only",
+      "boundary": "Compliance paths are source-backed review workflows and do not replace legal review."
+    },
+    {
+      "output_type": "canonical_rule_unit",
+      "default_level": "internal_review",
+      "boundary": "Canonical rule units are structured extraction records. External reliance still requires legal reviewer approval."
+    }
+  ],
+  "external_use_limits": [
+    "Do not present Geode outputs as legal advice.",
+    "Do not externally rely on pending review packets.",
+    "Do not apply canonical changes without validated review decisions.",
+    "Do not treat popularity, score, or confidence as legal authority.",
+    "Do not remove the source citation or reliance boundary from exported guidance."
+  ],
+  "canonical_change_rules": [
+    "Canonical changes must use the guarded apply path.",
+    "The prior canonical file must be snapshotted before replacement.",
+    "Replacement rule units must pass schema validation before apply.",
+    "Approve-only decisions do not rewrite canonical rule units."
+  ],
+  "approval_levels": [
+    "research_only",
+    "internal_review",
+    "production_reliance"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-07-02T20:57:43.567858Z",
+  "open_items": 6,
+  "items": [
+    {
+      "id": "HUMAN-REVIEWERS",
+      "title": "Assign named reviewers",
+      "category": "human_review",
+      "status": "queued",
+      "reason": "3 reviewer roles require real project-owner assignment.",
+      "next_action": "Project owner names data, corpus, and legal reviewers."
+    },
+    {
+      "id": "HUMAN-PACKET-REVIEW",
+      "title": "Complete packet review",
+      "category": "human_review",
+      "status": "queued",
+      "reason": "532 review packets require real decisions.",
+      "next_action": "Review, approve, revise, split, or quarantine each pending packet."
+    },
+    {
+      "id": "EXTERNAL-SOURCE-REFRESH",
+      "title": "Run official-source refresh checks",
+      "category": "external_source",
+      "status": "queued",
+      "reason": "Network source refresh was intentionally not performed in local freshness reporting.",
+      "next_action": "Run official source connectors with network access under controlled refresh windows."
+    },
+    {
+      "id": "LEGAL-EXTERNAL-RELIANCE",
+      "title": "Approve external reliance",
+      "category": "legal_review",
+      "status": "queued",
+      "reason": "Geode has system controls, but legal reliance requires explicit legal reviewer approval.",
+      "next_action": "Legal reviewer approves specific outputs before external reliance."
+    },
+    {
+      "id": "BLOCKED-DOWNLOAD-EO-2019-007",
+      "title": "Resolve blocked download for EO-2019-007",
+      "category": "blocked_download",
+      "status": "queued",
+      "reason": "Official public download returns a Google Drive sign-in page instead of a usable executive order PDF.",
+      "next_action": "Request a valid official copy from the Governor's Office or State Archives, archive it through manual source intake, then rerun the EO source-anchoring workflow."
+    },
+    {
+      "id": "BLOCKED-DOWNLOAD-LEGISCAN-LIVE-REFRESH",
+      "title": "Resolve blocked download for LEGISCAN-LIVE-REFRESH",
+      "category": "blocked_download",
+      "status": "queued",
+      "reason": "Live LegiScan bill refresh requires LEGISCAN_API_KEY, and that environment variable is not configured in this session.",
+      "next_action": "Configure LEGISCAN_API_KEY, then run the LegiScan current-session or all-session refresh and rebuild the legislation layer."
+    }
+  ]
+}

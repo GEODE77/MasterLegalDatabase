@@ -1,0 +1,999 @@
+{
+  "generated_at": "2026-07-01T21:54:36.362516+00:00",
+  "ccr_regulations_total": 1035,
+  "ccr_regulations_covered": 925,
+  "ccr_regulations_uncovered": 110,
+  "items": [
+    {
+      "id": "CCR-COVERAGE-0001",
+      "regulation_id": "10_CCR_2505-1",
+      "title": "10 CCR 2505-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0002",
+      "regulation_id": "10_CCR_2505-2",
+      "title": "10 CCR 2505-2",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0003",
+      "regulation_id": "12_CCR_2512-1",
+      "title": "12 CCR 2512-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0004",
+      "regulation_id": "12_CCR_2515-2",
+      "title": "12 CCR 2515-2",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0005",
+      "regulation_id": "12_CCR_2515-3",
+      "title": "12 CCR 2515-3",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0006",
+      "regulation_id": "12_CCR_2515-4",
+      "title": "12 CCR 2515-4",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0007",
+      "regulation_id": "1_CCR_103-4",
+      "title": "1 CCR 103-4",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0008",
+      "regulation_id": "1_CCR_106-1",
+      "title": "1 CCR 106-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0009",
+      "regulation_id": "1_CCR_106-2",
+      "title": "1 CCR 106-2",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0010",
+      "regulation_id": "1_CCR_107-1",
+      "title": "1 CCR 107-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0011",
+      "regulation_id": "1_CCR_108-1",
+      "title": "1 CCR 108-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0012",
+      "regulation_id": "1_CCR_109-1",
+      "title": "1 CCR 109-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0013",
+      "regulation_id": "1_CCR_204-15",
+      "title": "1 CCR 204-15",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0014",
+      "regulation_id": "1_CCR_204-5",
+      "title": "1 CCR 204-5",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0015",
+      "regulation_id": "1_CCR_301-13",
+      "title": "1 CCR 301-13",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0016",
+      "regulation_id": "1_CCR_301-53",
+      "title": "1 CCR 301-53",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0017",
+      "regulation_id": "2_CCR_402-13",
+      "title": "2 CCR 402-13",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0018",
+      "regulation_id": "2_CCR_403-1",
+      "title": "2 CCR 403-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0019",
+      "regulation_id": "2_CCR_404-3",
+      "title": "2 CCR 404-3",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0020",
+      "regulation_id": "2_CCR_407-3",
+      "title": "2 CCR 407-3",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0021",
+      "regulation_id": "2_CCR_407-7",
+      "title": "2 CCR 407-7",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0022",
+      "regulation_id": "3_CCR_712-2",
+      "title": "3 CCR 712-2",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0023",
+      "regulation_id": "3_CCR_712-5",
+      "title": "3 CCR 712-5",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0024",
+      "regulation_id": "3_CCR_712-9",
+      "title": "3 CCR 712-9",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0025",
+      "regulation_id": "3_CCR_713-24",
+      "title": "3 CCR 713-24",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0026",
+      "regulation_id": "4_CCR_723-10",
+      "title": "4 CCR 723-10",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0027",
+      "regulation_id": "4_CCR_723-12",
+      "title": "4 CCR 723-12",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0028",
+      "regulation_id": "4_CCR_723-13",
+      "title": "4 CCR 723-13",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0029",
+      "regulation_id": "4_CCR_723-14",
+      "title": "4 CCR 723-14",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0030",
+      "regulation_id": "4_CCR_723-15",
+      "title": "4 CCR 723-15",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0031",
+      "regulation_id": "4_CCR_723-16",
+      "title": "4 CCR 723-16",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0032",
+      "regulation_id": "4_CCR_723-17",
+      "title": "4 CCR 723-17",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0033",
+      "regulation_id": "4_CCR_723-18",
+      "title": "4 CCR 723-18",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0034",
+      "regulation_id": "4_CCR_723-19",
+      "title": "4 CCR 723-19",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0035",
+      "regulation_id": "4_CCR_723-20",
+      "title": "4 CCR 723-20",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0036",
+      "regulation_id": "4_CCR_723-21",
+      "title": "4 CCR 723-21",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0037",
+      "regulation_id": "4_CCR_723-22",
+      "title": "4 CCR 723-22",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0038",
+      "regulation_id": "4_CCR_723-23",
+      "title": "4 CCR 723-23",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0039",
+      "regulation_id": "4_CCR_723-24",
+      "title": "4 CCR 723-24",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0040",
+      "regulation_id": "4_CCR_723-25",
+      "title": "4 CCR 723-25",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0041",
+      "regulation_id": "4_CCR_723-26",
+      "title": "4 CCR 723-26",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0042",
+      "regulation_id": "4_CCR_723-27",
+      "title": "4 CCR 723-27",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0043",
+      "regulation_id": "4_CCR_723-28",
+      "title": "4 CCR 723-28",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0044",
+      "regulation_id": "4_CCR_723-29",
+      "title": "4 CCR 723-29",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0045",
+      "regulation_id": "4_CCR_723-30",
+      "title": "4 CCR 723-30",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0046",
+      "regulation_id": "4_CCR_723-31",
+      "title": "4 CCR 723-31",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0047",
+      "regulation_id": "4_CCR_723-32",
+      "title": "4 CCR 723-32",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0048",
+      "regulation_id": "4_CCR_723-33",
+      "title": "4 CCR 723-33",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0049",
+      "regulation_id": "4_CCR_723-34",
+      "title": "4 CCR 723-34",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0050",
+      "regulation_id": "4_CCR_723-35",
+      "title": "4 CCR 723-35",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0051",
+      "regulation_id": "4_CCR_723-38",
+      "title": "4 CCR 723-38",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0052",
+      "regulation_id": "4_CCR_723-39",
+      "title": "4 CCR 723-39",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0053",
+      "regulation_id": "4_CCR_723-40",
+      "title": "4 CCR 723-40",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0054",
+      "regulation_id": "4_CCR_723-41",
+      "title": "4 CCR 723-41",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0055",
+      "regulation_id": "4_CCR_723-42",
+      "title": "4 CCR 723-42",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0056",
+      "regulation_id": "4_CCR_723-43",
+      "title": "4 CCR 723-43",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0057",
+      "regulation_id": "4_CCR_723-44",
+      "title": "4 CCR 723-44",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0058",
+      "regulation_id": "4_CCR_723-45",
+      "title": "4 CCR 723-45",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0059",
+      "regulation_id": "4_CCR_723-46",
+      "title": "4 CCR 723-46",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0060",
+      "regulation_id": "4_CCR_723-47",
+      "title": "4 CCR 723-47",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0061",
+      "regulation_id": "4_CCR_723-48",
+      "title": "4 CCR 723-48",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0062",
+      "regulation_id": "4_CCR_723-49",
+      "title": "4 CCR 723-49",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0063",
+      "regulation_id": "4_CCR_723-52",
+      "title": "4 CCR 723-52",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0064",
+      "regulation_id": "4_CCR_723-53",
+      "title": "4 CCR 723-53",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0065",
+      "regulation_id": "4_CCR_723-9",
+      "title": "4 CCR 723-9",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0066",
+      "regulation_id": "4_CCR_738-2",
+      "title": "4 CCR 738-2",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0067",
+      "regulation_id": "4_CCR_738-3",
+      "title": "4 CCR 738-3",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0068",
+      "regulation_id": "4_CCR_738-4",
+      "title": "4 CCR 738-4",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0069",
+      "regulation_id": "4_CCR_738-5",
+      "title": "4 CCR 738-5",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0070",
+      "regulation_id": "4_CCR_738-6",
+      "title": "4 CCR 738-6",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0071",
+      "regulation_id": "5_CCR_1001-17",
+      "title": "5 CCR 1001-17",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0072",
+      "regulation_id": "5_CCR_1001-21",
+      "title": "5 CCR 1001-21",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0073",
+      "regulation_id": "5_CCR_1001-7",
+      "title": "5 CCR 1001-7",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0074",
+      "regulation_id": "5_CCR_1003-3",
+      "title": "5 CCR 1003-3",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0075",
+      "regulation_id": "5_CCR_1003-8",
+      "title": "5 CCR 1003-8",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0076",
+      "regulation_id": "6_CCR_1013-1",
+      "title": "6 CCR 1013-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0077",
+      "regulation_id": "8_CCR_1201-10",
+      "title": "8 CCR 1201-10",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0078",
+      "regulation_id": "8_CCR_1201-8",
+      "title": "8 CCR 1201-8",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0079",
+      "regulation_id": "8_CCR_1203-12",
+      "title": "8 CCR 1203-12",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0080",
+      "regulation_id": "8_CCR_1203-15",
+      "title": "8 CCR 1203-15",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0081",
+      "regulation_id": "8_CCR_1203-19",
+      "title": "8 CCR 1203-19",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0082",
+      "regulation_id": "8_CCR_1204-1",
+      "title": "8 CCR 1204-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0083",
+      "regulation_id": "8_CCR_1204-2",
+      "title": "8 CCR 1204-2",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0084",
+      "regulation_id": "8_CCR_1204-3",
+      "title": "8 CCR 1204-3",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0085",
+      "regulation_id": "8_CCR_1204-4",
+      "title": "8 CCR 1204-4",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0086",
+      "regulation_id": "8_CCR_1204-5",
+      "title": "8 CCR 1204-5",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0087",
+      "regulation_id": "8_CCR_1302-1",
+      "title": "8 CCR 1302-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0088",
+      "regulation_id": "8_CCR_1302-10",
+      "title": "8 CCR 1302-10",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0089",
+      "regulation_id": "8_CCR_1302-13",
+      "title": "8 CCR 1302-13",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0090",
+      "regulation_id": "8_CCR_1302-2",
+      "title": "8 CCR 1302-2",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0091",
+      "regulation_id": "8_CCR_1302-3",
+      "title": "8 CCR 1302-3",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0092",
+      "regulation_id": "8_CCR_1302-6",
+      "title": "8 CCR 1302-6",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0093",
+      "regulation_id": "8_CCR_1305-1",
+      "title": "8 CCR 1305-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0094",
+      "regulation_id": "8_CCR_1306-1",
+      "title": "8 CCR 1306-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0095",
+      "regulation_id": "8_CCR_1503-1",
+      "title": "8 CCR 1503-1",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0096",
+      "regulation_id": "8_CCR_1503-2",
+      "title": "8 CCR 1503-2",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0097",
+      "regulation_id": "8_CCR_1503-3",
+      "title": "8 CCR 1503-3",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0098",
+      "regulation_id": "8_CCR_1503-4",
+      "title": "8 CCR 1503-4",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0099",
+      "regulation_id": "8_CCR_1503-5",
+      "title": "8 CCR 1503-5",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0100",
+      "regulation_id": "8_CCR_1505-4",
+      "title": "8 CCR 1505-4",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0101",
+      "regulation_id": "8_CCR_1505-5",
+      "title": "8 CCR 1505-5",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0102",
+      "regulation_id": "8_CCR_1507-13",
+      "title": "8 CCR 1507-13",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0103",
+      "regulation_id": "8_CCR_1507-14",
+      "title": "8 CCR 1507-14",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0104",
+      "regulation_id": "8_CCR_1507-19",
+      "title": "8 CCR 1507-19",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0105",
+      "regulation_id": "8_CCR_1507-24",
+      "title": "8 CCR 1507-24",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0106",
+      "regulation_id": "8_CCR_1507-6",
+      "title": "8 CCR 1507-6",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0107",
+      "regulation_id": "8_CCR_1507-7",
+      "title": "8 CCR 1507-7",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0108",
+      "regulation_id": "8_CCR_1507-8",
+      "title": "8 CCR 1507-8",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0109",
+      "regulation_id": "8_CCR_1507-9",
+      "title": "8 CCR 1507-9",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    },
+    {
+      "id": "CCR-COVERAGE-0110",
+      "regulation_id": "9_CCR_2503-4",
+      "title": "9 CCR 2503-4",
+      "department": null,
+      "status": "queued",
+      "reason": "No regulation-to-statute, statute-to-regulation, or rulemaking relationship was found.",
+      "next_action": "Review authority notes and source text, then add source-backed relationship evidence if present."
+    }
+  ],
+  "boundary": "Uncovered means no local relationship evidence exists yet; it is not a legal conclusion."
+}
