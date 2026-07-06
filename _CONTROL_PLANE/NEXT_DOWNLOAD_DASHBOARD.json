@@ -1,13 +1,13 @@
 {
   "dashboard_id": "NEXT-DOWNLOAD-DASHBOARD",
-  "generated_at": "2026-07-06T09:25:27.4907342-06:00",
+  "generated_at": "2026-07-06T16:26:07Z",
   "status": "active",
   "purpose": "Give the next agent a clear source-download starting point.",
   "overall_recommendation": {
-    "next_download_area": "03_Legislation",
-    "source": "LegiScan",
+    "next_download_area": "05_Executive_Orders",
+    "source": "Colorado Governor's Office or State Archives",
     "priority": "highest",
-    "reason": "The July 2 live LegiScan refresh was blocked because LEGISCAN_API_KEY was not configured. Legislation changes more often than most other layers, so this is the highest-value next official refresh once the key is available.",
+    "reason": "The authenticated LegiScan refresh completed on July 6, 2026. The remaining highest-priority download issue is EO-2019-007, where the official public link returns a sign-in page instead of a usable PDF.",
     "owner_authorization_needed": true
   },
   "safety_gate": {
@@ -20,23 +20,23 @@
   },
   "next_actions": [
     {
-      "rank": 1,
+      "rank": 3,
       "id": "LEGISCAN-LIVE-REFRESH",
       "layer_id": "03_Legislation",
       "action_type": "official_live_refresh",
-      "status": "blocked",
-      "blocked_by": "LEGISCAN_API_KEY is not configured.",
+      "status": "completed",
+      "blocked_by": null,
       "why_it_matters": "This refresh updates current Colorado bill data and keeps the legislation layer from drifting behind the official source.",
-      "ready_when": "LEGISCAN_API_KEY is available in the environment or passed through the pipeline option.",
-      "suggested_command_after_authorization": "python -m geode.connectors.legiscan_pipeline --output-root . --download --session-year 2026 --api-key <LEGISCAN_API_KEY> --json",
+      "ready_when": "Completed on July 6, 2026.",
+      "suggested_command_after_authorization": null,
       "follow_up_after_success": [
-        "Run the legislation document pipeline if new bill documents are discovered.",
-        "Refresh the retrieval catalog and readiness reports.",
-        "Review the changed legislation count and any failed downloads."
+        "Commit and push the refreshed legislation files.",
+        "Use the next routine refresh window for future LegiScan updates.",
+        "Keep the API key outside repository files."
       ]
     },
     {
-      "rank": 2,
+      "rank": 1,
       "id": "EO-2019-007",
       "layer_id": "05_Executive_Orders",
       "action_type": "manual_official_source_repair",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "rank": 3,
+      "rank": 2,
       "id": "RULEMAKING-MEDIUM-EVIDENCE",
       "layer_id": "04_Rulemaking",
       "action_type": "source_depth_upgrade",
@@ -70,7 +70,7 @@
   "do_not_start_next": [
     "Do not start a broad all-source refresh until the safety gate is cleared.",
     "Do not use unofficial replacement files for EO-2019-007.",
-    "Do not mark LegiScan freshness complete until the authenticated refresh succeeds."
+    "Do not store the LegiScan API key in repository files."
   ],
   "related_control_files": [
     "_CONTROL_PLANE/REMAINING_WORK_QUEUE.json",

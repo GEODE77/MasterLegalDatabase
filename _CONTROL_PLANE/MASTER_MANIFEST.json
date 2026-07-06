@@ -55,13 +55,13 @@
       "format": [
         "jsonl"
       ],
-      "last_ingested": "2026-07-02",
+      "last_ingested": "2026-07-06",
       "currency": null,
       "index_file": "03_Legislation/_index.jsonl",
       "known_gaps": [
         "Pre-2010 coverage requires historical session-law sources."
       ],
-      "last_checked": "2026-07-02",
+      "last_checked": "2026-07-06",
       "staleness_days": 0,
       "status": "ready"
     },

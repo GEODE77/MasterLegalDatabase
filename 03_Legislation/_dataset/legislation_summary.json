@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-02T20:06:54.758230Z",
+  "generated_at": "2026-07-06T16:23:09.158986Z",
   "output_root": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode",
   "archive_dir": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/legiscan",
   "raw_files_total": 12453,
@@ -7,7 +7,7 @@
   "failed_files": 0,
   "skipped_files": 0,
   "bill_to_statute_rows_total": 7,
-  "downloaded_bills": 0,
+  "downloaded_bills": 714,
   "download_failed": 0,
   "dataset_jsonl_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/03_Legislation/_dataset/bills.jsonl",
   "dataset_csv_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/03_Legislation/_dataset/bills.csv",

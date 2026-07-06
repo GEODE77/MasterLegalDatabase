@@ -1,22 +1,40 @@
 {
-  "generated_at": "2026-07-02T20:20:00Z",
+  "generated_at": "2026-07-06T16:26:07Z",
   "layer_id": "03_Legislation",
   "attempted_action": "Legislation live refresh through LegiScan",
-  "status": "blocked_missing_api_key",
+  "status": "completed",
   "required_environment_variable": "LEGISCAN_API_KEY",
   "environment_check": {
-    "process": "missing",
-    "user": "missing",
-    "machine": "missing"
+    "process": "provided_for_run",
+    "user": "not_checked_after_run",
+    "machine": "not_checked_after_run",
+    "stored_in_repository": false
   },
   "official_listing_url": "https://legiscan.com/CO",
   "official_download_url": "https://api.legiscan.com/",
+  "download_result": {
+    "session_year": 2026,
+    "downloaded_bills": 714,
+    "download_failed": 0,
+    "failed_files": 0,
+    "records_total": 12453,
+    "raw_files_total": 12453,
+    "generated_at": "2026-07-06T16:23:09.158986Z"
+  },
   "local_archive_status": {
     "raw_files_total": 12453,
     "records_total": 12453,
     "failed_files": 0,
-    "last_archive_rebuild": "2026-07-02T20:06:54.758230Z"
+    "last_archive_rebuild": "2026-07-06T16:23:09.158986Z"
   },
-  "next_action": "Configure LEGISCAN_API_KEY in the environment, then rerun the live LegiScan refresh and rebuild the legislation layer.",
-  "boundary": "This records an attempted live refresh that could not authenticate. It does not mark the official LegiScan refresh complete."
+  "document_queue_status": {
+    "records_total": 85848,
+    "downloaded": 61883,
+    "failed_permanent": 23965,
+    "pending": 0,
+    "pending_retry": 0,
+    "generated_at": "2026-07-06T16:26:07.118239Z"
+  },
+  "next_action": "Review and commit the refreshed legislation outputs, then move the next download focus to EO-2019-007.",
+  "boundary": "This records the authenticated LegiScan refresh result. The API key was used only for the run and is not stored in repository files."
 }
