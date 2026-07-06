@@ -12,6 +12,18 @@ For LegiScan specifically, use the focused modern repair queue before starting t
 
 `_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
 
+After an official replacement file is verified, repair one queue item with:
+
+```powershell
+python -m geode.pipeline.legiscan_repair_intake `
+  --root . `
+  --queue-id <queue_id> `
+  --source-file <verified_official_file> `
+  --official-source-url <official_leg_colorado_url> `
+  --reviewer-name <reviewer_name> `
+  --custody-note <custody_note>
+```
+
 The July 2 checkpoint has been committed on `codex/july-2-corpus-checkpoint` and pushed to GitHub. Before treating it as public-facing, complete `docs/PUBLICATION_CHECKLIST.md`, then merge the branch into GitHub `main`.
 
 ## Current Blockers

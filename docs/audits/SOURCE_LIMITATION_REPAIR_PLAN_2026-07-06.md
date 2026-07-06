@@ -61,7 +61,7 @@ Of the 23,965 permanent failures, 23,924 are pre-2018 legacy links and 41 are mo
 Repair path:
 
 1. Treat this as a historical source-coverage project, not a failed current download.
-2. Work the 41-item modern repair queue first.
+2. Work the 41-item modern repair queue first using `python -m geode.pipeline.legiscan_repair_intake` after each official replacement file is verified.
 3. Build a host-specific recovery workflow for the large legacy archive group.
 4. Keep the main download audit at warning level until the coverage gap is either repaired or formally accepted by the project owner.
 

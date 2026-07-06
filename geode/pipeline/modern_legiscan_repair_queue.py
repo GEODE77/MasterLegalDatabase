@@ -36,6 +36,7 @@ class ModernLegiScanRepairItem(BaseModel):
     preferred_url: str
     state_link: str | None = None
     source_url: str | None = None
+    archive_path: str
     failure_host: str
     failure_reason: str
     original_error: str | None = None
@@ -73,7 +74,7 @@ def build_modern_legiscan_repair_queue(
         if _is_modern_permanent_failure(row, modern_start_year)
     ]
     rows.sort(key=_priority_key)
-    items = [_repair_item(row, rank) for rank, row in enumerate(rows, start=1)]
+    items = [_repair_item(resolved_root, row, rank) for rank, row in enumerate(rows, start=1)]
     return ModernLegiScanRepairQueue(
         generated_at=datetime.now(timezone.utc),
         status="active" if items else "empty",
@@ -130,7 +131,7 @@ def _priority_key(row: dict[str, Any]) -> tuple[int, int, str, str]:
     )
 
 
-def _repair_item(row: dict[str, Any], rank: int) -> ModernLegiScanRepairItem:
+def _repair_item(root: Path, row: dict[str, Any], rank: int) -> ModernLegiScanRepairItem:
     preferred_url = str(row.get("preferred_url") or "")
     host = urlparse(preferred_url).hostname or "unknown"
     return ModernLegiScanRepairItem(
@@ -147,6 +148,7 @@ def _repair_item(row: dict[str, Any], rank: int) -> ModernLegiScanRepairItem:
         preferred_url=preferred_url,
         state_link=_optional_str(row.get("state_link")),
         source_url=_optional_str(row.get("source_url")),
+        archive_path=_archive_path(root, row.get("archive_path")),
         failure_host=host,
         failure_reason=_failure_reason(row),
         original_error=_optional_str(row.get("error")),
@@ -179,6 +181,23 @@ def _optional_str(value: Any) -> str | None:
         return None
     text = str(value)
     return text or None
+
+
+def _archive_path(root: Path, value: Any) -> str:
+    text = str(value or "")
+    if not text:
+        return ""
+    marker = f"/{root.name}/"
+    normalized_text = text.replace("\\", "/")
+    if marker in normalized_text:
+        return normalized_text.split(marker, 1)[1]
+    path = Path(text)
+    if not path.is_absolute():
+        return path.as_posix()
+    try:
+        return path.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 def _docs_report(queue: ModernLegiScanRepairQueue) -> str:

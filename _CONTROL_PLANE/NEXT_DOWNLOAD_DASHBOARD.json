@@ -60,7 +60,7 @@
       "blocked_by": null,
       "why_it_matters": "The 41 modern-year permanent LegiScan document gaps are small enough to repair before the large pre-2018 legacy archive project.",
       "ready_when": "The project owner authorizes a focused source repair pass for the modern LegiScan queue.",
-      "suggested_command_after_authorization": "Review _CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json, then repair each item through verified official Colorado General Assembly document links and guarded document intake.",
+      "suggested_command_after_authorization": "python -m geode.pipeline.legiscan_repair_intake --root . --queue-id <queue_id> --source-file <verified_official_file> --official-source-url <official_leg_colorado_url> --reviewer-name <reviewer_name> --custody-note <custody_note>",
       "follow_up_after_success": [
         "Rerun python -m geode.pipeline.modern_legiscan_repair_queue --root . --write.",
         "Rerun python -m geode.pipeline.recent_download_audit --root . --write.",
