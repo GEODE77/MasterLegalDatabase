@@ -1,0 +1,184 @@
+{
+  "generated_at": "2026-07-06T19:10:41.231476+00:00",
+  "overall_status": "warn",
+  "audited_layers": [
+    "01_Statutes_CRS",
+    "02_Regulations_CCR",
+    "03_Legislation",
+    "04_Rulemaking",
+    "06_Session_Laws",
+    "07_Supplementary",
+    "05_Executive_Orders"
+  ],
+  "layer_audits": [
+    {
+      "layer_id": "01_Statutes_CRS",
+      "status": "pass",
+      "manifest_records": 34717,
+      "index_records": 34717,
+      "indexed_paths_checked": 34717,
+      "indexed_paths_missing": 0,
+      "indexed_paths_empty": 0,
+      "json_files_checked": 1,
+      "jsonl_files_checked": 48,
+      "jsonl_rows_checked": 198488,
+      "invalid_json_files": 0,
+      "invalid_jsonl_rows": 0,
+      "markdown_files_checked": 46,
+      "empty_markdown_files": 0,
+      "detail": "Layer output files are readable and index counts match the manifest."
+    },
+    {
+      "layer_id": "02_Regulations_CCR",
+      "status": "pass",
+      "manifest_records": 1035,
+      "index_records": 1035,
+      "indexed_paths_checked": 1035,
+      "indexed_paths_missing": 0,
+      "indexed_paths_empty": 0,
+      "json_files_checked": 1048,
+      "jsonl_files_checked": 15,
+      "jsonl_rows_checked": 36159,
+      "invalid_json_files": 0,
+      "invalid_jsonl_rows": 0,
+      "markdown_files_checked": 1060,
+      "empty_markdown_files": 0,
+      "detail": "Layer output files are readable and index counts match the manifest."
+    },
+    {
+      "layer_id": "03_Legislation",
+      "status": "pass",
+      "manifest_records": 12453,
+      "index_records": 12453,
+      "indexed_paths_checked": 12453,
+      "indexed_paths_missing": 0,
+      "indexed_paths_empty": 0,
+      "json_files_checked": 3,
+      "jsonl_files_checked": 22,
+      "jsonl_rows_checked": 135777,
+      "invalid_json_files": 0,
+      "invalid_jsonl_rows": 0,
+      "markdown_files_checked": 0,
+      "empty_markdown_files": 0,
+      "detail": "Layer output files are readable and index counts match the manifest."
+    },
+    {
+      "layer_id": "04_Rulemaking",
+      "status": "pass",
+      "manifest_records": 7955,
+      "index_records": 7955,
+      "indexed_paths_checked": 7955,
+      "indexed_paths_missing": 0,
+      "indexed_paths_empty": 0,
+      "json_files_checked": 2,
+      "jsonl_files_checked": 90,
+      "jsonl_rows_checked": 32676,
+      "invalid_json_files": 0,
+      "invalid_jsonl_rows": 0,
+      "markdown_files_checked": 0,
+      "empty_markdown_files": 0,
+      "detail": "Layer output files are readable and index counts match the manifest."
+    },
+    {
+      "layer_id": "06_Session_Laws",
+      "status": "pass",
+      "manifest_records": 437,
+      "index_records": 437,
+      "indexed_paths_checked": 437,
+      "indexed_paths_missing": 0,
+      "indexed_paths_empty": 0,
+      "json_files_checked": 1,
+      "jsonl_files_checked": 3,
+      "jsonl_rows_checked": 1311,
+      "invalid_json_files": 0,
+      "invalid_jsonl_rows": 0,
+      "markdown_files_checked": 0,
+      "empty_markdown_files": 0,
+      "detail": "Layer output files are readable and index counts match the manifest."
+    },
+    {
+      "layer_id": "07_Supplementary",
+      "status": "pass",
+      "manifest_records": 23,
+      "index_records": 23,
+      "indexed_paths_checked": 23,
+      "indexed_paths_missing": 0,
+      "indexed_paths_empty": 0,
+      "json_files_checked": 2,
+      "jsonl_files_checked": 8,
+      "jsonl_rows_checked": 69,
+      "invalid_json_files": 0,
+      "invalid_jsonl_rows": 0,
+      "markdown_files_checked": 0,
+      "empty_markdown_files": 0,
+      "detail": "Layer output files are readable and index counts match the manifest."
+    },
+    {
+      "layer_id": "05_Executive_Orders",
+      "status": "pass",
+      "manifest_records": 534,
+      "index_records": 534,
+      "indexed_paths_checked": 534,
+      "indexed_paths_missing": 0,
+      "indexed_paths_empty": 0,
+      "json_files_checked": 0,
+      "jsonl_files_checked": 3,
+      "jsonl_rows_checked": 1068,
+      "invalid_json_files": 0,
+      "invalid_jsonl_rows": 0,
+      "markdown_files_checked": 0,
+      "empty_markdown_files": 0,
+      "detail": "Layer output files are readable and index counts match the manifest."
+    }
+  ],
+  "pipeline_signals": [
+    {
+      "name": "legiscan_live_refresh",
+      "status": "pass",
+      "detail": "Completed with 714 bills downloaded and 0 failures."
+    },
+    {
+      "name": "legiscan_document_queue",
+      "status": "warn",
+      "detail": "61883 downloaded, 0 pending downloads. 23965 permanent source-coverage gaps remain across sessions 2010-2026; 23924 are pre-2018 legacy links and 41 are modern-year items for targeted review. Top hosts: www.leg.state.co.us: 21702, leg.colorado.gov: 2256, s3-us-west-2.amazonaws.com: 7. See _CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json and _CONTROL_PLANE/SOURCE_LIMITATION_REGISTER.json."
+    },
+    {
+      "name": "blocked_download_queue",
+      "status": "warn",
+      "detail": "1 known blocked future download remains: EO-2019-007."
+    },
+    {
+      "name": "schema_validator",
+      "status": "pass",
+      "detail": "python -m geode.validate --layer all passed."
+    },
+    {
+      "name": "corpus_usability",
+      "status": "pass",
+      "detail": "Corpus usability refresh checked 57,154 index records, 9,980 crosswalk rows, and JSONL addressability with 0 errors and 0 warnings. The command timed out while printing the full detailed JSON, not while finding data errors."
+    },
+    {
+      "name": "secret_scan",
+      "status": "pass",
+      "detail": "No likely secrets found in staged or changed files."
+    }
+  ],
+  "closeout_checks": [
+    {
+      "name": "no_secrets",
+      "status": "pass",
+      "detail": "No likely API keys or tokens found in staged or changed text files."
+    },
+    {
+      "name": "no_pending_downloads",
+      "status": "warn",
+      "detail": "C:\\Users\\jpfeifer\\OneDrive - CoorsTek\\Documents\\Geode\\_CONTROL_PLANE\\BLOCKED_DOWNLOAD_QUEUE.json: 1 known blocked download item remains. C:\\Users\\jpfeifer\\OneDrive - CoorsTek\\Documents\\Geode\\_CONTROL_PLANE\\FRESHNESS_VERIFICATION_QUEUE.json: 1 known future freshness item remains."
+    },
+    {
+      "name": "dashboard_updated",
+      "status": "pass",
+      "detail": "Next download dashboard is dated today and has a next recommendation."
+    }
+  ],
+  "boundary": "This audit checks local readability, parsed output files, manifest/index counts, source-path presence, and recorded pipeline completion signals for recent source downloads. It does not certify legal correctness or replace human source review."
+}

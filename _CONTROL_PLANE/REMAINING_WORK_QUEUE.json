@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-02T20:57:43.567858Z",
-  "open_items": 6,
+  "generated_at": "2026-07-06T16:26:07Z",
+  "open_items": 5,
   "items": [
     {
       "id": "HUMAN-REVIEWERS",
@@ -41,14 +41,6 @@
       "status": "queued",
       "reason": "Official public download returns a Google Drive sign-in page instead of a usable executive order PDF.",
       "next_action": "Request a valid official copy from the Governor's Office or State Archives, archive it through manual source intake, then rerun the EO source-anchoring workflow."
-    },
-    {
-      "id": "BLOCKED-DOWNLOAD-LEGISCAN-LIVE-REFRESH",
-      "title": "Resolve blocked download for LEGISCAN-LIVE-REFRESH",
-      "category": "blocked_download",
-      "status": "queued",
-      "reason": "Live LegiScan bill refresh requires LEGISCAN_API_KEY, and that environment variable is not configured in this session.",
-      "next_action": "Configure LEGISCAN_API_KEY, then run the LegiScan current-session or all-session refresh and rebuild the legislation layer."
     }
   ]
 }

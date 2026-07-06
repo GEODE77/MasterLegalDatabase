@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-07-06T19:18:00Z",
+  "status": "active",
+  "purpose": "Separate true pipeline failures from source limitations that need official-source repair or archival research.",
+  "items": [
+    {
+      "id": "EO-2019-007-OFFICIAL-PDF",
+      "layer_id": "05_Executive_Orders",
+      "status": "external_official_copy_required",
+      "severity": "warning",
+      "record_id": "EO-2019-007",
+      "official_listing_url": "https://www.colorado.gov/governor/2019-executive-orders",
+      "official_download_url": "https://drive.google.com/uc?export=download&id=0B7w3bkFgg92dZ1ZiX2pKb1Z0eDdVZTdndmFaN1pLNEE2bnZj",
+      "official_listing_evidence": {
+        "order_number": "D 2019-007",
+        "date": "2019-05-31",
+        "title": "Tribal Access to Certain Child Welfare and Criminal History Databases"
+      },
+      "local_evidence_path": "_CONTROL_PLANE/EO_2019_007_RECOVERY_ATTEMPT.json",
+      "reason": "The official listing exists, but the linked Google Drive file currently returns a sign-in page instead of a usable PDF.",
+      "next_action": "Request a valid official copy from the Governor's Office or Colorado State Archives, then archive it through manual source intake and rebuild the executive order layer.",
+      "manual_intake_command_shape": "python -m geode.pipeline.manual_source_intake --root . --apply --record-id EO-2019-007 --layer-id 05_Executive_Orders --source-file <official_pdf_path> --official-source-name \"Colorado Governor's Office or State Archives\" --official-source-url https://www.colorado.gov/governor/2019-executive-orders --acquisition-method state_archives_request --received-from <source_contact> --reviewer-name <reviewer_name> --custody-note <custody_note> --json"
+    },
+    {
+      "id": "LEGISCAN-LEGACY-DOCUMENT-GAPS",
+      "layer_id": "03_Legislation",
+      "status": "known_source_coverage_limitation",
+      "severity": "warning",
+      "records_total": 85848,
+      "downloaded": 61883,
+      "failed_permanent": 23965,
+      "pending": 0,
+      "pending_retry": 0,
+      "pre_2018_failed_permanent": 23924,
+      "modern_year_failed_permanent": 41,
+      "modern_repair_queue_path": "_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json",
+      "modern_repair_report_path": "docs/audits/MODERN_LEGISCAN_REPAIR_QUEUE_2026-07-06.md",
+      "modern_source_finder_checklist_path": "_CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json",
+      "modern_repair_progress_dashboard_path": "_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json",
+      "top_failure_hosts": {
+        "www.leg.state.co.us": 21702,
+        "leg.colorado.gov": 2256,
+        "s3-us-west-2.amazonaws.com": 7
+      },
+      "failure_year_distribution": {
+        "2010": 3569,
+        "2011": 2970,
+        "2012": 2761,
+        "2013": 3535,
+        "2014": 3766,
+        "2015": 3593,
+        "2016": 1508,
+        "2017": 2222,
+        "2019": 2,
+        "2020": 3,
+        "2021": 6,
+        "2022": 9,
+        "2023": 6,
+        "2024": 5,
+        "2025": 2,
+        "2026": 8
+      },
+      "reason": "The document queue has no pending work, but many historical bill-text links point to legacy archive wrappers, blocked legacy hosts, or non-retryable missing files.",
+      "next_action": "Use _CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json, _CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json, and _CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json to find, repair, and track the 41 modern-year items first, then build a legacy archive recovery strategy by host and year."
+    }
+  ],
+  "boundary": "This register does not approve legal reliance on missing-source records. It documents why the download pipeline is closed while source-coverage repair remains open."
+}

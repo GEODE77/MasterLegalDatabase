@@ -6,14 +6,50 @@ This guide points to the control-plane file that tells the next agent where to r
 
 ## Current Recommendation
 
-The next major download should be the LegiScan live refresh for the legislation layer, but only after the project owner authorizes the safety gate.
+The LegiScan live refresh is complete. The next broad source issue remains EO-2019-007, which needs a valid official PDF from the Governor's Office or State Archives.
 
-The safety gate exists because the repository is currently on detached HEAD with many uncommitted generated files from the July 2 refresh. Starting another large refresh before accepting or committing that state would make it harder to tell which files belong to which run.
+Before any future broad refresh, run the source update watcher:
+
+```powershell
+python -m geode.pipeline.source_update_watcher --root . --live-probes --write
+```
+
+Review the watcher dashboard and queue before downloading:
+
+`_CONTROL_PLANE/SOURCE_UPDATE_WATCHER_DASHBOARD.json`
+
+`_CONTROL_PLANE/SOURCE_UPDATE_DOWNLOAD_QUEUE.json`
+
+For LegiScan specifically, use the focused modern repair queue before starting the large legacy archive recovery project:
+
+`_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
+
+Track repair progress here:
+
+`_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json`
+
+Use the source-finder checklist before intake:
+
+`_CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json`
+
+After an official replacement file is verified, repair one queue item with:
+
+```powershell
+python -m geode.pipeline.legiscan_repair_intake `
+  --root . `
+  --queue-id <queue_id> `
+  --source-file <verified_official_file> `
+  --official-source-url <official_leg_colorado_url> `
+  --reviewer-name <reviewer_name> `
+  --custody-note <custody_note>
+```
+
+The July 2 checkpoint has been committed on `codex/july-2-corpus-checkpoint` and pushed to GitHub. Before treating it as public-facing, complete `docs/PUBLICATION_CHECKLIST.md`, then merge the branch into GitHub `main`.
 
 ## Current Blockers
 
-1. LegiScan live refresh needs `LEGISCAN_API_KEY`.
-2. EO-2019-007 needs a valid official PDF from the Governor's Office, State Archives, or another approved official transfer.
+1. EO-2019-007 needs a valid official PDF from the Governor's Office, State Archives, or another approved official transfer.
+2. The modern LegiScan repair queue has 41 official-source gaps that need targeted review.
 
 ## Operating Rule
 
@@ -23,5 +59,11 @@ Before any broad download, read:
 2. `_CONTROL_PLANE/NEXT_DOWNLOAD_DASHBOARD.json`
 3. `_CONTROL_PLANE/BLOCKED_DOWNLOAD_QUEUE.json`
 4. `_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json`
+5. `_CONTROL_PLANE/SOURCE_UPDATE_WATCHER_DASHBOARD.json`
+6. `_CONTROL_PLANE/SOURCE_UPDATE_DOWNLOAD_QUEUE.json`
+7. `_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
+8. `_CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json`
+9. `_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json`
+10. `docs/PUBLICATION_CHECKLIST.md`
 
 Then ask the project owner to approve the specific next run.

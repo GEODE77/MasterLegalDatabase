@@ -1,36 +1,26 @@
 # Git Checkpoint Execution Plan
 
-This file explains how to turn the current safety checkpoint into a real git checkpoint.
+This file records how the safety checkpoint was turned into a real git checkpoint.
 
 ## Current Situation
 
-Git is not simply on a detached commit. It is paused in an interactive rebase of `main`.
+The paused rebase was completed. The checkpoint work now lives on:
 
-Four older commits have already been replayed. Two remain:
+`codex/july-2-corpus-checkpoint`
 
-1. `cd55c0a Finish CCR manifest URL canonicalization`
-2. `a1c4684 Fix CCR manifest URL final serialization`
-
-Git says the conflict in `tests/test_ccr_scraper.py` has been staged as resolved, so the next step is to continue the rebase.
+The branch has been pushed to GitHub.
 
 ## Recommended Path
 
-1. Continue the paused rebase.
-2. If Git stops again, resolve only the specific conflict it reports.
-3. Once the rebase is complete, create a named branch from the resulting state.
-4. Stage the July 2 refresh outputs, the source-control changes, and the new safety/dashboard files.
-5. Commit that state with a Project Geode phase-style message.
-6. Run validation before any new large download.
+1. Open a pull request from `codex/july-2-corpus-checkpoint` to `main`.
+2. Complete `docs/PUBLICATION_CHECKLIST.md`.
+3. Review GitHub's large-file warnings.
+4. Merge only after the project owner approves publication.
+5. Run validation before any new large download.
 
 ## Why This Order Matters
 
-Committing the current state before finishing the rebase would mix three things:
-
-1. Old CCR rebase work.
-2. The July 2 corpus refresh.
-3. The new safety dashboard files.
-
-Finishing the rebase first gives the project a cleaner base before the broad checkpoint commit.
+The branch now separates the July 2 checkpoint from the next live download. This makes it easier to review and publish the existing corpus state before adding new source changes.
 
 ## Suggested Commit Message
 
@@ -38,4 +28,4 @@ Finishing the rebase first gives the project a cleaner base before the broad che
 
 ## Boundary
 
-Do not abort the rebase, reset the repository, or remove files unless the project owner explicitly approves that recovery path.
+Do not merge to public-facing `main` until the publication checklist is complete and the project owner approves the merge.

@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-07-02T20:38:09.851471+00:00",
+  "generated_at": "2026-07-06T16:26:07+00:00",
   "network_refresh_performed": true,
   "refreshed_sources": [
     "01_Statutes_CRS",
     "02_Regulations_CCR",
+    "03_Legislation",
     "04_Rulemaking",
     "06_Session_Laws",
     "07_Supplementary"
@@ -26,9 +27,9 @@
     {
       "layer_id": "03_Legislation",
       "local_freshness_status": "fresh",
-      "last_checked": "2026-07-02",
-      "network_refresh_required": true,
-      "official_refresh_action": "Run LegiScan/current General Assembly refresh window."
+      "last_checked": "2026-07-06",
+      "network_refresh_required": false,
+      "official_refresh_action": "Completed authenticated LegiScan 2026 refresh; downloaded 714 bills, rebuilt 12,453 legislation records, and confirmed bill-document queue has 0 pending downloads."
     },
     {
       "layer_id": "04_Rulemaking",
@@ -59,6 +60,6 @@
       "official_refresh_action": "Completed official AG opinions and COPRRR supplementary refresh for this run."
     }
   ],
-  "pending_items": 2,
+  "pending_items": 1,
   "boundary": "This queue defines required official freshness checks. It does not claim live freshness."
 }

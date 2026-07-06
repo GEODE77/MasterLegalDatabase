@@ -57,6 +57,9 @@ geode-legislation-pipeline = "geode.connectors.legiscan_pipeline:main"
 geode-legislation-documents = "geode.connectors.legiscan_documents:main"
 geode-web-index = "geode.web.index:main"
 geode-manual-source-intake = "geode.pipeline.manual_source_intake:main"
+geode-secret-safety = "geode.validation.secret_safety:main"
+geode-download-closeout = "geode.pipeline.download_closeout:main"
+geode-recent-download-audit = "geode.pipeline.recent_download_audit:main"
 
 [tool.setuptools.packages.find]
 include = ["geode*"]

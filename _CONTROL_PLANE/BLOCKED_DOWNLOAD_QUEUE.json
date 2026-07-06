@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-02T20:10:00Z",
-  "open_items": 2,
+  "generated_at": "2026-07-06T16:26:07Z",
+  "open_items": 1,
   "items": [
     {
       "record_id": "EO-2019-007",
@@ -13,18 +13,6 @@
       "block_reason": "Official public download returns a Google Drive sign-in page instead of a usable executive order PDF.",
       "evidence_path": "_CONTROL_PLANE/EO_2019_007_RECOVERY_ATTEMPT.json",
       "next_action": "Request a valid official copy from the Governor's Office or State Archives, archive it through manual source intake, then rerun the EO source-anchoring workflow."
-    },
-    {
-      "record_id": "LEGISCAN-LIVE-REFRESH",
-      "layer_id": "03_Legislation",
-      "status": "queued",
-      "priority": "high",
-      "official_listing_url": "https://legiscan.com/CO",
-      "official_download_url": "https://api.legiscan.com/",
-      "quarantine_path": null,
-      "block_reason": "Live LegiScan bill refresh requires LEGISCAN_API_KEY, and that environment variable is not configured in this session.",
-      "evidence_path": "_CONTROL_PLANE/LEGISCAN_LIVE_REFRESH_ATTEMPT.json",
-      "next_action": "Configure LEGISCAN_API_KEY, then run the LegiScan current-session or all-session refresh and rebuild the legislation layer."
     }
   ],
   "boundary": "This queue preserves blocked download work for later retry or official manual replacement. It does not authorize non-official replacement sources."

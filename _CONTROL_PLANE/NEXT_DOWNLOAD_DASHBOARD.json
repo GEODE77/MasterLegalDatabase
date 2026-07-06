@@ -1,42 +1,58 @@
 {
   "dashboard_id": "NEXT-DOWNLOAD-DASHBOARD",
-  "generated_at": "2026-07-06T09:25:27.4907342-06:00",
+  "generated_at": "2026-07-06T19:37:47Z",
   "status": "active",
   "purpose": "Give the next agent a clear source-download starting point.",
   "overall_recommendation": {
-    "next_download_area": "03_Legislation",
-    "source": "LegiScan",
+    "next_download_area": "05_Executive_Orders",
+    "source": "Colorado Governor's Office or State Archives",
     "priority": "highest",
-    "reason": "The July 2 live LegiScan refresh was blocked because LEGISCAN_API_KEY was not configured. Legislation changes more often than most other layers, so this is the highest-value next official refresh once the key is available.",
+    "reason": "The authenticated LegiScan refresh completed on July 6, 2026. The remaining highest-priority download issue is EO-2019-007, where the official public link returns a sign-in page instead of a usable PDF.",
     "owner_authorization_needed": true
   },
   "safety_gate": {
     "checkpoint": "_CONTROL_PLANE/DOWNLOAD_SAFETY_CHECKPOINT.json",
-    "current_state": "The repository is in the middle of an interactive rebase of main, with many uncommitted generated files from the July 2 refresh.",
+    "current_state": "The July 2 checkpoint is committed and pushed on codex/july-2-corpus-checkpoint. It still needs pull-request review and merge before it is public-facing on main.",
     "required_before_large_download": [
-      "Project owner authorizes completing the paused rebase, then creating a branch and checkpoint commit, or",
-      "Project owner authorizes another recovery path before any broad download."
+      "Project owner completes docs/PUBLICATION_CHECKLIST.md before public-facing merge, or",
+      "Project owner explicitly authorizes proceeding with the next download before merging the checkpoint branch."
     ]
   },
   "next_actions": [
     {
-      "rank": 1,
-      "id": "LEGISCAN-LIVE-REFRESH",
-      "layer_id": "03_Legislation",
-      "action_type": "official_live_refresh",
-      "status": "blocked",
-      "blocked_by": "LEGISCAN_API_KEY is not configured.",
-      "why_it_matters": "This refresh updates current Colorado bill data and keeps the legislation layer from drifting behind the official source.",
-      "ready_when": "LEGISCAN_API_KEY is available in the environment or passed through the pipeline option.",
-      "suggested_command_after_authorization": "python -m geode.connectors.legiscan_pipeline --output-root . --download --session-year 2026 --api-key <LEGISCAN_API_KEY> --json",
+      "rank": 0,
+      "id": "SOURCE-UPDATE-WATCHER",
+      "layer_id": "all",
+      "action_type": "pre_download_update_watch",
+      "status": "active",
+      "blocked_by": null,
+      "why_it_matters": "This watcher checks each official source before future downloads and separates safe guarded downloads from manual source-review work.",
+      "ready_when": "Run before every broad source refresh or scheduled download window.",
+      "suggested_command_after_authorization": "python -m geode.pipeline.source_update_watcher --root . --live-probes --write",
       "follow_up_after_success": [
-        "Run the legislation document pipeline if new bill documents are discovered.",
-        "Refresh the retrieval catalog and readiness reports.",
-        "Review the changed legislation count and any failed downloads."
+        "Review _CONTROL_PLANE/SOURCE_UPDATE_WATCHER_DASHBOARD.json.",
+        "Use _CONTROL_PLANE/SOURCE_UPDATE_DOWNLOAD_QUEUE.json for the next guarded download or manual review item.",
+        "Do not download from a source unless the watcher, source registry, and safety checkpoint agree."
       ]
     },
     {
-      "rank": 2,
+      "rank": 3,
+      "id": "LEGISCAN-LIVE-REFRESH",
+      "layer_id": "03_Legislation",
+      "action_type": "official_live_refresh",
+      "status": "completed",
+      "blocked_by": null,
+      "why_it_matters": "This refresh updates current Colorado bill data and keeps the legislation layer from drifting behind the official source.",
+      "ready_when": "Completed on July 6, 2026.",
+      "suggested_command_after_authorization": null,
+      "follow_up_after_success": [
+        "Commit and push the refreshed legislation files.",
+        "Use the next routine refresh window for future LegiScan updates.",
+        "Keep the API key outside repository files."
+      ]
+    },
+    {
+      "rank": 1,
       "id": "EO-2019-007",
       "layer_id": "05_Executive_Orders",
       "action_type": "manual_official_source_repair",
@@ -52,7 +68,25 @@
       ]
     },
     {
-      "rank": 3,
+      "rank": 2,
+      "id": "LEGISCAN-MODERN-REPAIR-QUEUE",
+      "layer_id": "03_Legislation",
+      "action_type": "source_coverage_repair",
+      "status": "queued",
+      "blocked_by": null,
+      "why_it_matters": "The 41 modern-year permanent LegiScan document gaps are small enough to repair before the large pre-2018 legacy archive project.",
+      "ready_when": "The project owner authorizes a focused source repair pass for the modern LegiScan queue.",
+      "suggested_command_after_authorization": "python -m geode.pipeline.legiscan_repair_intake --root . --queue-id <queue_id> --source-file <verified_official_file> --official-source-url <official_leg_colorado_url> --reviewer-name <reviewer_name> --custody-note <custody_note>",
+      "follow_up_after_success": [
+        "Rerun python -m geode.pipeline.modern_legiscan_repair_queue --root . --write.",
+        "Rerun python -m geode.pipeline.legiscan_source_finder_checklist --root . --write.",
+        "Rerun python -m geode.pipeline.legiscan_repair_progress_dashboard --root . --write.",
+        "Rerun python -m geode.pipeline.recent_download_audit --root . --write.",
+        "Confirm the modern_year_failed_permanent count drops in _CONTROL_PLANE/SOURCE_LIMITATION_REGISTER.json."
+      ]
+    },
+    {
+      "rank": 4,
       "id": "RULEMAKING-MEDIUM-EVIDENCE",
       "layer_id": "04_Rulemaking",
       "action_type": "source_depth_upgrade",
@@ -70,15 +104,21 @@
   "do_not_start_next": [
     "Do not start a broad all-source refresh until the safety gate is cleared.",
     "Do not use unofficial replacement files for EO-2019-007.",
-    "Do not mark LegiScan freshness complete until the authenticated refresh succeeds."
+    "Do not store the LegiScan API key in repository files."
   ],
   "related_control_files": [
     "_CONTROL_PLANE/REMAINING_WORK_QUEUE.json",
     "_CONTROL_PLANE/BLOCKED_DOWNLOAD_QUEUE.json",
     "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
     "_CONTROL_PLANE/SOURCE_REPAIR_DASHBOARD.json",
+    "_CONTROL_PLANE/SOURCE_UPDATE_WATCHER_DASHBOARD.json",
+    "_CONTROL_PLANE/SOURCE_UPDATE_DOWNLOAD_QUEUE.json",
+    "_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json",
+    "_CONTROL_PLANE/LEGISCAN_SOURCE_FINDER_CHECKLIST.json",
+    "_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json",
     "_CONTROL_PLANE/LEGISCAN_LIVE_REFRESH_ATTEMPT.json",
-    "_CONTROL_PLANE/EO_2019_007_RECOVERY_ATTEMPT.json"
+    "_CONTROL_PLANE/EO_2019_007_RECOVERY_ATTEMPT.json",
+    "docs/PUBLICATION_CHECKLIST.md"
   ],
   "boundary": "This dashboard is an operations guide. It does not authorize legal reliance, source substitution, or unsupervised use."
 }
