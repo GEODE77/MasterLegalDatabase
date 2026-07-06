@@ -174,6 +174,11 @@ def repair_modern_legiscan_item(
     _append_jsonl_raw(resolved_root / ARCHIVE_MANIFEST_PATH, record)
     _append_jsonl_control(resolved_root / LEDGER_PATH, record, resolved_root)
     refreshed_queue = write_modern_legiscan_repair_queue(resolved_root)
+    from geode.pipeline.legiscan_repair_progress_dashboard import (
+        write_legiscan_repair_progress_dashboard,
+    )
+
+    write_legiscan_repair_progress_dashboard(resolved_root)
     final_record = record.model_copy(
         update={"remaining_modern_queue_items": refreshed_queue.item_count}
     )

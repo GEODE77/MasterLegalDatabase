@@ -57,13 +57,15 @@ Of the 23,965 permanent failures, 23,924 are pre-2018 legacy links and 41 are mo
 
 - `_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json`
 - `docs/audits/MODERN_LEGISCAN_REPAIR_QUEUE_2026-07-06.md`
+- `_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json`
 
 Repair path:
 
 1. Treat this as a historical source-coverage project, not a failed current download.
 2. Work the 41-item modern repair queue first using `python -m geode.pipeline.legiscan_repair_intake` after each official replacement file is verified.
-3. Build a host-specific recovery workflow for the large legacy archive group.
-4. Keep the main download audit at warning level until the coverage gap is either repaired or formally accepted by the project owner.
+3. Track reviewer and open-item progress with `python -m geode.pipeline.legiscan_repair_progress_dashboard --root . --write`.
+4. Build a host-specific recovery workflow for the large legacy archive group.
+5. Keep the main download audit at warning level until the coverage gap is either repaired or formally accepted by the project owner.
 
 ## Boundary
 

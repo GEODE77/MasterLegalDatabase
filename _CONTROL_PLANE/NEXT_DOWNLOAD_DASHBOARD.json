@@ -1,6 +1,6 @@
 {
   "dashboard_id": "NEXT-DOWNLOAD-DASHBOARD",
-  "generated_at": "2026-07-06T19:05:00Z",
+  "generated_at": "2026-07-06T19:18:00Z",
   "status": "active",
   "purpose": "Give the next agent a clear source-download starting point.",
   "overall_recommendation": {
@@ -63,6 +63,7 @@
       "suggested_command_after_authorization": "python -m geode.pipeline.legiscan_repair_intake --root . --queue-id <queue_id> --source-file <verified_official_file> --official-source-url <official_leg_colorado_url> --reviewer-name <reviewer_name> --custody-note <custody_note>",
       "follow_up_after_success": [
         "Rerun python -m geode.pipeline.modern_legiscan_repair_queue --root . --write.",
+        "Rerun python -m geode.pipeline.legiscan_repair_progress_dashboard --root . --write.",
         "Rerun python -m geode.pipeline.recent_download_audit --root . --write.",
         "Confirm the modern_year_failed_permanent count drops in _CONTROL_PLANE/SOURCE_LIMITATION_REGISTER.json."
       ]
@@ -94,6 +95,7 @@
     "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
     "_CONTROL_PLANE/SOURCE_REPAIR_DASHBOARD.json",
     "_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json",
+    "_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json",
     "_CONTROL_PLANE/LEGISCAN_LIVE_REFRESH_ATTEMPT.json",
     "_CONTROL_PLANE/EO_2019_007_RECOVERY_ATTEMPT.json",
     "docs/PUBLICATION_CHECKLIST.md"

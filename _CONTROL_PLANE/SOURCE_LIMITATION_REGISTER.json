@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T19:05:00Z",
+  "generated_at": "2026-07-06T19:18:00Z",
   "status": "active",
   "purpose": "Separate true pipeline failures from source limitations that need official-source repair or archival research.",
   "items": [
@@ -35,6 +35,7 @@
       "modern_year_failed_permanent": 41,
       "modern_repair_queue_path": "_CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json",
       "modern_repair_report_path": "docs/audits/MODERN_LEGISCAN_REPAIR_QUEUE_2026-07-06.md",
+      "modern_repair_progress_dashboard_path": "_CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json",
       "top_failure_hosts": {
         "www.leg.state.co.us": 21702,
         "leg.colorado.gov": 2256,
@@ -59,7 +60,7 @@
         "2026": 8
       },
       "reason": "The document queue has no pending work, but many historical bill-text links point to legacy archive wrappers, blocked legacy hosts, or non-retryable missing files.",
-      "next_action": "Use _CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json to repair the 41 modern-year items first, then build a legacy archive recovery strategy by host and year."
+      "next_action": "Use _CONTROL_PLANE/MODERN_LEGISCAN_REPAIR_QUEUE.json and _CONTROL_PLANE/LEGISCAN_REPAIR_PROGRESS_DASHBOARD.json to repair and track the 41 modern-year items first, then build a legacy archive recovery strategy by host and year."
     }
   ],
   "boundary": "This register does not approve legal reliance on missing-source records. It documents why the download pipeline is closed while source-coverage repair remains open."
