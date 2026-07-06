@@ -194,6 +194,7 @@ RELATIONSHIP_TYPES = frozenset(
         "creates",
         "repeals",
         "cites",
+        "has_rule_citing_statute",
         "supersedes",
         "modified_by",
         "interprets",

@@ -79,6 +79,45 @@ def test_crosswalk_and_timeline_validation_accepts_design_records(project_root: 
     assert result.valid, result.issues
 
 
+def test_crosswalk_validation_accepts_agency_and_amendment_history_shapes() -> None:
+    """Crosswalk validation accepts current relationship-engine row shapes."""
+
+    agency_crosswalk = CrosswalkEntry(
+        source_id="AGENCY-DEPARTMENT_OF_AGRICULTURE_ANIMAL_HEALTH_DIVISION",
+        source_type="agency",
+        target_id="CRS-35-50-105",
+        target_type="statute_section",
+        relationship="has_rule_citing_statute",
+        confidence=0.68,
+        source_evidence="Animal Health Division is tied to 8_CCR_1201-1.",
+        data_retrieved="2026-07-01",
+        agency_name="Animal Health Division",
+        department_name="Department of Agriculture",
+        supporting_regulation_id="8_CCR_1201-1",
+    )
+    amendment = CrosswalkEntry.model_validate(
+        {
+            "entity_type": "amendment_history_entry",
+            "statute_id": "CRS-18-1-901",
+            "event_id": "AH-CRS_18_1_901-SB23_034",
+            "event_type": "amends",
+            "event_date": "2023-06-02",
+            "bill_id": "SB23-034",
+            "bill_title": "Definition Of Serious Bodily Injury",
+            "bill_status": "in_committee",
+            "source_url": "https://legiscan.com/CO/bill/SB034/2023",
+            "source_evidence": "Definition Of Serious Bodily Injury",
+            "confidence": 0.9,
+            "data_retrieved": "2026-07-01",
+        }
+    )
+
+    assert agency_crosswalk.relationship == "has_rule_citing_statute"
+    assert amendment.source_id == "SB23-034"
+    assert amendment.target_id == "CRS-18-1-901"
+    assert amendment.relationship == "amends"
+
+
 def test_regulation_rule_future_effective_date_passes_prewrite_checks(
     project_root: Path,
 ) -> None:

@@ -1,7 +1,7 @@
 # Recent Download Audit
 
-Generated: 2026-07-06T17:19:33.689028+00:00
-Overall status: **FAIL**
+Generated: 2026-07-06T17:46:08.797692+00:00
+Overall status: **WARN**
 
 This audit checks the data collected in the recent download window.
 
@@ -24,7 +24,7 @@ This audit checks the data collected in the recent download window.
 | legiscan_live_refresh | PASS | Completed with 714 bills downloaded and 0 failures. |
 | legiscan_document_queue | WARN | 61883 downloaded, 23965 permanent legacy failures, 0 pending downloads. |
 | blocked_download_queue | WARN | 1 known blocked future download remains: EO-2019-007. |
-| schema_validator | FAIL | python -m geode.validate --layer all currently fails on crosswalk schema compatibility: agency_to_statute rows use has_rule_citing_statute with supporting agency fields, and amendment_history rows use amendment-history fields. The files are readable, but the validator schema has not caught up. |
+| schema_validator | PASS | python -m geode.validate --layer all passed. |
 | corpus_usability | PASS | Corpus usability refresh checked 57,154 index records, 9,980 crosswalk rows, and JSONL addressability with 0 errors and 0 warnings. The command timed out while printing the full detailed JSON, not while finding data errors. |
 | secret_scan | PASS | No likely secrets found in staged or changed files. |
 

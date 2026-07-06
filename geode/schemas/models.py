@@ -709,7 +709,7 @@ class RuleUnit(GeodeModel):
 class CrosswalkEntry(GeodeModel):
     """Relationship record linking two Geode entities."""
 
-    entity_type: Literal["crosswalk_entry"] = "crosswalk_entry"
+    entity_type: Literal["crosswalk_entry", "amendment_history_entry"] = "crosswalk_entry"
     source_id: str = Field(min_length=1)
     source_type: EntityType | str
     target_id: str | None = None
@@ -719,6 +719,37 @@ class CrosswalkEntry(GeodeModel):
     confidence: float = Field(ge=0.0, le=1.0)
     source_evidence: str | None = None
     data_retrieved: date
+    agency_name: str | None = None
+    department_name: str | None = None
+    supporting_regulation_id: str | None = None
+    statute_id: str | None = None
+    event_id: str | None = None
+    event_type: str | None = None
+    event_date: date | None = None
+    bill_id: str | None = None
+    bill_title: str | None = None
+    bill_status: str | None = None
+    source_url: HttpUrl | None = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_amendment_history(cls, value: object) -> object:
+        """Normalize amendment-history rows into crosswalk-compatible fields."""
+
+        if not isinstance(value, dict):
+            return value
+        if value.get("entity_type") != "amendment_history_entry":
+            return value
+        normalized = dict(value)
+        bill_id = normalized.get("bill_id")
+        statute_id = normalized.get("statute_id")
+        event_type = normalized.get("event_type")
+        normalized.setdefault("source_id", bill_id or normalized.get("event_id"))
+        normalized.setdefault("source_type", "bill" if bill_id else "timeline_event")
+        normalized.setdefault("target_id", statute_id)
+        normalized.setdefault("target_type", "statute_section")
+        normalized.setdefault("relationship", event_type)
+        return normalized
 
     @field_validator("relationship")
     @classmethod

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-06T17:19:33.689028+00:00",
-  "overall_status": "fail",
+  "generated_at": "2026-07-06T17:46:08.797692+00:00",
+  "overall_status": "warn",
   "audited_layers": [
     "01_Statutes_CRS",
     "02_Regulations_CCR",
@@ -149,8 +149,8 @@
     },
     {
       "name": "schema_validator",
-      "status": "fail",
-      "detail": "python -m geode.validate --layer all currently fails on crosswalk schema compatibility: agency_to_statute rows use has_rule_citing_statute with supporting agency fields, and amendment_history rows use amendment-history fields. The files are readable, but the validator schema has not caught up."
+      "status": "pass",
+      "detail": "python -m geode.validate --layer all passed."
     },
     {
       "name": "corpus_usability",

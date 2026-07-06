@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
+import sys
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from functools import lru_cache
@@ -223,7 +225,7 @@ def build_pipeline_signals(root: Path) -> list[PipelineSignal]:
         legiscan_refresh_signal(root),
         legiscan_documents_signal(root),
         blocked_download_signal(root),
-        schema_validator_signal(),
+        schema_validator_signal(root),
         corpus_usability_signal(),
         secret_signal(root),
     ]
@@ -282,18 +284,27 @@ def blocked_download_signal(root: Path) -> PipelineSignal:
     return PipelineSignal("blocked_download_queue", PASS, "No blocked download items remain.")
 
 
-def schema_validator_signal() -> PipelineSignal:
-    """Record the current known schema-validator result from this audit run."""
+def schema_validator_signal(root: Path) -> PipelineSignal:
+    """Run the project schema validator and return its result."""
 
+    result = subprocess.run(
+        [sys.executable, "-m", "geode.validate", "--layer", "all", "--root", str(root)],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    if result.returncode == 0:
+        return PipelineSignal(
+            "schema_validator",
+            PASS,
+            "python -m geode.validate --layer all passed.",
+        )
+    detail = (result.stderr or result.stdout).strip().splitlines()
     return PipelineSignal(
         "schema_validator",
         FAIL,
-        (
-            "python -m geode.validate --layer all currently fails on crosswalk schema "
-            "compatibility: agency_to_statute rows use has_rule_citing_statute with "
-            "supporting agency fields, and amendment_history rows use amendment-history "
-            "fields. The files are readable, but the validator schema has not caught up."
-        ),
+        detail[-1] if detail else "python -m geode.validate --layer all failed.",
     )
 
 
