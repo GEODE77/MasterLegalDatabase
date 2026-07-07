@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactElement } from "react";
 
+import { PublicNav } from "@/components/navigation/PublicNav";
 import {
   findRegulationReference,
   getRegulationById,
@@ -36,7 +37,12 @@ export default async function RegulationPage({ params }: RegulationPageProps): P
 
   return (
     <main className="regulation-document-page">
+      <PublicNav current="library" />
       <article className="regulation-document">
+        <Link className="regulation-document-back" href="/regulations">
+          Back to regulations
+        </Link>
+
         <header className="regulation-citation-strip">
           <span>{regulation.agency}</span>
           <span>{regulation.citation}</span>

@@ -16158,3 +16158,247 @@ body {
 .forum-page.thread-page .reply-composer::before {
   opacity: 0 !important;
 }
+
+.regulation-document-page {
+  display: grid !important;
+  min-height: 100svh !important;
+  align-content: start !important;
+  gap: 24px !important;
+  background: #fff !important;
+  color: #000 !important;
+  padding: 24px !important;
+}
+
+.regulation-document-page > .public-nav {
+  width: 100% !important;
+}
+
+.regulation-document {
+  width: min(100%, 980px) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 18px !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  padding: 24px !important;
+}
+
+.regulation-document::before,
+.regulation-document::after {
+  opacity: 0 !important;
+}
+
+.regulation-document-back,
+.regulation-related a {
+  display: inline-flex !important;
+  min-height: 44px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  font-family: "Suisse Int'l", "Neue Haas Grotesk Text", Inter, ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 650 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.2 !important;
+  padding: 10px 12px !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  transform: none !important;
+}
+
+.regulation-document-back:hover,
+.regulation-document-back:focus-visible,
+.regulation-related a:hover,
+.regulation-related a:focus-visible {
+  border-color: #000 !important;
+  background: #fff !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  transform: none !important;
+}
+
+.regulation-document-back::after,
+.regulation-related a::after,
+.regulation-related a:hover::after {
+  opacity: 0 !important;
+}
+
+.regulation-citation-strip,
+.regulation-document-head,
+.regulation-article-body,
+.regulation-footnotes,
+.regulation-related {
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+}
+
+.regulation-citation-strip {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 12px !important;
+}
+
+.regulation-citation-strip span {
+  min-height: 34px !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #000 !important;
+  padding: 8px 10px !important;
+}
+
+.regulation-citation-strip span:nth-child(2) {
+  border-color: #000 !important;
+}
+
+.regulation-document-head,
+.regulation-article-body,
+.regulation-footnotes,
+.regulation-related {
+  padding: 22px !important;
+}
+
+.regulation-document-head h1 {
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: #000 !important;
+  font-size: 40px !important;
+  font-weight: 560 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.08 !important;
+}
+
+.regulation-article-body {
+  display: grid !important;
+  gap: 16px !important;
+}
+
+.regulation-article-body h2,
+.regulation-article-body h3,
+.regulation-footnotes h2,
+.regulation-related h2 {
+  margin: 0 !important;
+  color: #000 !important;
+  font-weight: 560 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.regulation-article-body h2 {
+  border-top: 1px solid #d8d8d8 !important;
+  padding-top: 18px !important;
+  font-size: 24px !important;
+}
+
+.regulation-article-body h3 {
+  font-size: 18px !important;
+}
+
+.regulation-article-body p,
+.regulation-footnotes li,
+.regulation-related li {
+  color: #1f1f1f !important;
+  font-size: 16px !important;
+  letter-spacing: 0 !important;
+  line-height: 1.72 !important;
+}
+
+.regulation-footnotes ol,
+.regulation-related ul {
+  display: grid !important;
+  gap: 10px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.regulation-footnotes li,
+.regulation-related li {
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  list-style: none !important;
+  padding: 12px !important;
+}
+
+.regulation-related li:hover,
+.regulation-related li:focus-within {
+  background: #fff !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.regulation-related li::after,
+.regulation-related li:hover::after {
+  opacity: 0 !important;
+}
+
+.regulation-cross-reference {
+  border: 1px solid #bdbdbd !important;
+  border-radius: 6px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  padding: 1px 5px !important;
+  text-decoration: none !important;
+}
+
+.regulation-cross-reference:hover,
+.regulation-cross-reference:focus-visible {
+  border-color: #000 !important;
+  background: #fff !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  transform: none !important;
+}
+
+.regulation-cross-reference::after,
+.regulation-cross-reference:hover::after,
+.regulation-cross-reference:focus-visible::after {
+  opacity: 0 !important;
+}
+
+.regulation-reference-preview {
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+}
+
+.regulation-reference-preview strong,
+.regulation-reference-preview span {
+  color: #000 !important;
+}
+
+@media (max-width: 860px) {
+  .regulation-document-page {
+    padding: 16px !important;
+  }
+
+  .regulation-document {
+    padding: 16px !important;
+  }
+
+  .regulation-document-head h1 {
+    font-size: 32px !important;
+    line-height: 1.12 !important;
+  }
+}
