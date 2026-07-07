@@ -13416,3 +13416,472 @@ body {
     font-size: 20px !important;
   }
 }
+
+/* Search public-style repair */
+@media (min-width: 641px) {
+  .query-page .public-nav {
+    display: grid !important;
+    grid-template-columns: minmax(120px, auto) minmax(0, 1fr) auto !important;
+    gap: 16px !important;
+  }
+
+  .query-page .public-nav nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: auto !important;
+  }
+
+  .query-page .public-nav-brand,
+  .query-page .public-nav-back,
+  .query-page .public-nav-manager,
+  .query-page .public-nav nav a {
+    width: auto !important;
+    justify-content: center !important;
+  }
+
+  .query-page .public-nav-brand {
+    justify-content: flex-start !important;
+  }
+
+  .query-page .public-nav-back {
+    grid-column: 1 / -1 !important;
+    justify-self: start !important;
+  }
+}
+
+.query-page,
+.query-page.is-idle,
+.query-page.has-answer {
+  display: grid !important;
+  align-content: start !important;
+  gap: 24px !important;
+  min-height: 100svh !important;
+  overflow-x: clip !important;
+  background: #fff !important;
+  color: #000 !important;
+  padding: 24px !important;
+}
+
+.query-page > .public-nav,
+.query-page > .query-public-hero,
+.query-page > .query-form,
+.query-page > .query-note {
+  width: min(1180px, calc(100vw - 48px)) !important;
+  max-width: none !important;
+  margin-inline: auto !important;
+}
+
+.query-page > .query-public-hero {
+  display: grid !important;
+  gap: 12px !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  padding: 24px !important;
+}
+
+.query-page > .query-public-hero p {
+  margin: 0 !important;
+  color: #5d5d5d !important;
+  font-size: 12px !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1.3 !important;
+  text-transform: uppercase !important;
+}
+
+.query-page > .query-public-hero h1 {
+  max-width: 920px !important;
+  margin: 0 !important;
+  color: #000 !important;
+  font-size: 40px !important;
+  font-weight: 560 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.1 !important;
+}
+
+.query-page > .query-public-hero > span {
+  max-width: 760px !important;
+  color: #2b2b2b !important;
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+}
+
+.query-page.is-idle .query-form,
+.query-page.has-answer .query-form,
+.query-page > .query-form {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: end !important;
+  gap: 12px !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  padding: 18px !important;
+}
+
+.query-page.has-answer .query-form {
+  position: sticky !important;
+  top: 16px !important;
+  z-index: 4 !important;
+}
+
+.query-page .query-form::before,
+.query-page .query-field::before,
+.query-page .query-form::after,
+.query-page .query-field::after {
+  opacity: 0 !important;
+}
+
+.query-page .query-field {
+  display: grid !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  padding: 0 !important;
+}
+
+.query-page .query-field-label {
+  color: #5d5d5d !important;
+  font-size: 11px !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1.3 !important;
+  text-transform: uppercase !important;
+}
+
+.query-page .query-field textarea,
+.query-page.is-idle .query-field textarea,
+.query-page.has-answer .query-field textarea {
+  display: block !important;
+  width: 100% !important;
+  min-height: 92px !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  font-family: "Suisse Int'l", "Neue Haas Grotesk Text", Inter, ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.45 !important;
+  outline: 0 !important;
+  padding: 12px !important;
+  resize: vertical !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.query-page.has-answer .query-field textarea {
+  min-height: 48px !important;
+  font-size: 15px !important;
+}
+
+.query-page .query-field textarea:hover,
+.query-page .query-field textarea:focus {
+  border-color: #000 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  transform: none !important;
+}
+
+.query-page .query-field textarea::placeholder {
+  color: #757575 !important;
+  opacity: 1 !important;
+}
+
+.query-page .query-submit-hidden,
+.query-page .query-submit {
+  display: inline-flex !important;
+  width: auto !important;
+  min-width: 92px !important;
+  min-height: 44px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  align-self: end !important;
+  overflow: visible !important;
+  clip: auto !important;
+  border: 1px solid #000 !important;
+  border-radius: 8px !important;
+  background: #000 !important;
+  box-shadow: none !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  font-family: "Suisse Int'l", "Neue Haas Grotesk Text", Inter, ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 650 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.2 !important;
+  padding: 10px 14px !important;
+  position: static !important;
+  text-transform: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.query-page .query-submit-hidden:hover:not(:disabled),
+.query-page .query-submit-hidden:focus-visible:not(:disabled),
+.query-page .query-submit:hover:not(:disabled),
+.query-page .query-submit:focus-visible:not(:disabled) {
+  border-color: #000 !important;
+  background: #000 !important;
+  box-shadow: none !important;
+  color: #fff !important;
+  transform: none !important;
+}
+
+.query-page .query-submit-hidden:disabled,
+.query-page .query-submit:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.45 !important;
+}
+
+.query-page .field-validation {
+  grid-column: 1 / -1 !important;
+  color: #8a1f11 !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+}
+
+.query-page .query-recent-list {
+  display: flex !important;
+  grid-column: 1 / -1 !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  border-top: 1px solid #efefef !important;
+  padding-top: 12px !important;
+}
+
+.query-page .query-recent-list button {
+  min-height: 36px !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  font-size: 13px !important;
+  font-weight: 560 !important;
+  padding: 8px 10px !important;
+  transform: none !important;
+}
+
+.query-page .query-recent-list button:hover,
+.query-page .query-recent-list button:focus-visible {
+  border-color: #000 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+}
+
+.query-page > .query-note {
+  display: grid !important;
+  gap: 14px !important;
+}
+
+.query-page .query-status {
+  margin: 0 !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #4b4b4b !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  padding: 12px 14px !important;
+}
+
+.query-page .research-note,
+.query-page .research-note.recovery-state {
+  display: grid !important;
+  gap: 16px !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  padding: 24px !important;
+}
+
+.query-page .research-note::before,
+.query-page .research-note::after {
+  opacity: 0 !important;
+}
+
+.query-page .research-note h1 {
+  max-width: 920px !important;
+  margin: 0 !important;
+  color: #000 !important;
+  font-size: 34px !important;
+  font-weight: 560 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.12 !important;
+}
+
+.query-page .research-note p,
+.query-page .research-note li {
+  margin: 0 !important;
+  color: #2b2b2b !important;
+  font-size: 16px !important;
+  line-height: 1.62 !important;
+}
+
+.query-page .research-note p span,
+.query-page .research-note li span {
+  color: #000 !important;
+  font-weight: 650 !important;
+}
+
+.query-page .reference-list {
+  display: grid !important;
+  gap: 10px !important;
+  border-top: 1px solid #d8d8d8 !important;
+  padding-top: 16px !important;
+}
+
+.query-page .reference-list h2 {
+  margin: 0 !important;
+  color: #000 !important;
+  font-size: 18px !important;
+  font-weight: 650 !important;
+}
+
+.query-page .reference-list ol {
+  display: grid !important;
+  gap: 10px !important;
+  margin: 0 !important;
+  padding-left: 22px !important;
+}
+
+.query-page .research-note a,
+.query-page .reference-list a {
+  color: #000 !important;
+  font-weight: 650 !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 3px !important;
+}
+
+.query-page .citation-mark button {
+  display: inline-flex !important;
+  width: 24px !important;
+  min-width: 24px !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 999px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  font-size: 12px !important;
+  font-weight: 650 !important;
+  padding: 0 !important;
+}
+
+.query-page .citation-preview {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.query-page .citation-mark button:hover,
+.query-page .citation-mark button:focus-visible {
+  border-color: #000 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.query-page .citation-mark button:hover .citation-preview,
+.query-page .citation-mark button:focus-visible .citation-preview {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 640px) {
+  .query-page,
+  .query-page.is-idle,
+  .query-page.has-answer {
+    gap: 18px !important;
+    padding: 16px !important;
+  }
+
+  .query-page > .public-nav,
+  .query-page > .query-public-hero,
+  .query-page > .query-form,
+  .query-page > .query-note {
+    width: calc(100vw - 32px) !important;
+  }
+
+  .query-page > .query-public-hero,
+  .query-page .research-note {
+    padding: 18px !important;
+  }
+
+  .query-page > .query-public-hero h1,
+  .query-page .research-note h1 {
+    font-size: 30px !important;
+  }
+
+  .query-page.is-idle .query-form,
+  .query-page.has-answer .query-form,
+  .query-page > .query-form {
+    grid-template-columns: 1fr !important;
+    padding: 18px !important;
+  }
+
+  .query-page .query-submit-hidden,
+  .query-page .query-submit {
+    width: 100% !important;
+  }
+
+  .query-page .public-nav {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    min-height: 0 !important;
+    padding-bottom: 12px !important;
+  }
+
+  .query-page .public-nav-brand,
+  .query-page .public-nav-back,
+  .query-page .public-nav-manager,
+  .query-page .public-nav nav a {
+    min-height: 38px !important;
+    padding: 8px 10px !important;
+  }
+
+  .query-page .public-nav-brand {
+    width: fit-content !important;
+    justify-content: flex-start !important;
+  }
+
+  .query-page .public-nav nav {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+
+  .query-page .public-nav nav a {
+    width: 100% !important;
+    font-size: 13px !important;
+  }
+
+  .query-page .public-nav-manager,
+  .query-page .public-nav-back {
+    width: 100% !important;
+  }
+
+  .query-page .query-public-hero {
+    gap: 10px !important;
+  }
+}
