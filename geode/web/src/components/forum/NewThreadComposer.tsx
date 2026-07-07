@@ -75,7 +75,7 @@ export function NewThreadComposer({
     legalSource,
     title,
   });
-  const titleError = title.trim().length >= 8 ? "" : "Use at least 8 characters so others can understand the thread.";
+  const titleError = title.trim().length >= 8 ? "" : "Use at least 8 characters so others can understand the issue.";
   const bodyError = body.trim().length >= 20 ? "" : "Add at least 20 characters of context before posting.";
 
   if (!isOpen) {
@@ -133,9 +133,9 @@ export function NewThreadComposer({
         setSelectedTags(["general"]);
         window.localStorage.removeItem(THREAD_DRAFT_KEY);
         onClose();
-        showToast({ message: "Your thread is live." });
+        showToast({ message: "Your issue record is live." });
       } else {
-        setFormError("We could not post the thread. Check the title and body, then try again.");
+        setFormError("We could not post the issue record. Check the title and brief, then try again.");
       }
     } catch {
       setFormError("We could not reach the forum. Keep your draft and try again.");
@@ -158,14 +158,20 @@ export function NewThreadComposer({
   return (
     <form className="thread-composer" onSubmit={(event) => void submit(event)}>
       <div className="composer-topline">
-        <span>Create issue</span>
+        <div className="composer-topline-copy">
+          <span>Issue intake</span>
+          <strong>Create a public issue record</strong>
+        </div>
         <button onClick={onClose} type="button">
           Cancel
         </button>
       </div>
       <div className="composer-primary">
-        <div className="composer-fieldset">
-          <span>Issue type</span>
+        <div className="composer-section composer-section-type">
+          <div className="composer-fieldset">
+            <span>Record type</span>
+            <p>Choose the kind of action or review this issue needs.</p>
+          </div>
           <div className="composer-issue-types">
             {ISSUE_TYPES.map((type) => (
               <button
@@ -179,20 +185,24 @@ export function NewThreadComposer({
             ))}
           </div>
         </div>
-        <label>
-          <span>Issue title</span>
-          <input
-            aria-label="Thread title"
-            aria-describedby="thread-title-validation"
-            aria-invalid={touched.title && Boolean(titleError)}
-            onBlur={() => setTouched((current) => ({ ...current, title: true }))}
-            onChange={(event) => setTitle(event.target.value)}
-            placeholder="What decision, bill, petition, or legal risk needs attention?"
-            value={title}
-          />
-          <FieldValidation id="thread-title-validation" isVisible={touched.title} message={titleError} />
-        </label>
-        <div className="composer-grid-fields">
+
+        <div className="composer-section">
+          <label className="composer-title-field">
+            <span>Issue title</span>
+            <input
+              aria-label="Issue title"
+              aria-describedby="thread-title-validation"
+              aria-invalid={touched.title && Boolean(titleError)}
+              onBlur={() => setTouched((current) => ({ ...current, title: true }))}
+              onChange={(event) => setTitle(event.target.value)}
+              placeholder="What decision, bill, petition, or legal risk needs attention?"
+              value={title}
+            />
+            <FieldValidation id="thread-title-validation" isVisible={touched.title} message={titleError} />
+          </label>
+        </div>
+
+        <div className="composer-section composer-grid-fields">
           <label>
             <span>Affected audience</span>
             <input
@@ -226,8 +236,12 @@ export function NewThreadComposer({
             />
           </label>
         </div>
-        <div className="composer-fieldset">
-          <span>Impact level</span>
+
+        <div className="composer-section composer-section-impact">
+          <div className="composer-fieldset">
+            <span>Impact level</span>
+            <p>Mark how visible or operationally important this record is.</p>
+          </div>
           <div className="composer-issue-types compact">
             {IMPACT_LEVELS.map((level) => (
               <button
@@ -241,22 +255,30 @@ export function NewThreadComposer({
             ))}
           </div>
         </div>
-        <label>
-          <span>Issue brief</span>
-          <textarea
-            aria-label="Thread body"
-            aria-describedby="thread-body-validation thread-draft-status"
-            aria-invalid={touched.body && Boolean(bodyError)}
-            onBlur={() => setTouched((current) => ({ ...current, body: true }))}
-            onChange={(event) => setBody(event.target.value)}
-            placeholder="State the fact pattern, why it matters, and what decision or action this should inform."
-            rows={8}
-            value={body}
-          />
-          <FieldValidation id="thread-body-validation" isVisible={touched.body} message={bodyError} />
-          {draftSavedAt ? <span className="draft-status" id="thread-draft-status">Draft saved {draftSavedAt}</span> : null}
-        </label>
-        <div className="composer-tags" aria-label="Thread tags">
+
+        <div className="composer-section">
+          <label className="composer-brief-field">
+            <span>Issue brief</span>
+            <textarea
+              aria-label="Issue brief"
+              aria-describedby="thread-body-validation thread-draft-status"
+              aria-invalid={touched.body && Boolean(bodyError)}
+              onBlur={() => setTouched((current) => ({ ...current, body: true }))}
+              onChange={(event) => setBody(event.target.value)}
+              placeholder="State the fact pattern, why it matters, and what decision or action this should inform."
+              rows={8}
+              value={body}
+            />
+            <FieldValidation id="thread-body-validation" isVisible={touched.body} message={bodyError} />
+            {draftSavedAt ? (
+              <span className="draft-status" id="thread-draft-status">
+                Draft saved {draftSavedAt}
+              </span>
+            ) : null}
+          </label>
+        </div>
+
+        <div className="composer-section composer-tags" aria-label="Issue tags">
           <span>Tags</span>
           <div>
             {FORUM_TAGS.map((tag) => (
