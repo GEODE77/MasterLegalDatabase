@@ -1,5 +1,13 @@
 {
   "id": "ceramic-dust-exposure-standards",
+  "issueType": "legal-interpretation",
+  "status": "needs-review",
+  "impactLevel": "operational",
+  "verificationStatus": "awaiting-source",
+  "affectedAudience": "Advanced ceramics plants, safety teams, workforce counsel",
+  "legalSource": "Occupational exposure and workplace safety obligations",
+  "actionLabel": "Request expert interpretation",
+  "deadline": null,
   "title": "How are teams interpreting ceramic dust exposure obligations across plants?",
   "excerpt": "We have strong internal controls, but the practical question is how often peer manufacturers are refreshing monitoring, training, and documentation when production mixes change.",
   "body": "We have strong internal controls, but the practical question is how often peer manufacturers are refreshing monitoring, training, and documentation when production mixes change.\n\nThe legal text tells us what has to be controlled. The operational judgment is how to prove that the controls remain current across different facilities, shifts, and materials. I would be interested in how other teams are treating trigger events: new raw materials, equipment moves, maintenance changes, and process experiments.",

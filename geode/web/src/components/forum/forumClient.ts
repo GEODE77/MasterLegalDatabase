@@ -1,4 +1,10 @@
-import type { ForumTag } from "@/lib/forum/types";
+import type {
+  ForumImpactLevel,
+  ForumIssueStatus,
+  ForumIssueType,
+  ForumTag,
+  ForumVerificationStatus,
+} from "@/lib/forum/types";
 
 const NAME_KEY = "geode.forum.displayName";
 const ADJECTIVES = ["Measured", "Clear", "Practical", "Steady", "Exact", "Senior"];
@@ -21,6 +27,58 @@ export function getDisplayName(): string {
 
 export function tagLabel(tag: ForumTag): string {
   return tag.replaceAll("-", " ");
+}
+
+export function issueTypeLabel(issueType: ForumIssueType): string {
+  const labels: Record<ForumIssueType, string> = {
+    "agency-guidance": "Agency guidance",
+    "bill-opposition": "Bill opposition",
+    "bill-support": "Bill support",
+    "compliance-risk": "Compliance risk",
+    discussion: "Discussion",
+    "executive-brief": "Executive brief",
+    "industry-coalition": "Industry coalition",
+    "legal-interpretation": "Legal interpretation",
+    petition: "Petition",
+    "rulemaking-comment": "Rulemaking comment",
+    "source-review": "Source review",
+  };
+
+  return labels[issueType];
+}
+
+export function statusLabel(status: ForumIssueStatus): string {
+  const labels: Record<ForumIssueStatus, string> = {
+    active: "Active",
+    closed: "Closed",
+    "deadline-open": "Deadline open",
+    monitoring: "Monitoring",
+    "needs-review": "Needs review",
+  };
+
+  return labels[status];
+}
+
+export function impactLabel(impactLevel: ForumImpactLevel): string {
+  const labels: Record<ForumImpactLevel, string> = {
+    executive: "Executive",
+    operational: "Operational",
+    policy: "Policy",
+    watch: "Watch",
+  };
+
+  return labels[impactLevel];
+}
+
+export function verificationLabel(status: ForumVerificationStatus): string {
+  const labels: Record<ForumVerificationStatus, string> = {
+    "awaiting-source": "Source needed",
+    "community-submitted": "Community submitted",
+    "manager-reviewed": "Manager reviewed",
+    "source-linked": "Source linked",
+  };
+
+  return labels[status];
 }
 
 export function contributorRank(author: string, signal = 0): string {

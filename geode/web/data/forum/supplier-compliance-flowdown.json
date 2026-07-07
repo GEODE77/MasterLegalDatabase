@@ -1,5 +1,13 @@
 {
   "id": "supplier-compliance-flowdown",
+  "issueType": "industry-coalition",
+  "status": "monitoring",
+  "impactLevel": "policy",
+  "verificationStatus": "community-submitted",
+  "affectedAudience": "Procurement leaders, suppliers, quality teams, outside counsel",
+  "legalSource": "Supplier compliance terms and Colorado regulatory obligations",
+  "actionLabel": "Form model clause working group",
+  "deadline": null,
   "title": "What is the cleanest way to flow regulatory obligations into supplier contracts?",
   "excerpt": "We can identify obligations internally, but the hard part is translating them into supplier language without creating unmanageable audit promises.",
   "body": "We can identify obligations internally, but the hard part is translating them into supplier language without creating unmanageable audit promises.\n\nI am looking for practical examples of how teams distinguish between obligations that belong in purchasing terms, quality agreements, supplier onboarding, and ongoing audit programs.",
