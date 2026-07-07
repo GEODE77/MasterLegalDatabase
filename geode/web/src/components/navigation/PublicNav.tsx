@@ -15,6 +15,8 @@ const PUBLIC_LINKS = [
 ] as const;
 
 export function PublicNav({ current = "home" }: PublicNavProps): ReactElement {
+  const showBackHome = current !== "home";
+
   return (
     <header className="public-nav" aria-label="Public navigation">
       <Link
@@ -39,6 +41,11 @@ export function PublicNav({ current = "home" }: PublicNavProps): ReactElement {
       <Link className="public-nav-manager" href="/manager/verify">
         Manager verification
       </Link>
+      {showBackHome ? (
+        <Link className="public-nav-back" href="/">
+          Back home
+        </Link>
+      ) : null}
     </header>
   );
 }

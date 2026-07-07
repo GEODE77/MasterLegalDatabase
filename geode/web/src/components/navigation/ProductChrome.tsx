@@ -34,6 +34,7 @@ const EXEMPT_ROUTES = [
   "/about",
   "/pricing",
   "/trust",
+  "/library",
   "/sign-in",
   "/onboarding",
   "/query",

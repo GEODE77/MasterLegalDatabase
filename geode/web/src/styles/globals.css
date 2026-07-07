@@ -15578,6 +15578,7 @@ body {
 }
 
 .public-nav-brand,
+.public-nav-back,
 .public-nav-manager,
 .public-nav nav a {
   display: inline-flex;
@@ -15607,6 +15608,7 @@ body {
 }
 
 .public-nav nav a,
+.public-nav-back,
 .public-nav-manager {
   border: 1px solid #d8d8d8;
   background: #fff;
@@ -15615,11 +15617,18 @@ body {
 .public-nav nav a:hover,
 .public-nav nav a.is-active,
 .public-nav nav a[aria-current="page"],
+.public-nav-back:hover,
 .public-nav-manager:hover {
   border-color: #000;
 }
 
+.public-nav-back {
+  grid-column: 1 / -1;
+  width: fit-content;
+}
+
 .public-home-hero,
+.public-page-hero,
 .public-home-manager-note,
 .public-home-grid a,
 .public-home-status article {
@@ -15635,7 +15644,14 @@ body {
   padding: 32px;
 }
 
+.public-page-hero {
+  display: grid;
+  gap: 16px;
+  padding: 32px;
+}
+
 .public-home-hero p,
+.public-page-hero p,
 .public-home-manager-note span,
 .public-home-grid span,
 .public-home-status span {
@@ -15655,6 +15671,26 @@ body {
   font-weight: 560;
   letter-spacing: 0;
   line-height: 1.08;
+}
+
+.public-page-hero h1 {
+  max-width: 960px;
+  margin: 0;
+  color: #000;
+  font-size: 48px;
+  font-weight: 560;
+  letter-spacing: 0;
+  line-height: 1.08;
+}
+
+.public-page-hero > span,
+.public-page-hero > p + p,
+.public-page-hero > div p {
+  max-width: 780px;
+  margin: 0;
+  color: #2b2b2b;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .public-home-actions,
@@ -15749,8 +15785,14 @@ body {
   padding-top: 16px;
 }
 
-.public-library-page {
-  padding: 24px;
+.public-library-page,
+.query-page,
+.forum-page,
+.trust-page {
+  display: grid !important;
+  align-content: start !important;
+  gap: 32px !important;
+  padding: 24px !important;
 }
 
 .public-library-header {
@@ -15763,15 +15805,14 @@ body {
 }
 
 .query-page {
-  display: grid;
-  align-content: start;
-  gap: 32px;
-  padding: 24px;
+  max-width: none !important;
 }
 
 .query-page.is-idle,
 .query-page.has-answer {
+  gap: 32px !important;
   min-height: 100svh;
+  padding: 24px !important;
 }
 
 .query-page .public-nav {
@@ -15780,8 +15821,14 @@ body {
 
 .query-page.is-idle .query-form,
 .query-page.has-answer .query-form {
+  display: grid;
+  gap: 12px;
   width: min(920px, 100%);
   margin: 0 auto;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  background: #fff;
+  padding: 22px;
 }
 
 .query-page.has-answer .query-form {
@@ -15796,10 +15843,10 @@ body {
 .about-page,
 .trust-page,
 .pricing-page {
-  display: grid;
-  align-content: start;
-  gap: 24px;
-  padding: 24px;
+  display: grid !important;
+  align-content: start !important;
+  gap: 32px !important;
+  padding: 24px !important;
 }
 
 .forum-page > .public-nav,
@@ -15813,7 +15860,83 @@ body {
 .about-document,
 .trust-document,
 .pricing-document {
+  display: grid;
+  gap: 32px;
   margin-top: 0;
+}
+
+.forum-header {
+  align-items: start;
+  border-color: #d8d8d8 !important;
+  background: #fff !important;
+  color: #000 !important;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+}
+
+.forum-header h1 {
+  margin: 0 0 12px;
+}
+
+.forum-header > div {
+  display: grid;
+  gap: 12px;
+}
+
+.forum-active-count {
+  align-self: start;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  min-height: 44px;
+  padding: 12px 14px;
+}
+
+.forum-sort-controls {
+  margin-top: 8px;
+}
+
+.forum-search,
+.thread-row,
+.trust-section,
+.trust-row {
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.forum-search {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+}
+
+.forum-feed {
+  display: grid;
+  gap: 12px;
+}
+
+.thread-row {
+  padding: 18px !important;
+}
+
+.trust-section {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.trust-section h2 {
+  margin: 0;
+  color: #000;
+  font-size: 24px;
+  font-weight: 560;
+  letter-spacing: 0;
+}
+
+.trust-row {
+  padding: 16px !important;
 }
 
 .manager-queue-editor {
@@ -15870,6 +15993,7 @@ body {
   }
 
   .public-home-hero h1,
+  .public-page-hero h1,
   .public-library-hero h1 {
     font-size: 32px;
     line-height: 1.12;
@@ -15877,6 +16001,7 @@ body {
 
   .public-home-grid,
   .public-home-status,
+  .forum-header,
   .manager-queue-editor {
     grid-template-columns: 1fr;
   }

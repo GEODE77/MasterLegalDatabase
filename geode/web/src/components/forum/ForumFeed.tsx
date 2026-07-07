@@ -98,9 +98,11 @@ export function ForumFeed(): ReactElement {
   return (
     <main className="forum-page">
       <PublicNav current="forum" />
-      <header className="forum-header">
+      <header className="forum-header public-page-hero">
         <div>
           <p className="forum-section-label">Forum</p>
+          <h1>Public discussion tied to Colorado legal and regulatory work.</h1>
+          <span>Read threads, search public discussion, or start a new thread with a clear record.</span>
           <nav className="forum-sort-controls" aria-label="Sort threads">
             {SORTS.map((item) => (
               <button

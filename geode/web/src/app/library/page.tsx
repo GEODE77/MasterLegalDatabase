@@ -10,10 +10,10 @@ export default function PublicLibraryPage(): ReactElement {
   const data = getOpsWorkspaceData();
 
   return (
-    <main className="public-library-page">
+    <main className="public-resource-page public-library-page">
       <PublicNav current="library" />
 
-      <section className="public-library-hero">
+      <section className="public-page-hero public-library-hero">
         <p>Colorado Legal Data Library</p>
         <h1>Search by citation, browse by source, and check freshness before relying on a result.</h1>
         <div>
