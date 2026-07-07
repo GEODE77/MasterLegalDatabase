@@ -16091,3 +16091,70 @@ body {
 .forum-page .thread-row:hover::before {
   opacity: 0 !important;
 }
+
+.forum-page.thread-page .thread-detail-main,
+.forum-page.thread-page .thread-composer,
+.forum-page.thread-page .reply-composer,
+.forum-page.thread-page .reply-card {
+  background: #fff !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+}
+
+.forum-page.thread-page .thread-detail-main:hover,
+.forum-page.thread-page .reply-card:hover,
+.forum-page.thread-page .thread-composer:hover,
+.forum-page.thread-page .reply-composer:hover {
+  background: #fff !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+}
+
+.forum-page.thread-page .thread-composer input:hover,
+.forum-page.thread-page .thread-composer textarea:hover,
+.forum-page.thread-page .reply-composer textarea:hover,
+.forum-page.thread-page .thread-composer input:focus,
+.forum-page.thread-page .thread-composer textarea:focus,
+.forum-page.thread-page .reply-composer textarea:focus {
+  background: #fff !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+}
+
+.forum-page.thread-page :where(.thread-composer button, .reply-composer button, .reply-node button, .vote-stack button) {
+  display: inline-flex !important;
+  min-height: 44px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid #d8d8d8 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  font-family: "Suisse Int'l", "Neue Haas Grotesk Text", Inter, ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 650 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.2 !important;
+  padding: 10px 12px !important;
+  text-transform: none !important;
+  transform: none !important;
+}
+
+.forum-page.thread-page :where(.thread-composer button, .reply-composer button, .reply-node button, .vote-stack button):hover,
+.forum-page.thread-page :where(.thread-composer button, .reply-composer button, .reply-node button, .vote-stack button):active {
+  border-color: #000 !important;
+  background: #fff !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  transform: none !important;
+}
+
+.forum-page.thread-page :where(.thread-composer button, .reply-composer button, .reply-node button, .vote-stack button)::after,
+.forum-page.thread-page :where(.thread-composer button, .reply-composer button, .reply-node button, .vote-stack button):hover::after,
+.forum-page.thread-page :where(.thread-composer button, .reply-composer button, .reply-node button, .vote-stack button):active::after,
+.forum-page.thread-page .thread-composer::before,
+.forum-page.thread-page .reply-composer::before {
+  opacity: 0 !important;
+}
