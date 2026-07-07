@@ -1,5 +1,7 @@
 import type { ReactElement } from "react";
 
+import { PublicNav } from "@/components/navigation/PublicNav";
+
 const SECURITY_PRACTICES = [
   {
     label: "Encryption",
@@ -56,8 +58,9 @@ const COMPLIANCE = [
 export default function TrustPage(): ReactElement {
   return (
     <main className="trust-page">
+      <PublicNav current="trust" />
       <article className="trust-document">
-        <header className="trust-hero">
+        <header className="trust-hero public-page-hero">
           <h1>Geode treats regulatory intelligence as sensitive infrastructure.</h1>
           <p>Security, privacy, and data handling are documented here so executive and legal teams can review the product posture before adoption.</p>
         </header>

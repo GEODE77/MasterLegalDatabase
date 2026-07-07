@@ -6,11 +6,21 @@ import { useCallback, useEffect, useState, type CSSProperties, type ReactElement
 import { ForumTagChip } from "@/components/forum/ForumTagChip";
 import { ReplyComposer } from "@/components/forum/ReplyComposer";
 import { VoteButton } from "@/components/forum/VoteButton";
+import { PublicNav } from "@/components/navigation/PublicNav";
 import { usePersonalization } from "@/hooks/usePersonalization";
 import { useProgressivePrompts } from "@/hooks/useProgressivePrompts";
 import type { ForumReply, ForumThread } from "@/lib/forum/types";
 import { useUndoToast } from "@/providers/UndoToastProvider";
-import { authorInitials, contributorRank, preciseTime, relativeTime } from "./forumClient";
+import {
+  authorInitials,
+  contributorRank,
+  impactLabel,
+  issueTypeLabel,
+  preciseTime,
+  relativeTime,
+  statusLabel,
+  verificationLabel,
+} from "./forumClient";
 
 type ThreadDetailProps = {
   id: string;
@@ -57,6 +67,7 @@ export function ThreadDetail({ id }: ThreadDetailProps): ReactElement {
   const rootReplies = thread?.replies.filter((reply) => reply.parentId === null) ?? [];
   return (
     <main className="forum-page thread-page">
+      <PublicNav current="forum" />
       <header className="forum-header">
         <p className="forum-section-label">Forum record</p>
         <Link className="query-back" href="/forum">
@@ -85,7 +96,33 @@ export function ThreadDetail({ id }: ThreadDetailProps): ReactElement {
               <span>{thread.replies.length} replies</span>
               <span>{thread.votes} votes</span>
             </div>
+            <div className="thread-issue-summary" aria-label="Issue record">
+              <span className="issue-type-pill">{issueTypeLabel(thread.issueType)}</span>
+              <span className={`issue-status issue-status-${thread.status}`}>
+                {statusLabel(thread.status)}
+              </span>
+              <span>{impactLabel(thread.impactLevel)} impact</span>
+              <span>{verificationLabel(thread.verificationStatus)}</span>
+            </div>
             <h1>{thread.title}</h1>
+            <section className="issue-record-panel" aria-label="Issue action summary">
+              <div>
+                <span>Affected audience</span>
+                <strong>{thread.affectedAudience}</strong>
+              </div>
+              <div>
+                <span>Legal source</span>
+                <strong>{thread.legalSource}</strong>
+              </div>
+              <div>
+                <span>Requested action</span>
+                <strong>{thread.actionLabel}</strong>
+              </div>
+              <div>
+                <span>Action date</span>
+                <strong>{thread.deadline ?? "No fixed date"}</strong>
+              </div>
+            </section>
             <div className="thread-tags">
               {thread.tags.map((tag) => (
                 <ForumTagChip key={tag} tag={tag} />
@@ -96,7 +133,15 @@ export function ThreadDetail({ id }: ThreadDetailProps): ReactElement {
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-            <VoteButton count={thread.votes} label="Vote on thread" onVote={(delta) => vote("thread", delta)} />
+            <div className="issue-action-controls" aria-label="Issue action controls">
+              <button onClick={() => void vote("thread", 1)} type="button">
+                Support action
+              </button>
+              <button onClick={() => void vote("thread", -1)} type="button">
+                Flag concern
+              </button>
+              <span>{thread.votes} support signals on record</span>
+            </div>
             <ReplyComposer onCreated={setThread} threadId={thread.id} />
             <section className="reply-section" aria-label="Replies">
               <div className="reply-section-heading">

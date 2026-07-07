@@ -1,4 +1,42 @@
-export type ForumSort = "hot" | "new" | "top" | "unanswered";
+export type ForumSort =
+  | "active"
+  | "petitions"
+  | "bills"
+  | "rulemaking"
+  | "risk"
+  | "needs-review"
+  | "hot"
+  | "new"
+  | "top"
+  | "unanswered";
+
+export type ForumIssueType =
+  | "discussion"
+  | "petition"
+  | "bill-support"
+  | "bill-opposition"
+  | "rulemaking-comment"
+  | "compliance-risk"
+  | "legal-interpretation"
+  | "industry-coalition"
+  | "agency-guidance"
+  | "executive-brief"
+  | "source-review";
+
+export type ForumIssueStatus =
+  | "active"
+  | "deadline-open"
+  | "needs-review"
+  | "monitoring"
+  | "closed";
+
+export type ForumImpactLevel = "executive" | "policy" | "operational" | "watch";
+
+export type ForumVerificationStatus =
+  | "source-linked"
+  | "manager-reviewed"
+  | "awaiting-source"
+  | "community-submitted";
 
 export type ForumTag =
   | "advanced-ceramics"
@@ -22,7 +60,14 @@ export type ForumReply = {
 };
 
 export type ForumThread = {
+  actionLabel: string;
+  affectedAudience: string;
   id: string;
+  impactLevel: ForumImpactLevel;
+  issueType: ForumIssueType;
+  legalSource: string;
+  deadline: string | null;
+  status: ForumIssueStatus;
   title: string;
   excerpt: string;
   body: string;
@@ -31,6 +76,7 @@ export type ForumThread = {
   updatedAt: string;
   votes: number;
   tags: ForumTag[];
+  verificationStatus: ForumVerificationStatus;
   replies: ForumReply[];
 };
 

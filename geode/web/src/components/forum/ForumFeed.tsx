@@ -4,23 +4,44 @@ import { useEffect, useState, type ReactElement } from "react";
 
 import { NewThreadComposer } from "@/components/forum/NewThreadComposer";
 import { ThreadRow } from "@/components/forum/ThreadRow";
+import { PublicNav } from "@/components/navigation/PublicNav";
 import { RECENT_THREADS_KEY, useRecentItems } from "@/hooks/useRecentItems";
 import type { ForumSort, ForumThreadSummary } from "@/lib/forum/types";
 
-const SORTS: ForumSort[] = ["hot", "new", "top", "unanswered"];
-const FORUM_POLL_MS = 30_000;
-const SORT_LABELS: Record<ForumSort, string> = {
-  hot: "Hot",
-  new: "New",
-  top: "Top",
-  unanswered: "Unanswered",
+type ForumStats = {
+  activeActions?: number;
+  activeNow?: number;
+  billActions?: number;
+  memberCount?: number;
+  needsReview?: number;
+  openIssues?: number;
+  petitions?: number;
+  riskItems?: number;
+  rulemakingActions?: number;
+  sourceLinked?: number;
 };
+
+type ForumFilter = {
+  description: string;
+  key: ForumSort;
+  label: string;
+};
+
+const SORTS: ForumFilter[] = [
+  { description: "Live issues with current action paths.", key: "active", label: "Active" },
+  { description: "Public support or signature efforts.", key: "petitions", label: "Petitions" },
+  { description: "Support, oppose, or monitor legislation.", key: "bills", label: "Bills" },
+  { description: "Open agency rulemaking comment work.", key: "rulemaking", label: "Rulemaking" },
+  { description: "Board-level or operating risk.", key: "risk", label: "Risk" },
+  { description: "Items that need a source or expert review.", key: "needs-review", label: "Needs review" },
+];
+const FORUM_POLL_MS = 30_000;
 
 export function ForumFeed(): ReactElement {
   const [isComposerOpen, setIsComposerOpen] = useState(false);
-  const [sort, setSort] = useState<ForumSort>("hot");
+  const [sort, setSort] = useState<ForumSort>("active");
   const [threads, setThreads] = useState<ForumThreadSummary[]>([]);
-  const [activeNow, setActiveNow] = useState(47);
+  const [stats, setStats] = useState<ForumStats>({});
   const [isLoading, setIsLoading] = useState(true);
   const [threadSearch, setThreadSearch] = useState("");
   const { addItem: addRecentThread, items: recentThreads } = useRecentItems(RECENT_THREADS_KEY);
@@ -77,12 +98,12 @@ export function ForumFeed(): ReactElement {
 
     const response = await fetch(`/api/forum?sort=${nextSort}`, { cache: "no-store" });
     const data = (await response.json()) as {
-      stats?: { activeNow?: number; memberCount?: number };
+      stats?: ForumStats;
       threads: ForumThreadSummary[];
     };
 
     setThreads(data.threads);
-    setActiveNow(data.stats?.activeNow ?? data.stats?.memberCount ?? 47);
+    setStats(data.stats ?? {});
 
     if (!options?.quiet) {
       setIsLoading(false);
@@ -90,46 +111,105 @@ export function ForumFeed(): ReactElement {
   }
 
   function handleCreated(): void {
-    setSort("new");
-    void loadThreads("new");
+    setSort("active");
+    void loadThreads("active");
   }
+
+  const actionCards = [
+    {
+      count: stats.petitions ?? 0,
+      description: "Signature, coalition, and public support efforts.",
+      filter: "petitions" as ForumSort,
+      label: "Petitions",
+    },
+    {
+      count: stats.billActions ?? 0,
+      description: "Bills that need support, opposition, or monitoring.",
+      filter: "bills" as ForumSort,
+      label: "Bill positions",
+    },
+    {
+      count: stats.rulemakingActions ?? 0,
+      description: "Open agency comment and rule review work.",
+      filter: "rulemaking" as ForumSort,
+      label: "Rulemaking",
+    },
+    {
+      count: stats.riskItems ?? 0,
+      description: "Issues that may affect executives, boards, or operations.",
+      filter: "risk" as ForumSort,
+      label: "Executive risk",
+    },
+  ];
+
+  const activeFilter = SORTS.find((item) => item.key === sort) ?? SORTS[0];
+  const visibleActionCards = actionCards.filter((card) => card.count > 0);
 
   return (
     <main className="forum-page">
-      <header className="forum-header">
+      <PublicNav current="forum" />
+      <header className="forum-command public-page-hero">
         <div>
-          <p className="forum-section-label">Forum</p>
-          <nav className="forum-sort-controls" aria-label="Sort threads">
-            {SORTS.map((item) => (
-              <button
-                className={sort === item ? "is-active" : ""}
-                key={item}
-                onClick={() => setSort(item)}
-                type="button"
-              >
-                {SORT_LABELS[item]}
-              </button>
-            ))}
-          </nav>
+          <p className="forum-section-label">Policy action board</p>
+          <h1>Track Colorado legal issues by decision, source, and next action.</h1>
+          <span>
+            Use this board to find open petitions, bill positions, rulemaking work, and
+            executive-level compliance risks.
+          </span>
         </div>
-        <span className="forum-active-count">{activeNow.toLocaleString("en-US")} active now</span>
         <button
           className="new-thread-button"
-          data-tooltip="Start a thread (Cmd+N)"
+          data-tooltip="Create issue (Cmd+N)"
           onClick={() => setIsComposerOpen(true)}
-          title="Start a thread (Cmd+N)"
+          title="Create issue (Cmd+N)"
           type="button"
         >
-          Start a thread
+          Create issue
         </button>
       </header>
 
+      <section className="forum-status-row" aria-label="Forum summary">
+        <span>
+          <strong>{stats.openIssues ?? threads.length}</strong>
+          Open issues
+        </span>
+        <span>
+          <strong>{stats.activeActions ?? threads.length}</strong>
+          Active actions
+        </span>
+        <span>
+          <strong>{stats.needsReview ?? 0}</strong>
+          Need review
+        </span>
+        <span>
+          <strong>{stats.sourceLinked ?? 0}</strong>
+          Source linked
+        </span>
+      </section>
+
+      {visibleActionCards.length > 0 ? (
+        <section className="forum-action-board" aria-label="Action areas">
+          {visibleActionCards.map((card) => (
+          <button
+            className={sort === card.filter ? "is-active" : ""}
+            key={card.label}
+            onClick={() => setSort(card.filter)}
+            type="button"
+          >
+            <span>{card.label}</span>
+            <strong>{card.count}</strong>
+            <small>{card.description}</small>
+          </button>
+          ))}
+        </section>
+      ) : null}
+
       <form className="forum-search" onSubmit={(event) => event.preventDefault()}>
-        <label htmlFor="forum-thread-search">Search threads</label>
+        <label htmlFor="forum-thread-search">Search issue board</label>
         <input
           id="forum-thread-search"
           onChange={(event) => setThreadSearch(event.target.value)}
-          placeholder="Search by title, author, or tag"
+          placeholder="Search by issue, source, audience, action, author, or tag"
           value={threadSearch}
         />
         {threadSearch.trim().length === 0 && recentThreads.length > 0 ? (
@@ -149,14 +229,33 @@ export function ForumFeed(): ReactElement {
         onCreated={handleCreated}
       />
 
-      <section className="forum-feed" aria-label="Forum threads">
+      <section className="forum-feed" aria-label="Policy issue briefs">
+        <div className="forum-feed-header">
+          <div>
+            <p className="forum-section-label">Issue briefs</p>
+            <h2>{activeFilter.label}</h2>
+            <span>{activeFilter.description}</span>
+          </div>
+        </div>
+        <nav className="forum-sort-controls" aria-label="Filter issues">
+          {SORTS.map((item) => (
+            <button
+              className={sort === item.key ? "is-active" : ""}
+              key={item.key}
+              onClick={() => setSort(item.key)}
+              type="button"
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
         {isLoading ? <ForumFeedSkeleton /> : null}
         {!isLoading && threads.length === 0 ? (
           <div className="forum-empty recovery-state">
             <span className="recovery-illustration" aria-hidden="true" />
-            <p>No threads in your feed yet. Follow some tags to get started.</p>
+            <p>No issue briefs match this board view yet. Create one when an action needs a record.</p>
             <button onClick={() => setIsComposerOpen(true)} type="button">
-              Browse tags
+              Create issue
             </button>
           </div>
         ) : null}
@@ -174,7 +273,7 @@ export function ForumFeed(): ReactElement {
             <ThreadRow
               key={thread.id}
               onOpen={() => addRecentThread({
-                detail: `${thread.author} · ${thread.replyCount} replies`,
+                detail: `${thread.author} - ${thread.replyCount} replies`,
                 href: `/forum/${thread.id}`,
                 id: thread.id,
                 label: thread.title,
@@ -190,7 +289,17 @@ export function ForumFeed(): ReactElement {
 
 function matchesThread(thread: ForumThreadSummary, query: string): boolean {
   const needle = query.trim().toLowerCase();
-  const haystack = `${thread.title} ${thread.excerpt} ${thread.author} ${thread.tags.join(" ")}`.toLowerCase();
+  const haystack = [
+    thread.title,
+    thread.excerpt,
+    thread.author,
+    thread.actionLabel,
+    thread.affectedAudience,
+    thread.legalSource,
+    thread.issueType,
+    thread.status,
+    thread.tags.join(" "),
+  ].join(" ").toLowerCase();
   return haystack.includes(needle);
 }
 

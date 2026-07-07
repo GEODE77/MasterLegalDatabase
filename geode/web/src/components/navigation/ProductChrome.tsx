@@ -19,6 +19,7 @@ type ProductChromeProps = {
 
 type Destination = {
   href: string;
+  icon: string;
   key: string;
   label: string;
 };
@@ -34,6 +35,7 @@ const EXEMPT_ROUTES = [
   "/about",
   "/pricing",
   "/trust",
+  "/library",
   "/sign-in",
   "/onboarding",
   "/query",
@@ -44,14 +46,14 @@ const EXEMPT_ROUTES = [
 ];
 
 const DESTINATIONS: Destination[] = [
-  { href: "/manager/dashboard", key: "dashboard", label: "Home" },
-  { href: "/manager/sources", key: "sources", label: "Sources" },
-  { href: "/manager/review-queue", key: "review-queue", label: "Review Queue" },
-  { href: "/manager/explore", key: "explore", label: "Explorer" },
-  { href: "/manager/relationships", key: "relationships", label: "Relationships" },
-  { href: "/manager/timeline", key: "timeline", label: "Timeline" },
-  { href: "/manager/ask", key: "ask", label: "Ask Geode" },
-  { href: "/manager/publish", key: "publish", label: "Publish" },
+  { href: "/manager/dashboard", icon: "home", key: "dashboard", label: "Home" },
+  { href: "/manager/sources", icon: "sources", key: "sources", label: "Sources" },
+  { href: "/manager/review-queue", icon: "queue", key: "review-queue", label: "Review Queue" },
+  { href: "/manager/explore", icon: "search", key: "explore", label: "Explorer" },
+  { href: "/manager/relationships", icon: "links", key: "relationships", label: "Relationships" },
+  { href: "/manager/timeline", icon: "timeline", key: "timeline", label: "Timeline" },
+  { href: "/manager/ask", icon: "ask", key: "ask", label: "Ask Geode" },
+  { href: "/manager/publish", icon: "publish", key: "publish", label: "Publish" },
 ];
 
 const PAGE_META: Record<string, PageMeta> = {
@@ -252,7 +254,7 @@ export function ProductChrome({ children }: ProductChromeProps): ReactElement {
               key={destination.key}
               title={`Open ${destination.label}`}
             >
-              <span aria-hidden="true">{destination.label.slice(0, 1)}</span>
+              <span aria-hidden="true" className="product-nav-icon" data-icon={destination.icon} />
               <span>{destination.label}</span>
             </Link>
           ))}
@@ -265,10 +267,10 @@ export function ProductChrome({ children }: ProductChromeProps): ReactElement {
           onClick={() => setCollapsed((current) => !current)}
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           type="button"
-        >
-          <span aria-hidden="true">{collapsed ? ">" : "<"}</span>
-          <span>{collapsed ? "Expand" : "Collapse"}</span>
-        </button>
+          >
+            <span aria-hidden="true" className="product-topbar-icon chevron" data-direction={collapsed ? "right" : "left"} />
+            <span>{collapsed ? "Expand" : "Collapse"}</span>
+          </button>
       </aside>
 
       <div className="product-main-frame">
@@ -281,7 +283,7 @@ export function ProductChrome({ children }: ProductChromeProps): ReactElement {
             title="Go back"
             type="button"
           >
-            <span aria-hidden="true">{"<"}</span>
+            <span aria-hidden="true" className="product-topbar-icon chevron" data-direction="left" />
           </button>
 
           <nav className="product-breadcrumb" aria-label="Breadcrumb">
@@ -308,10 +310,10 @@ export function ProductChrome({ children }: ProductChromeProps): ReactElement {
 
           <div className="product-topbar-actions">
             <button aria-label="Notifications" data-tooltip="Notifications" title="Notifications" type="button">
-              !
+              <span aria-hidden="true" className="product-topbar-icon bell" />
             </button>
             <button aria-label="Help" data-tooltip="Help" title="Help" type="button">
-              ?
+              <span aria-hidden="true" className="product-topbar-icon help" />
             </button>
             <Link
               aria-label="Open settings"

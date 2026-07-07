@@ -11,6 +11,7 @@ import {
   type ReactElement,
 } from "react";
 
+import { PublicNav } from "@/components/navigation/PublicNav";
 import { RECENT_QUERIES_KEY, useRecentItems } from "@/hooks/useRecentItems";
 import { usePersonalization } from "@/hooks/usePersonalization";
 import { useProgressivePrompts } from "@/hooks/useProgressivePrompts";
@@ -156,6 +157,12 @@ export function QuerySurface(): ReactElement {
 
   return (
     <main className={phase === "idle" ? "query-page is-idle" : "query-page has-answer"}>
+      <PublicNav current="query" />
+      <section className="public-page-hero query-public-hero" aria-labelledby="query-page-title">
+        <p>Search Geode</p>
+        <h1 id="query-page-title">Ask one question and start from source-backed Colorado legal material.</h1>
+        <span>Use a citation, agency, topic, bill number, executive order, or plain-language operating question.</span>
+      </section>
       <form className="query-form" onSubmit={handleSubmit}>
         <label className="query-field" htmlFor="regulation-query">
           <span className="query-field-label">Ask a question</span>

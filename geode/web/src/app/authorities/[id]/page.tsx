@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactElement } from "react";
 
+import { PublicNav } from "@/components/navigation/PublicNav";
 import { getAuthorityById } from "@/lib/authority/authorityIndex";
 
 type AuthorityPageProps = {
@@ -26,7 +27,12 @@ export default async function AuthorityPage({
 
   return (
     <main className="regulation-document-page">
+      <PublicNav current="library" />
       <article className="regulation-document">
+        <Link className="regulation-document-back" href="/library">
+          Back to library
+        </Link>
+
         <header className="regulation-citation-strip">
           <span>{layerLabel(authority.layer)}</span>
           <span>{authority.citation}</span>

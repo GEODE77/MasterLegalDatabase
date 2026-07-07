@@ -1,12 +1,16 @@
 import type { ReactElement } from "react";
 
+import { PublicNav } from "@/components/navigation/PublicNav";
+
 const CTA_LABEL = "Talk to us";
 
 export default function PricingPage(): ReactElement {
   return (
     <main className="pricing-page">
+      <PublicNav current="pricing" />
       <article className="pricing-document">
-        <header className="pricing-hero">
+        <header className="pricing-hero public-page-hero">
+          <p>Pricing</p>
           <h1>Pricing begins with the operating problem.</h1>
           <p>Geode is sold for teams that need regulatory intelligence tied to decisions, source material, and accountable workflows.</p>
         </header>

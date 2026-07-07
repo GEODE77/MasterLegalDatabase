@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
 
+import { PublicNav } from "@/components/navigation/PublicNav";
 import { getOpsWorkspaceData } from "@/lib/product/opsWorkspace";
 
 export const dynamic = "force-dynamic";
@@ -9,17 +10,10 @@ export default function PublicLibraryPage(): ReactElement {
   const data = getOpsWorkspaceData();
 
   return (
-    <main className="public-library-page">
-      <header className="public-library-header">
-        <Link href="/">Geode</Link>
-        <nav aria-label="Public library navigation">
-          <Link href="/query">Search</Link>
-          <Link href="/trust">Trust</Link>
-          <Link href="/manager/verify">Managers</Link>
-        </nav>
-      </header>
+    <main className="public-resource-page public-library-page">
+      <PublicNav current="library" />
 
-      <section className="public-library-hero">
+      <section className="public-page-hero public-library-hero">
         <p>Colorado Legal Data Library</p>
         <h1>Search by citation, browse by source, and check freshness before relying on a result.</h1>
         <div>
