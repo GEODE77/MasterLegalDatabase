@@ -15871,6 +15871,10 @@ body {
   background: #fff !important;
   color: #000 !important;
   grid-template-columns: minmax(0, 1fr) auto auto;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  position: static !important;
 }
 
 .forum-header h1 {
@@ -15918,7 +15922,39 @@ body {
 }
 
 .thread-row {
+  align-items: start !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 16px !important;
+  overflow: visible !important;
   padding: 18px !important;
+}
+
+.thread-row-primary {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 8px !important;
+}
+
+.thread-title,
+.thread-excerpt,
+.thread-author-name,
+.thread-author-role {
+  min-width: 0;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+}
+
+.thread-row-author {
+  width: 100%;
+}
+
+.thread-row-meta {
+  width: 100%;
+}
+
+.thread-tags {
+  width: 100%;
 }
 
 .trust-section {
