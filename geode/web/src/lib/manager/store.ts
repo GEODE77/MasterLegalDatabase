@@ -41,12 +41,17 @@ export type ManagerSession = {
 };
 
 export type ManagerAccountSummary = {
+  accessReview: {
+    reasons: string[];
+    status: "current" | "review" | "revoked";
+  };
   createdAt: string;
   email: string;
   eventCount: number;
   id: string;
   invitedBy: string;
   lastEventAt: string | null;
+  lastVerifiedAt: string | null;
   name: string;
   revokedAt?: string;
   role: ManagerRole;
@@ -99,13 +104,18 @@ export function listManagerAccounts(): ManagerAccountSummary[] {
     .managers.map((manager) => {
       const managerEvents = events.filter((event) => event.managerId === manager.id);
       const lastEvent = managerEvents.at(-1);
+      const lastVerifiedEvent = managerEvents
+        .filter((event) => event.action === "manager_verified")
+        .at(-1);
       return {
+        accessReview: accessReviewFor(manager, lastEvent?.occurredAt ?? null),
         createdAt: manager.createdAt,
         email: manager.email,
         eventCount: managerEvents.length,
         id: manager.id,
         invitedBy: manager.invitedBy,
         lastEventAt: lastEvent?.occurredAt ?? null,
+        lastVerifiedAt: lastVerifiedEvent?.occurredAt ?? null,
         name: manager.name,
         revokedAt: manager.revokedAt,
         role: manager.role,
@@ -382,15 +392,54 @@ function toManagerSummary(
   lastEventAt: string | null = null,
 ): ManagerAccountSummary {
   return {
+    accessReview: accessReviewFor(manager, lastEventAt),
     createdAt: manager.createdAt,
     email: manager.email,
     eventCount,
     id: manager.id,
     invitedBy: manager.invitedBy,
     lastEventAt,
+    lastVerifiedAt: null,
     name: manager.name,
     revokedAt: manager.revokedAt,
     role: manager.role,
     status: manager.status,
   };
+}
+
+function accessReviewFor(
+  manager: ManagerRecord,
+  lastEventAt: string | null,
+): ManagerAccountSummary["accessReview"] {
+  if (manager.status === "revoked") {
+    return { reasons: ["Access has already been revoked."], status: "revoked" };
+  }
+
+  const reasons: string[] = [];
+  const accountAgeDays = daysSince(manager.createdAt);
+  const activityAgeDays = lastEventAt ? daysSince(lastEventAt) : null;
+
+  if (accountAgeDays !== null && accountAgeDays >= 90) {
+    reasons.push("Account is at least 90 days old.");
+  }
+
+  if (activityAgeDays === null) {
+    reasons.push("No manager activity has been recorded.");
+  } else if (activityAgeDays >= 45) {
+    reasons.push("No manager activity in at least 45 days.");
+  }
+
+  return {
+    reasons,
+    status: reasons.length ? "review" : "current",
+  };
+}
+
+function daysSince(value: string): number | null {
+  const timestamp = Date.parse(value);
+  if (!Number.isFinite(timestamp)) {
+    return null;
+  }
+
+  return Math.floor((Date.now() - timestamp) / 86_400_000);
 }

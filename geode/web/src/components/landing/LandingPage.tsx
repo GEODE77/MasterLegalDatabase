@@ -25,6 +25,7 @@ export function LandingPage(): ReactElement {
           </Link>
           <nav className="landing-nav" aria-label="Landing navigation">
             <a href="#product">Product</a>
+            <Link href="/library">Library</Link>
             <Link href="/about">About</Link>
             <Link href="/forum">Forum</Link>
             <Link href="/pricing">Pricing</Link>
@@ -41,9 +42,14 @@ export function LandingPage(): ReactElement {
       <section className="landing-section landing-hero" aria-labelledby="landing-title">
         <LiveDataCenterpiece initialStats={indexStats} />
         <h1 id="landing-title">{HERO_HEADLINE}</h1>
-        <Link className="landing-cta" href="/query">
-          {CTA_LABEL}
-        </Link>
+        <div className="landing-public-actions">
+          <Link className="landing-cta" href="/query">
+            {CTA_LABEL}
+          </Link>
+          <Link className="landing-cta landing-cta-secondary" href="/library">
+            Browse Library
+          </Link>
+        </div>
       </section>
 
       <section className="landing-section landing-index-chart" aria-label="Regulatory velocity">
@@ -128,6 +134,7 @@ export function LandingPage(): ReactElement {
 
       <footer className="landing-footer" aria-label="Footer">
         <Link href="/about">About</Link>
+        <Link href="/library">Library</Link>
         <Link href="/trust">Trust</Link>
         <Link href="/pricing">Pricing</Link>
         <Link href="/manager/verify">Managers</Link>

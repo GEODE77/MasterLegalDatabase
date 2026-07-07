@@ -176,7 +176,7 @@ export function ManagerAdminScreen({
       <section className="manager-account-table" aria-label="Manager accounts">
         <header>
           <span>{state.accounts.length} accounts</span>
-          <h3>Access registry</h3>
+          <h3>Access review registry</h3>
         </header>
         <div>
           {state.accounts.map((account) => (
@@ -187,7 +187,7 @@ export function ManagerAdminScreen({
               </div>
               <span>{account.role}</span>
               <span>{account.status}</span>
-              <span>{account.lastEventAt ? shortDateTime(account.lastEventAt) : "no activity"}</span>
+              <span>{account.accessReview.status}</span>
               <button
                 disabled={isWorking || account.status === "revoked" || account.id === currentManager.id}
                 onClick={() => void revokeAccount(account.id)}
@@ -195,6 +195,11 @@ export function ManagerAdminScreen({
               >
                 Revoke
               </button>
+              <p className="manager-access-reasons">
+                {account.accessReview.reasons.length
+                  ? account.accessReview.reasons.join(" ")
+                  : `Last activity: ${account.lastEventAt ? shortDateTime(account.lastEventAt) : "none"}.`}
+              </p>
             </article>
           ))}
         </div>

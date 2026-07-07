@@ -25,6 +25,7 @@ const PRIMARY_LINKS = [
   { href: "/manager/review-queue", label: "Open Review Queue" },
   { href: "/manager/explore", label: "Explore Law" },
   { href: "/manager/publish", label: "Publication Readiness" },
+  { href: "/manager/improvements", label: "Improvement Audit" },
 ];
 
 export function OpsWorkspace({ data, manager, view }: OpsWorkspaceProps): ReactElement {
@@ -38,8 +39,8 @@ export function OpsWorkspace({ data, manager, view }: OpsWorkspaceProps): ReactE
         </section>
       ) : null}
       {view === "home" ? <HomeView data={data} manager={manager} /> : null}
-      {view === "sources" ? <SourcesView sources={data.sources} summary={data.summary} /> : null}
-      {view === "review" ? <ReviewView queue={data.queue} /> : null}
+      {view === "sources" ? <SourcesView data={data} /> : null}
+      {view === "review" ? <ReviewView data={data} /> : null}
       {view === "explorer" ? <ExplorerView layers={data.layers} /> : null}
       {view === "relationships" ? <RelationshipsView /> : null}
       {view === "timeline" ? <TimelineView data={data} /> : null}
@@ -69,6 +70,7 @@ function HomeView({
     ["Timeline", "See checks, downloads, audits, and publication events.", "/manager/timeline"],
     ["Ask Geode", "Ask a question with source trails and freshness warnings.", "/manager/ask"],
     ["Publish", "Confirm safety, Git, dashboards, and blockers.", "/manager/publish"],
+    ["Improvement Audit", "Review all 35 completed improvements and remaining follow-up work.", "/manager/improvements"],
   ];
   if (manager?.role === "admin") {
     boardItems.push(["Manager Accounts", "Create invites, revoke access, and review account history.", "/manager/admin"]);
@@ -106,8 +108,8 @@ function HomeView({
         <Panel title="Source Operations" eyebrow="Freshness">
           <SourceList sources={data.sources.slice(0, 5)} />
         </Panel>
-        <Panel title="Review Queue" eyebrow={`${data.queue.length} open`}>
-          <QueueList items={data.queue} />
+        <Panel title="Manager Task Inbox" eyebrow={`${data.taskInbox.length} actions`}>
+          <ControlList items={data.taskInbox} />
         </Panel>
       </section>
 
@@ -123,13 +125,7 @@ function HomeView({
   );
 }
 
-function SourcesView({
-  sources,
-  summary,
-}: {
-  sources: OpsSource[];
-  summary: OpsWorkspaceData["summary"];
-}): ReactElement {
+function SourcesView({ data }: { data: OpsWorkspaceData }): ReactElement {
   return (
     <>
       <Intro
@@ -138,10 +134,10 @@ function SourcesView({
         body="Each source is shown as a plain operating decision: current, new material, needs review, or blocked."
       />
       <section className="ops-metrics" aria-label="Source summary">
-        <Metric label="New material" value={formatNumber(summary.newDataItems)} />
-        <Metric label="Manual review" value={formatNumber(summary.manualReviewItems)} />
-        <Metric label="Watched" value={formatNumber(summary.watchedSources)} />
-        <Metric label="Generated" value={shortDate(summary.generatedAt)} />
+        <Metric label="New material" value={formatNumber(data.summary.newDataItems)} />
+        <Metric label="Manual review" value={formatNumber(data.summary.manualReviewItems)} />
+        <Metric label="Watched" value={formatNumber(data.summary.watchedSources)} />
+        <Metric label="Generated" value={shortDate(data.summary.generatedAt)} />
       </section>
       <section className="ops-table-panel">
         <header>
@@ -149,7 +145,7 @@ function SourcesView({
           <h3>Source readiness</h3>
         </header>
         <div className="ops-source-table">
-          {sources.map((source) => (
+          {data.sources.map((source) => (
             <article key={source.id}>
               <div>
                 <strong>{source.name}</strong>
@@ -163,11 +159,29 @@ function SourcesView({
           ))}
         </div>
       </section>
+      <section className="ops-two-column">
+        <Panel title="Download Approval Gate" eyebrow="Before download">
+          <ControlList items={data.downloadGate} />
+        </Panel>
+        <Panel title="Source Operations Calendar" eyebrow="Next checks">
+          <div className="ops-list">
+            {data.calendar.slice(0, 6).map((item) => (
+              <article key={item.sourceId}>
+                <div>
+                  <strong>{item.label}</strong>
+                  <p>{item.nextCheck}</p>
+                </div>
+                <Status value={item.cadence} />
+              </article>
+            ))}
+          </div>
+        </Panel>
+      </section>
     </>
   );
 }
 
-function ReviewView({ queue }: { queue: OpsQueueItem[] }): ReactElement {
+function ReviewView({ data }: { data: OpsWorkspaceData }): ReactElement {
   return (
     <>
       <Intro
@@ -175,9 +189,17 @@ function ReviewView({ queue }: { queue: OpsQueueItem[] }): ReactElement {
         title="Every blocked or human-needed item in one place."
         body="This page should be the working list for official source repairs, blocked downloads, and manual review."
       />
-      <Panel title="Open items" eyebrow={`${queue.length} queued`}>
-        <QueueList items={queue} />
+      <Panel title="Open items" eyebrow={`${data.queue.length} queued`}>
+        <QueueList items={data.queue} />
       </Panel>
+      <section className="ops-two-column">
+        <Panel title="Modern Repair Progress" eyebrow="LegiScan">
+          <ControlList items={data.repairProgress} />
+        </Panel>
+        <Panel title="Known Blockers" eyebrow="Separated">
+          <ControlList items={data.knownBlockers} />
+        </Panel>
+      </section>
       <section className="ops-review-flow" aria-label="Review flow">
         {["Find official source", "Confirm file", "Run guarded intake", "Validate", "Push"].map((step, index) => (
           <div key={step}>
@@ -311,6 +333,22 @@ function PublishView({ data }: { data: OpsWorkspaceData }): ReactElement {
       <Panel title="Release boundary" eyebrow={data.summary.overallStatus}>
         <p>{data.summary.nextRecommendation}</p>
       </Panel>
+      <section className="ops-two-column">
+        <Panel title="Download Closeout" eyebrow="Four checks">
+          <ControlList items={data.closeout} />
+        </Panel>
+        <Panel title="Trust Controls" eyebrow="Safety">
+          <ControlList items={data.trustControls} />
+        </Panel>
+      </section>
+      <section className="ops-two-column">
+        <Panel title="Pipeline Audit" eyebrow="Readable state">
+          <QualityList items={data.pipelineAudit.slice(0, 6)} />
+        </Panel>
+        <Panel title="Quality And Reliability" eyebrow="Health">
+          <QualityList items={data.qualityAreas} />
+        </Panel>
+      </section>
     </>
   );
 }
@@ -382,6 +420,8 @@ function QueueList({ items }: { items: OpsQueueItem[] }): ReactElement {
           <div>
             <strong>{item.id}</strong>
             <p>{item.reason}</p>
+            <p>{item.ageLabel} - {item.owner}</p>
+            <p>{item.officialSourceConfirmation}</p>
           </div>
           <Status value={item.status} />
         </article>
@@ -392,6 +432,50 @@ function QueueList({ items }: { items: OpsQueueItem[] }): ReactElement {
 
 function Status({ value }: { value: string }): ReactElement {
   return <span className="ops-status">{value.replaceAll("_", " ")}</span>;
+}
+
+function ControlList({
+  items,
+}: {
+  items: Array<{ detail: string; label: string; status: string }>;
+}): ReactElement {
+  if (!items.length) {
+    return <p>No active items are listed.</p>;
+  }
+
+  return (
+    <div className="ops-list">
+      {items.map((item) => (
+        <article key={`${item.label}-${item.status}`}>
+          <div>
+            <strong>{item.label}</strong>
+            <p>{item.detail}</p>
+          </div>
+          <Status value={item.status} />
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function QualityList({
+  items,
+}: {
+  items: Array<{ area: string; detail: string; status: string }>;
+}): ReactElement {
+  return (
+    <div className="ops-list">
+      {items.map((item) => (
+        <article key={item.area}>
+          <div>
+            <strong>{item.area}</strong>
+            <p>{item.detail}</p>
+          </div>
+          <Status value={item.status} />
+        </article>
+      ))}
+    </div>
+  );
 }
 
 function formatNumber(value: number): string {
