@@ -3,6 +3,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent, type ReactElement } from "react";
 
+import { PublicNav } from "@/components/navigation/PublicNav";
+
 export function ManagerVerifyForm(): ReactElement {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -36,6 +38,7 @@ export function ManagerVerifyForm(): ReactElement {
 
   return (
     <main className="manager-verify-page">
+      <PublicNav current="home" />
       <section className="manager-verify-panel" aria-labelledby="manager-verify-title">
         <p>Manager verification</p>
         <h1 id="manager-verify-title">Operational tools are separate from public Geode.</h1>

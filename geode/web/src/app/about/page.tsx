@@ -17,7 +17,8 @@ export default function AboutPage(): ReactElement {
     <main className="about-page">
       <PublicNav current="about" />
       <article className="about-document">
-        <header className="about-hero">
+        <header className="about-hero public-page-hero">
+          <p>About Geode</p>
           <h1>Geode exists to make Colorado regulation legible to the people who must act on it.</h1>
         </header>
 

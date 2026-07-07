@@ -154,6 +154,23 @@ Help is task-oriented and reachable, never required.
 
 ## Part Two — Layout Architecture
 
+### Public Resource Pattern
+
+Public Geode pages are intentionally separate from the manager workspace. A public user should be
+able to search, browse, read, and review public resources without signing in.
+
+**Public page specifications.**
+- Use the shared public navigation on Home, Search, Library, Forum, Trust, About, Pricing,
+  Regulations, and public legal record pages.
+- Keep the public visual system black and white: white surfaces, black text, thin gray borders,
+  and restrained hover states.
+- Do not use manager sidebar chrome on public pages.
+- Do not suggest that public users need a manager account to use public resources.
+- Legal record detail pages must include a clearly marked back path to the relevant public index.
+
+The sidebar and top bar pattern below applies to the verified manager workspace and other signed-in
+product surfaces, not to public resource pages.
+
 ### The Sidebar + Top Bar Pattern
 
 Geode uses the proven dual-rail navigation pattern from Linear, Notion, Stripe, Vercel, and Hebbia.
@@ -308,7 +325,8 @@ When two references conflict, the higher-listed one wins.
 ## Part Nine — Standing Constraints
 
 - No design decision violates a principle in Part One.
-- No surface omits the sidebar and top bar unless it is the landing page, sign-in page, or onboarding sequence.
+- No manager workspace surface omits the sidebar and top bar.
+- No public resource surface omits the shared public navigation.
 - No interactive element has a hit target below 44×44 pixels.
 - No animation lacks a reduced-motion fallback.
 - No empty state is left undesigned.

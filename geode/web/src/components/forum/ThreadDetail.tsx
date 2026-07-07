@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState, type CSSProperties, type ReactElement
 import { ForumTagChip } from "@/components/forum/ForumTagChip";
 import { ReplyComposer } from "@/components/forum/ReplyComposer";
 import { VoteButton } from "@/components/forum/VoteButton";
+import { PublicNav } from "@/components/navigation/PublicNav";
 import { usePersonalization } from "@/hooks/usePersonalization";
 import { useProgressivePrompts } from "@/hooks/useProgressivePrompts";
 import type { ForumReply, ForumThread } from "@/lib/forum/types";
@@ -57,6 +58,7 @@ export function ThreadDetail({ id }: ThreadDetailProps): ReactElement {
   const rootReplies = thread?.replies.filter((reply) => reply.parentId === null) ?? [];
   return (
     <main className="forum-page thread-page">
+      <PublicNav current="forum" />
       <header className="forum-header">
         <p className="forum-section-label">Forum record</p>
         <Link className="query-back" href="/forum">
