@@ -41,7 +41,6 @@ export function ForumFeed(): ReactElement {
   const [isComposerOpen, setIsComposerOpen] = useState(false);
   const [sort, setSort] = useState<ForumSort>("active");
   const [threads, setThreads] = useState<ForumThreadSummary[]>([]);
-  const [activeNow, setActiveNow] = useState(47);
   const [stats, setStats] = useState<ForumStats>({});
   const [isLoading, setIsLoading] = useState(true);
   const [threadSearch, setThreadSearch] = useState("");
@@ -105,7 +104,6 @@ export function ForumFeed(): ReactElement {
 
     setThreads(data.threads);
     setStats(data.stats ?? {});
-    setActiveNow(data.stats?.activeNow ?? data.stats?.memberCount ?? 47);
 
     if (!options?.quiet) {
       setIsLoading(false);
@@ -145,6 +143,7 @@ export function ForumFeed(): ReactElement {
   ];
 
   const activeFilter = SORTS.find((item) => item.key === sort) ?? SORTS[0];
+  const visibleActionCards = actionCards.filter((card) => card.count > 0);
 
   return (
     <main className="forum-page">
@@ -157,24 +156,6 @@ export function ForumFeed(): ReactElement {
             Use this board to find open petitions, bill positions, rulemaking work, and
             executive-level compliance risks.
           </span>
-          <div className="forum-metric-strip" aria-label="Forum summary">
-            <span>
-              <strong>{stats.openIssues ?? threads.length}</strong>
-              Open issues
-            </span>
-            <span>
-              <strong>{stats.activeActions ?? threads.length}</strong>
-              Active actions
-            </span>
-            <span>
-              <strong>{stats.needsReview ?? 0}</strong>
-              Need review
-            </span>
-            <span>
-              <strong>{stats.sourceLinked ?? 0}</strong>
-              Source linked
-            </span>
-          </div>
         </div>
         <button
           className="new-thread-button"
@@ -187,8 +168,28 @@ export function ForumFeed(): ReactElement {
         </button>
       </header>
 
-      <section className="forum-action-board" aria-label="Action areas">
-        {actionCards.map((card) => (
+      <section className="forum-status-row" aria-label="Forum summary">
+        <span>
+          <strong>{stats.openIssues ?? threads.length}</strong>
+          Open issues
+        </span>
+        <span>
+          <strong>{stats.activeActions ?? threads.length}</strong>
+          Active actions
+        </span>
+        <span>
+          <strong>{stats.needsReview ?? 0}</strong>
+          Need review
+        </span>
+        <span>
+          <strong>{stats.sourceLinked ?? 0}</strong>
+          Source linked
+        </span>
+      </section>
+
+      {visibleActionCards.length > 0 ? (
+        <section className="forum-action-board" aria-label="Action areas">
+          {visibleActionCards.map((card) => (
           <button
             className={sort === card.filter ? "is-active" : ""}
             key={card.label}
@@ -199,8 +200,9 @@ export function ForumFeed(): ReactElement {
             <strong>{card.count}</strong>
             <small>{card.description}</small>
           </button>
-        ))}
-      </section>
+          ))}
+        </section>
+      ) : null}
 
       <form className="forum-search" onSubmit={(event) => event.preventDefault()}>
         <label htmlFor="forum-thread-search">Search issue board</label>
@@ -234,20 +236,19 @@ export function ForumFeed(): ReactElement {
             <h2>{activeFilter.label}</h2>
             <span>{activeFilter.description}</span>
           </div>
-          <nav className="forum-sort-controls" aria-label="Filter issues">
-            {SORTS.map((item) => (
-              <button
-                className={sort === item.key ? "is-active" : ""}
-                key={item.key}
-                onClick={() => setSort(item.key)}
-                type="button"
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-          <span className="forum-active-count">{activeNow.toLocaleString("en-US")} active now</span>
         </div>
+        <nav className="forum-sort-controls" aria-label="Filter issues">
+          {SORTS.map((item) => (
+            <button
+              className={sort === item.key ? "is-active" : ""}
+              key={item.key}
+              onClick={() => setSort(item.key)}
+              type="button"
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
         {isLoading ? <ForumFeedSkeleton /> : null}
         {!isLoading && threads.length === 0 ? (
           <div className="forum-empty recovery-state">

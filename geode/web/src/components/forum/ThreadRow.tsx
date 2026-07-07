@@ -11,7 +11,6 @@ import {
   contributorRank,
   impactLabel,
   issueTypeLabel,
-  preciseTime,
   relativeTime,
   statusLabel,
   verificationLabel,
@@ -38,18 +37,18 @@ export function ThreadRow({ onOpen, thread }: ThreadRowProps): ReactElement {
         <span className="thread-title">{thread.title}</span>
         <span className="thread-excerpt">{thread.excerpt}</span>
       </span>
+      <span className="issue-action-line">
+        <small>Current action</small>
+        <strong>{thread.actionLabel}</strong>
+      </span>
       <span className="issue-card-grid">
-        <span>
-          <small>Affected audience</small>
-          <strong>{thread.affectedAudience}</strong>
-        </span>
         <span>
           <small>Legal source</small>
           <strong>{thread.legalSource}</strong>
         </span>
         <span>
-          <small>Current action</small>
-          <strong>{thread.actionLabel}</strong>
+          <small>Affected audience</small>
+          <strong>{thread.affectedAudience}</strong>
         </span>
       </span>
       <span className="thread-row-author">
@@ -68,7 +67,6 @@ export function ThreadRow({ onOpen, thread }: ThreadRowProps): ReactElement {
         </span>
       </span>
       <span className="thread-row-meta">
-        <span>{preciseTime(thread.createdAt)}</span>
         <span>{Math.max(thread.votes, 0)} support signals</span>
         <span>{thread.replyCount} replies</span>
         {thread.deadline ? <span>Action date {thread.deadline}</span> : null}
