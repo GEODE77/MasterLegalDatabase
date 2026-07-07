@@ -11,11 +11,11 @@ export default function NotFound(): ReactElement {
           Return to a known product area before continuing review or source-backed research.
         </span>
         <div className="hero-actions">
-          <Link className="primary-action" href="/app/dashboard">
-            Return to dashboard
+          <Link className="primary-action" href="/query">
+            Search public resources
           </Link>
-          <Link className="secondary-action" href="/app/system">
-            View system status
+          <Link className="secondary-action" href="/manager/dashboard">
+            Manager workspace
           </Link>
         </div>
       </section>

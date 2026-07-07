@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
+    "build:off-onedrive": "node scripts/build-off-onedrive.mjs",
+    "manager:first-admin": "node scripts/create-first-admin.mjs",
+    "manager:invite": "node scripts/create-manager-invite.mjs",
+    "source:probe": "node scripts/run-source-probes.mjs",
     "lint": "eslint . --max-warnings=0",
     "format": "prettier --write ."
   },

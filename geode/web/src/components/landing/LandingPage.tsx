@@ -8,7 +8,7 @@ import { getForumStats } from "@/lib/forum/store";
 import { getGeodeIndexStats } from "@/lib/index/geodeIndexStats";
 import { getRegulationCorpusStats } from "@/lib/search/searchRegulations";
 
-const CTA_LABEL = "Enter Geode";
+const CTA_LABEL = "Search Geode";
 const HERO_HEADLINE = "Geode makes regulation readable as infrastructure.";
 
 export function LandingPage(): ReactElement {
@@ -25,14 +25,15 @@ export function LandingPage(): ReactElement {
           </Link>
           <nav className="landing-nav" aria-label="Landing navigation">
             <a href="#product">Product</a>
+            <Link href="/library">Library</Link>
             <Link href="/about">About</Link>
             <Link href="/forum">Forum</Link>
             <Link href="/pricing">Pricing</Link>
           </nav>
         </div>
         <div className="landing-header-actions">
-          <Link href="/sign-in">Login</Link>
-          <Link className="landing-cta" href="/sign-in">
+          <Link href="/manager/verify">Managers</Link>
+          <Link className="landing-cta" href="/query">
             {CTA_LABEL}
           </Link>
         </div>
@@ -41,9 +42,14 @@ export function LandingPage(): ReactElement {
       <section className="landing-section landing-hero" aria-labelledby="landing-title">
         <LiveDataCenterpiece initialStats={indexStats} />
         <h1 id="landing-title">{HERO_HEADLINE}</h1>
-        <Link className="landing-cta" href="/sign-in">
-          {CTA_LABEL}
-        </Link>
+        <div className="landing-public-actions">
+          <Link className="landing-cta" href="/query">
+            {CTA_LABEL}
+          </Link>
+          <Link className="landing-cta landing-cta-secondary" href="/library">
+            Browse Library
+          </Link>
+        </div>
       </section>
 
       <section className="landing-section landing-index-chart" aria-label="Regulatory velocity">
@@ -119,17 +125,19 @@ export function LandingPage(): ReactElement {
         </blockquote>
       </section>
 
-      <section className="landing-section landing-close" id="pricing" aria-label="Enter Geode">
+      <section className="landing-section landing-close" id="pricing" aria-label="Search Geode">
         <h2>Make regulation readable before the next operating decision.</h2>
-        <Link className="landing-cta" href="/sign-in">
+        <Link className="landing-cta" href="/query">
           {CTA_LABEL}
         </Link>
       </section>
 
       <footer className="landing-footer" aria-label="Footer">
         <Link href="/about">About</Link>
+        <Link href="/library">Library</Link>
         <Link href="/trust">Trust</Link>
         <Link href="/pricing">Pricing</Link>
+        <Link href="/manager/verify">Managers</Link>
         <a href="mailto:contact@geode.local">Contact</a>
       </footer>
     </main>

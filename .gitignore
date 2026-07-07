@@ -27,6 +27,9 @@ geode/web/.next/
 geode/web/.next-build/
 geode/web/.next-codex*/
 geode/web/data/structured_output/*.sqlite3
+geode/web/data/manager/review_history.jsonl
+geode/web/data/manager/operation_overrides.json
+geode/web/data/manager/source_probe_report.json
 
 # IDE
 .vscode/

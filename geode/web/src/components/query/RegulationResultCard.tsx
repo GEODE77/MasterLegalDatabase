@@ -29,6 +29,9 @@ export function RegulationResultCard({
       </span>
       <span className="regulation-card-title">{result.title}</span>
       <span className="regulation-card-excerpt">{result.excerpt}</span>
+      <span className="regulation-card-freshness">
+        {result.freshnessStatus ? `Freshness: ${result.freshnessStatus.replaceAll("_", " ")}` : "Freshness: unknown"}
+      </span>
       {result.matchReasons?.length ? (
         <span className="regulation-card-reasons">
           {result.matchReasons.slice(0, 3).map((reason) => (

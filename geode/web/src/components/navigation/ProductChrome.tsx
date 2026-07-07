@@ -29,22 +29,29 @@ type PageMeta = {
   title: string;
 };
 
-const EXEMPT_ROUTES = ["/", "/about", "/pricing", "/trust", "/sign-in", "/onboarding"];
+const EXEMPT_ROUTES = [
+  "/",
+  "/about",
+  "/pricing",
+  "/trust",
+  "/sign-in",
+  "/onboarding",
+  "/query",
+  "/regulations",
+  "/authorities",
+  "/forum",
+  "/manager/verify",
+];
 
 const DESTINATIONS: Destination[] = [
-  { href: "/app/dashboard", key: "dashboard", label: "Dashboard" },
-  { href: "/app/explore", key: "explore", label: "Explore" },
-  { href: "/app/impact", key: "impact", label: "Impact" },
-  { href: "/app/requirements", key: "requirements", label: "Requirements" },
-  { href: "/app/compliance-paths", key: "compliance-paths", label: "Paths" },
-  { href: "/app/relationships", key: "relationships", label: "Relations" },
-  { href: "/app/review", key: "review", label: "Review" },
-  { href: "/app/review-packets", key: "review-packets", label: "Packets" },
-  { href: "/app/reliance-policy", key: "reliance-policy", label: "Policy" },
-  { href: "/app/reviewer-operations", key: "reviewer-operations", label: "Ops" },
-  { href: "/app/updates", key: "updates", label: "Updates" },
-  { href: "/app/system", key: "system", label: "System" },
-  { href: "/app/settings", key: "settings", label: "Settings" },
+  { href: "/manager/dashboard", key: "dashboard", label: "Home" },
+  { href: "/manager/sources", key: "sources", label: "Sources" },
+  { href: "/manager/review-queue", key: "review-queue", label: "Review Queue" },
+  { href: "/manager/explore", key: "explore", label: "Explorer" },
+  { href: "/manager/relationships", key: "relationships", label: "Relationships" },
+  { href: "/manager/timeline", key: "timeline", label: "Timeline" },
+  { href: "/manager/ask", key: "ask", label: "Ask Geode" },
+  { href: "/manager/publish", key: "publish", label: "Publish" },
 ];
 
 const PAGE_META: Record<string, PageMeta> = {
@@ -57,19 +64,24 @@ const PAGE_META: Record<string, PageMeta> = {
     title: "Activity",
   },
   dashboard: {
-    action: { href: "/app/explore", label: "Explore" },
-    description: "Current signals, source coverage, and primary workflows.",
-    title: "Dashboard",
+    action: { href: "/manager/sources", label: "Check sources" },
+    description: "Source status, review work, search, relationships, and publication readiness.",
+    title: "Manager Home",
+  },
+  ask: {
+    action: { href: "/manager/ask", label: "Ask" },
+    description: "Question surface grounded in citations and freshness warnings.",
+    title: "Ask Geode",
   },
   "compliance-paths": {
-    action: { href: "/app/compliance-paths", label: "Build path" },
+    action: { href: "/manager/compliance-paths", label: "Build path" },
     description: "Source-backed review steps for operational follow-up.",
     title: "Compliance Paths",
   },
   explore: {
-    action: { href: "/app/explore", label: "Browse" },
-    description: "Source text, relationships, citations, and candidate requirements.",
-    title: "Explore",
+    action: { href: "/manager/explore", label: "Browse" },
+    description: "Search and browse the legal corpus by layer, citation, agency, and topic.",
+    title: "Explorer",
   },
   forum: {
     action: { href: "/forum", label: "Start a thread" },
@@ -81,27 +93,27 @@ const PAGE_META: Record<string, PageMeta> = {
     title: "Heuristics audit",
   },
   impact: {
-    action: { href: "/app/impact", label: "Review impact" },
+    action: { href: "/manager/impact", label: "Review impact" },
     description: "Profile-based relevance with evidence and uncertainty.",
     title: "Impact Lens",
   },
   review: {
-    action: { href: "/app/review", label: "Open queue" },
+    action: { href: "/manager/review", label: "Open queue" },
     description: "Needs-review rule units, source evidence, and allowed outcomes.",
     title: "Rule-Unit Review",
   },
   "review-packets": {
-    action: { href: "/app/review-packets", label: "Open packets" },
+    action: { href: "/manager/review-packets", label: "Open packets" },
     description: "Formal review handoff packets for source-backed rule units.",
     title: "Review Packets",
   },
   "reliance-policy": {
-    action: { href: "/app/reliance-policy", label: "Open policy" },
+    action: { href: "/manager/reliance-policy", label: "Open policy" },
     description: "Reviewer roles, approval criteria, and external-use limits.",
     title: "Reliance Policy",
   },
   "reviewer-operations": {
-    action: { href: "/app/reviewer-operations", label: "Open ops" },
+    action: { href: "/manager/reviewer-operations", label: "Open ops" },
     description: "Reviewer assignment slots and operating instructions.",
     title: "Reviewer Operations",
   },
@@ -124,30 +136,50 @@ const PAGE_META: Record<string, PageMeta> = {
     title: "Regulations",
   },
   requirements: {
-    action: { href: "/app/requirements", label: "Search" },
+    action: { href: "/manager/requirements", label: "Search" },
     description: "Operational duties and candidate requirements from the corpus.",
     title: "Requirements",
   },
   relationships: {
-    action: { href: "/app/relationships", label: "Check health" },
-    description: "Crosswalk coverage and graph-readiness boundaries.",
-    title: "Relationship Health",
+    action: { href: "/manager/relationships", label: "Check health" },
+    description: "Crosswalks, maps, and connected legal authority.",
+    title: "Relationships",
+  },
+  "review-queue": {
+    action: { href: "/manager/review-queue", label: "Open queue" },
+    description: "Blocked source files, repair work, and human review.",
+    title: "Review Queue",
   },
   settings: {
     description: "Profile, notifications, data, and account controls.",
     title: "Settings",
   },
   system: {
-    action: { href: "/app/system", label: "Check system" },
+    action: { href: "/manager/system", label: "Check system" },
     description: "Retrieval, freshness, diff, production controls, and remaining work.",
     title: "System Readiness",
+  },
+  publish: {
+    action: { href: "/manager/publish", label: "Check release" },
+    description: "Git, safety checks, blockers, and public release readiness.",
+    title: "Publish",
+  },
+  sources: {
+    action: { href: "/manager/sources", label: "Check sources" },
+    description: "Official source freshness, live probes, and guarded downloads.",
+    title: "Sources",
+  },
+  timeline: {
+    action: { href: "/manager/timeline", label: "View timeline" },
+    description: "Source checks, downloads, audits, and publication events.",
+    title: "Timeline",
   },
   trust: {
     description: "Security, privacy, data handling, and compliance posture.",
     title: "Trust",
   },
   updates: {
-    action: { href: "/app/updates", label: "View updates" },
+    action: { href: "/manager/updates", label: "View updates" },
     description: "Corpus freshness and future regulation change tracking.",
     title: "Updates",
   },
@@ -166,18 +198,13 @@ export function ProductChrome({ children }: ProductChromeProps): ReactElement {
   const firstName = firstNameFrom(profile.derived.displayName);
 
   if (isExempt) {
-    return (
-      <>
-        <CommandPalette />
-        {children}
-      </>
-    );
+    return <>{children}</>;
   }
 
   function submitSearch(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     const query = search.trim();
-    router.push(query ? `/app/explore?q=${encodeURIComponent(query)}` : "/app/explore");
+    router.push(query ? `/manager/explore?q=${encodeURIComponent(query)}` : "/manager/explore");
   }
 
   function goBack(): void {
@@ -187,7 +214,7 @@ export function ProductChrome({ children }: ProductChromeProps): ReactElement {
         return;
       }
 
-      router.push("/app/dashboard");
+      router.push("/manager/dashboard");
     });
   }
 
@@ -211,7 +238,7 @@ export function ProductChrome({ children }: ProductChromeProps): ReactElement {
           </span>
           <span className="product-sidebar-account-text">
             <strong>{profile.derived.displayName}</strong>
-            <span>Geode workspace</span>
+            <span>Manager workspace</span>
           </span>
         </div>
 
@@ -335,7 +362,10 @@ export function ProductChrome({ children }: ProductChromeProps): ReactElement {
 
 function routeKey(pathname: string): string {
   const segments = pathname.split("/").filter(Boolean);
-  const segment = segments[0] === "app" ? segments[1] ?? "dashboard" : segments[0] ?? "dashboard";
+  const segment =
+    segments[0] === "app" || segments[0] === "manager"
+      ? segments[1] ?? "dashboard"
+      : segments[0] ?? "dashboard";
 
   if (segment === "debug") {
     return "updates";
@@ -377,19 +407,19 @@ function buildBreadcrumbs(pathname: string, title: string): Array<{ href: string
   const key = routeKey(pathname);
 
   if (key === "dashboard") {
-    return [{ href: "/app/dashboard", label: "Dashboard" }];
+    return [{ href: "/manager/dashboard", label: "Manager" }];
   }
 
   if (key === "internal") {
     return [
-      { href: "/app/dashboard", label: "Dashboard" },
+      { href: "/manager/dashboard", label: "Manager" },
       { href: pathname, label: title },
     ];
   }
 
   if (pathname.startsWith("/forum/")) {
     return [
-      { href: "/app/dashboard", label: "Dashboard" },
+      { href: "/manager/dashboard", label: "Manager" },
       { href: "/forum", label: "Forum" },
       { href: pathname, label: title },
     ];
@@ -397,15 +427,15 @@ function buildBreadcrumbs(pathname: string, title: string): Array<{ href: string
 
   if (pathname.startsWith("/regulations/")) {
     return [
-      { href: "/app/dashboard", label: "Dashboard" },
-      { href: "/app/explore", label: "Explore" },
+      { href: "/manager/dashboard", label: "Manager" },
+      { href: "/manager/explore", label: "Explore" },
       { href: pathname, label: title },
     ];
   }
 
   return [
-    { href: "/app/dashboard", label: "Dashboard" },
-    { href: `/app/${key}`, label: title },
+    { href: "/manager/dashboard", label: "Manager" },
+    { href: `/manager/${key}`, label: title },
   ];
 }
 
