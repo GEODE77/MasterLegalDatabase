@@ -57,6 +57,22 @@ function HomeView({
   manager?: OpsWorkspaceProps["manager"];
 }): ReactElement {
   const currentSources = data.sources.filter((source) => source.status === "no_change_detected").length;
+  const primaryLinks =
+    manager?.role === "admin"
+      ? [...PRIMARY_LINKS, { href: "/manager/admin", label: "Manager Accounts" }]
+      : PRIMARY_LINKS;
+  const boardItems = [
+    ["Sources", "Identify new official material before download.", "/manager/sources"],
+    ["Review Queue", "Resolve blocked files and repair work.", "/manager/review-queue"],
+    ["Explorer", "Search the corpus by layer, citation, agency, and topic.", "/manager/explore"],
+    ["Relationships", "Follow statute, rule, bill, agency, and rulemaking links.", "/manager/relationships"],
+    ["Timeline", "See checks, downloads, audits, and publication events.", "/manager/timeline"],
+    ["Ask Geode", "Ask a question with source trails and freshness warnings.", "/manager/ask"],
+    ["Publish", "Confirm safety, Git, dashboards, and blockers.", "/manager/publish"],
+  ];
+  if (manager?.role === "admin") {
+    boardItems.push(["Manager Accounts", "Create invites, revoke access, and review account history.", "/manager/admin"]);
+  }
 
   return (
     <>
@@ -79,7 +95,7 @@ function HomeView({
       </section>
 
       <section className="ops-command-strip" aria-label="Primary actions">
-        {PRIMARY_LINKS.map((link) => (
+        {primaryLinks.map((link) => (
           <Link href={link.href} key={link.href}>
             {link.label}
           </Link>
@@ -96,15 +112,7 @@ function HomeView({
       </section>
 
       <section className="ops-board" aria-label="Work areas">
-        {[
-          ["Sources", "Identify new official material before download.", "/manager/sources"],
-          ["Review Queue", "Resolve blocked files and repair work.", "/manager/review-queue"],
-          ["Explorer", "Search the corpus by layer, citation, agency, and topic.", "/manager/explore"],
-          ["Relationships", "Follow statute, rule, bill, agency, and rulemaking links.", "/manager/relationships"],
-          ["Timeline", "See checks, downloads, audits, and publication events.", "/manager/timeline"],
-          ["Ask Geode", "Ask a question with source trails and freshness warnings.", "/manager/ask"],
-          ["Publish", "Confirm safety, Git, dashboards, and blockers.", "/manager/publish"],
-        ].map(([title, body, href]) => (
+        {boardItems.map(([title, body, href]) => (
           <Link href={href} key={href}>
             <span>{title}</span>
             <p>{body}</p>

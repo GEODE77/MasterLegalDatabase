@@ -39,6 +39,7 @@ a {
 button,
 a,
 input,
+select,
 textarea {
   -webkit-tap-highlight-color: transparent;
 }
@@ -46,6 +47,7 @@ textarea {
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
+select:focus-visible,
 textarea:focus-visible {
   outline: 2px solid rgba(77, 228, 255, 0.72);
   outline-offset: 4px;
@@ -15047,6 +15049,168 @@ body {
   margin-left: auto;
 }
 
+.manager-admin-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+}
+
+.manager-admin-form,
+.manager-activity-panel,
+.manager-account-table {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  background: #fff;
+  padding: 22px;
+  color: #000;
+}
+
+.manager-admin-form header,
+.manager-activity-panel header,
+.manager-account-table header {
+  display: grid;
+  gap: 5px;
+}
+
+.manager-admin-form header span,
+.manager-activity-panel header span,
+.manager-account-table header span,
+.manager-account-table article span,
+.manager-activity-list span,
+.manager-invite-result span,
+.manager-admin-message {
+  margin: 0;
+  color: #5d5d5d;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.manager-admin-form h3,
+.manager-activity-panel h3,
+.manager-account-table h3 {
+  margin: 0;
+  color: #000;
+  font-size: 22px;
+  font-weight: 560;
+  letter-spacing: 0;
+}
+
+.manager-admin-form label {
+  display: grid;
+  gap: 8px;
+  color: #4a4a4a;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.manager-admin-form input,
+.manager-admin-form select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #b8b8b8;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  padding: 12px 14px;
+}
+
+.manager-admin-form button,
+.manager-account-table button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: 8px;
+  background: #000;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  padding: 10px 14px;
+}
+
+.manager-admin-form button:disabled,
+.manager-account-table button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.manager-invite-result {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.manager-invite-result strong {
+  overflow-wrap: anywhere;
+  color: #000;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.manager-invite-result p,
+.manager-activity-list p,
+.manager-account-table p {
+  margin: 0;
+  color: #2b2b2b;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.manager-activity-list,
+.manager-account-table > div {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid #d8d8d8;
+}
+
+.manager-activity-list article,
+.manager-account-table article {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  align-items: center;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 14px 0;
+}
+
+.manager-activity-list article {
+  grid-template-columns: minmax(0, 1fr) minmax(112px, auto);
+}
+
+.manager-account-table article {
+  grid-template-columns: minmax(170px, 1.5fr) 90px 90px minmax(128px, 0.9fr) 92px;
+}
+
+.manager-activity-list strong,
+.manager-account-table strong {
+  color: #000;
+  font-size: 15px;
+  font-weight: 680;
+}
+
+.manager-account-table article > div,
+.manager-activity-list article > div {
+  min-width: 0;
+}
+
+.manager-account-table article p,
+.manager-account-table article strong,
+.manager-activity-list article p,
+.manager-activity-list article strong {
+  overflow-wrap: anywhere;
+}
+
 @media (max-width: 720px) {
   .ops-manager-strip {
     align-items: flex-start;
@@ -15055,5 +15219,25 @@ body {
 
   .ops-manager-strip p {
     margin-left: 0;
+  }
+
+  .manager-admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .manager-admin-form,
+  .manager-activity-panel,
+  .manager-account-table {
+    padding: 18px;
+  }
+
+  .manager-activity-list article,
+  .manager-account-table article {
+    align-items: flex-start;
+    grid-template-columns: 1fr;
+  }
+
+  .manager-account-table button {
+    width: 100%;
   }
 }

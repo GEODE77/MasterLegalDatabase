@@ -10,11 +10,14 @@ const MANAGER_HISTORY_PATH = path.join(MANAGER_DATA_DIR, "review_history.jsonl")
 const SESSION_TTL_SECONDS = 60 * 60 * 8;
 const INVITE_HASH_ITERATIONS = 120_000;
 const INVITE_HASH_BYTES = 32;
+const MANAGER_ROLES = ["admin", "manager", "reviewer"] as const;
 
 type ManagerRegistry = {
   managers: ManagerRecord[];
   schemaVersion: number;
 };
+
+export type ManagerRole = (typeof MANAGER_ROLES)[number];
 
 export type ManagerRecord = {
   createdAt: string;
@@ -25,7 +28,7 @@ export type ManagerRecord = {
   invitedBy: string;
   name: string;
   revokedAt?: string;
-  role: "admin" | "manager" | "reviewer";
+  role: ManagerRole;
   status: "active" | "revoked";
 };
 
@@ -34,15 +37,39 @@ export type ManagerSession = {
   id: string;
   issuedAt: number;
   name: string;
-  role: ManagerRecord["role"];
+  role: ManagerRole;
+};
+
+export type ManagerAccountSummary = {
+  createdAt: string;
+  email: string;
+  eventCount: number;
+  id: string;
+  invitedBy: string;
+  lastEventAt: string | null;
+  name: string;
+  revokedAt?: string;
+  role: ManagerRole;
+  status: ManagerRecord["status"];
 };
 
 type ManagerHistoryEvent = {
   action: string;
+  actorEmail?: string;
+  actorId?: string;
+  actorName?: string;
   managerEmail: string;
   managerId: string;
   managerName: string;
   occurredAt: string;
+};
+
+export type ManagerAuditEvent = ManagerHistoryEvent;
+
+type CreateManagerInviteInput = {
+  email: string;
+  name: string;
+  role: ManagerRole;
 };
 
 export function verifyManagerInvite(email: string, inviteCode: string): ManagerRecord | null {
@@ -64,6 +91,111 @@ export function verifyManagerInvite(email: string, inviteCode: string): ManagerR
     occurredAt: new Date().toISOString(),
   });
   return manager;
+}
+
+export function listManagerAccounts(): ManagerAccountSummary[] {
+  const events = readManagerHistory();
+  return readManagerRegistry()
+    .managers.map((manager) => {
+      const managerEvents = events.filter((event) => event.managerId === manager.id);
+      const lastEvent = managerEvents.at(-1);
+      return {
+        createdAt: manager.createdAt,
+        email: manager.email,
+        eventCount: managerEvents.length,
+        id: manager.id,
+        invitedBy: manager.invitedBy,
+        lastEventAt: lastEvent?.occurredAt ?? null,
+        name: manager.name,
+        revokedAt: manager.revokedAt,
+        role: manager.role,
+        status: manager.status,
+      };
+    })
+    .sort((left, right) => left.email.localeCompare(right.email));
+}
+
+export function listManagerAuditEvents(limit = 20): ManagerAuditEvent[] {
+  return readManagerHistory().slice(-limit).reverse();
+}
+
+export function createManagerInvite(
+  input: CreateManagerInviteInput,
+  actor: ManagerSession,
+): { inviteCode: string; manager: ManagerAccountSummary } {
+  const email = normalizeEmail(input.email);
+  const name = input.name.trim();
+  if (!email || !name || !isManagerRole(input.role)) {
+    throw new Error("A manager invite needs a name, email, and valid role.");
+  }
+
+  const registry = readManagerRegistry();
+  if (registry.managers.some((manager) => normalizeEmail(manager.email) === email)) {
+    throw new Error("A manager account already exists for that email.");
+  }
+
+  const inviteCode = randomBytes(18).toString("base64url");
+  const { hash, salt } = hashInviteCode(inviteCode);
+  const occurredAt = new Date().toISOString();
+  const manager: ManagerRecord = {
+    createdAt: occurredAt,
+    email,
+    id: `mgr_${randomBytes(8).toString("hex")}`,
+    inviteCodeHash: hash,
+    inviteCodeSalt: salt,
+    invitedBy: actor.email,
+    name,
+    role: input.role,
+    status: "active",
+  };
+
+  registry.managers.push(manager);
+  writeManagerRegistry(registry);
+  appendManagerHistory({
+    action: "manager_invited",
+    actorEmail: actor.email,
+    actorId: actor.id,
+    actorName: actor.name,
+    managerEmail: manager.email,
+    managerId: manager.id,
+    managerName: manager.name,
+    occurredAt,
+  });
+
+  return {
+    inviteCode,
+    manager: toManagerSummary(manager, 1, occurredAt),
+  };
+}
+
+export function revokeManagerAccount(managerId: string, actor: ManagerSession): ManagerAccountSummary {
+  const registry = readManagerRegistry();
+  const manager = registry.managers.find((record) => record.id === managerId);
+  if (!manager) {
+    throw new Error("Manager account was not found.");
+  }
+  if (manager.id === actor.id) {
+    throw new Error("Admins cannot revoke their own active session.");
+  }
+  if (manager.status === "revoked") {
+    return toManagerSummary(manager);
+  }
+
+  manager.status = "revoked";
+  manager.revokedAt = new Date().toISOString();
+  writeManagerRegistry(registry);
+  appendManagerHistory({
+    action: "manager_revoked",
+    actorEmail: actor.email,
+    actorId: actor.id,
+    actorName: actor.name,
+    managerEmail: manager.email,
+    managerId: manager.id,
+    managerName: manager.name,
+    occurredAt: manager.revokedAt,
+  });
+
+  return toManagerSummary(manager, undefined, manager.revokedAt);
 }
 
 export function createManagerSession(manager: ManagerRecord): string {
@@ -133,6 +265,35 @@ function readManagerRegistry(): ManagerRegistry {
   };
 }
 
+function writeManagerRegistry(registry: ManagerRegistry): void {
+  fs.mkdirSync(MANAGER_DATA_DIR, { recursive: true });
+  const temporaryPath = `${MANAGER_REGISTRY_PATH}.tmp`;
+  fs.writeFileSync(
+    temporaryPath,
+    `${JSON.stringify({ managers: registry.managers, schemaVersion: 1 }, null, 2)}\n`,
+    "utf8",
+  );
+  fs.renameSync(temporaryPath, MANAGER_REGISTRY_PATH);
+}
+
+function readManagerHistory(): ManagerAuditEvent[] {
+  if (!fs.existsSync(MANAGER_HISTORY_PATH)) {
+    return [];
+  }
+
+  return fs
+    .readFileSync(MANAGER_HISTORY_PATH, "utf8")
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .flatMap((line) => {
+      try {
+        return [JSON.parse(line) as ManagerAuditEvent];
+      } catch {
+        return [];
+      }
+    });
+}
+
 function appendManagerHistory(event: ManagerHistoryEvent): void {
   fs.mkdirSync(MANAGER_DATA_DIR, { recursive: true });
   fs.appendFileSync(MANAGER_HISTORY_PATH, `${JSON.stringify(event)}\n`, "utf8");
@@ -168,7 +329,7 @@ function parseSessionPayload(payload: string): ManagerSession | null {
       typeof parsed.id === "string" &&
       typeof parsed.issuedAt === "number" &&
       typeof parsed.name === "string" &&
-      ["admin", "manager", "reviewer"].includes(parsed.role)
+      isManagerRole(parsed.role)
     ) {
       return parsed;
     }
@@ -192,4 +353,27 @@ function isSameValue(value: string, expected: string): boolean {
 
 function normalizeEmail(value: string): string {
   return value.trim().toLowerCase();
+}
+
+function isManagerRole(value: unknown): value is ManagerRole {
+  return typeof value === "string" && MANAGER_ROLES.includes(value as ManagerRole);
+}
+
+function toManagerSummary(
+  manager: ManagerRecord,
+  eventCount = 0,
+  lastEventAt: string | null = null,
+): ManagerAccountSummary {
+  return {
+    createdAt: manager.createdAt,
+    email: manager.email,
+    eventCount,
+    id: manager.id,
+    invitedBy: manager.invitedBy,
+    lastEventAt,
+    name: manager.name,
+    revokedAt: manager.revokedAt,
+    role: manager.role,
+    status: manager.status,
+  };
 }
