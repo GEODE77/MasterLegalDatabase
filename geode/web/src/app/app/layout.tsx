@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
-export default function AppIndexPage(): never {
+export default function LegacyAppLayout(): never {
   redirect("/manager/dashboard");
 }

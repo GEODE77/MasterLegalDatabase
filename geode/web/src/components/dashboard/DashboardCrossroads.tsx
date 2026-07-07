@@ -44,7 +44,7 @@ const WORKFLOWS: Workflow[] = [
   {
     cta: "Find",
     description: "Search source-backed duties, permits, reporting, and inspection signals.",
-    href: "/app/requirements",
+    href: "/manager/requirements",
     label: "Find requirements.",
   },
   {

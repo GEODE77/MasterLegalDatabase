@@ -308,7 +308,7 @@ export function OnboardingSurface(): ReactElement {
               ? "You can personalize Geode later in settings."
               : "We have enough context to begin."}
           </h1>
-          <button className="confirm-analysis" onClick={() => router.push("/app/dashboard")} type="button">
+          <button className="confirm-analysis" onClick={() => router.push("/query")} type="button">
             Enter Geode
           </button>
         </section>

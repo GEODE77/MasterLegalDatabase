@@ -14919,3 +14919,100 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.manager-verify-page {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  background: #fff;
+  padding: 24px;
+}
+
+.manager-verify-panel {
+  display: grid;
+  gap: 22px;
+  width: min(560px, 100%);
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  background: #fff;
+  padding: clamp(24px, 5vw, 44px);
+  color: #000;
+}
+
+.manager-verify-panel p,
+.manager-verify-panel label {
+  margin: 0;
+  color: #5d5d5d;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.manager-verify-panel h1 {
+  margin: 0;
+  color: #000;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 560;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.manager-verify-panel span {
+  color: #2b2b2b;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.manager-verify-panel form {
+  display: grid;
+  gap: 12px;
+  border-top: 1px solid #d8d8d8;
+  padding-top: 22px;
+}
+
+.manager-verify-panel input {
+  width: 100%;
+  border: 1px solid #b8b8b8;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  padding: 12px 14px;
+}
+
+.manager-verify-panel input:focus {
+  border-color: #000;
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.manager-verify-panel button,
+.manager-verify-panel a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: 8px;
+  background: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.manager-verify-panel button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.manager-verify-panel a {
+  background: #fff;
+  color: #000;
+}
+
+.manager-verify-panel strong {
+  color: #000;
+  font-size: 13px;
+}

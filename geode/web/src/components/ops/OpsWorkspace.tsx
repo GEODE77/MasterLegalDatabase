@@ -17,10 +17,10 @@ type OpsWorkspaceProps = {
 };
 
 const PRIMARY_LINKS = [
-  { href: "/app/sources", label: "Check Sources" },
-  { href: "/app/review-queue", label: "Open Review Queue" },
-  { href: "/app/explore", label: "Explore Law" },
-  { href: "/app/publish", label: "Publication Readiness" },
+  { href: "/manager/sources", label: "Check Sources" },
+  { href: "/manager/review-queue", label: "Open Review Queue" },
+  { href: "/manager/explore", label: "Explore Law" },
+  { href: "/manager/publish", label: "Publication Readiness" },
 ];
 
 export function OpsWorkspace({ data, view }: OpsWorkspaceProps): ReactElement {
@@ -45,8 +45,8 @@ function HomeView({ data }: { data: OpsWorkspaceData }): ReactElement {
     <>
       <section className="ops-hero">
         <div>
-          <p>Geode Operations</p>
-          <h2>One quiet place to keep the legal corpus current, reviewable, and usable.</h2>
+          <p>Geode Manager Operations</p>
+          <h2>One quiet place for verified managers to keep the legal corpus current, reviewable, and usable.</h2>
         </div>
         <div className="ops-hero-panel">
           <span>Current recommendation</span>
@@ -80,13 +80,13 @@ function HomeView({ data }: { data: OpsWorkspaceData }): ReactElement {
 
       <section className="ops-board" aria-label="Work areas">
         {[
-          ["Sources", "Identify new official material before download.", "/app/sources"],
-          ["Review Queue", "Resolve blocked files and repair work.", "/app/review-queue"],
-          ["Explorer", "Search the corpus by layer, citation, agency, and topic.", "/app/explore"],
-          ["Relationships", "Follow statute, rule, bill, agency, and rulemaking links.", "/app/relationships"],
-          ["Timeline", "See checks, downloads, audits, and publication events.", "/app/timeline"],
-          ["Ask Geode", "Ask a question with source trails and freshness warnings.", "/app/ask"],
-          ["Publish", "Confirm safety, Git, dashboards, and blockers.", "/app/publish"],
+          ["Sources", "Identify new official material before download.", "/manager/sources"],
+          ["Review Queue", "Resolve blocked files and repair work.", "/manager/review-queue"],
+          ["Explorer", "Search the corpus by layer, citation, agency, and topic.", "/manager/explore"],
+          ["Relationships", "Follow statute, rule, bill, agency, and rulemaking links.", "/manager/relationships"],
+          ["Timeline", "See checks, downloads, audits, and publication events.", "/manager/timeline"],
+          ["Ask Geode", "Ask a question with source trails and freshness warnings.", "/manager/ask"],
+          ["Publish", "Confirm safety, Git, dashboards, and blockers.", "/manager/publish"],
         ].map(([title, body, href]) => (
           <Link href={href} key={href}>
             <span>{title}</span>

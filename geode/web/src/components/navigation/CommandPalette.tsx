@@ -262,14 +262,14 @@ function buildActions({
     },
     {
       detail: "Return to current signals and workflows.",
-      href: "/app/dashboard",
+      href: "/manager/dashboard",
       id: "open-dashboard",
       keywords: ["dashboard", "home", "activity"],
       label: "Open dashboard",
     },
     {
       detail: "Jump to recent work and profile signals.",
-      href: "/app/dashboard#recent-activity",
+      href: "/manager/dashboard#recent-activity",
       id: "review-activity",
       keywords: ["activity", "recent", "history"],
       label: "Review activity",

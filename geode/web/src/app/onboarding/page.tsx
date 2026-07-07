@@ -1,7 +1,5 @@
-import type { ReactElement } from "react";
+import { redirect } from "next/navigation";
 
-import { OnboardingSurface } from "@/components/onboarding/OnboardingSurface";
-
-export default function OnboardingPage(): ReactElement {
-  return <OnboardingSurface />;
+export default function OnboardingPage(): never {
+  redirect("/query");
 }
