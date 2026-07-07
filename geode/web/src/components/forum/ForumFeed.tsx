@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactElement } from "react";
 
 import { NewThreadComposer } from "@/components/forum/NewThreadComposer";
 import { ThreadRow } from "@/components/forum/ThreadRow";
+import { PublicNav } from "@/components/navigation/PublicNav";
 import { RECENT_THREADS_KEY, useRecentItems } from "@/hooks/useRecentItems";
 import type { ForumSort, ForumThreadSummary } from "@/lib/forum/types";
 
@@ -96,6 +97,7 @@ export function ForumFeed(): ReactElement {
 
   return (
     <main className="forum-page">
+      <PublicNav current="forum" />
       <header className="forum-header">
         <div>
           <p className="forum-section-label">Forum</p>

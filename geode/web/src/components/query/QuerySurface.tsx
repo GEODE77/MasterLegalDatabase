@@ -11,6 +11,7 @@ import {
   type ReactElement,
 } from "react";
 
+import { PublicNav } from "@/components/navigation/PublicNav";
 import { RECENT_QUERIES_KEY, useRecentItems } from "@/hooks/useRecentItems";
 import { usePersonalization } from "@/hooks/usePersonalization";
 import { useProgressivePrompts } from "@/hooks/useProgressivePrompts";
@@ -156,6 +157,7 @@ export function QuerySurface(): ReactElement {
 
   return (
     <main className={phase === "idle" ? "query-page is-idle" : "query-page has-answer"}>
+      <PublicNav current="query" />
       <form className="query-form" onSubmit={handleSubmit}>
         <label className="query-field" htmlFor="regulation-query">
           <span className="query-field-label">Ask a question</span>

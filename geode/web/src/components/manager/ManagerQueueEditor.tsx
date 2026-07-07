@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, type FormEvent, type ReactElement } from "react";
 
 import type { OpsQueueItem } from "@/lib/product/opsWorkspace";
@@ -11,6 +12,7 @@ type ManagerQueueEditorProps = {
 const STATUS_OPTIONS = ["queued", "in_review", "waiting_official_source", "blocked", "complete"];
 
 export function ManagerQueueEditor({ item }: ManagerQueueEditorProps): ReactElement {
+  const router = useRouter();
   const [message, setMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
@@ -31,7 +33,13 @@ export function ManagerQueueEditor({ item }: ManagerQueueEditorProps): ReactElem
     });
 
     setIsSaving(false);
-    setMessage(response.ok ? "Saved. Refresh to see the updated queue rollup." : "The queue item was not saved.");
+    if (response.ok) {
+      setMessage("Saved.");
+      router.refresh();
+      return;
+    }
+
+    setMessage("The queue item was not saved.");
   }
 
   return (

@@ -8,13 +8,12 @@ import { UndoToastProvider } from "@/providers/UndoToastProvider";
 import { createTransientSnapshot, readOrCreateSnapshot, resolveUserId } from "@/lib/personalization/server";
 import { ProductChrome } from "@/components/navigation/ProductChrome";
 import { RouteMotionProvider } from "@/components/navigation/RouteMotionProvider";
-import { AtmosphericLayer } from "@/components/atmosphere/AtmosphericLayer";
 
 import "../styles/globals.css";
 
 export const metadata: Metadata = {
   title: "Geode",
-  description: "Project Geode frontend reset scaffold"
+  description: "Public Colorado legal data with separate verified manager operations."
 };
 
 export const dynamic = "force-dynamic";
@@ -32,7 +31,6 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AtmosphericLayer />
         <PersonalizationProvider initialSnapshot={initialSnapshot}>
           <ProgressivePromptProvider>
             <UndoToastProvider>

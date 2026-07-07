@@ -1,10 +1,13 @@
 import type { ReactElement } from "react";
 
+import { PublicNav } from "@/components/navigation/PublicNav";
+
 const CTA_LABEL = "Talk to us";
 
 export default function PricingPage(): ReactElement {
   return (
     <main className="pricing-page">
+      <PublicNav current="pricing" />
       <article className="pricing-document">
         <header className="pricing-hero">
           <h1>Pricing begins with the operating problem.</h1>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState, type ReactElement } from "react";
 
+import { PublicNav } from "@/components/navigation/PublicNav";
 import { RECENT_REGULATIONS_KEY, useRecentItems } from "@/hooks/useRecentItems";
 import type { RegulationSearchResult } from "@/lib/search/types";
 
@@ -28,6 +29,7 @@ export function RegulationsIndex({ regulations }: RegulationsIndexProps): ReactE
 
   return (
     <main className="regulations-index-page">
+      <PublicNav current="library" />
       <form className="regulation-search" onSubmit={(event) => event.preventDefault()}>
         <label htmlFor="regulation-index-search">Search regulations</label>
         <input
