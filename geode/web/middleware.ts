@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const USER_ID_COOKIE = "geode.personalization.user";
 const USER_ID_HEADER = "x-geode-user-id";
-const MANAGER_COOKIE = "geode.manager.verified";
+const MANAGER_COOKIE = "geode.manager.session";
 
 const MANAGER_ROUTE_PREFIXES = ["/manager", "/debug", "/internal", "/settings"];
 const MANAGER_API_PREFIXES = ["/api/product"];
@@ -15,7 +15,7 @@ export function middleware(request: NextRequest): NextResponse {
   }
 
   if (requiresManagerVerification(pathname) && pathname !== "/manager/verify") {
-    const verified = request.cookies.get(MANAGER_COOKIE)?.value === "1";
+    const verified = Boolean(request.cookies.get(MANAGER_COOKIE)?.value);
 
     if (!verified) {
       if (pathname.startsWith("/api/")) {

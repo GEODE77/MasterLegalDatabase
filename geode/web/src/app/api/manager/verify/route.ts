@@ -1,27 +1,38 @@
-import { createHash, timingSafeEqual } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
+
+import { createManagerSession, verifyManagerInvite } from "@/lib/manager/store";
 
 export const dynamic = "force-dynamic";
 
-const MANAGER_COOKIE = "geode.manager.verified";
-const DEV_ACCESS_CODE = "local-manager-preview";
+const MANAGER_COOKIE = "geode.manager.session";
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
-  const payload = (await request.json().catch(() => null)) as { code?: unknown } | null;
+  const payload = (await request.json().catch(() => null)) as { code?: unknown; email?: unknown } | null;
   const code = typeof payload?.code === "string" ? payload.code.trim() : "";
-  const expectedCode = process.env.GEODE_MANAGER_ACCESS_CODE?.trim();
+  const email = typeof payload?.email === "string" ? payload.email.trim() : "";
 
-  if (!expectedCode && process.env.NODE_ENV === "production") {
-    return NextResponse.json({ error: "Manager verification is not configured." }, { status: 503 });
+  const manager = verifyManagerInvite(email, code);
+  if (!manager) {
+    return NextResponse.json({ error: "The manager invite was not accepted." }, { status: 401 });
   }
 
-  const validCode = expectedCode || DEV_ACCESS_CODE;
-  if (!code || !isSameSecret(code, validCode)) {
-    return NextResponse.json({ error: "The manager access code was not accepted." }, { status: 401 });
+  let sessionValue = "";
+  try {
+    sessionValue = createManagerSession(manager);
+  } catch {
+    return NextResponse.json({ error: "Manager sessions are not configured." }, { status: 503 });
   }
 
-  const response = NextResponse.json({ ok: true });
-  response.cookies.set(MANAGER_COOKIE, "1", {
+  const response = NextResponse.json({
+    manager: {
+      email: manager.email,
+      id: manager.id,
+      name: manager.name,
+      role: manager.role,
+    },
+    ok: true,
+  });
+  response.cookies.set(MANAGER_COOKIE, sessionValue, {
     httpOnly: true,
     maxAge: 60 * 60 * 8,
     path: "/",
@@ -29,10 +40,4 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     secure: request.nextUrl.protocol === "https:",
   });
   return response;
-}
-
-function isSameSecret(value: string, expected: string): boolean {
-  const valueHash = createHash("sha256").update(value).digest();
-  const expectedHash = createHash("sha256").update(expected).digest();
-  return timingSafeEqual(valueHash, expectedHash);
 }

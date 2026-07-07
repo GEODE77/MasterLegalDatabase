@@ -15016,3 +15016,44 @@ body {
   color: #000;
   font-size: 13px;
 }
+
+.ops-manager-strip {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  background: #fff;
+  padding: 12px 14px;
+}
+
+.ops-manager-strip span,
+.ops-manager-strip p {
+  margin: 0;
+  color: #5d5d5d;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.ops-manager-strip strong {
+  color: #000;
+  font-size: 14px;
+}
+
+.ops-manager-strip p {
+  margin-left: auto;
+}
+
+@media (max-width: 720px) {
+  .ops-manager-strip {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ops-manager-strip p {
+    margin-left: 0;
+  }
+}

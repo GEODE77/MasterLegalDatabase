@@ -6,6 +6,7 @@ import { useState, type FormEvent, type ReactElement } from "react";
 export function ManagerVerifyForm(): ReactElement {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,7 +18,7 @@ export function ManagerVerifyForm(): ReactElement {
     setIsSubmitting(true);
 
     const response = await fetch("/api/manager/verify", {
-      body: JSON.stringify({ code }),
+      body: JSON.stringify({ code, email }),
       headers: { "Content-Type": "application/json" },
       method: "POST",
     });
@@ -25,7 +26,7 @@ export function ManagerVerifyForm(): ReactElement {
     setIsSubmitting(false);
 
     if (!response.ok) {
-      setError("That code did not open the manager workspace.");
+      setError("That invite did not open the manager workspace.");
       return;
     }
 
@@ -40,20 +41,30 @@ export function ManagerVerifyForm(): ReactElement {
         <h1 id="manager-verify-title">Operational tools are separate from public Geode.</h1>
         <span>
           Public users can search and read Geode without signing in. Source operations, repair queues,
-          publication checks, and future download controls require manager verification.
+          publication checks, and future download controls require a named manager invite.
         </span>
         <form onSubmit={(event) => void submit(event)}>
-          <label htmlFor="manager-code">Access code</label>
+          <label htmlFor="manager-email">Manager email</label>
+          <input
+            autoComplete="email"
+            id="manager-email"
+            inputMode="email"
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="name@organization.com"
+            type="email"
+            value={email}
+          />
+          <label htmlFor="manager-code">Invite code</label>
           <input
             autoComplete="one-time-code"
             id="manager-code"
             onChange={(event) => setCode(event.target.value)}
-            placeholder="Enter manager code"
+            placeholder="Enter invite code"
             type="password"
             value={code}
           />
           {error ? <strong role="alert">{error}</strong> : null}
-          <button disabled={!code.trim() || isSubmitting} type="submit">
+          <button disabled={!code.trim() || !email.trim() || isSubmitting} type="submit">
             {isSubmitting ? "Checking" : "Open manager workspace"}
           </button>
         </form>

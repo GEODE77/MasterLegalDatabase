@@ -7,6 +7,6 @@ import { getOpsWorkspaceData } from "@/lib/product/opsWorkspace";
 export const dynamic = "force-dynamic";
 
 export default async function ManagerPublishPage(): Promise<ReactElement> {
-  await requireManagerVerification();
-  return <OpsWorkspace data={getOpsWorkspaceData()} view="publish" />;
+  const manager = await requireManagerVerification();
+  return <OpsWorkspace data={getOpsWorkspaceData()} manager={manager} view="publish" />;
 }

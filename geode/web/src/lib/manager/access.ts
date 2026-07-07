@@ -1,13 +1,22 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-const MANAGER_COOKIE = "geode.manager.verified";
+import { readManagerSession, type ManagerSession } from "@/lib/manager/store";
 
-export async function requireManagerVerification(): Promise<void> {
+const MANAGER_COOKIE = "geode.manager.session";
+
+export async function requireManagerVerification(): Promise<ManagerSession> {
   const cookieStore = await cookies();
-  const verified = cookieStore.get(MANAGER_COOKIE)?.value === "1";
+  let session: ManagerSession | null = null;
+  try {
+    session = readManagerSession(cookieStore.get(MANAGER_COOKIE)?.value);
+  } catch {
+    session = null;
+  }
 
-  if (!verified) {
+  if (!session) {
     redirect("/manager/verify");
   }
+
+  return session;
 }

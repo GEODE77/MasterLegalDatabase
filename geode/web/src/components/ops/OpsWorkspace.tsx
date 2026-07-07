@@ -5,6 +5,10 @@ import type { OpsLayer, OpsQueueItem, OpsSource, OpsWorkspaceData } from "@/lib/
 
 type OpsWorkspaceProps = {
   data: OpsWorkspaceData;
+  manager?: {
+    name: string;
+    role: string;
+  };
   view:
     | "ask"
     | "explorer"
@@ -23,10 +27,17 @@ const PRIMARY_LINKS = [
   { href: "/manager/publish", label: "Publication Readiness" },
 ];
 
-export function OpsWorkspace({ data, view }: OpsWorkspaceProps): ReactElement {
+export function OpsWorkspace({ data, manager, view }: OpsWorkspaceProps): ReactElement {
   return (
     <main className="ops-page">
-      {view === "home" ? <HomeView data={data} /> : null}
+      {manager ? (
+        <section className="ops-manager-strip" aria-label="Verified manager">
+          <span>Verified manager</span>
+          <strong>{manager.name}</strong>
+          <p>{manager.role}</p>
+        </section>
+      ) : null}
+      {view === "home" ? <HomeView data={data} manager={manager} /> : null}
       {view === "sources" ? <SourcesView sources={data.sources} summary={data.summary} /> : null}
       {view === "review" ? <ReviewView queue={data.queue} /> : null}
       {view === "explorer" ? <ExplorerView layers={data.layers} /> : null}
@@ -38,7 +49,13 @@ export function OpsWorkspace({ data, view }: OpsWorkspaceProps): ReactElement {
   );
 }
 
-function HomeView({ data }: { data: OpsWorkspaceData }): ReactElement {
+function HomeView({
+  data,
+  manager,
+}: {
+  data: OpsWorkspaceData;
+  manager?: OpsWorkspaceProps["manager"];
+}): ReactElement {
   const currentSources = data.sources.filter((source) => source.status === "no_change_detected").length;
 
   return (
@@ -49,7 +66,7 @@ function HomeView({ data }: { data: OpsWorkspaceData }): ReactElement {
           <h2>One quiet place for verified managers to keep the legal corpus current, reviewable, and usable.</h2>
         </div>
         <div className="ops-hero-panel">
-          <span>Current recommendation</span>
+          <span>{manager ? `Signed in as ${manager.name} - ${manager.role}` : "Current recommendation"}</span>
           <p>{data.summary.nextRecommendation}</p>
         </div>
       </section>
