@@ -16077,3 +16077,17 @@ body {
 .forum-page .new-thread-button:hover {
   border-color: #000 !important;
 }
+
+.forum-page .forum-search:hover,
+.forum-page .forum-search:focus-within,
+.forum-page .thread-row:hover,
+.forum-page .thread-row:active {
+  background: #fff !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+}
+
+.forum-page .thread-row:hover::after,
+.forum-page .thread-row:hover::before {
+  opacity: 0 !important;
+}
