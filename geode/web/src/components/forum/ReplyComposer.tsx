@@ -25,6 +25,10 @@ export function ReplyComposer({ onCreated, parentId = null, threadId }: ReplyCom
   const { showToast } = useUndoToast();
   const draftSavedAt = useDraftAutosave(draftKey, body);
   const bodyError = body.trim().length >= 8 ? "" : "Add at least 8 characters before replying.";
+  const composerTitle = parentId ? "Reply to this record note" : "Add a record reply";
+  const composerId = parentId ? undefined : "reply-composer";
+  const validationId = `reply-validation-${parentId ?? "root"}`;
+  const draftStatusId = `reply-draft-status-${parentId ?? "root"}`;
 
   async function submit(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
@@ -66,23 +70,31 @@ export function ReplyComposer({ onCreated, parentId = null, threadId }: ReplyCom
   }
 
   return (
-    <form className="reply-composer" id="reply-composer" onSubmit={(event) => void submit(event)}>
+    <form
+      className={`reply-composer${parentId ? " reply-composer-nested" : " reply-composer-primary"}`}
+      id={composerId}
+      onSubmit={(event) => void submit(event)}
+    >
+      <div className="reply-composer-heading">
+        <strong>{composerTitle}</strong>
+        <span>Evidence, citation, practical impact, or a clear concern.</span>
+      </div>
       <textarea
         aria-label="Reply"
-        aria-describedby="reply-validation reply-draft-status"
+        aria-describedby={`${validationId} ${draftStatusId}`}
         aria-invalid={touched && Boolean(bodyError)}
         onBlur={() => setTouched(true)}
         onChange={(event) => setBody(event.target.value)}
-        placeholder="Add evidence, interpretation, or a field lesson."
+        placeholder="Add a concise record note."
         rows={4}
         value={body}
       />
       {touched ? (
-        <span className={bodyError ? "field-validation is-error" : "field-validation is-valid"} id="reply-validation">
+        <span className={bodyError ? "field-validation is-error" : "field-validation is-valid"} id={validationId}>
           {bodyError || "Looks good."}
         </span>
       ) : null}
-      {draftSavedAt ? <span className="draft-status" id="reply-draft-status">Draft saved {draftSavedAt}</span> : null}
+      {draftSavedAt ? <span className="draft-status" id={draftStatusId}>Draft saved {draftSavedAt}</span> : null}
       <div className="reply-composer-footer">
         <span>Replying as {profile.derived.displayName}</span>
         <button disabled={isSaving || Boolean(bodyError)} type="submit">
