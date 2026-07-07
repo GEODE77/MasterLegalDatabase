@@ -40,6 +40,10 @@ export function readOrCreateSnapshot(userId: string): PersonalizationSnapshot {
   return migrateSnapshot(raw, userId);
 }
 
+export function createTransientSnapshot(userId: string): PersonalizationSnapshot {
+  return createDefaultSnapshot(userId);
+}
+
 export function updatePreferences(
   userId: string,
   update: PersonalizationPreferenceUpdate,

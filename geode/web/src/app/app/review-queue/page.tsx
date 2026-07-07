@@ -5,6 +5,6 @@ import { getOpsWorkspaceData } from "@/lib/product/opsWorkspace";
 
 export const dynamic = "force-dynamic";
 
-export default function AppDashboardPage(): ReactElement {
-  return <OpsWorkspace data={getOpsWorkspaceData()} view="home" />;
+export default function ReviewQueuePage(): ReactElement {
+  return <OpsWorkspace data={getOpsWorkspaceData()} view="review" />;
 }

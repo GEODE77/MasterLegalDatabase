@@ -5,7 +5,7 @@ import type { ReactElement, ReactNode } from "react";
 import { PersonalizationProvider } from "@/providers/PersonalizationProvider";
 import { ProgressivePromptProvider } from "@/providers/ProgressivePromptProvider";
 import { UndoToastProvider } from "@/providers/UndoToastProvider";
-import { readOrCreateSnapshot, resolveUserId } from "@/lib/personalization/server";
+import { createTransientSnapshot, readOrCreateSnapshot, resolveUserId } from "@/lib/personalization/server";
 import { ProductChrome } from "@/components/navigation/ProductChrome";
 import { RouteMotionProvider } from "@/components/navigation/RouteMotionProvider";
 import { AtmosphericLayer } from "@/components/atmosphere/AtmosphericLayer";
@@ -17,14 +17,17 @@ export const metadata: Metadata = {
   description: "Project Geode frontend reset scaffold"
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({
   children
 }: Readonly<{
   children: ReactNode;
 }>): Promise<ReactElement> {
   const requestHeaders = await headers();
-  const userId = resolveUserId(requestHeaders.get("x-geode-user-id"));
-  const initialSnapshot = readOrCreateSnapshot(userId);
+  const userIdHeader = requestHeaders.get("x-geode-user-id");
+  const userId = userIdHeader ? resolveUserId(userIdHeader) : "build-preview";
+  const initialSnapshot = userIdHeader ? readOrCreateSnapshot(userId) : createTransientSnapshot(userId);
 
   return (
     <html lang="en">

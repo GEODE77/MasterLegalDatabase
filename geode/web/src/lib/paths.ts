@@ -1,7 +1,9 @@
 import path from "node:path";
 
 export const GEODE_WEB_ROOT = process.cwd();
-export const REPOSITORY_ROOT = path.resolve(GEODE_WEB_ROOT, "..", "..");
+export const REPOSITORY_ROOT = process.env.GEODE_REPOSITORY_ROOT
+  ? path.resolve(process.env.GEODE_REPOSITORY_ROOT)
+  : path.resolve(GEODE_WEB_ROOT, "..", "..");
 
 export const CONTROL_PLANE_DIR = path.join(REPOSITORY_ROOT, "_CONTROL_PLANE");
 export const MASTER_MANIFEST_PATH = path.join(CONTROL_PLANE_DIR, "MASTER_MANIFEST.json");

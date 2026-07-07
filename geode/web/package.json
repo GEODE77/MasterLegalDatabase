@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
+    "build:off-onedrive": "node scripts/build-off-onedrive.mjs",
     "lint": "eslint . --max-warnings=0",
     "format": "prettier --write ."
   },

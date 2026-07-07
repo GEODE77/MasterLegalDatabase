@@ -32,19 +32,14 @@ type PageMeta = {
 const EXEMPT_ROUTES = ["/", "/about", "/pricing", "/trust", "/sign-in", "/onboarding"];
 
 const DESTINATIONS: Destination[] = [
-  { href: "/app/dashboard", key: "dashboard", label: "Dashboard" },
-  { href: "/app/explore", key: "explore", label: "Explore" },
-  { href: "/app/impact", key: "impact", label: "Impact" },
-  { href: "/app/requirements", key: "requirements", label: "Requirements" },
-  { href: "/app/compliance-paths", key: "compliance-paths", label: "Paths" },
-  { href: "/app/relationships", key: "relationships", label: "Relations" },
-  { href: "/app/review", key: "review", label: "Review" },
-  { href: "/app/review-packets", key: "review-packets", label: "Packets" },
-  { href: "/app/reliance-policy", key: "reliance-policy", label: "Policy" },
-  { href: "/app/reviewer-operations", key: "reviewer-operations", label: "Ops" },
-  { href: "/app/updates", key: "updates", label: "Updates" },
-  { href: "/app/system", key: "system", label: "System" },
-  { href: "/app/settings", key: "settings", label: "Settings" },
+  { href: "/app/dashboard", key: "dashboard", label: "Home" },
+  { href: "/app/sources", key: "sources", label: "Sources" },
+  { href: "/app/review-queue", key: "review-queue", label: "Review Queue" },
+  { href: "/app/explore", key: "explore", label: "Explorer" },
+  { href: "/app/relationships", key: "relationships", label: "Relationships" },
+  { href: "/app/timeline", key: "timeline", label: "Timeline" },
+  { href: "/app/ask", key: "ask", label: "Ask Geode" },
+  { href: "/app/publish", key: "publish", label: "Publish" },
 ];
 
 const PAGE_META: Record<string, PageMeta> = {
@@ -57,9 +52,14 @@ const PAGE_META: Record<string, PageMeta> = {
     title: "Activity",
   },
   dashboard: {
-    action: { href: "/app/explore", label: "Explore" },
-    description: "Current signals, source coverage, and primary workflows.",
-    title: "Dashboard",
+    action: { href: "/app/sources", label: "Check sources" },
+    description: "Source status, review work, search, relationships, and publication readiness.",
+    title: "Home",
+  },
+  ask: {
+    action: { href: "/app/ask", label: "Ask" },
+    description: "Question surface grounded in citations and freshness warnings.",
+    title: "Ask Geode",
   },
   "compliance-paths": {
     action: { href: "/app/compliance-paths", label: "Build path" },
@@ -68,8 +68,8 @@ const PAGE_META: Record<string, PageMeta> = {
   },
   explore: {
     action: { href: "/app/explore", label: "Browse" },
-    description: "Source text, relationships, citations, and candidate requirements.",
-    title: "Explore",
+    description: "Search and browse the legal corpus by layer, citation, agency, and topic.",
+    title: "Explorer",
   },
   forum: {
     action: { href: "/forum", label: "Start a thread" },
@@ -130,8 +130,13 @@ const PAGE_META: Record<string, PageMeta> = {
   },
   relationships: {
     action: { href: "/app/relationships", label: "Check health" },
-    description: "Crosswalk coverage and graph-readiness boundaries.",
-    title: "Relationship Health",
+    description: "Crosswalks, maps, and connected legal authority.",
+    title: "Relationships",
+  },
+  "review-queue": {
+    action: { href: "/app/review-queue", label: "Open queue" },
+    description: "Blocked source files, repair work, and human review.",
+    title: "Review Queue",
   },
   settings: {
     description: "Profile, notifications, data, and account controls.",
@@ -141,6 +146,21 @@ const PAGE_META: Record<string, PageMeta> = {
     action: { href: "/app/system", label: "Check system" },
     description: "Retrieval, freshness, diff, production controls, and remaining work.",
     title: "System Readiness",
+  },
+  publish: {
+    action: { href: "/app/publish", label: "Check release" },
+    description: "Git, safety checks, blockers, and public release readiness.",
+    title: "Publish",
+  },
+  sources: {
+    action: { href: "/app/sources", label: "Check sources" },
+    description: "Official source freshness, live probes, and guarded downloads.",
+    title: "Sources",
+  },
+  timeline: {
+    action: { href: "/app/timeline", label: "View timeline" },
+    description: "Source checks, downloads, audits, and publication events.",
+    title: "Timeline",
   },
   trust: {
     description: "Security, privacy, data handling, and compliance posture.",
