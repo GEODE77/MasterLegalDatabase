@@ -30,8 +30,14 @@ export function ManagerAdminScreen({
 }: ManagerAdminScreenProps): ReactElement {
   const [state, setState] = useState<AdminState>({ accounts, activity });
   const [inviteResult, setInviteResult] = useState<InviteResult | null>(null);
+  const [activityFilter, setActivityFilter] = useState("all");
   const [message, setMessage] = useState("");
   const [isWorking, setIsWorking] = useState(false);
+  const filteredActivity =
+    activityFilter === "all"
+      ? state.activity
+      : state.activity.filter((event) => event.action === activityFilter);
+  const activityActions = Array.from(new Set(state.activity.map((event) => event.action))).sort();
 
   async function refreshAccounts(): Promise<void> {
     const response = await fetch("/api/manager/accounts", { cache: "no-store" });
@@ -157,9 +163,28 @@ export function ManagerAdminScreen({
               Export audit file
             </a>
           </header>
+          <div className="manager-activity-filters" aria-label="Activity filters">
+            <button
+              className={activityFilter === "all" ? "is-active" : ""}
+              onClick={() => setActivityFilter("all")}
+              type="button"
+            >
+              All
+            </button>
+            {activityActions.map((action) => (
+              <button
+                className={activityFilter === action ? "is-active" : ""}
+                key={action}
+                onClick={() => setActivityFilter(action)}
+                type="button"
+              >
+                {action.replaceAll("_", " ")}
+              </button>
+            ))}
+          </div>
           <div className="manager-activity-list">
-            {state.activity.length ? (
-              state.activity.map((event) => (
+            {filteredActivity.length ? (
+              filteredActivity.map((event) => (
                 <article key={`${event.managerId}-${event.action}-${event.occurredAt}`}>
                   <strong>{event.action.replaceAll("_", " ")}</strong>
                   <p>{event.managerName}</p>

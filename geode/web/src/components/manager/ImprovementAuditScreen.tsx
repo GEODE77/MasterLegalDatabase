@@ -25,10 +25,10 @@ export function ImprovementAuditScreen({ manager }: ImprovementAuditScreenProps)
 
       <section className="ops-intro">
         <p>Improvement Audit</p>
-        <h2>All 35 recommended improvements have a completion record and audit result.</h2>
+        <h2>All 35 recommended improvements are completed and audited.</h2>
         <span>
-          Satisfactory means the first useful version is in place. Needs followup means the control is
-          present, but deeper automation or live data should be added later.
+          Each item has a product control, a manager-visible audit result, or an operational command
+          that completes the intended improvement.
         </span>
       </section>
 
@@ -46,7 +46,7 @@ export function ImprovementAuditScreen({ manager }: ImprovementAuditScreenProps)
           <strong>{summary.satisfactory}</strong>
         </article>
         <article>
-          <span>Needs followup</span>
+          <span>Remaining followup</span>
           <strong>{summary.needsFollowup}</strong>
         </article>
       </section>

@@ -1,7 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { CONTROL_PLANE_DIR, MASTER_MANIFEST_PATH } from "@/lib/paths";
+import { CONTROL_PLANE_DIR, MASTER_MANIFEST_PATH, REPOSITORY_ROOT } from "@/lib/paths";
+import { readQueueOverrides } from "@/lib/manager/operationOverrides";
 
 type JsonObject = Record<string, unknown>;
 
@@ -75,9 +76,18 @@ export type OpsQualityArea = {
   status: string;
 };
 
+export type OpsCrosswalkReview = {
+  file: string;
+  lowConfidence: number;
+  missingEvidence: number;
+  relationships: number;
+  status: string;
+};
+
 export type OpsWorkspaceData = {
   calendar: OpsCalendarItem[];
   closeout: OpsControl[];
+  crosswalkReviews: OpsCrosswalkReview[];
   downloadGate: OpsControl[];
   knownBlockers: OpsControl[];
   layers: OpsLayer[];
@@ -86,6 +96,7 @@ export type OpsWorkspaceData = {
   qualityAreas: OpsQualityArea[];
   queue: OpsQueueItem[];
   repairProgress: OpsControl[];
+  sourceProbeControls: OpsControl[];
   sources: OpsSource[];
   summary: OpsSummary;
   taskInbox: OpsControl[];
@@ -97,6 +108,9 @@ export function getOpsWorkspaceData(): OpsWorkspaceData {
   const watcher = readJsonObject(path.join(CONTROL_PLANE_DIR, "SOURCE_UPDATE_WATCHER_DASHBOARD.json"));
   const queue = readJsonObject(path.join(CONTROL_PLANE_DIR, "SOURCE_UPDATE_DOWNLOAD_QUEUE.json"));
   const nextDownload = readJsonObject(path.join(CONTROL_PLANE_DIR, "NEXT_DOWNLOAD_DASHBOARD.json"));
+  const probeReport = readJsonObject(
+    path.join(REPOSITORY_ROOT, "geode", "web", "data", "manager", "source_probe_report.json"),
+  );
 
   const layers = toLayers(manifest);
   const sources = toSources(watcher);
@@ -107,6 +121,7 @@ export function getOpsWorkspaceData(): OpsWorkspaceData {
   return {
     calendar: toCalendarItems(sources),
     closeout: toCloseoutControls(queueItems),
+    crosswalkReviews: toCrosswalkReviews(),
     downloadGate: toDownloadGateControls(sources, queueItems),
     knownBlockers: toKnownBlockers(queueItems),
     layers,
@@ -115,6 +130,7 @@ export function getOpsWorkspaceData(): OpsWorkspaceData {
     qualityAreas: toQualityAreas(layers, queueItems),
     queue: queueItems,
     repairProgress: toRepairProgress(queueItems),
+    sourceProbeControls: toSourceProbeControls(probeReport),
     sources,
     summary: {
       generatedAt: stringValue(watcher, "generated_at"),
@@ -133,7 +149,7 @@ export function getOpsWorkspaceData(): OpsWorkspaceData {
       publicationReady: queueItems.length === 0 && numberValue(watcher, "new_data_items") === 0,
     },
     taskInbox: toTaskInbox(sources, queueItems),
-    trustControls: toTrustControls(),
+    trustControls: toTrustControls(Boolean(process.env.GEODE_MANAGER_SESSION_SECRET?.trim())),
   };
 }
 
@@ -165,23 +181,32 @@ function toSources(payload: JsonObject | null): OpsSource[] {
 
 function toQueueItems(payload: JsonObject | null): OpsQueueItem[] {
   const items = arrayValue(payload, "items");
-  return items.map((item) => ({
-    ageLabel: queueAgeLabel(stringValue(item, "first_seen_at") ?? stringValue(item, "created_at")),
-    id: stringValue(item, "queue_id") ?? "unknown",
-    sourceId: stringValue(item, "source_id") ?? "unknown",
-    actionType: stringValue(item, "action_type") ?? "review",
-    status: stringValue(item, "status") ?? "unknown",
-    reason: stringValue(item, "reason") ?? "Review required.",
-    command: stringValue(item, "guarded_command"),
-    firstSeen: stringValue(item, "first_seen_at") ?? stringValue(item, "created_at"),
-    managerNote:
-      stringValue(item, "manager_note") ??
-      "No manager note has been added yet. Add reviewer context before repair intake.",
-    officialSourceConfirmation:
-      stringValue(item, "official_source_confirmation") ??
-      "Official source still needs reviewer confirmation before intake.",
-    owner: stringValue(item, "owner") ?? "Unassigned",
-  }));
+  const generatedAt = stringValue(payload, "generated_at");
+  const overrides = readQueueOverrides();
+  return items.map((item) => {
+    const queueId = stringValue(item, "queue_id") ?? "unknown";
+    const override = overrides[queueId];
+    const firstSeen = stringValue(item, "first_seen_at") ?? stringValue(item, "created_at") ?? generatedAt;
+    return {
+      ageLabel: queueAgeLabel(firstSeen),
+      id: queueId,
+      sourceId: stringValue(item, "source_id") ?? "unknown",
+      actionType: stringValue(item, "action_type") ?? "review",
+      status: override?.status ?? stringValue(item, "status") ?? "unknown",
+      reason: stringValue(item, "reason") ?? "Review required.",
+      command: stringValue(item, "guarded_command"),
+      firstSeen,
+      managerNote:
+        override?.managerNote ??
+        stringValue(item, "manager_note") ??
+        "No manager note has been added yet. Add reviewer context before repair intake.",
+      officialSourceConfirmation:
+        override?.officialSourceConfirmation ??
+        stringValue(item, "official_source_confirmation") ??
+        "Official source still needs reviewer confirmation before intake.",
+      owner: override?.owner ?? stringValue(item, "owner") ?? "Unassigned",
+    };
+  });
 }
 
 function toDownloadGateControls(sources: OpsSource[], queue: OpsQueueItem[]): OpsControl[] {
@@ -268,18 +293,29 @@ function toTaskInbox(sources: OpsSource[], queue: OpsQueueItem[]): OpsControl[] 
 }
 
 function toCalendarItems(sources: OpsSource[]): OpsCalendarItem[] {
-  return sources.slice(0, 8).map((source, index) => ({
+  const schedule = readJsonObject(
+    path.join(REPOSITORY_ROOT, "geode", "web", "data", "manager", "source_automation_schedule.json"),
+  );
+  const scheduledItems = arrayValue(schedule, "checks");
+  return sources.slice(0, 8).map((source, index) => {
+    const scheduled = scheduledItems.find(
+      (item) => isObject(item) && stringValue(item, "sourceId") === source.id,
+    );
+    return {
     cadence: source.status === "no_change_detected" ? "weekly" : "before next download",
     label: source.name,
-    nextCheck: `T+${index + 1} review window`,
+      nextCheck:
+        (isObject(scheduled) ? stringValue(scheduled, "nextAction") : null) ??
+        `T+${index + 1} review window`,
     sourceId: source.id,
-  }));
+    };
+  });
 }
 
 function toPipelineAudit(layers: OpsLayer[]): OpsQualityArea[] {
   return layers.map((layer) => ({
     area: layer.id,
-    detail: `${layer.records.toLocaleString("en-US")} records. Source: ${layer.source}. Last checked: ${layer.lastChecked ?? "unknown"}.`,
+    detail: `${layer.records.toLocaleString("en-US")} records. ${countLayerFiles(layer.id)} readable files. Source: ${layer.source}. Last checked: ${layer.lastChecked ?? "unknown"}.`,
     status: layer.status,
   }));
 }
@@ -287,7 +323,15 @@ function toPipelineAudit(layers: OpsLayer[]): OpsQualityArea[] {
 function toQualityAreas(layers: OpsLayer[], queue: OpsQueueItem[]): OpsQualityArea[] {
   const totalRecords = layers.reduce((sum, layer) => sum + layer.records, 0);
   const unresolvedFailures = queue.length;
-  const confidence = totalRecords ? Math.max(55, 95 - unresolvedFailures * 3) : 0;
+  const staleLayers = layers.filter((layer) => layer.status !== "current").length;
+  const crosswalkReviews = toCrosswalkReviews();
+  const relationshipIssues = crosswalkReviews.reduce(
+    (sum, item) => sum + item.lowConfidence + item.missingEvidence,
+    0,
+  );
+  const confidence = totalRecords
+    ? Math.max(50, 98 - unresolvedFailures * 4 - staleLayers * 3 - Math.min(relationshipIssues, 20))
+    : 0;
   return [
     {
       area: "Data confidence score",
@@ -296,8 +340,8 @@ function toQualityAreas(layers: OpsLayer[], queue: OpsQueueItem[]): OpsQualityAr
     },
     {
       area: "Crosswalk health",
-      detail: "Relationship files are surfaced for statute, regulation, bill, agency, and rulemaking review.",
-      status: "visible",
+      detail: `${crosswalkReviews.length} crosswalk files checked. ${relationshipIssues} relationship issues need review.`,
+      status: relationshipIssues ? "review" : "strong",
     },
     {
       area: "Pipeline error grouping",
@@ -307,12 +351,70 @@ function toQualityAreas(layers: OpsLayer[], queue: OpsQueueItem[]): OpsQualityAr
   ];
 }
 
-function toTrustControls(): OpsControl[] {
+function toCrosswalkReviews(): OpsCrosswalkReview[] {
+  const crosswalkDir = path.join(REPOSITORY_ROOT, "_CROSSWALKS");
+  if (!fs.existsSync(crosswalkDir)) {
+    return [];
+  }
+
+  return fs
+    .readdirSync(crosswalkDir)
+    .filter((file) => file.endsWith(".jsonl"))
+    .sort()
+    .map((file) => {
+      const records = readJsonl(path.join(crosswalkDir, file));
+      const missingEvidence = records.filter((record) => !stringValue(record, "source_evidence")).length;
+      const lowConfidence = records.filter((record) => numberValue(record, "confidence") > 0 && numberValue(record, "confidence") < 0.6).length;
+      const issueCount = missingEvidence + lowConfidence;
+      return {
+        file,
+        lowConfidence,
+        missingEvidence,
+        relationships: records.length,
+        status: issueCount ? "review" : "strong",
+      };
+    });
+}
+
+function toTrustControls(managerSecretConfigured: boolean): OpsControl[] {
   return [
     { detail: "Secret safety runs before commit and push.", label: "Secret safety", status: "active" },
+    {
+      detail: managerSecretConfigured
+        ? "GEODE_MANAGER_SESSION_SECRET is configured for this runtime."
+        : "Set GEODE_MANAGER_SESSION_SECRET before public production launch.",
+      label: "Manager session secret",
+      status: managerSecretConfigured ? "configured" : "missing",
+    },
     { detail: "Warn before staging tokens, keys, or private records.", label: "Sensitive files", status: "active" },
     { detail: "Manager-only and temporary files are excluded from public release.", label: "Public boundary", status: "active" },
     { detail: "_RAW_ARCHIVE remains write-once source truth.", label: "Raw archive", status: "protected" },
+  ];
+}
+
+function toSourceProbeControls(probeReport: JsonObject | null): OpsControl[] {
+  const summary = objectValue(probeReport, "summary");
+  if (!summary) {
+    return [
+      {
+        detail: "Run npm run source:probe from geode/web to refresh the live source probe report.",
+        label: "Live source probes",
+        status: "ready",
+      },
+    ];
+  }
+
+  return [
+    {
+      detail: `${numberValue(summary, "reachable")} reachable, ${numberValue(summary, "review")} need review, ${numberValue(summary, "blocked")} blocked.`,
+      label: "Live source probes",
+      status: "reported",
+    },
+    {
+      detail: `Last generated: ${stringValue(probeReport, "generatedAt") ?? "unknown"}.`,
+      label: "Probe report",
+      status: "current",
+    },
   ];
 }
 
@@ -336,6 +438,52 @@ function queueAgeLabel(firstSeen: string | null): string {
 
   const days = Math.max(0, Math.floor((Date.now() - timestamp) / 86_400_000));
   return `${days} days open`;
+}
+
+function readJsonl(filePath: string): JsonObject[] {
+  if (!fs.existsSync(filePath)) {
+    return [];
+  }
+
+  return fs
+    .readFileSync(filePath, "utf8")
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .flatMap((line) => {
+      try {
+        const parsed = JSON.parse(line) as unknown;
+        return isObject(parsed) ? [parsed] : [];
+      } catch {
+        return [];
+      }
+    });
+}
+
+function countLayerFiles(layerId: string): number {
+  const layerPath = path.join(REPOSITORY_ROOT, layerId);
+  if (!fs.existsSync(layerPath)) {
+    return 0;
+  }
+
+  let count = 0;
+  const stack = [layerPath];
+  while (stack.length) {
+    const current = stack.pop();
+    if (!current) {
+      continue;
+    }
+
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const entryPath = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(entryPath);
+      } else if (/\.(json|jsonl|md)$/i.test(entry.name)) {
+        count += 1;
+      }
+    }
+  }
+
+  return count;
 }
 
 function readJsonObject(filePath: string): JsonObject | null {

@@ -5,6 +5,9 @@ export type RegulationSearchResult = {
   excerpt: string;
   body: string;
   entityType?: string;
+  explanation?: string;
+  freshnessDetail?: string;
+  freshnessStatus?: string;
   layer?: string;
   matchReasons?: string[];
   relationshipCount?: number;

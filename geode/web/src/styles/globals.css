@@ -15181,6 +15181,29 @@ body {
   border-top: 1px solid #d8d8d8;
 }
 
+.manager-activity-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.manager-activity-filters button {
+  min-height: 34px;
+  border: 1px solid #b8b8b8;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  font-size: 12px;
+  font-weight: 650;
+  padding: 7px 10px;
+}
+
+.manager-activity-filters button.is-active {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+
 .manager-activity-list article,
 .manager-account-table article {
   display: grid;
@@ -15220,6 +15243,56 @@ body {
 
 .manager-access-reasons {
   grid-column: 1 / -1;
+}
+
+.regulation-card-freshness {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.manager-queue-editor {
+  display: grid;
+  gap: 10px;
+  grid-column: 1 / -1;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 12px;
+}
+
+.manager-queue-editor label {
+  display: grid;
+  gap: 6px;
+  color: #4a4a4a;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.manager-queue-editor input,
+.manager-queue-editor select,
+.manager-queue-editor textarea {
+  width: 100%;
+  border: 1px solid #b8b8b8;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  padding: 10px 12px;
+}
+
+.manager-queue-editor button {
+  width: fit-content;
+  min-height: 38px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 650;
+  padding: 8px 12px;
+}
+
+.manager-queue-editor p {
+  margin: 0;
 }
 
 .landing-public-actions {

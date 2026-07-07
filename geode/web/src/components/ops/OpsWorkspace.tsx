@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactElement, ReactNode } from "react";
 
+import { ManagerQueueEditor } from "@/components/manager/ManagerQueueEditor";
 import type { OpsLayer, OpsQueueItem, OpsSource, OpsWorkspaceData } from "@/lib/product/opsWorkspace";
 
 type OpsWorkspaceProps = {
@@ -42,7 +43,7 @@ export function OpsWorkspace({ data, manager, view }: OpsWorkspaceProps): ReactE
       {view === "sources" ? <SourcesView data={data} /> : null}
       {view === "review" ? <ReviewView data={data} /> : null}
       {view === "explorer" ? <ExplorerView layers={data.layers} /> : null}
-      {view === "relationships" ? <RelationshipsView /> : null}
+      {view === "relationships" ? <RelationshipsView data={data} /> : null}
       {view === "timeline" ? <TimelineView data={data} /> : null}
       {view === "ask" ? <AskView /> : null}
       {view === "publish" ? <PublishView data={data} /> : null}
@@ -163,6 +164,11 @@ function SourcesView({ data }: { data: OpsWorkspaceData }): ReactElement {
         <Panel title="Download Approval Gate" eyebrow="Before download">
           <ControlList items={data.downloadGate} />
         </Panel>
+        <Panel title="Live Source Probes" eyebrow="Automation">
+          <ControlList items={data.sourceProbeControls} />
+        </Panel>
+      </section>
+      <section className="ops-two-column">
         <Panel title="Source Operations Calendar" eyebrow="Next checks">
           <div className="ops-list">
             {data.calendar.slice(0, 6).map((item) => (
@@ -237,7 +243,7 @@ function ExplorerView({ layers }: { layers: OpsLayer[] }): ReactElement {
   );
 }
 
-function RelationshipsView(): ReactElement {
+function RelationshipsView({ data }: { data: OpsWorkspaceData }): ReactElement {
   return (
     <>
       <Intro
@@ -252,6 +258,22 @@ function RelationshipsView(): ReactElement {
         <div>Rulemaking</div>
         <div>Agencies</div>
       </section>
+      <Panel title="Crosswalk Review" eyebrow={`${data.crosswalkReviews.length} files`}>
+        <div className="ops-list">
+          {data.crosswalkReviews.map((item) => (
+            <article key={item.file}>
+              <div>
+                <strong>{item.file}</strong>
+                <p>
+                  {item.relationships.toLocaleString("en-US")} relationships. {item.missingEvidence} missing
+                  evidence. {item.lowConfidence} low-confidence.
+                </p>
+              </div>
+              <Status value={item.status} />
+            </article>
+          ))}
+        </div>
+      </Panel>
     </>
   );
 }
@@ -424,6 +446,7 @@ function QueueList({ items }: { items: OpsQueueItem[] }): ReactElement {
             <p>{item.officialSourceConfirmation}</p>
           </div>
           <Status value={item.status} />
+          <ManagerQueueEditor item={item} />
         </article>
       ))}
     </div>

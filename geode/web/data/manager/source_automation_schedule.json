@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "checks": [
+    {
+      "sourceId": "ccr",
+      "cadence": "weekly",
+      "nextAction": "Probe the official CCR listing and compare the observed marker."
+    },
+    {
+      "sourceId": "colorado_register",
+      "cadence": "twice monthly",
+      "nextAction": "Probe the Colorado Register home page after each expected issue window."
+    },
+    {
+      "sourceId": "colorado_edocket",
+      "cadence": "weekly",
+      "nextAction": "Probe eDocket availability and mark manual review if terminal access is blocked."
+    },
+    {
+      "sourceId": "executive_orders",
+      "cadence": "monthly",
+      "nextAction": "Probe the Governor executive orders listing and preserve known blocked items."
+    },
+    {
+      "sourceId": "coprrr",
+      "cadence": "quarterly",
+      "nextAction": "Probe COPRRR review listings for new report markers."
+    },
+    {
+      "sourceId": "ag_opinions",
+      "cadence": "monthly",
+      "nextAction": "Probe Attorney General opinions listings for new published opinions."
+    },
+    {
+      "sourceId": "legiscan",
+      "cadence": "weekly during session",
+      "nextAction": "Run API refresh only after secret safety and download approval checks pass."
+    }
+  ]
+}

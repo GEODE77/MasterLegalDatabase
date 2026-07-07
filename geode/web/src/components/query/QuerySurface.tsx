@@ -312,9 +312,11 @@ function ResearchNote({ phase, query, results }: ResearchNoteProps): ReactElemen
                   <span>{result.title}</span>
                 )}
                 .{" "}
-                {result.matchReasons?.length ? (
-                  <span className="reference-reasons">{result.matchReasons.join(" ")}</span>
-                ) : null}{" "}
+                <span className="reference-reasons">
+                  {result.explanation ?? result.matchReasons?.join(" ") ?? "Matched the local Geode index."}
+                  {" "}Freshness: {result.freshnessStatus?.replaceAll("_", " ") ?? "unknown"}.
+                  {result.freshnessDetail ? ` ${result.freshnessDetail}` : ""}
+                </span>{" "}
                 {result.sourceUrl ? <a href={result.sourceUrl}>Official source.</a> : "Source archived in Geode."}
               </li>
             ))}
@@ -359,6 +361,7 @@ function CitationMark({ index, result }: { index: number; result: RegulationSear
           <span>{result.title}</span>
           <small>{cleanExcerpt(result.excerpt)}</small>
           {result.relationshipCount ? <small>{result.relationshipCount} related links</small> : null}
+          {result.freshnessStatus ? <small>Freshness: {result.freshnessStatus.replaceAll("_", " ")}</small> : null}
           {result.matchReasons?.length ? <small>{result.matchReasons[0]}</small> : null}
         </span>
       </button>
