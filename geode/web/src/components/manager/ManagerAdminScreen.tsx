@@ -148,9 +148,14 @@ export function ManagerAdminScreen({
         </form>
 
         <section className="manager-activity-panel">
-          <header>
-            <span>Recent activity</span>
-            <h3>Review history</h3>
+          <header className="manager-activity-header">
+            <div>
+              <span>Recent activity</span>
+              <h3>Review history</h3>
+            </div>
+            <a className="manager-export-link" href="/api/manager/accounts/export">
+              Export audit file
+            </a>
           </header>
           <div className="manager-activity-list">
             {state.activity.length ? (

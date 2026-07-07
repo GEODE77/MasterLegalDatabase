@@ -15075,6 +15075,11 @@ body {
   gap: 5px;
 }
 
+.manager-activity-header {
+  align-items: start;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
 .manager-admin-form header span,
 .manager-activity-panel header span,
 .manager-account-table header span,
@@ -15121,7 +15126,8 @@ body {
 }
 
 .manager-admin-form button,
-.manager-account-table button {
+.manager-account-table button,
+.manager-export-link {
   display: inline-flex;
   min-height: 42px;
   align-items: center;
@@ -15134,6 +15140,7 @@ body {
   font-size: 14px;
   font-weight: 650;
   padding: 10px 14px;
+  text-align: center;
 }
 
 .manager-admin-form button:disabled,
@@ -15237,7 +15244,12 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .manager-account-table button {
+  .manager-activity-header {
+    grid-template-columns: 1fr;
+  }
+
+  .manager-account-table button,
+  .manager-export-link {
     width: 100%;
   }
 }

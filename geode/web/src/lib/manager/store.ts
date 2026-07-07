@@ -119,6 +119,23 @@ export function listManagerAuditEvents(limit = 20): ManagerAuditEvent[] {
   return readManagerHistory().slice(-limit).reverse();
 }
 
+export function listAllManagerAuditEvents(): ManagerAuditEvent[] {
+  return readManagerHistory();
+}
+
+export function recordManagerAuditExport(actor: ManagerSession): void {
+  appendManagerHistory({
+    action: "manager_activity_exported",
+    actorEmail: actor.email,
+    actorId: actor.id,
+    actorName: actor.name,
+    managerEmail: actor.email,
+    managerId: actor.id,
+    managerName: actor.name,
+    occurredAt: new Date().toISOString(),
+  });
+}
+
 export function createManagerInvite(
   input: CreateManagerInviteInput,
   actor: ManagerSession,
