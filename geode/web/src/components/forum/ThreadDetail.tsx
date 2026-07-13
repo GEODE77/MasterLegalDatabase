@@ -68,7 +68,7 @@ export function ThreadDetail({ id }: ThreadDetailProps): ReactElement {
   return (
     <main className="forum-page thread-page">
       <PublicNav current="forum" />
-      <header className="forum-header">
+      <header className="forum-header thread-detail-header">
         <p className="forum-section-label">Forum record</p>
         <Link className="query-back" href="/forum">
           Back to forum
@@ -94,7 +94,6 @@ export function ThreadDetail({ id }: ThreadDetailProps): ReactElement {
               <span>{contributorRank(thread.author, thread.votes)}</span>
               <span>{preciseTime(thread.createdAt)}</span>
               <span>{thread.replies.length} replies</span>
-              <span>{thread.votes} votes</span>
             </div>
             <div className="thread-issue-summary" aria-label="Issue record">
               <span className="issue-type-pill">{issueTypeLabel(thread.issueType)}</span>
@@ -145,7 +144,7 @@ export function ThreadDetail({ id }: ThreadDetailProps): ReactElement {
             <ReplyComposer onCreated={setThread} threadId={thread.id} />
             <section className="reply-section" aria-label="Replies">
               <div className="reply-section-heading">
-                <strong>Replies</strong>
+                <strong>Record replies</strong>
                 <span>{thread.replies.length} on record</span>
               </div>
               {rootReplies.length === 0 ? (
@@ -250,14 +249,20 @@ function ReplyNode({ depth, onThreadChange, reply, thread, vote }: ReplyNodeProp
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
-        <VoteButton
-          count={reply.votes}
-          label="Vote on reply"
-          onVote={(delta) => vote("reply", delta, reply.id)}
-        />
-        <button onClick={() => setIsReplying((value) => !value)} type="button">
-          Reply
-        </button>
+        <div className="reply-actions">
+          <VoteButton
+            count={reply.votes}
+            label="Vote on reply"
+            onVote={(delta) => vote("reply", delta, reply.id)}
+          />
+          <button
+            className="reply-toggle"
+            onClick={() => setIsReplying((value) => !value)}
+            type="button"
+          >
+            {isReplying ? "Close reply" : "Reply"}
+          </button>
+        </div>
         {isReplying ? (
           <ReplyComposer onCreated={onThreadChange} parentId={reply.id} threadId={thread.id} />
         ) : null}

@@ -1,0 +1,347 @@
+{
+  "generated_at": "2026-07-10T22:29:37.171789+00:00",
+  "overall_quality_stage": "needs_review",
+  "local_system_usable": true,
+  "external_reliance_ready": false,
+  "open_system_blockers": [
+    "source_repair_items_open",
+    "named_reviewer_assignments_missing",
+    "live_official_freshness_not_verified"
+  ],
+  "status_values": [
+    "not_started",
+    "in_progress",
+    "collected",
+    "structured",
+    "validated",
+    "needs_review",
+    "trusted"
+  ],
+  "status_meanings": {
+    "not_started": "No usable records are present yet.",
+    "in_progress": "Collection or preparation work has started but is not ready for normal use.",
+    "collected": "Records exist, but indexing or structured support is still incomplete.",
+    "structured": "Records and indexes exist, but source-quality scoring is not complete.",
+    "validated": "Local checks are passing, but external reliance is not yet approved.",
+    "needs_review": "Known gaps, freshness checks, repair work, or human review remain open.",
+    "trusted": "Local checks, freshness review, source support, and human review are complete."
+  },
+  "layer_summary": {
+    "not_started": 0,
+    "in_progress": 0,
+    "collected": 0,
+    "structured": 0,
+    "validated": 0,
+    "needs_review": 7,
+    "trusted": 0
+  },
+  "layers": [
+    {
+      "layer_id": "01_Statutes_CRS",
+      "label": "Colorado Revised Statutes",
+      "path": "01_Statutes_CRS",
+      "record_count": 34717,
+      "quality_stage": "needs_review",
+      "local_use_status": "usable_with_limits",
+      "external_reliance_status": "not_ready_pending_review",
+      "manifest_status": "ready",
+      "local_freshness_status": "fresh",
+      "official_refresh_required": true,
+      "source_strength": {
+        "records_scored": 34717,
+        "level_counts": {
+          "direct_full_text_source": 34715,
+          "official_listing_plus_document": 2
+        },
+        "summary": "source_backed_with_listing_support"
+      },
+      "known_gaps": [
+        "No versioned historical snapshots in machine-readable form."
+      ],
+      "open_repair_items": [],
+      "status_reasons": [
+        "Official live freshness still needs to be checked.",
+        "Known gap: No versioned historical snapshots in machine-readable form."
+      ],
+      "next_actions": [
+        "Confirm current OLLS CRS publication year and archive date.",
+        "Review and close or explicitly accept the known gaps for this layer."
+      ],
+      "evidence_files": [
+        "_CONTROL_PLANE/MASTER_MANIFEST.json",
+        "_CONTROL_PLANE/SOURCE_STRENGTH_REPORT.json",
+        "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
+        "01_Statutes_CRS/_index.jsonl"
+      ]
+    },
+    {
+      "layer_id": "02_Regulations_CCR",
+      "label": "Code of Colorado Regulations",
+      "path": "02_Regulations_CCR",
+      "record_count": 1035,
+      "quality_stage": "needs_review",
+      "local_use_status": "usable_with_limits",
+      "external_reliance_status": "not_ready_pending_review",
+      "manifest_status": "ready",
+      "local_freshness_status": "fresh",
+      "official_refresh_required": true,
+      "source_strength": {
+        "records_scored": 1035,
+        "level_counts": {
+          "direct_full_text_source": 1035
+        },
+        "summary": "direct_full_text_source"
+      },
+      "known_gaps": [
+        "Rule version history has been locally backfilled; live Rulemaking Search status flags remain pending.",
+        "Rulemaking Search comparison workflow is ready; official snapshot comparison must be refreshed during release testing."
+      ],
+      "open_repair_items": [],
+      "status_reasons": [
+        "Official live freshness still needs to be checked.",
+        "Known gap: Rule version history has been locally backfilled; live Rulemaking Search status flags remain pending.",
+        "Known gap: Rulemaking Search comparison workflow is ready; official snapshot comparison must be refreshed during release testing."
+      ],
+      "next_actions": [
+        "Run SOS CCR current-rule refresh and compare inventory hashes.",
+        "Review and close or explicitly accept the known gaps for this layer."
+      ],
+      "evidence_files": [
+        "_CONTROL_PLANE/MASTER_MANIFEST.json",
+        "_CONTROL_PLANE/SOURCE_STRENGTH_REPORT.json",
+        "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
+        "02_Regulations_CCR/_index.jsonl"
+      ]
+    },
+    {
+      "layer_id": "03_Legislation",
+      "label": "Legislation",
+      "path": "03_Legislation",
+      "record_count": 12453,
+      "quality_stage": "needs_review",
+      "local_use_status": "usable_with_limits",
+      "external_reliance_status": "not_ready_pending_review",
+      "manifest_status": "ready",
+      "local_freshness_status": "fresh",
+      "official_refresh_required": true,
+      "source_strength": {
+        "records_scored": 12453,
+        "level_counts": {
+          "direct_full_text_source": 12453
+        },
+        "summary": "direct_full_text_source"
+      },
+      "known_gaps": [
+        "Pre-2010 coverage requires historical session-law sources."
+      ],
+      "open_repair_items": [],
+      "status_reasons": [
+        "Official live freshness still needs to be checked.",
+        "Known gap: Pre-2010 coverage requires historical session-law sources."
+      ],
+      "next_actions": [
+        "Run LegiScan/current General Assembly refresh window.",
+        "Review and close or explicitly accept the known gaps for this layer."
+      ],
+      "evidence_files": [
+        "_CONTROL_PLANE/MASTER_MANIFEST.json",
+        "_CONTROL_PLANE/SOURCE_STRENGTH_REPORT.json",
+        "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
+        "03_Legislation/_index.jsonl"
+      ]
+    },
+    {
+      "layer_id": "04_Rulemaking",
+      "label": "Rulemaking",
+      "path": "04_Rulemaking",
+      "record_count": 7955,
+      "quality_stage": "needs_review",
+      "local_use_status": "usable_with_limits",
+      "external_reliance_status": "not_ready_pending_review",
+      "manifest_status": "ready",
+      "local_freshness_status": "fresh",
+      "official_refresh_required": true,
+      "source_strength": {
+        "records_scored": 7955,
+        "level_counts": {
+          "direct_full_text_source": 3860,
+          "official_listing_plus_document": 4095
+        },
+        "summary": "source_backed_with_listing_support"
+      },
+      "known_gaps": [
+        "Rulemaking notices have local rule-version reconciliation; six notices still need stronger version-history source evidence.",
+        "Rulemaking Search comparison workflow is ready; official snapshot comparison must be refreshed during release testing."
+      ],
+      "open_repair_items": [
+        {
+          "id": "RULEMAKING-MEDIUM-EVIDENCE",
+          "title": "Upgrade medium rulemaking evidence",
+          "status": "queued",
+          "next_action": "Attach eDocket detail pages and supporting documents where available."
+        }
+      ],
+      "status_reasons": [
+        "Official live freshness still needs to be checked.",
+        "Open repair item: Upgrade medium rulemaking evidence.",
+        "Known gap: Rulemaking notices have local rule-version reconciliation; six notices still need stronger version-history source evidence.",
+        "Known gap: Rulemaking Search comparison workflow is ready; official snapshot comparison must be refreshed during release testing."
+      ],
+      "next_actions": [
+        "Run Secretary of State Register/eDocket refresh.",
+        "Attach eDocket detail pages and supporting documents where available.",
+        "Review and close or explicitly accept the known gaps for this layer."
+      ],
+      "evidence_files": [
+        "_CONTROL_PLANE/MASTER_MANIFEST.json",
+        "_CONTROL_PLANE/SOURCE_STRENGTH_REPORT.json",
+        "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
+        "04_Rulemaking/_index.jsonl"
+      ]
+    },
+    {
+      "layer_id": "05_Executive_Orders",
+      "label": "Executive Orders",
+      "path": "05_Executive_Orders",
+      "record_count": 535,
+      "quality_stage": "needs_review",
+      "local_use_status": "usable_with_limits",
+      "external_reliance_status": "not_ready_pending_review",
+      "manifest_status": "ready",
+      "local_freshness_status": "fresh",
+      "official_refresh_required": true,
+      "source_strength": {
+        "records_scored": 535,
+        "level_counts": {
+          "direct_full_text_source": 535
+        },
+        "summary": "direct_full_text_source"
+      },
+      "known_gaps": [
+        "Historical executive orders may require archive discovery."
+      ],
+      "open_repair_items": [
+        {
+          "id": "EO-2019-007",
+          "title": "Replace bad Executive Order raw artifact",
+          "status": "blocked_official_link_returns_sign_in",
+          "next_action": "Official public download still returns a Google Drive sign-in page; request a valid copy from the Governor's Office or State Archives."
+        }
+      ],
+      "status_reasons": [
+        "Official live freshness still needs to be checked.",
+        "Open repair item: Replace bad Executive Order raw artifact.",
+        "Known gap: Historical executive orders may require archive discovery."
+      ],
+      "next_actions": [
+        "Replace EO-2019-007 bad artifact and refresh Governor EO index.",
+        "Official public download still returns a Google Drive sign-in page; request a valid copy from the Governor's Office or State Archives.",
+        "Review and close or explicitly accept the known gaps for this layer."
+      ],
+      "evidence_files": [
+        "_CONTROL_PLANE/MASTER_MANIFEST.json",
+        "_CONTROL_PLANE/SOURCE_STRENGTH_REPORT.json",
+        "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
+        "05_Executive_Orders/_index.jsonl"
+      ]
+    },
+    {
+      "layer_id": "06_Session_Laws",
+      "label": "Session Laws",
+      "path": "06_Session_Laws",
+      "record_count": 437,
+      "quality_stage": "needs_review",
+      "local_use_status": "usable_with_limits",
+      "external_reliance_status": "not_ready_pending_review",
+      "manifest_status": "ready",
+      "local_freshness_status": "fresh",
+      "official_refresh_required": true,
+      "source_strength": {
+        "records_scored": 437,
+        "level_counts": {
+          "direct_full_text_source": 437
+        },
+        "summary": "direct_full_text_source"
+      },
+      "known_gaps": [
+        "Older session laws require separate historical collection."
+      ],
+      "open_repair_items": [
+        {
+          "id": "SESSION-LAW-FULL-TEXT",
+          "title": "Upgrade session law chapter evidence",
+          "status": "queued",
+          "next_action": "Preserve full chapter artifacts per session law."
+        }
+      ],
+      "status_reasons": [
+        "Official live freshness still needs to be checked.",
+        "Open repair item: Upgrade session law chapter evidence.",
+        "Known gap: Older session laws require separate historical collection."
+      ],
+      "next_actions": [
+        "Confirm session law chapter list and download full chapter artifacts where available.",
+        "Preserve full chapter artifacts per session law.",
+        "Review and close or explicitly accept the known gaps for this layer."
+      ],
+      "evidence_files": [
+        "_CONTROL_PLANE/MASTER_MANIFEST.json",
+        "_CONTROL_PLANE/SOURCE_STRENGTH_REPORT.json",
+        "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
+        "06_Session_Laws/_index.jsonl"
+      ]
+    },
+    {
+      "layer_id": "07_Supplementary",
+      "label": "Supplementary Sources",
+      "path": "07_Supplementary",
+      "record_count": 34,
+      "quality_stage": "needs_review",
+      "local_use_status": "usable_with_limits",
+      "external_reliance_status": "not_ready_pending_review",
+      "manifest_status": "ready",
+      "local_freshness_status": "fresh",
+      "official_refresh_required": true,
+      "source_strength": {
+        "records_scored": 23,
+        "level_counts": {
+          "official_listing_plus_document": 23
+        },
+        "summary": "source_backed_with_listing_support"
+      },
+      "known_gaps": [
+        "Program-to-statute links require extraction from report text.",
+        "Federal OSHA coverage is limited to selected standards added for the 2026-07-08 search repair."
+      ],
+      "open_repair_items": [],
+      "status_reasons": [
+        "Official live freshness still needs to be checked.",
+        "Known gap: Program-to-statute links require extraction from report text.",
+        "Known gap: Federal OSHA coverage is limited to selected standards added for the 2026-07-08 search repair."
+      ],
+      "next_actions": [
+        "Refresh AG opinions and COPRRR source pages.",
+        "Review and close or explicitly accept the known gaps for this layer."
+      ],
+      "evidence_files": [
+        "_CONTROL_PLANE/MASTER_MANIFEST.json",
+        "_CONTROL_PLANE/SOURCE_STRENGTH_REPORT.json",
+        "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
+        "07_Supplementary/_index.jsonl"
+      ]
+    }
+  ],
+  "recommended_first_read": "_CONTROL_PLANE/QUALITY_STATUS.json",
+  "supporting_files": [
+    "_CONTROL_PLANE/MASTER_MANIFEST.json",
+    "_CONTROL_PLANE/MASTER_READINESS_REPORT.json",
+    "_CONTROL_PLANE/SOURCE_FRESHNESS_REPORT.json",
+    "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
+    "_CONTROL_PLANE/SOURCE_STRENGTH_REPORT.json",
+    "_CONTROL_PLANE/SOURCE_REPAIR_DASHBOARD.json",
+    "_CONTROL_PLANE/RELATIONSHIP_ACCURACY_AUDIT.json",
+    "_CONTROL_PLANE/HUMAN_REVIEW_WORKFLOW_REPORT.json"
+  ],
+  "agent_guidance": "Read this file before relying on a layer. A layer marked needs_review can still be useful for local exploration, but user-facing answers should mention the open quality limits when those limits affect the answer.",
+  "boundary": "This is a quality visibility file. It summarizes readiness signals; it does not certify legal correctness or replace official source review."
+}

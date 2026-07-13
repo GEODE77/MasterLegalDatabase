@@ -28,6 +28,7 @@ GOLDEN_SAMPLE_REPORT = Path(CONTROL_PLANE_DIR) / "GOLDEN_SAMPLE_REVIEW_SET_REPOR
 FRESHNESS_VERIFICATION_QUEUE = Path(CONTROL_PLANE_DIR) / "FRESHNESS_VERIFICATION_QUEUE.json"
 HUMAN_REVIEW_WORKFLOW = Path(CONTROL_PLANE_DIR) / "HUMAN_REVIEW_WORKFLOW_REPORT.json"
 MASTER_READINESS_REPORT = Path(CONTROL_PLANE_DIR) / "MASTER_READINESS_REPORT.json"
+QUALITY_STATUS = Path(CONTROL_PLANE_DIR) / "QUALITY_STATUS.json"
 DOCS_REPORT = Path("docs") / "audits" / "SOURCE_QUALITY_IMPROVEMENT_REPORT_2026-07-02.md"
 
 CROSSWALK_FILES = (
@@ -47,6 +48,36 @@ GOLDEN_SAMPLE_TARGETS = {
     "05_Executive_Orders": 10,
     "06_Session_Laws": 10,
     "07_Supplementary": 10,
+}
+
+QUALITY_STATUS_VALUES = (
+    "not_started",
+    "in_progress",
+    "collected",
+    "structured",
+    "validated",
+    "needs_review",
+    "trusted",
+)
+
+QUALITY_STATUS_MEANINGS = {
+    "not_started": "No usable records are present yet.",
+    "in_progress": "Collection or preparation work has started but is not ready for normal use.",
+    "collected": "Records exist, but indexing or structured support is still incomplete.",
+    "structured": "Records and indexes exist, but source-quality scoring is not complete.",
+    "validated": "Local checks are passing, but external reliance is not yet approved.",
+    "needs_review": "Known gaps, freshness checks, repair work, or human review remain open.",
+    "trusted": "Local checks, freshness review, source support, and human review are complete.",
+}
+
+LAYER_LABELS = {
+    "01_Statutes_CRS": "Colorado Revised Statutes",
+    "02_Regulations_CCR": "Code of Colorado Regulations",
+    "03_Legislation": "Legislation",
+    "04_Rulemaking": "Rulemaking",
+    "05_Executive_Orders": "Executive Orders",
+    "06_Session_Laws": "Session Laws",
+    "07_Supplementary": "Supplementary Sources",
 }
 
 
@@ -79,6 +110,16 @@ def build_source_quality_operating_layer(root: Path) -> dict[str, Any]:
         freshness_queue,
         review_workflow,
     )
+    quality_status = _build_quality_status(
+        generated_at,
+        resolved,
+        indexes,
+        strength_report,
+        repair_dashboard,
+        freshness_queue,
+        review_workflow,
+        master,
+    )
 
     atomic_write_jsonl(resolved / SOURCE_STRENGTH_INDEX, strength_rows, resolved)
     atomic_write_json(resolved / SOURCE_STRENGTH_REPORT, strength_report, resolved)
@@ -90,6 +131,7 @@ def build_source_quality_operating_layer(root: Path) -> dict[str, Any]:
     atomic_write_json(resolved / FRESHNESS_VERIFICATION_QUEUE, freshness_queue, resolved)
     atomic_write_json(resolved / HUMAN_REVIEW_WORKFLOW, review_workflow, resolved)
     atomic_write_json(resolved / MASTER_READINESS_REPORT, master, resolved)
+    atomic_write_json(resolved / QUALITY_STATUS, quality_status, resolved)
     _write_docs_report(resolved, master, strength_report, repair_dashboard, relationship_report, freshness_queue)
     return master
 
@@ -582,6 +624,339 @@ def _build_master_readiness(
         },
         "boundary": "Local usability is not external reliance readiness. Live freshness and named reviewer approval remain required.",
     }
+
+
+def _build_quality_status(
+    generated_at: str,
+    root: Path,
+    indexes: dict[str, list[dict[str, Any]]],
+    strength_report: dict[str, Any],
+    repair_dashboard: dict[str, Any],
+    freshness_queue: dict[str, Any],
+    review_workflow: dict[str, Any],
+    master: dict[str, Any],
+) -> dict[str, Any]:
+    """Build a plain layer-by-layer status file for fast trust checks."""
+
+    manifest = _load_dict(root / CONTROL_PLANE_DIR / "MASTER_MANIFEST.json")
+    freshness_by_layer = {
+        str(item.get("layer_id")): item
+        for item in freshness_queue.get("items", [])
+        if isinstance(item, dict) and item.get("layer_id")
+    }
+    repair_by_layer = _repair_items_by_layer(repair_dashboard.get("items", []))
+    layer_counts = strength_report.get("layer_counts", {})
+    statuses: list[dict[str, Any]] = []
+    for layer in manifest.get("data_layers", []):
+        if not isinstance(layer, dict):
+            continue
+        layer_id = str(layer.get("id") or "")
+        if not layer_id:
+            continue
+        record_count = _layer_record_count(layer, indexes.get(layer_id, []))
+        freshness_item = freshness_by_layer.get(layer_id, {})
+        repair_items = repair_by_layer.get(layer_id, [])
+        source_counts = _safe_counter(layer_counts.get(layer_id, {}))
+        quality_stage = _quality_stage_for_layer(
+            layer=layer,
+            record_count=record_count,
+            source_counts=source_counts,
+            freshness_item=freshness_item,
+            repair_items=repair_items,
+        )
+        statuses.append(
+            {
+                "layer_id": layer_id,
+                "label": LAYER_LABELS.get(layer_id, layer_id),
+                "path": layer.get("path"),
+                "record_count": record_count,
+                "quality_stage": quality_stage,
+                "local_use_status": _local_use_status(quality_stage),
+                "external_reliance_status": _external_reliance_status(
+                    quality_stage,
+                    review_workflow,
+                ),
+                "manifest_status": layer.get("status"),
+                "local_freshness_status": freshness_item.get("local_freshness_status", "unknown"),
+                "official_refresh_required": freshness_item.get("network_refresh_required", True),
+                "source_strength": {
+                    "records_scored": sum(source_counts.values()),
+                    "level_counts": source_counts,
+                    "summary": _source_strength_summary(source_counts),
+                },
+                "known_gaps": layer.get("known_gaps", []),
+                "open_repair_items": repair_items,
+                "status_reasons": _quality_status_reasons(
+                    layer,
+                    record_count,
+                    source_counts,
+                    freshness_item,
+                    repair_items,
+                ),
+                "next_actions": _quality_next_actions(layer, freshness_item, repair_items),
+                "evidence_files": _quality_evidence_files(layer),
+            }
+        )
+    return {
+        "generated_at": generated_at,
+        "overall_quality_stage": _overall_quality_stage(statuses, master),
+        "local_system_usable": master.get("local_system_usable", False),
+        "external_reliance_ready": master.get("external_reliance_ready", False),
+        "open_system_blockers": master.get("blockers", []),
+        "status_values": list(QUALITY_STATUS_VALUES),
+        "status_meanings": QUALITY_STATUS_MEANINGS,
+        "layer_summary": _quality_layer_summary(statuses),
+        "layers": statuses,
+        "recommended_first_read": "_CONTROL_PLANE/QUALITY_STATUS.json",
+        "supporting_files": [
+            "_CONTROL_PLANE/MASTER_MANIFEST.json",
+            "_CONTROL_PLANE/MASTER_READINESS_REPORT.json",
+            "_CONTROL_PLANE/SOURCE_FRESHNESS_REPORT.json",
+            "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
+            "_CONTROL_PLANE/SOURCE_STRENGTH_REPORT.json",
+            "_CONTROL_PLANE/SOURCE_REPAIR_DASHBOARD.json",
+            "_CONTROL_PLANE/RELATIONSHIP_ACCURACY_AUDIT.json",
+            "_CONTROL_PLANE/HUMAN_REVIEW_WORKFLOW_REPORT.json",
+        ],
+        "agent_guidance": (
+            "Read this file before relying on a layer. A layer marked needs_review can still "
+            "be useful for local exploration, but user-facing answers should mention the open "
+            "quality limits when those limits affect the answer."
+        ),
+        "boundary": (
+            "This is a quality visibility file. It summarizes readiness signals; it does not "
+            "certify legal correctness or replace official source review."
+        ),
+    }
+
+
+def _layer_record_count(layer: dict[str, Any], index_rows: list[dict[str, Any]]) -> int:
+    """Return manifest count with an index fallback."""
+
+    count = layer.get("record_count")
+    if isinstance(count, int):
+        return count
+    if isinstance(count, str) and count.isdigit():
+        return int(count)
+    return len(index_rows)
+
+
+def _repair_items_by_layer(items: object) -> dict[str, list[dict[str, Any]]]:
+    """Group open repair items by the layer they most directly affect."""
+
+    grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    if not isinstance(items, list):
+        return grouped
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        status = str(item.get("status") or "")
+        if status.startswith("closed"):
+            continue
+        layer_id = _repair_item_layer(item)
+        if layer_id:
+            grouped[layer_id].append(
+                {
+                    "id": item.get("id"),
+                    "title": item.get("title"),
+                    "status": item.get("status"),
+                    "next_action": item.get("next_action"),
+                }
+            )
+    return grouped
+
+
+def _repair_item_layer(item: dict[str, Any]) -> str | None:
+    text = f"{item.get('id', '')} {item.get('title', '')}".upper()
+    if "CCR" in text:
+        return "02_Regulations_CCR"
+    if "RULEMAKING" in text:
+        return "04_Rulemaking"
+    if "EO-" in text or "EXECUTIVE ORDER" in text:
+        return "05_Executive_Orders"
+    if "SESSION" in text:
+        return "06_Session_Laws"
+    return None
+
+
+def _safe_counter(value: object) -> dict[str, int]:
+    """Convert a loose JSON count object to integer counts."""
+
+    if not isinstance(value, dict):
+        return {}
+    counts: dict[str, int] = {}
+    for key, count in value.items():
+        if isinstance(count, int):
+            counts[str(key)] = count
+        elif isinstance(count, str) and count.isdigit():
+            counts[str(key)] = int(count)
+    return counts
+
+
+def _quality_stage_for_layer(
+    *,
+    layer: dict[str, Any],
+    record_count: int,
+    source_counts: dict[str, int],
+    freshness_item: dict[str, Any],
+    repair_items: list[dict[str, Any]],
+) -> str:
+    """Assign the conservative public quality stage for one layer."""
+
+    if record_count <= 0:
+        return "not_started"
+    if str(layer.get("status") or "") not in {"ready", "validated"}:
+        return "in_progress"
+    if not layer.get("index_file"):
+        return "collected"
+    if not source_counts:
+        return "structured"
+    if _has_review_signal(layer, source_counts, freshness_item, repair_items):
+        return "needs_review"
+    if freshness_item.get("network_refresh_required") is False:
+        return "trusted"
+    return "validated"
+
+
+def _has_review_signal(
+    layer: dict[str, Any],
+    source_counts: dict[str, int],
+    freshness_item: dict[str, Any],
+    repair_items: list[dict[str, Any]],
+) -> bool:
+    review_levels = {
+        "official_listing_only",
+        "source_weak",
+        "structured_output_only",
+        "source_missing_or_unknown",
+    }
+    if any(source_counts.get(level, 0) for level in review_levels):
+        return True
+    if freshness_item.get("network_refresh_required", True):
+        return True
+    if str(freshness_item.get("local_freshness_status") or "unknown") != "fresh":
+        return True
+    if repair_items:
+        return True
+    known_gaps = layer.get("known_gaps", [])
+    return isinstance(known_gaps, list) and bool(known_gaps)
+
+
+def _local_use_status(quality_stage: str) -> str:
+    if quality_stage in {"validated", "needs_review", "trusted"}:
+        return "usable_with_limits" if quality_stage == "needs_review" else "usable"
+    return "not_ready"
+
+
+def _external_reliance_status(
+    quality_stage: str,
+    review_workflow: dict[str, Any],
+) -> str:
+    if quality_stage == "trusted" and review_workflow.get("ready_for_reliance"):
+        return "ready"
+    if quality_stage in {"validated", "needs_review", "trusted"}:
+        return "not_ready_pending_review"
+    return "not_ready"
+
+
+def _source_strength_summary(source_counts: dict[str, int]) -> str:
+    if not source_counts:
+        return "not_scored"
+    review_levels = {
+        "official_listing_only",
+        "source_weak",
+        "structured_output_only",
+        "source_missing_or_unknown",
+    }
+    if any(source_counts.get(level, 0) for level in review_levels):
+        return "mixed_or_weak"
+    if source_counts.get("official_listing_plus_document", 0):
+        return "source_backed_with_listing_support"
+    return "direct_full_text_source"
+
+
+def _quality_status_reasons(
+    layer: dict[str, Any],
+    record_count: int,
+    source_counts: dict[str, int],
+    freshness_item: dict[str, Any],
+    repair_items: list[dict[str, Any]],
+) -> list[str]:
+    reasons: list[str] = []
+    if record_count <= 0:
+        reasons.append("No records are available for this layer.")
+    if str(layer.get("status") or "") not in {"ready", "validated"}:
+        reasons.append("The manifest does not mark this layer as ready.")
+    if layer.get("index_file") is None:
+        reasons.append("No layer index is listed in the manifest.")
+    if not source_counts:
+        reasons.append("Source-strength scoring has not produced layer counts.")
+    if freshness_item.get("network_refresh_required", True):
+        reasons.append("Official live freshness still needs to be checked.")
+    if str(freshness_item.get("local_freshness_status") or "unknown") != "fresh":
+        reasons.append("Local freshness is not marked fresh.")
+    for item in repair_items:
+        title = item.get("title") or item.get("id") or "repair item"
+        reasons.append(f"Open repair item: {title}.")
+    known_gaps = layer.get("known_gaps", [])
+    if isinstance(known_gaps, list):
+        reasons.extend(f"Known gap: {gap}" for gap in known_gaps)
+    return reasons or ["No open quality limits were detected by this status file."]
+
+
+def _quality_next_actions(
+    layer: dict[str, Any],
+    freshness_item: dict[str, Any],
+    repair_items: list[dict[str, Any]],
+) -> list[str]:
+    actions: list[str] = []
+    if freshness_item.get("network_refresh_required", True):
+        action = freshness_item.get("official_refresh_action")
+        if action:
+            actions.append(str(action))
+    for item in repair_items:
+        action = item.get("next_action")
+        if action:
+            actions.append(str(action))
+    known_gaps = layer.get("known_gaps", [])
+    if isinstance(known_gaps, list) and known_gaps:
+        actions.append("Review and close or explicitly accept the known gaps for this layer.")
+    return actions or ["Keep this layer in the normal monitoring cycle."]
+
+
+def _quality_evidence_files(layer: dict[str, Any]) -> list[str]:
+    files = [
+        "_CONTROL_PLANE/MASTER_MANIFEST.json",
+        "_CONTROL_PLANE/SOURCE_STRENGTH_REPORT.json",
+        "_CONTROL_PLANE/FRESHNESS_VERIFICATION_QUEUE.json",
+    ]
+    index_file = layer.get("index_file")
+    if index_file:
+        files.append(str(index_file))
+    return files
+
+
+def _overall_quality_stage(statuses: list[dict[str, Any]], master: dict[str, Any]) -> str:
+    if not statuses:
+        return "not_started"
+    if master.get("external_reliance_ready") and all(
+        status.get("quality_stage") == "trusted" for status in statuses
+    ):
+        return "trusted"
+    if master.get("blockers"):
+        return "needs_review"
+    if any(status.get("quality_stage") == "needs_review" for status in statuses):
+        return "needs_review"
+    if all(status.get("quality_stage") in {"validated", "trusted"} for status in statuses):
+        return "validated"
+    if any(status.get("quality_stage") in {"collected", "structured"} for status in statuses):
+        return "structured"
+    return "in_progress"
+
+
+def _quality_layer_summary(statuses: list[dict[str, Any]]) -> dict[str, int]:
+    counts = Counter(str(status.get("quality_stage") or "unknown") for status in statuses)
+    return {stage: counts.get(stage, 0) for stage in QUALITY_STATUS_VALUES}
 
 
 def _write_docs_report(

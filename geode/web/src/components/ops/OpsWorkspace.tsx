@@ -2,7 +2,13 @@ import Link from "next/link";
 import type { ReactElement, ReactNode } from "react";
 
 import { ManagerQueueEditor } from "@/components/manager/ManagerQueueEditor";
-import type { OpsLayer, OpsQueueItem, OpsSource, OpsWorkspaceData } from "@/lib/product/opsWorkspace";
+import type {
+  OpsLayer,
+  OpsQualityStatus,
+  OpsQueueItem,
+  OpsSource,
+  OpsWorkspaceData,
+} from "@/lib/product/opsWorkspace";
 
 type OpsWorkspaceProps = {
   data: OpsWorkspaceData;
@@ -97,6 +103,8 @@ function HomeView({
         <Metric label="Corpus records" value={formatNumber(data.summary.totalRecords)} />
       </section>
 
+      <QualityStatusPanel quality={data.qualityStatus} />
+
       <section className="ops-command-strip" aria-label="Primary actions">
         {primaryLinks.map((link) => (
           <Link href={link.href} key={link.href}>
@@ -126,6 +134,50 @@ function HomeView({
   );
 }
 
+function QualityStatusPanel({ quality }: { quality: OpsQualityStatus }): ReactElement {
+  const needsReviewCount = quality.layerSummary.needs_review ?? 0;
+  const trustedCount = quality.layerSummary.trusted ?? 0;
+  const validatedCount = quality.layerSummary.validated ?? 0;
+  const visibleLayers = quality.layers.slice(0, 7);
+
+  return (
+    <Panel title="Corpus Quality Status" eyebrow={quality.overallQualityStage}>
+      <div className="ops-quality-snapshot" aria-label="Quality status summary">
+        <article>
+          <span>Overall</span>
+          <strong>{readableStatus(quality.overallQualityStage)}</strong>
+          <p>{quality.localSystemUsable ? "Local system usable" : "Local system not ready"}</p>
+        </article>
+        <article>
+          <span>Outside reliance</span>
+          <strong>{quality.externalRelianceReady ? "Ready" : "Not ready"}</strong>
+          <p>{quality.openSystemBlockers.length} blockers open</p>
+        </article>
+        <article>
+          <span>Needs review</span>
+          <strong>{formatNumber(needsReviewCount)}</strong>
+          <p>{formatNumber(validatedCount + trustedCount)} layers validated or trusted</p>
+        </article>
+      </div>
+      <div className="ops-quality-layer-list">
+        {visibleLayers.map((layer) => (
+          <article key={layer.id}>
+            <div>
+              <strong>{layer.label}</strong>
+              <p>{formatNumber(layer.recordCount)} records</p>
+              <p>{layer.reasons[0] ?? "No open quality limit is listed."}</p>
+            </div>
+            <div>
+              <Status value={layer.qualityStage} />
+              <span>{layer.officialRefreshRequired ? "Freshness check needed" : "Freshness checked"}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p>{quality.agentGuidance}</p>
+    </Panel>
+  );
+}
 function SourcesView({ data }: { data: OpsWorkspaceData }): ReactElement {
   return (
     <>
@@ -511,4 +563,8 @@ function shortDate(value: string | null): string {
   }
 
   return value.slice(0, 10);
+}
+
+function readableStatus(value: string): string {
+  return value.replaceAll("_", " ");
 }
