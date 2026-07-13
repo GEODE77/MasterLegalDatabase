@@ -76,6 +76,29 @@ export type OpsQualityArea = {
   status: string;
 };
 
+export type OpsQualityStatusLayer = {
+  id: string;
+  label: string;
+  recordCount: number;
+  qualityStage: string;
+  localUseStatus: string;
+  externalRelianceStatus: string;
+  officialRefreshRequired: boolean;
+  reasons: string[];
+  nextActions: string[];
+};
+
+export type OpsQualityStatus = {
+  agentGuidance: string;
+  externalRelianceReady: boolean;
+  generatedAt: string | null;
+  layerSummary: Record<string, number>;
+  layers: OpsQualityStatusLayer[];
+  localSystemUsable: boolean;
+  openSystemBlockers: string[];
+  overallQualityStage: string;
+};
+
 export type OpsCrosswalkReview = {
   file: string;
   lowConfidence: number;
@@ -94,6 +117,7 @@ export type OpsWorkspaceData = {
   pipelineAudit: OpsQualityArea[];
   publicBoundary: OpsControl[];
   qualityAreas: OpsQualityArea[];
+  qualityStatus: OpsQualityStatus;
   queue: OpsQueueItem[];
   repairProgress: OpsControl[];
   sourceProbeControls: OpsControl[];
@@ -108,6 +132,7 @@ export function getOpsWorkspaceData(): OpsWorkspaceData {
   const watcher = readJsonObject(path.join(CONTROL_PLANE_DIR, "SOURCE_UPDATE_WATCHER_DASHBOARD.json"));
   const queue = readJsonObject(path.join(CONTROL_PLANE_DIR, "SOURCE_UPDATE_DOWNLOAD_QUEUE.json"));
   const nextDownload = readJsonObject(path.join(CONTROL_PLANE_DIR, "NEXT_DOWNLOAD_DASHBOARD.json"));
+  const qualityStatus = readJsonObject(path.join(CONTROL_PLANE_DIR, "QUALITY_STATUS.json"));
   const probeReport = readJsonObject(
     path.join(REPOSITORY_ROOT, "geode", "web", "data", "manager", "source_probe_report.json"),
   );
@@ -128,6 +153,7 @@ export function getOpsWorkspaceData(): OpsWorkspaceData {
     pipelineAudit: toPipelineAudit(layers),
     publicBoundary: toPublicBoundaryControls(),
     qualityAreas: toQualityAreas(layers, queueItems),
+    qualityStatus: toQualityStatus(qualityStatus),
     queue: queueItems,
     repairProgress: toRepairProgress(queueItems),
     sourceProbeControls: toSourceProbeControls(probeReport),
@@ -351,6 +377,35 @@ function toQualityAreas(layers: OpsLayer[], queue: OpsQueueItem[]): OpsQualityAr
   ];
 }
 
+function toQualityStatus(payload: JsonObject | null): OpsQualityStatus {
+  const layers = arrayValue(payload, "layers")
+    .filter(isObject)
+    .map((layer) => ({
+      externalRelianceStatus: stringValue(layer, "external_reliance_status") ?? "unknown",
+      id: stringValue(layer, "layer_id") ?? "unknown",
+      label: stringValue(layer, "label") ?? stringValue(layer, "layer_id") ?? "Unknown layer",
+      localUseStatus: stringValue(layer, "local_use_status") ?? "unknown",
+      nextActions: arrayValue(layer, "next_actions").map((value) => String(value)),
+      officialRefreshRequired: booleanValue(layer, "official_refresh_required"),
+      qualityStage: stringValue(layer, "quality_stage") ?? "unknown",
+      reasons: arrayValue(layer, "status_reasons").map((value) => String(value)),
+      recordCount: numberValue(layer, "record_count"),
+    }));
+
+  return {
+    agentGuidance:
+      stringValue(payload, "agent_guidance") ??
+      "Quality status has not been generated yet. Rebuild the source quality operating layer.",
+    externalRelianceReady: booleanValue(payload, "external_reliance_ready"),
+    generatedAt: stringValue(payload, "generated_at"),
+    layerSummary: recordNumberValue(objectValue(payload, "layer_summary")),
+    layers,
+    localSystemUsable: booleanValue(payload, "local_system_usable"),
+    openSystemBlockers: arrayValue(payload, "open_system_blockers").map((value) => String(value)),
+    overallQualityStage: stringValue(payload, "overall_quality_stage") ?? "unknown",
+  };
+}
+
 function toCrosswalkReviews(): OpsCrosswalkReview[] {
   const crosswalkDir = path.join(REPOSITORY_ROOT, "_CROSSWALKS");
   if (!fs.existsSync(crosswalkDir)) {
@@ -550,6 +605,27 @@ function numberValue(payload: unknown, key: string): number {
 
   const value = payload[key];
   return typeof value === "number" && Number.isFinite(value) ? value : 0;
+}
+
+function booleanValue(payload: unknown, key: string): boolean {
+  if (!isObject(payload)) {
+    return false;
+  }
+
+  return payload[key] === true;
+}
+
+function recordNumberValue(payload: JsonObject | null): Record<string, number> {
+  if (!payload) {
+    return {};
+  }
+
+  return Object.fromEntries(
+    Object.entries(payload).filter(
+      (entry): entry is [string, number] =>
+        typeof entry[1] === "number" && Number.isFinite(entry[1]),
+    ),
+  );
 }
 
 function isObject(value: unknown): value is JsonObject {

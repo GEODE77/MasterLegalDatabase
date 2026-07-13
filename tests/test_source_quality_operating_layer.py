@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 from geode.pipeline.source_quality_operating_layer import build_source_quality_operating_layer
@@ -22,6 +23,7 @@ def test_source_quality_operating_layer_writes_readiness_artifacts(tmp_path: Pat
     assert (tmp_path / "_CONTROL_PLANE" / "SOURCE_STRENGTH_REPORT.json").exists()
     assert (tmp_path / "_CONTROL_PLANE" / "SOURCE_REPAIR_DASHBOARD.json").exists()
     assert (tmp_path / "_CONTROL_PLANE" / "MASTER_READINESS_REPORT.json").exists()
+    assert (tmp_path / "_CONTROL_PLANE" / "QUALITY_STATUS.json").exists()
     assert (tmp_path / "_CONTROL_PLANE" / "GOLDEN_SAMPLE_REVIEW_SET.jsonl").exists()
 
     strength_rows = list(
@@ -33,11 +35,33 @@ def test_source_quality_operating_layer_writes_readiness_artifacts(tmp_path: Pat
     repair = load_json(tmp_path / "_CONTROL_PLANE" / "SOURCE_REPAIR_DASHBOARD.json")
     assert repair["open_items"] >= 3
 
+    quality = load_json(tmp_path / "_CONTROL_PLANE" / "QUALITY_STATUS.json")
+    assert quality["overall_quality_stage"] == "needs_review"
+    assert quality["status_values"] == [
+        "not_started",
+        "in_progress",
+        "collected",
+        "structured",
+        "validated",
+        "needs_review",
+        "trusted",
+    ]
+    assert quality["layer_summary"]["needs_review"] == 1
+    assert quality["layers"][0]["layer_id"] == "05_Executive_Orders"
+    assert quality["layers"][0]["quality_stage"] == "needs_review"
+    assert quality["layers"][0]["local_use_status"] == "usable_with_limits"
+    assert quality["layers"][0]["official_refresh_required"] is True
+    assert "Official live freshness still needs to be checked." in quality["layers"][0][
+        "status_reasons"
+    ]
+    assert quality["layers"][0]["open_repair_items"][0]["id"] == "EO-2019-007"
+
 
 def test_source_quality_marks_crs_refresh_complete_with_confirmation(tmp_path: Path) -> None:
     """CRS freshness clears only when rebuild and official confirmation are present."""
 
     _write_fixture(tmp_path)
+    today = datetime.now(timezone.utc).date().isoformat()
     control = tmp_path / "_CONTROL_PLANE"
     crs_meta = tmp_path / "01_Statutes_CRS" / "_meta"
     crs_meta.mkdir(parents=True)
@@ -48,7 +72,8 @@ def test_source_quality_marks_crs_refresh_complete_with_confirmation(tmp_path: P
                 {
                     "id": "01_Statutes_CRS",
                     "index_file": "01_Statutes_CRS/_index.jsonl",
-                    "last_checked": "2026-07-02",
+                    "last_checked": today,
+                    "status": "ready",
                 }
             ]
         },
@@ -60,7 +85,7 @@ def test_source_quality_marks_crs_refresh_complete_with_confirmation(tmp_path: P
                 {
                     "layer_id": "01_Statutes_CRS",
                     "freshness_status": "fresh",
-                    "last_checked": "2026-07-02",
+                    "last_checked": today,
                 }
             ]
         },
@@ -68,7 +93,7 @@ def test_source_quality_marks_crs_refresh_complete_with_confirmation(tmp_path: P
     _write_json(
         crs_meta / "crs_bulk_summary.json",
         {
-            "generated_at": "2026-07-02T00:00:00Z",
+            "generated_at": f"{today}T00:00:00Z",
             "failed_files": 0,
             "parsed_titles": 46,
             "sections_written": 34717,
@@ -77,7 +102,7 @@ def test_source_quality_marks_crs_refresh_complete_with_confirmation(tmp_path: P
     _write_json(
         control / "CRS_OFFICIAL_REFRESH_CONFIRMATION.json",
         {
-            "generated_at": "2026-07-02T00:00:00Z",
+            "generated_at": f"{today}T00:00:00Z",
             "status": "confirmed_current_publication",
         },
     )
@@ -105,6 +130,7 @@ def _write_fixture(root: Path) -> None:
                 {
                     "id": "05_Executive_Orders",
                     "index_file": "05_Executive_Orders/_index.jsonl",
+                    "status": "ready",
                 }
             ]
         },
