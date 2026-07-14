@@ -18,7 +18,7 @@ The major buildable pieces are now in place:
 - A local text-diff foundation now exists.
 - Source freshness is reported from the local manifest.
 - A compact AI retrieval catalog exists across the whole corpus.
-- System readiness and remaining work are visible in the product app.
+- System readiness and remaining work are visible in control-plane reports.
 
 The work that remains is mostly not code-only work. It requires real reviewers, external source
 refresh runs, or legal approval before external reliance.
@@ -76,7 +76,7 @@ Completed outcomes:
 - 532 were placed into needs-review status.
 - Review queue records were created.
 - Formal review packets were created.
-- A browser review workflow was added.
+- A review decision workflow was added.
 - Review decisions are logged separately from canonical data.
 - Guarded apply proposal and apply confirmation workflows were added.
 
@@ -135,9 +135,10 @@ Important boundary:
 The update ledger tracks source-backed activity already present in Geode. It does not claim that
 official law changed unless the underlying source evidence supports that claim.
 
-### Relationship Coverage And Graph Readiness
+### Relationship Coverage And Structured Retrieval
 
-Geode now measures relationship coverage before attempting a visual graph.
+Geode now measures relationship coverage before using relationships for agent
+retrieval, search, and legal analysis.
 
 Completed outputs:
 
@@ -167,10 +168,10 @@ Crosswalk status:
 | agency_to_statute.jsonl | 696 | usable |
 | amendment_history.jsonl | 7 | usable |
 
-Visual graph status:
+Graph status:
 
-The visual graph remains deferred. The correct current product is a structured relationship panel,
-not a network visualization.
+Graph-style exploration remains deferred. The current backend priority is
+accurate structured relationship retrieval for agents and search workflows.
 
 ### Relationship Backfill
 
@@ -269,34 +270,27 @@ Important boundary:
 The report marks system controls as present. It does not mean Geode is approved for legal advice or
 external reliance.
 
-## Product App Work Completed
+## Backend Access Work Completed
 
-The product app now exposes the major internal control surfaces.
+The backend exposes internal control surfaces through control-plane files, CLI
+commands, search indexes, and API endpoints.
 
-Added or improved pages:
+Current API paths:
 
-- `/app/updates`
-- `/app/relationships`
-- `/app/system`
-- `/app/review`
-- `/app/review-packets`
-- `/app/reliance-policy`
-- `/app/reviewer-operations`
+- `/health`
+- `/v1/manifest`
+- `/v1/statutes/{id}`
+- `/v1/regulations/{id}`
+- `/v1/search`
+- `/v1/exports`
+- `/v1/exports/{export_id}/download`
 
-Added APIs:
+Most important backend records:
 
-- `/api/product/updates`
-- `/api/product/relationships`
-- `/api/product/system`
-- `/api/product/review-packets`
-- `/api/product/reviewer-operations`
-- `/api/product/reliance-policy`
+- `_CONTROL_PLANE/PRODUCTION_READINESS_REPORT.json`
+- `_CONTROL_PLANE/REMAINING_WORK_QUEUE.json`
 
-Most important new page:
-
-- `/app/system`
-
-This page brings together:
+These files bring together:
 
 - retrieval coverage
 - local diff status
@@ -319,17 +313,11 @@ Most recent focused test run:
 
 - 13 tests passed
 
-Web validation completed:
-
-- `pnpm run lint` passed
-- `pnpm run build` passed
-- `/app/system` responded locally with status `200`
-
 Step gate validation:
 
 - Step 9 gate is clean
 - blockers: 0
-- warning: visual graph remains queued
+- warning: graph-style exploration remains queued
 
 ## Current Remaining Work
 
@@ -390,8 +378,10 @@ A legal reviewer approves specific outputs before they are used externally.
 2. Begin review of the 532 packets.
 3. Run an official-source refresh window for CRS, CCR, rulemaking, executive orders, session laws,
    and supplementary sources.
-4. Use `/app/system` as the operating dashboard for remaining readiness work.
-5. Keep visual graph work deferred until reviewer-confirmed relationship coverage is stronger.
+4. Use `_CONTROL_PLANE/PRODUCTION_READINESS_REPORT.json` and
+   `_CONTROL_PLANE/REMAINING_WORK_QUEUE.json` as the operating records for
+   remaining readiness work.
+5. Keep graph-style exploration deferred until reviewer-confirmed relationship coverage is stronger.
 
 ## Final Assessment
 
@@ -406,7 +396,7 @@ Geode now has:
 - local diff foundation
 - freshness reporting
 - retrieval catalog
-- product visibility
+- backend API and search access
 - remaining-work queue
 
 The project should now shift from building core scaffolding to operating the review and refresh

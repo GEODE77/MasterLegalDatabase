@@ -1,0 +1,21 @@
+{
+  "retrieval_strategies": {
+    "compliance_survey": {
+      "strategy": "broad_authority_sweep",
+      "source_order": [
+        "federal_standard",
+        "statute_section",
+        "regulation_rule",
+        "rule_unit",
+        "crosswalk_entry"
+      ],
+      "follow_relationships": [
+        "enables",
+        "implements",
+        "requires_permit",
+        "requires_reporting"
+      ],
+      "graph_traversal_enabled": true
+    }
+  }
+}

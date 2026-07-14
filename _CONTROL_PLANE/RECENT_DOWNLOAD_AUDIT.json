@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T19:10:41.231476+00:00",
+  "generated_at": "2026-07-07T23:44:37.570160+00:00",
   "overall_status": "warn",
   "audited_layers": [
     "01_Statutes_CRS",
@@ -116,14 +116,14 @@
     {
       "layer_id": "05_Executive_Orders",
       "status": "pass",
-      "manifest_records": 534,
-      "index_records": 534,
-      "indexed_paths_checked": 534,
+      "manifest_records": 535,
+      "index_records": 535,
+      "indexed_paths_checked": 535,
       "indexed_paths_missing": 0,
       "indexed_paths_empty": 0,
       "json_files_checked": 0,
       "jsonl_files_checked": 3,
-      "jsonl_rows_checked": 1068,
+      "jsonl_rows_checked": 1070,
       "invalid_json_files": 0,
       "invalid_jsonl_rows": 0,
       "markdown_files_checked": 0,
@@ -144,8 +144,8 @@
     },
     {
       "name": "blocked_download_queue",
-      "status": "warn",
-      "detail": "1 known blocked future download remains: EO-2019-007."
+      "status": "pass",
+      "detail": "No blocked download items remain."
     },
     {
       "name": "schema_validator",
@@ -155,7 +155,7 @@
     {
       "name": "corpus_usability",
       "status": "pass",
-      "detail": "Corpus usability refresh checked 57,154 index records, 9,980 crosswalk rows, and JSONL addressability with 0 errors and 0 warnings. The command timed out while printing the full detailed JSON, not while finding data errors."
+      "detail": "Retrieval catalog covers all 57,155 manifest records. Written corpus usability report matches the current record count."
     },
     {
       "name": "secret_scan",
@@ -172,7 +172,7 @@
     {
       "name": "no_pending_downloads",
       "status": "warn",
-      "detail": "C:\\Users\\jpfeifer\\OneDrive - CoorsTek\\Documents\\Geode\\_CONTROL_PLANE\\BLOCKED_DOWNLOAD_QUEUE.json: 1 known blocked download item remains. C:\\Users\\jpfeifer\\OneDrive - CoorsTek\\Documents\\Geode\\_CONTROL_PLANE\\FRESHNESS_VERIFICATION_QUEUE.json: 1 known future freshness item remains."
+      "detail": "C:\\Users\\jpfeifer\\OneDrive - CoorsTek\\Documents\\Geode\\_CONTROL_PLANE\\FRESHNESS_VERIFICATION_QUEUE.json: 1 known future freshness item remains."
     },
     {
       "name": "dashboard_updated",

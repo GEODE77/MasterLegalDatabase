@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-07-08T17:00:33.599710Z",
+  "output_root": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode",
+  "rules_considered": 1035,
+  "current_version_records": 1035,
+  "editor_history_records": 6801,
+  "version_history_records_total": 7836,
+  "rulemaking_notices_considered": 7955,
+  "reconciled_notices_total": 7955,
+  "exact_effective_date_matches": 39,
+  "nearest_rule_matches": 7910,
+  "notices_without_rule_version_evidence": 6,
+  "current_rule_verification_records": 1035,
+  "live_search_pending_records": 1035,
+  "version_history_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/02_Regulations_CCR/_history/ccr_rule_version_history.jsonl",
+  "reconciliation_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/04_Rulemaking/_dataset/rulemaking_rule_version_reconciliation.jsonl",
+  "current_rule_verification_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_CONTROL_PLANE/CURRENT_RULE_VERIFICATION.jsonl",
+  "summary_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/02_Regulations_CCR/_history/ccr_rule_version_summary.json",
+  "reconciliation_summary_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/04_Rulemaking/_dataset/rulemaking_rule_version_reconciliation_summary.json",
+  "warnings": [
+    "Live Rulemaking Search status flags were not invented from local data; they remain pending."
+  ]
+}

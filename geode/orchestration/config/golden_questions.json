@@ -1,0 +1,68 @@
+[
+  {
+    "question_id": "golden-co2-manufacturing",
+    "query": "What are the regulations that pertain to CO2 emissions for manufacturing?",
+    "expected_question_type": "compliance_survey",
+    "requires_local_limitation": true
+  },
+  {
+    "question_id": "golden-air-permit",
+    "query": "Does a manufacturing facility need a permit for air emissions?",
+    "expected_question_type": "compliance_check",
+    "requires_local_limitation": true
+  },
+  {
+    "question_id": "golden-crs-direct",
+    "query": "What does CRS 25-7-109 say about air pollution control?",
+    "expected_question_type": "exact_citation",
+    "requires_local_limitation": false
+  },
+  {
+    "question_id": "golden-ccr-direct",
+    "query": "What does 5 CCR 1001-9 require for emissions reporting?",
+    "expected_question_type": "exact_citation",
+    "requires_local_limitation": false
+  },
+  {
+    "question_id": "golden-history",
+    "query": "How has Colorado air emissions law changed since 2020?",
+    "expected_question_type": "legislative_history",
+    "requires_local_limitation": false
+  },
+  {
+    "question_id": "golden-overlap",
+    "query": "Do Colorado regulations overlap with state air quality statutes?",
+    "expected_question_type": "overlap_detection",
+    "requires_local_limitation": false
+  },
+  {
+    "question_id": "golden-broad-discovery",
+    "query": "What laws govern greenhouse gas emissions in Colorado?",
+    "expected_question_type": "broad_discovery",
+    "requires_local_limitation": false
+  },
+  {
+    "question_id": "golden-reporting",
+    "query": "What reporting requirements apply to greenhouse gas emissions?",
+    "expected_question_type": "compliance_survey",
+    "requires_local_limitation": true
+  },
+  {
+    "question_id": "golden-sector",
+    "query": "What compliance requirements apply to an industrial manufacturer?",
+    "expected_question_type": "compliance_survey",
+    "requires_local_limitation": true
+  },
+  {
+    "question_id": "golden-federal",
+    "query": "Which federal standards apply to Colorado greenhouse gas reporting?",
+    "expected_question_type": "compliance_survey",
+    "requires_local_limitation": false
+  },
+  {
+    "question_id": "golden-current",
+    "query": "As of 2026-07-14, what regulations apply to carbon dioxide emissions?",
+    "expected_question_type": "compliance_survey",
+    "requires_local_limitation": true
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "expansions": [
+    {
+      "term": "CO2",
+      "expanded_terms": ["carbon dioxide", "greenhouse gas"],
+      "canonical": "greenhouse_gas",
+      "reason": "CO2 is a common abbreviation for carbon dioxide and is commonly handled as a greenhouse gas in emissions questions."
+    },
+    {
+      "term": "GHG",
+      "expanded_terms": ["greenhouse gas"],
+      "canonical": "greenhouse_gas",
+      "reason": "GHG is a common abbreviation for greenhouse gas."
+    }
+  ]
+}

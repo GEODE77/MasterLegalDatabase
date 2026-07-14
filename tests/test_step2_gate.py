@@ -9,7 +9,7 @@ from geode.validation.step2_gate import (
     build_step2_readiness_report,
     write_step2_readiness_report,
 )
-from geode.web.index import build_index
+from geode.search.index import build_index
 
 
 def test_step2_gate_passes_with_index_search_detail_and_rule_units(tmp_path: Path) -> None:

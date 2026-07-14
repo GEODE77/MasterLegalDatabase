@@ -12,7 +12,7 @@ from geode.validation.step4_gate import (
 
 
 def test_step4_gate_passes_with_packet_handoff(tmp_path: Path) -> None:
-    """Step 4 passes when packet data, API, and UI are present."""
+    """Step 4 passes when backend packet data is present."""
 
     _write_step4_fixture(tmp_path)
 
@@ -67,18 +67,3 @@ def _write_step4_fixture(root: Path, *, write_packets: bool = True) -> None:
         ),
         encoding="utf-8",
     )
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "api" / "product" / "review-packets" / "route.ts",
-        "getRuleUnitReviewPackets getRuleUnitReviewPacketSummary",
-    )
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "app" / "review-packets" / "page.tsx",
-        "Review Packets relianceBoundary packetFilters",
-    )
-
-
-def _write_marker_file(path: Path, content: str) -> None:
-    """Write one marker file for Step 4 gate tests."""
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content, encoding="utf-8")

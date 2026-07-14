@@ -228,7 +228,7 @@ def build_pipeline_signals(root: Path) -> list[PipelineSignal]:
         legiscan_documents_signal(root),
         blocked_download_signal(root),
         schema_validator_signal(root),
-        corpus_usability_signal(),
+        corpus_usability_signal(root),
         secret_signal(root),
     ]
     return signals
@@ -339,18 +339,53 @@ def schema_validator_signal(root: Path) -> PipelineSignal:
     )
 
 
-def corpus_usability_signal() -> PipelineSignal:
-    """Record the corpus usability result observed during this audit run."""
+def corpus_usability_signal(root: Path) -> PipelineSignal:
+    """Return a lightweight corpus usability signal from current discovery artifacts."""
 
-    return PipelineSignal(
-        "corpus_usability",
-        PASS,
-        (
-            "Corpus usability refresh checked 57,154 index records, 9,980 crosswalk rows, "
-            "and JSONL addressability with 0 errors and 0 warnings. The command timed out "
-            "while printing the full detailed JSON, not while finding data errors."
-        ),
+    manifest = read_json(root / CONTROL_PLANE_DIR / "MASTER_MANIFEST.json")
+    retrieval_summary = read_json(root / CONTROL_PLANE_DIR / "RETRIEVAL_CATALOG_SUMMARY.json")
+    usability = read_json(root / CONTROL_PLANE_DIR / "CORPUS_USABILITY_AUDIT.json")
+    manifest_records = sum(
+        int(layer.get("record_count", 0) or 0)
+        for layer in manifest.get("data_layers", [])
+        if isinstance(layer, dict)
     )
+    retrieval_records = int(retrieval_summary.get("records_written", 0) or 0)
+    details = []
+    status = PASS
+
+    if retrieval_records != manifest_records:
+        status = FAIL
+        details.append(
+            f"Retrieval catalog has {retrieval_records:,} records, but manifest has "
+            f"{manifest_records:,} records."
+        )
+    else:
+        details.append(
+            f"Retrieval catalog covers all {manifest_records:,} manifest records."
+        )
+
+    usability_records = int(usability.get("total_index_records_checked", 0) or 0)
+    issue_count = int(usability.get("issue_count", 0) or 0)
+    if usability_records and usability_records != manifest_records:
+        if status != FAIL:
+            status = WARN
+        details.append(
+            f"Written corpus usability report is stale: it checked {usability_records:,} "
+            f"records."
+        )
+    elif issue_count:
+        if status != FAIL:
+            status = WARN
+        details.append(f"Written corpus usability report lists {issue_count:,} issue(s).")
+    elif usability_records:
+        details.append("Written corpus usability report matches the current record count.")
+    else:
+        if status != FAIL:
+            status = WARN
+        details.append("No written corpus usability report was available for comparison.")
+
+    return PipelineSignal("corpus_usability", status, " ".join(details))
 
 
 def secret_signal(root: Path) -> PipelineSignal:

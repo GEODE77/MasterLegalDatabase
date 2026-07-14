@@ -1,10 +1,10 @@
 # Source Quality Improvement Report
 
-Generated: 2026-07-02T20:38:09.851471+00:00
+Generated: 2026-07-07T23:49:29.134643+00:00
 
-- Source-strength records scored: 57,154
+- Source-strength records scored: 57,155
 - Average source-strength score: 0.987
-- Source repair open items: 2
+- Source repair open items: 3
 - Relationships checked: 9,980
 - Strong relationships: 7,969
 - Relationship rows needing review: 2,011
@@ -13,7 +13,7 @@ Generated: 2026-07-02T20:38:09.851471+00:00
 
 ## Source Strength Levels
 
-- `direct_full_text_source`: 53,034
+- `direct_full_text_source`: 53,035
 - `official_listing_plus_document`: 4,120
 
 ## Repair Dashboard
@@ -21,7 +21,7 @@ Generated: 2026-07-02T20:38:09.851471+00:00
 - `CCR-5_CCR_1002-83` (closed_by_supporting_inventory): Keep CCR inventory support in the source-output audit.
 - `EO-2019-007` (blocked_official_link_returns_sign_in): Official public download still returns a Google Drive sign-in page; request a valid copy from the Governor's Office or State Archives.
 - `RULEMAKING-MEDIUM-EVIDENCE` (queued): Attach eDocket detail pages and supporting documents where available.
-- `SESSION-LAW-FULL-TEXT` (closed_by_pdf_archive): Keep chapter PDFs as the source anchor for session-law records.
+- `SESSION-LAW-FULL-TEXT` (queued): Preserve full chapter artifacts per session law.
 
 ## Boundary
 

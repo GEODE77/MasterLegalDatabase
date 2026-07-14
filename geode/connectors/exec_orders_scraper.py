@@ -53,15 +53,19 @@ LOGGER = logging.getLogger(__name__)
 EXECUTIVE_ORDERS_URL = "https://www.colorado.gov/governor/executive-orders"
 DOWNLOAD_MANIFEST = DOWNLOAD_MANIFEST_NAME
 FAILURE_MANIFEST = FAILURE_MANIFEST_NAME
+MANUAL_INTAKE_LEDGER = Path(CONTROL_PLANE_DIR) / "MANUAL_SOURCE_INTAKE_LEDGER.jsonl"
 ORDER_RE = re.compile(r"\b(?:EO|D)\s*(?P<year>20\d{2})[-\s]?(?P<number>\d{3})\b")
 DATE_RE = re.compile(r"\b(20\d{2})[-_/](\d{2})[-_/](\d{2})\b")
+GOVERNOR_HEADER_RE = re.compile(
+    r"^(?:[I1]\s+)?Governor\s+(?P<name>[A-Z][A-Za-z'.-]+(?:\s+[A-Z][A-Za-z'.-]+){1,4})$"
+)
 SIGNED_LABEL_RE = re.compile(
     r"^\s*Signed:\s*(?P<year>20\d{2})[-_/](?P<month>\d{2})[-_/](?P<day>\d{2})\s*$",
     re.IGNORECASE | re.MULTILINE,
 )
 MONTH_DATE_RE = re.compile(
     r"\b(?P<month>January|February|March|April|May|June|July|August|September|"
-    r"October|November|December)\s+(?P<day>\d{1,2}),\s+(?P<year>20\d{2})\b",
+    r"October|November|December)\s+(?P<day>\d{1,2}),\s*(?P<year>20\d{2})\b",
     re.IGNORECASE,
 )
 SIGNED_BLOCK_RE = re.compile(
@@ -71,13 +75,13 @@ SIGNED_BLOCK_RE = re.compile(
 SIGNED_WRITTEN_DATE_RE = re.compile(
     r"\bthis\s+(?P<day>[A-Za-z]+(?:[-\s][A-Za-z]+)?)\s+day\s+of\s+"
     r"(?P<month>January|February|March|April|May|June|July|August|September|"
-    r"October|November|December)\s*,?\s+(?P<year>20\d{2})\b",
+    r"October|November|December)\s*[,\.]?\s+(?P<year>20\d{2})\b",
     re.IGNORECASE,
 )
 SIGNED_NUMERIC_DATE_RE = re.compile(
     r"\bthis\s+(?P<day>\d{1,2})(?:st|nd|rd|th)?\s+day\s+of\s+"
     r"(?P<month>January|February|March|April|May|June|July|August|September|"
-    r"October|November|December)\s*,?\s+(?P<year>20\d{2})\b",
+    r"October|November|December)\s*[,\.]?\s+(?P<year>20\d{2})\b",
     re.IGNORECASE,
 )
 YEAR_PAGE_RE = re.compile(r"/governor/(20\d{2})-executive-orders\b")
@@ -537,15 +541,33 @@ def ingest_archived_executive_orders(
     layer_root.mkdir(parents=True, exist_ok=True)
     (layer_root / "_meta").mkdir(parents=True, exist_ok=True)
 
-    records: list[ExecutiveOrder] = []
+    manual_downloads, manual_errors = _manual_intake_executive_order_downloads(project_root)
+    manual_ids = {download.entry.entity_id for download in manual_downloads}
+    records_by_id: dict[str, ExecutiveOrder] = {}
     errors: list[str] = []
     if manifest_path.exists():
         for payload in iter_jsonl(manifest_path):
             try:
                 download = ExecutiveOrderDownload.model_validate(payload)
-                records.append(_executive_order_record(download, project_root))
+                if download.entry.entity_id in manual_ids:
+                    continue
+                records_by_id[download.entry.entity_id] = _executive_order_record(
+                    download,
+                    project_root,
+                )
             except Exception as exc:
                 errors.append(str(exc))
+    errors.extend(manual_errors)
+    for download in manual_downloads:
+        try:
+            records_by_id[download.entry.entity_id] = _executive_order_record(
+                download,
+                project_root,
+            )
+        except Exception as exc:
+            errors.append(str(exc))
+
+    records = list(records_by_id.values())
 
     grouped: dict[str, list[ExecutiveOrder]] = {}
     for record in records:
@@ -595,7 +617,10 @@ def ingest_archived_executive_orders(
         output_paths=[relative_path(path, project_root) for path in output_paths],
         record_count=len(records),
         sha256=None,
-        message=f"Ingested {len(records)} executive order records.",
+        message=(
+            f"Ingested {len(records)} executive order records, including "
+            f"{len(manual_downloads)} manual official source artifact(s)."
+        ),
     )
     append_jsonl_record_atomic(
         project_root / CONTROL_PLANE_DIR / "UPDATE_LOG.jsonl",
@@ -629,7 +654,7 @@ def _executive_order_record(download: ExecutiveOrderDownload, root: Path) -> Exe
         raise ValueError(f"signed date missing for {download.entry.entity_id}")
     title = _line_value(text, "Title") or download.entry.title or download.entry.entity_id
     summary = _line_value(text, "Summary") or title
-    governor = _line_value(text, "Governor") or "Unknown Governor"
+    governor = _governor_from_text(text) or "Unknown Governor"
     return ExecutiveOrder.model_validate(
         {
             "entity_type": "executive_order",
@@ -650,6 +675,78 @@ def _executive_order_record(download: ExecutiveOrderDownload, root: Path) -> Exe
             "confidence": {"overall": 0.75},
         }
     )
+
+
+def _manual_intake_executive_order_downloads(
+    root: Path,
+) -> tuple[list[ExecutiveOrderDownload], list[str]]:
+    """Return executive-order downloads backed by approved manual intake records."""
+
+    ledger_path = root / MANUAL_INTAKE_LEDGER
+    if not ledger_path.exists():
+        return [], []
+
+    downloads: list[ExecutiveOrderDownload] = []
+    errors: list[str] = []
+    for payload in iter_jsonl(ledger_path):
+        if payload.get("layer_id") != "05_Executive_Orders":
+            continue
+        try:
+            downloads.append(_manual_intake_download(root, payload))
+        except Exception as exc:
+            errors.append(f"manual intake {payload.get('record_id')}: {exc}")
+    return downloads, errors
+
+
+def _manual_intake_download(root: Path, payload: dict[str, Any]) -> ExecutiveOrderDownload:
+    """Convert one manual intake ledger row into executive-order source metadata."""
+
+    record_id = str(payload.get("record_id") or "")
+    order_number = _order_number_from_entity_id(record_id)
+    archive_path = Path(str(payload.get("archive_path") or ""))
+    if not archive_path.is_absolute():
+        archive_path = root / archive_path
+    if not archive_path.exists():
+        raise ValueError(f"manual archive file is missing: {archive_path}")
+    expected_sha = str(payload.get("sha256") or "")
+    actual_sha = sha256_file(archive_path)
+    if expected_sha and actual_sha != expected_sha:
+        raise ValueError("manual archive SHA-256 does not match ledger")
+    source_url = str(payload.get("official_source_url") or "")
+    if not source_url:
+        raise ValueError("manual intake official_source_url is missing")
+    require_official_source_url(source_url)
+    downloaded_at = payload.get("received_at") or datetime.now(timezone.utc)
+    return ExecutiveOrderDownload(
+        jurisdiction=COLORADO_JURISDICTION,
+        source_type="executive_order",
+        document_id=record_id,
+        document_name=order_number,
+        entry=ExecutiveOrderEntry(
+            order_number=order_number,
+            title=order_number,
+            signed_date=None,
+            source_page_url=source_url,
+            pdf_url=source_url,
+        ),
+        source_url=source_url,
+        source_page_url=source_url,
+        source_format=source_format_from_extension(archive_path.suffix),
+        signed_date=None,
+        archive_path=relative_path(archive_path, root),
+        sha256=actual_sha,
+        downloaded_at=downloaded_at,
+        missing_metadata=["signed_date"],
+    )
+
+
+def _order_number_from_entity_id(entity_id: str) -> str:
+    """Return the Governor order number display value for an EO entity ID."""
+
+    match = re.match(r"^EO-(20\d{2})-(\d{3})$", entity_id)
+    if not match:
+        raise ValueError(f"invalid executive-order id: {entity_id}")
+    return f"D {match.group(1)} {match.group(2)}"
 
 
 def _executive_order_index_record(record: ExecutiveOrder, root: Path) -> LayerIndexRecord:
@@ -781,7 +878,7 @@ def extract_order_metadata(text: str, source_url: str) -> dict[str, Any]:
     if not signed_date:
         raise ValueError("signed date not found")
     title = _line_value(text, "Title") or entity_id
-    governor = _line_value(text, "Governor") or "Unknown Governor"
+    governor = _governor_from_text(text) or "Unknown Governor"
     summary = _line_value(text, "Summary") or title
     citations = [citation.canonical_form for citation in extract_crs_citations(text)]
     record = {
@@ -1029,6 +1126,45 @@ def _line_value(text: str, label: str) -> str | None:
     pattern = re.compile(rf"^{re.escape(label)}:\s*(.+)$", re.IGNORECASE | re.MULTILINE)
     match = pattern.search(text)
     return match.group(1).strip() if match else None
+
+
+def _governor_from_text(text: str) -> str | None:
+    """Extract the Governor name from common header or signature text."""
+
+    labeled = _line_value(text, "Governor")
+    if labeled:
+        return labeled
+
+    lines = [_clean_governor_line(line) for line in text.splitlines()]
+    for line in lines[:25]:
+        match = GOVERNOR_HEADER_RE.match(line)
+        if match:
+            return match.group("name").strip()
+
+    for index, line in enumerate(lines):
+        if line.casefold() != "governor" or index == 0:
+            continue
+        candidate = lines[index - 1]
+        if _looks_like_person_name(candidate):
+            return candidate
+    return None
+
+
+def _clean_governor_line(line: str) -> str:
+    """Normalize one OCR line before Governor-name matching."""
+
+    return " ".join(line.replace("|", " ").strip().split())
+
+
+def _looks_like_person_name(value: str) -> bool:
+    """Return whether a line looks like a source-stated person name."""
+
+    if not value or any(char.isdigit() for char in value):
+        return False
+    parts = value.split()
+    if len(parts) < 2 or len(parts) > 5:
+        return False
+    return all(part[:1].isupper() for part in parts)
 
 
 def _append_manifest(path: Path, payload: dict[str, Any]) -> None:

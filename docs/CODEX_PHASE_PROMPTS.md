@@ -1,5 +1,14 @@
 # CODEX PHASE PROMPTS — Project Geode Build Plan
 
+> **Current status:** This file is a historical build prompt archive for early
+> repository scaffolding and ingestion work. It is not the current product
+> narrative. Current architecture is backend-first Geode plus the deterministic
+> orchestration engine described in `AGENTS.md` and
+> `docs/GEODE_SYSTEM_DESIGN.md`.
+>
+> The LLM is the writer, not the decision-maker. Prompts in this file are soft
+> guidance only; hard accuracy gates must be enforced in code.
+
 > **How to use this file:**
 > 1. Copy ONE phase at a time into Codex
 > 2. Ensure `AGENTS.md` is at the repo root (Codex reads it automatically)

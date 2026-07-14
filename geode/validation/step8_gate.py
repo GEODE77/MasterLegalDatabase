@@ -53,8 +53,6 @@ def build_step8_readiness_report(root: Path) -> Step8ReadinessReport:
         _check_ledger_exists(resolved_root),
         _check_summary_matches_ledger(resolved_root),
         _check_diff_boundary(resolved_root),
-        _check_updates_api(resolved_root),
-        _check_updates_ui(resolved_root),
     ]
     blockers = [check.detail for check in checks if not check.ready]
     warnings = _warnings(resolved_root)
@@ -163,52 +161,6 @@ def _check_diff_boundary(root: Path) -> Step8Check:
             else "Full text diff boundary is unclear."
         ),
     )
-
-
-def _check_updates_api(root: Path) -> Step8Check:
-    """Check product API access for update ledger data."""
-
-    route = root / "geode" / "web" / "src" / "app" / "api" / "product" / "updates" / "route.ts"
-    return _check_file_markers(
-        "Updates API",
-        route,
-        ("getUpdateLedger", "getUpdateLedgerSummary", "ledger"),
-    )
-
-
-def _check_updates_ui(root: Path) -> Step8Check:
-    """Check product UI access for update ledger data."""
-
-    page = root / "geode" / "web" / "src" / "app" / "app" / "updates" / "page.tsx"
-    return _check_file_markers(
-        "Updates UI",
-        page,
-        ("getUpdateLedger", "Full text diff", "Update Ledger"),
-    )
-
-
-def _check_file_markers(name: str, path: Path, markers: tuple[str, ...]) -> Step8Check:
-    """Check that a file exists and contains required implementation markers."""
-
-    ready = _file_has_markers(path, markers)
-    return Step8Check(
-        name=name,
-        ready=ready,
-        detail=(
-            f"{name} implementation markers are present."
-            if ready
-            else f"{name} implementation markers are missing."
-        ),
-    )
-
-
-def _file_has_markers(path: Path, markers: tuple[str, ...]) -> bool:
-    """Return whether a file contains all required markers."""
-
-    if not path.exists():
-        return False
-    content = path.read_text(encoding="utf-8")
-    return all(marker in content for marker in markers)
 
 
 def _warnings(root: Path) -> list[str]:

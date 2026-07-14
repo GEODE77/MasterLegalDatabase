@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-07-07T16:55:49.301Z",
+  "results": [
+    {
+      "detail": "HTTP 200",
+      "finalUrl": "https://leg.colorado.gov/laws/colorado-revised-statutes",
+      "sourceId": "crs",
+      "sourceName": "Colorado Revised Statutes",
+      "status": "reachable",
+      "url": "https://leg.colorado.gov/colorado-revised-statutes"
+    },
+    {
+      "detail": "HTTP 200",
+      "finalUrl": "https://www.sos.state.co.us/CCR/Welcome.do",
+      "sourceId": "ccr",
+      "sourceName": "Code of Colorado Regulations",
+      "status": "reachable",
+      "url": "https://www.sos.state.co.us/CCR/Welcome.do"
+    },
+    {
+      "detail": "HTTP 403",
+      "finalUrl": "https://legiscan.com/CO",
+      "sourceId": "legiscan",
+      "sourceName": "LegiScan Colorado",
+      "status": "review",
+      "url": "https://legiscan.com/CO"
+    },
+    {
+      "detail": "HTTP 200",
+      "finalUrl": "https://www.sos.state.co.us/CCR/RegisterHome.do",
+      "sourceId": "colorado_register",
+      "sourceName": "Colorado Register",
+      "status": "reachable",
+      "url": "https://www.sos.state.co.us/CCR/RegisterHome.do"
+    },
+    {
+      "detail": "HTTP 404",
+      "finalUrl": "https://www.sos.state.co.us/CCR/eDocketPublic.do",
+      "sourceId": "colorado_edocket",
+      "sourceName": "Colorado Secretary of State eDocket",
+      "status": "review",
+      "url": "https://www.sos.state.co.us/CCR/eDocketPublic.do"
+    },
+    {
+      "detail": "HTTP 403",
+      "finalUrl": "https://www.colorado.gov/governor/executive-orders",
+      "sourceId": "executive_orders",
+      "sourceName": "Colorado Governor Executive Orders",
+      "status": "review",
+      "url": "https://www.colorado.gov/governor/executive-orders"
+    },
+    {
+      "detail": "HTTP 403",
+      "finalUrl": "https://coprrr.colorado.gov/",
+      "sourceId": "coprrr",
+      "sourceName": "COPRRR Sunrise and Sunset Reviews",
+      "status": "review",
+      "url": "https://coprrr.colorado.gov/"
+    },
+    {
+      "detail": "HTTP 404",
+      "finalUrl": "https://coag.gov/opinions/",
+      "sourceId": "ag_opinions",
+      "sourceName": "Colorado Attorney General Opinions",
+      "status": "review",
+      "url": "https://coag.gov/opinions/"
+    }
+  ],
+  "schemaVersion": 1,
+  "summary": {
+    "blocked": 0,
+    "reachable": 3,
+    "review": 5,
+    "total": 8
+  }
+}

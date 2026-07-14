@@ -1,91 +1,78 @@
-# Geode Product Current-State Audit
+# Geode Backend Current-State Audit
 
 ## Scope
 
-This audit records the current state before product execution. It intentionally avoids changing
-download, connector, raw archive, manifest, and ingest pipeline files.
+This audit records the current backend state before further orchestration work.
+It intentionally avoids changing download, connector, raw archive, manifest,
+and ingest pipeline files.
 
 ## Current Strengths
 
 Geode already has a strong source-data foundation:
 
-- `02_Regulations_CCR` contains real CCR data.
-- `03_Legislation` contains real bill data.
-- `04_Rulemaking` contains real Colorado Register data.
+- `01_Statutes_CRS` contains CRS data.
+- `02_Regulations_CCR` contains CCR data and rule-unit review artifacts.
+- `03_Legislation` contains bill data.
+- `04_Rulemaking` contains Colorado Register and rulemaking data.
 - `_CONTROL_PLANE/MASTER_MANIFEST.json` tracks layer readiness and freshness.
 - `_CONTROL_PLANE/MASTER_SCHEMA.json` defines canonical legal record types.
 - `_CROSSWALKS/` contains relationship files.
 - `geode/schemas/models.py` contains strict Pydantic models.
 - `geode/validation/` and `geode/integrity_check.py` support validation.
-- The web app already has a regulation search and regulation detail reader.
+- `geode/orchestration/` now carries deterministic orchestration config and
+  policy files.
 
-## Current Data Readiness
+## Current Direction
 
-Based on the manifest:
+Geode is a backend-first regulatory intelligence database for Colorado
+authority across state, county, and municipal levels. The state corpus is the
+current foundation. County and municipal coverage must not be implied until
+those sources are registered, ingested, validated, and visible in the manifest.
 
-| Layer | Current status | Product implication |
-| --- | --- | --- |
-| CRS statutes | empty | Explore can start with CCR, but statute text is not ready. |
-| CCR regulations | ready | Best first product source. |
-| Legislation | ready | Useful for Updates and future legislative history. |
-| Rulemaking | ready | Useful for Updates and regulation relationships. |
-| Executive orders | empty | Defer product support. |
-| Session laws | empty | Defer full legal history. |
-| Supplementary | empty | Defer AG/COPRRR features. |
+## Orchestration Readiness
 
-## Current Web App Shape
+The orchestration engine should run in six layers:
 
-Existing public or product routes include:
+1. **Input & Interpretation**
+2. **Planning & Retrieval**
+3. **Evidence & Reasoning**
+4. **Accuracy & Verification (hard gates)**
+5. **Output Control**
+6. **Platform & Operations**
 
-- `/`
-- `/about`
-- `/pricing`
-- `/trust`
-- `/sign-in`
-- `/onboarding`
-- `/dashboard`
-- `/query`
-- `/regulations`
-- `/regulations/[id]`
-- `/forum`
-- `/settings`
-- `/internal/heuristics`
+Current strengths:
 
-The current product shell points users to Forum, Query, Regulations, Activity, and Settings. The
-master plan's product navigation does not yet exist as first-class routes:
+- Existing control-plane files support manifest, source, schema, agency, and
+  freshness checks.
+- Existing indexes and crosswalks support retrieval planning.
+- Existing validation and integrity modules support hard-gate implementation.
+- Existing rule-unit quality and review artifacts support confidence and
+  reliance boundaries.
 
-- Explore
-- Impact Lens
-- Compliance Paths
-- Updates
+Current gaps:
 
-## Current Product Gap
-
-The current experience is closer to:
-
-> search and read regulations
-
-The master plan calls for:
-
-> source-backed regulatory intelligence by relationship, profile impact, and review path
-
-The gap is product organization and derived intelligence, not the absence of all data.
+- Evidence-packet format needs to be formalized.
+- Answer-contract format needs to be formalized.
+- Absence verification needs explicit test coverage.
+- County and municipal source coverage is not yet represented as validated
+  corpus data.
 
 ## Risks
 
-1. Building Impact Lens before requirements and relationships are explainable could create results
-   that look more certain than the corpus supports.
-2. Rewriting route structure without compatibility paths could disrupt existing pages.
-3. Editing control-plane or connector files during active downloads could collide with ingestion.
-4. Calling candidate extraction "requirements" too early could imply more certainty than exists.
+1. Letting the LLM choose sources directly would weaken accuracy.
+2. Treating prompts as enforcement would blur the soft-vs-hard boundary.
+3. Claiming county or municipal coverage before source registration would
+   invent coverage.
+4. Calling candidate extraction final without review could imply more certainty
+   than the corpus supports.
 
 ## Execution Decision
 
 Proceed in this order:
 
 1. Keep corpus files authoritative.
-2. Add read-only product index helpers.
-3. Add `/app/...` internal product routes while preserving legacy routes.
-4. Build Explore first.
-5. Add Impact Lens and Compliance Paths as evidence-backed MVP surfaces.
-6. Defer full graph and full diff until relationships and versioning are stronger.
+2. Complete orchestration policies and contracts.
+3. Build retrieval plans and evidence packets from the existing corpus.
+4. Enforce hard gates before output.
+5. Stabilize state authority coverage.
+6. Add county and municipal coverage only through registered, validated sources.

@@ -1,6 +1,9 @@
 # Control-Plane Audit Reports
 
-This directory stores machine-readable audit outputs for Geode.
+This directory stores machine-readable audit outputs for Geode. These are dated
+historical records. Older records may mention former route or product-surface
+work; those references are historical only and do not describe current
+backend-only architecture.
 
 Expected contents include comprehensive audit JSON, route evidence, API verification,
 artifact reconciliation, authorization state, and other control-plane evidence files.

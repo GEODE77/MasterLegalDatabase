@@ -45,16 +45,14 @@ class Step3ReadinessReport(BaseModel):
 
 
 def build_step3_readiness_report(root: Path) -> Step3ReadinessReport:
-    """Build the Step 3 gate report from review evidence and product files."""
+    """Build the Step 3 gate report from backend review evidence."""
 
     resolved_root = root.resolve()
     checks = [
         _check_step2_ready(resolved_root),
         _check_review_queue(resolved_root),
+        _check_review_summary(resolved_root),
         _check_apply_proposal(resolved_root),
-        _check_decision_aware_backend(resolved_root),
-        _check_decision_aware_api(resolved_root),
-        _check_decision_aware_ui(resolved_root),
     ]
     blockers = [check.detail for check in checks if not check.ready]
     warnings = _warnings(resolved_root)
@@ -151,82 +149,29 @@ def _check_apply_proposal(root: Path) -> Step3Check:
     )
 
 
-def _check_decision_aware_backend(root: Path) -> Step3Check:
-    """Check that the product index exposes decision-aware queue state."""
+def _check_review_summary(root: Path) -> Step3Check:
+    """Check that the backend review summary records pending work."""
 
-    target = root / "geode" / "web" / "src" / "lib" / "product" / "productIndex.ts"
-    return _check_file_markers(
-        "Decision-aware backend",
-        target,
-        ("getRuleUnitReviewStatusSummary", "canonicalChangeReady", "change_ready"),
+    summary_path = root / "02_Regulations_CCR" / "_meta" / "rule_units_review_summary.json"
+    if not summary_path.exists():
+        return Step3Check(
+            name="Review summary",
+            ready=False,
+            detail="Rule-unit review summary is missing.",
+        )
+    payload = load_json(summary_path)
+    ready = isinstance(payload, dict) and (
+        "pending_items" in payload or "pendingItems" in payload
     )
-
-
-def _check_decision_aware_api(root: Path) -> Step3Check:
-    """Check that the review API exposes status filters and counts."""
-
-    target = (
-        root
-        / "geode"
-        / "web"
-        / "src"
-        / "app"
-        / "api"
-        / "product"
-        / "rule-units"
-        / "review"
-        / "route.ts"
-    )
-    return _check_file_markers(
-        "Decision-aware API",
-        target,
-        ("statusSummary", "normalizeStatus", "change_ready"),
-    )
-
-
-def _check_decision_aware_ui(root: Path) -> Step3Check:
-    """Check that the review UI exposes decision-aware filters."""
-
-    page = root / "geode" / "web" / "src" / "app" / "app" / "review" / "page.tsx"
-    panel = (
-        root / "geode" / "web" / "src" / "app" / "app" / "review" / "ReviewDecisionPanel.tsx"
-    )
-    page_ready = _file_has_markers(page, ("reviewFilters", "change_ready"))
-    panel_ready = _file_has_markers(panel, ("statusLabel", "Decision Logged"))
-    ready = page_ready and panel_ready
     return Step3Check(
-        name="Decision-aware UI",
+        name="Review summary",
         ready=ready,
         detail=(
-            "Review UI exposes queue filters and already-decided item state."
+            "Rule-unit review summary records pending work."
             if ready
-            else "Review UI is missing decision-aware filters or decided-item state."
+            else "Rule-unit review summary does not record pending work."
         ),
     )
-
-
-def _check_file_markers(name: str, path: Path, markers: tuple[str, ...]) -> Step3Check:
-    """Check that a file exists and contains required implementation markers."""
-
-    ready = _file_has_markers(path, markers)
-    return Step3Check(
-        name=name,
-        ready=ready,
-        detail=(
-            f"{name} implementation markers are present."
-            if ready
-            else f"{name} implementation markers are missing."
-        ),
-    )
-
-
-def _file_has_markers(path: Path, markers: tuple[str, ...]) -> bool:
-    """Return whether a file contains all required markers."""
-
-    if not path.exists():
-        return False
-    content = path.read_text(encoding="utf-8")
-    return all(marker in content for marker in markers)
 
 
 def _warnings(root: Path) -> list[str]:
@@ -245,7 +190,7 @@ def _deferred_items(root: Path) -> list[Step3DeferredItem]:
             id="STEP3-RU-DECISIONS",
             title="Work the remaining rule-unit review decisions",
             reason=f"{pending} queue items still need approve, revise, split, or quarantine decisions.",
-            next_action="Use /app/review filters to work pending items and rebuild the apply proposal.",
+            next_action="Use the backend review queue and summary artifacts to work pending items and rebuild the apply proposal.",
         ),
         Step3DeferredItem(
             id="STEP3-CANONICAL-APPLY",

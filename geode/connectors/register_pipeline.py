@@ -35,6 +35,7 @@ from geode.connectors.register_scraper import (
 from geode.constants import CONTROL_PLANE_DIR, RAW_ARCHIVE_DIR
 from geode.extractors.converter import convert_to_markdown
 from geode.net.http_client import GeodeBlockedError, GeodeHttpClient, GeodeHttpClientConfig
+from geode.pipeline.rule_history_backfill import run_rule_history_backfill
 from geode.schemas import CrosswalkEntry, LayerIndexRecord, RulemakingNotice
 from geode.utils.file_io import (
     atomic_write_json,
@@ -145,6 +146,12 @@ class RulemakingPipelineSummary(BaseModel):
     edocket_details_failed: int = Field(default=0, ge=0)
     edocket_documents_downloaded: int = Field(default=0, ge=0)
     edocket_documents_failed: int = Field(default=0, ge=0)
+    rule_version_history_path: str | None = None
+    rulemaking_reconciliation_path: str | None = None
+    current_rule_verification_path: str | None = None
+    rule_version_history_records_total: int = Field(default=0, ge=0)
+    rulemaking_reconciliations_total: int = Field(default=0, ge=0)
+    current_rule_verification_records_total: int = Field(default=0, ge=0)
     gap_rows_total: int = Field(default=0, ge=0)
     quarantine_rows_total: int = Field(default=0, ge=0)
     year_files: list[str] = Field(default_factory=list)
@@ -376,6 +383,7 @@ def write_rulemaking_dataset(
         )
         atomic_write_jsonl(edocket_detail_path, edocket_details, root)
         atomic_write_jsonl(edocket_document_path, edocket_documents, root)
+    rule_history_summary = run_rule_history_backfill(root)
     _refresh_master_manifest(root, len(deduped))
 
     summary = RulemakingPipelineSummary(
@@ -416,6 +424,14 @@ def write_rulemaking_dataset(
         ),
         edocket_documents_failed=sum(
             1 for document in edocket_documents if document.status in {"blocked", "failed"}
+        ),
+        rule_version_history_path=rule_history_summary.version_history_path,
+        rulemaking_reconciliation_path=rule_history_summary.reconciliation_path,
+        current_rule_verification_path=rule_history_summary.current_rule_verification_path,
+        rule_version_history_records_total=rule_history_summary.version_history_records_total,
+        rulemaking_reconciliations_total=rule_history_summary.reconciled_notices_total,
+        current_rule_verification_records_total=(
+            rule_history_summary.current_rule_verification_records
         ),
         gap_rows_total=len(batch.gaps),
         quarantine_rows_total=len(batch.quarantine),

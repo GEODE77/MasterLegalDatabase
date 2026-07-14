@@ -340,9 +340,9 @@
 | criminal_justice, training_required | public_administration |
 | consumer_protection, reporting | retail_trade, finance_insurance |
 
-### Pipeline Components Tested
+### Pipeline Areas Tested
 
-| Component | Rules That Stress It |
+| Area | Rules That Stress It |
 |-----------|---------------------|
 | DOCX conversion (Path 1) | All 15 (if DOCX available) |
 | PDF conversion (Path 2) | Any where DOCX is unexpectedly absent |

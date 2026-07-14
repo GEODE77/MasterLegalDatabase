@@ -2,52 +2,38 @@
 
 Generated: 2026-07-07
 
-## Summary
+## Status
 
-All 35 recommended improvements now have a completed implementation, a product-facing audit
-record, and a manager-visible place to review the result.
+This report is historical. It described earlier operational improvements. The
+current architecture is a backend regulatory intelligence database and
+orchestration layer.
 
-The main product surface for this work is the manager-only improvement audit page:
+## Preserved Completion Facts
 
-`/manager/improvements`
+The useful result was a set of backend controls and operational records:
 
-The public-facing product additions are centered on:
+- manager-style access controls were explored
+- source operation gates were added or documented
+- publication readiness checks were expanded
+- secret safety checks were added
+- sensitive-file and raw-archive boundaries were strengthened
+- export controls were improved
+- source freshness, relationship health, confidence, and known blockers were
+  made easier to inspect
 
-`/library`
+## Current Interpretation
 
-## Completed Areas
+These improvements should be treated as backend operations work. Current work
+should expose controls through control-plane records, CLI commands, API
+endpoints, search indexes, and orchestration gates.
 
-- Manager access controls now include named accounts, admin-only management, exportable history,
-  first-admin setup, and access-review flags.
-- Source operations now show download approval gates, closeout checks, known blockers, repair
-  progress, editable ownership, manager notes, source confirmations, and calendar-style source
-  review windows.
-- Public users now have a direct legal library path without sign-in.
-- Trust and safety controls now appear in publication readiness, including secret safety,
-  sensitive-file warnings, public-data boundary checks, raw archive protection, and export
-  controls.
-- Quality and reliability controls now summarize pipeline state with readable file counts,
-  crosswalk health, data confidence, grouped failures, known blockers, and human-readable
-  validation status.
+The active architecture is:
 
-## Second-Pass Completion
+1. **Input & Interpretation**
+2. **Planning & Retrieval**
+3. **Evidence & Reasoning**
+4. **Accuracy & Verification (hard gates)**
+5. **Output Control**
+6. **Platform & Operations**
 
-The second pass completed the remaining gaps:
-
-- Live source probes now have a runnable command: `npm run source:probe`.
-- Source check timing is recorded in `geode/web/data/manager/source_automation_schedule.json`.
-- Queue ownership, notes, status, and official-source confirmation are editable manager actions.
-- Public search results now include per-result freshness and why-this-result explanations.
-- Crosswalk health now reads real crosswalk files and reports missing evidence and low-confidence
-  counts.
-- Data confidence now includes record coverage, queue issues, stale layers, and relationship
-  issues.
-
-## Audit Result
-
-The result is satisfactory because every numbered improvement is now represented in the product,
-visible to managers, and connected to an implemented control, editable workflow, or runnable
-operation.
-
-Before public release, the most important remaining operational action is setting
-`GEODE_MANAGER_SESSION_SECRET` in production.
+The LLM is the writer, not the decision-maker. Code gates are authoritative.

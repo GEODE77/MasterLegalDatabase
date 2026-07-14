@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "keys": [
+    {
+      "key_id": "dev-readonly",
+      "label": "Local readonly development key",
+      "key_hash": "sha256:<HASHED_GEODE_API_KEY>",
+      "active": false,
+      "scopes": [
+        "manifest:read",
+        "statutes:read",
+        "regulations:read",
+        "search:read"
+      ],
+      "bulk_export_allowed": false,
+      "rate_limit_per_minute": 60,
+      "expires_at": null,
+      "created_at": null,
+      "created_by": null,
+      "deactivated_at": null,
+      "deactivated_by": null,
+      "deactivation_reason": null,
+      "rotated_at": null,
+      "rotation_count": 0
+    }
+  ]
+}

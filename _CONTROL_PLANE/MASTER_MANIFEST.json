@@ -40,11 +40,20 @@
       "currency": null,
       "index_file": "02_Regulations_CCR/_index.jsonl",
       "known_gaps": [
-        "No centralized statute-to-regulation crosswalk."
+        "Rule version history has been locally backfilled; live Rulemaking Search status flags remain pending.",
+        "Rulemaking Search comparison workflow is ready; official snapshot comparison must be refreshed during release testing."
       ],
-      "last_checked": "2026-07-02",
+      "last_checked": "2026-07-08",
       "staleness_days": 0,
-      "status": "ready"
+      "status": "ready",
+      "derived_files": [
+        "02_Regulations_CCR/_history/ccr_rule_version_history.jsonl",
+        "02_Regulations_CCR/_history/ccr_rule_version_summary.json",
+        "_CONTROL_PLANE/CURRENT_RULE_VERIFICATION.jsonl",
+        "04_Rulemaking/_verification/rulemaking_search_comparison.jsonl",
+        "04_Rulemaking/_verification/rulemaking_search_verification_summary.json",
+        "_CONTROL_PLANE/COLORADO_RULEMAKING_SEARCH_VERIFICATION.json"
+      ]
     },
     {
       "id": "03_Legislation",
@@ -78,28 +87,36 @@
       "currency": null,
       "index_file": "04_Rulemaking/_index.jsonl",
       "known_gaps": [
-        "Notice-to-regulation crosswalk must be extracted."
+        "Rulemaking notices have local rule-version reconciliation; six notices still need stronger version-history source evidence.",
+        "Rulemaking Search comparison workflow is ready; official snapshot comparison must be refreshed during release testing."
       ],
-      "last_checked": "2026-07-02",
+      "last_checked": "2026-07-08",
       "staleness_days": 0,
-      "status": "ready"
+      "status": "ready",
+      "derived_files": [
+        "04_Rulemaking/_dataset/rulemaking_rule_version_reconciliation.jsonl",
+        "04_Rulemaking/_dataset/rulemaking_rule_version_reconciliation_summary.json",
+        "04_Rulemaking/_verification/rulemaking_search_comparison.jsonl",
+        "04_Rulemaking/_verification/rulemaking_search_verification_summary.json",
+        "_CONTROL_PLANE/COLORADO_RULEMAKING_SEARCH_VERIFICATION.json"
+      ]
     },
     {
       "id": "05_Executive_Orders",
       "path": "05_Executive_Orders",
       "entity_type": "executive_order",
-      "record_count": 534,
+      "record_count": 535,
       "source": "executive_orders",
       "format": [
         "jsonl"
       ],
-      "last_ingested": "2026-07-02",
+      "last_ingested": "2026-07-07",
       "currency": null,
       "index_file": "05_Executive_Orders/_index.jsonl",
       "known_gaps": [
         "Historical executive orders may require archive discovery."
       ],
-      "last_checked": "2026-07-02",
+      "last_checked": "2026-07-07",
       "staleness_days": 0,
       "status": "ready"
     },
@@ -126,18 +143,19 @@
       "id": "07_Supplementary",
       "path": "07_Supplementary",
       "entity_type": "supplementary_document",
-      "record_count": 23,
-      "source": "coprrr, ag_opinions",
+      "record_count": 34,
+      "source": "coprrr, ag_opinions, federal_osha",
       "format": [
         "jsonl"
       ],
-      "last_ingested": "2026-07-02",
+      "last_ingested": "2026-07-08",
       "currency": null,
       "index_file": "07_Supplementary/_index.jsonl",
       "known_gaps": [
-        "Program-to-statute links require extraction from report text."
+        "Program-to-statute links require extraction from report text.",
+        "Federal OSHA coverage is limited to selected standards added for the 2026-07-08 search repair."
       ],
-      "last_checked": "2026-07-02",
+      "last_checked": "2026-07-08",
       "staleness_days": 0,
       "status": "ready"
     }
@@ -184,5 +202,47 @@
     "pipeline_version": "0.1.0",
     "schema_version": "1.0",
     "ontology_version": "1.0"
+  },
+  "rule_history_backfill": {
+    "generated_at": "2026-07-08T17:00:33.599710+00:00",
+    "version_history_records_total": 7836,
+    "reconciled_notices_total": 7955,
+    "exact_effective_date_matches": 39,
+    "same_rule_matches": 7910,
+    "notices_without_rule_version_evidence": 6,
+    "current_rule_verification_records": 1035,
+    "live_search_pending_records": 1035,
+    "version_history_file": "02_Regulations_CCR/_history/ccr_rule_version_history.jsonl",
+    "reconciliation_file": "04_Rulemaking/_dataset/rulemaking_rule_version_reconciliation.jsonl",
+    "current_rule_verification_file": "_CONTROL_PLANE/CURRENT_RULE_VERIFICATION.jsonl",
+    "source_boundary": "Uses previously downloaded CCR and Register data. Live Rulemaking Search flags remain pending until a live source check is run."
+  },
+  "rulemaking_search_verification": {
+    "generated_at": "2026-07-08T23:36:51.075534Z",
+    "output_root": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode",
+    "official_snapshot_path": null,
+    "official_snapshot_loaded": false,
+    "geode_rules_total": 1035,
+    "geode_rulemaking_notices_total": 7955,
+    "official_records_total": 0,
+    "comparison_records_total": 1040,
+    "official_match_found": 0,
+    "possible_official_match": 0,
+    "no_official_match": 0,
+    "geode_only_history": 0,
+    "missing_geode_rule": 0,
+    "awaiting_official_snapshot": 1040,
+    "needs_review": 0,
+    "normalized_snapshot_path": "04_Rulemaking/_verification/colorado_rulemaking_search_snapshot_normalized.jsonl",
+    "comparison_path": "04_Rulemaking/_verification/rulemaking_search_comparison.jsonl",
+    "summary_path": "04_Rulemaking/_verification/rulemaking_search_verification_summary.json",
+    "control_summary_path": "_CONTROL_PLANE/COLORADO_RULEMAKING_SEARCH_VERIFICATION.json",
+    "template_path": "04_Rulemaking/_verification/rulemaking_search_snapshot_template.csv",
+    "boundary": "This workflow compares Geode CCR and rulemaking records against a saved Colorado Rulemaking Search snapshot. It does not call the live website during search and does not treat uncertain matches as confirmed.",
+    "next_steps": [
+      "Export or capture a Rulemaking Search snapshot using the template columns.",
+      "Run this command again with --official-snapshot pointing to the CSV, JSON, or JSONL file.",
+      "Review the comparison output before using the status labels in release testing."
+    ]
   }
 }

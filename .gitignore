@@ -18,19 +18,9 @@ htmlcov/
 .env
 .env.*
 
-# Frontend
-apps/web/node_modules/
-apps/web/.next/
-apps/web/out/
-geode/web/node_modules/
-geode/web/.next/
-geode/web/.next-build/
-geode/web/.next-codex*/
-geode/web/data/structured_output/*.sqlite3
-geode/web/data/manager/review_history.jsonl
-geode/web/data/manager/operation_overrides.json
-geode/web/data/manager/source_probe_report.json
-geode/web/data/personalization/users/*.json
+# Generated dependency and temporary artifacts
+node_modules/
+_tmp_*
 
 # IDE
 .vscode/
@@ -52,6 +42,11 @@ Thumbs.db
 _RAW_ARCHIVE/**
 _SNAPSHOTS/**
 _CONTROL_PLANE/BULK_DOWNLOAD_QUALITY_REPORT.json
+_CONTROL_PLANE/API_KEYS.json
+_CONTROL_PLANE/API_KEY_ADMIN_LOG.jsonl
+_CONTROL_PLANE/API_RATE_LIMIT_STATE.json
+_CONTROL_PLANE/API_USAGE_LOG.jsonl
+_CONTROL_PLANE/API_EXPORTS/**
 _CONTROL_PLANE/raw/
 _CONTROL_PLANE/normalized/
 _CONTROL_PLANE/tagged/

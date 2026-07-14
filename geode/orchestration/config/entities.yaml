@@ -1,0 +1,30 @@
+{
+  "sectors": [
+    {
+      "terms": ["manufacturing", "manufacturer", "factory"],
+      "canonical_id": "NAICS-31-33",
+      "canonical_label": "Manufacturing",
+      "normalized_terms": ["manufacturing"],
+      "confidence": 0.9
+    }
+  ],
+  "pollutants": [
+    {
+      "terms": ["co2", "carbon dioxide", "greenhouse gas"],
+      "canonical_id": "POLLUTANT-GHG",
+      "canonical_label": "Greenhouse gases",
+      "normalized_terms": ["carbon dioxide", "greenhouse gas"],
+      "confidence": 0.9
+    }
+  ],
+  "agencies": [
+    {
+      "terms": ["cdphe", "colorado department of public health and environment"],
+      "canonical_id": "CDPHE",
+      "canonical_label": "Colorado Department of Public Health and Environment",
+      "normalized_terms": ["cdphe"],
+      "confidence": 0.85
+    }
+  ],
+  "statutes": []
+}

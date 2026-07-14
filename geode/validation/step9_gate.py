@@ -54,8 +54,6 @@ def build_step9_readiness_report(root: Path) -> Step9ReadinessReport:
         _check_coverage_report(resolved_root),
         _check_structured_panel(resolved_root),
         _check_visual_graph_deferred(resolved_root),
-        _check_relationship_api(resolved_root),
-        _check_relationship_ui(resolved_root),
     ]
     blockers = [check.detail for check in checks if not check.ready]
     warnings = _warnings(resolved_root)
@@ -183,52 +181,6 @@ def _check_visual_graph_deferred(root: Path) -> Step9Check:
             else "Visual graph boundary is unclear."
         ),
     )
-
-
-def _check_relationship_api(root: Path) -> Step9Check:
-    """Check product API access for relationship coverage."""
-
-    route = root / "geode" / "web" / "src" / "app" / "api" / "product" / "relationships" / "route.ts"
-    return _check_file_markers(
-        "Relationships API",
-        route,
-        ("getRelationshipCoverageReport", "relationshipCoverage"),
-    )
-
-
-def _check_relationship_ui(root: Path) -> Step9Check:
-    """Check product UI access for relationship coverage."""
-
-    page = root / "geode" / "web" / "src" / "app" / "app" / "relationships" / "page.tsx"
-    return _check_file_markers(
-        "Relationships UI",
-        page,
-        ("Relationship Health", "visual graph", "getRelationshipCoverageReport"),
-    )
-
-
-def _check_file_markers(name: str, path: Path, markers: tuple[str, ...]) -> Step9Check:
-    """Check that a file exists and contains required implementation markers."""
-
-    ready = _file_has_markers(path, markers)
-    return Step9Check(
-        name=name,
-        ready=ready,
-        detail=(
-            f"{name} implementation markers are present."
-            if ready
-            else f"{name} implementation markers are missing."
-        ),
-    )
-
-
-def _file_has_markers(path: Path, markers: tuple[str, ...]) -> bool:
-    """Return whether a file contains all required markers."""
-
-    if not path.exists():
-        return False
-    content = path.read_text(encoding="utf-8")
-    return all(marker in content for marker in markers)
 
 
 def _warnings(root: Path) -> list[str]:

@@ -8,7 +8,6 @@ import re
 from collections import defaultdict
 from datetime import date, datetime, timezone
 from pathlib import Path
-from typing import Any
 from urllib.parse import urljoin
 
 import fitz

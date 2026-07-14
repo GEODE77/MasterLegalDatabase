@@ -12,8 +12,8 @@ from geode.validation.step5_gate import (
 )
 
 
-def test_step5_gate_passes_with_reliance_policy_api_and_ui(tmp_path: Path) -> None:
-    """Step 5 passes when policy, API, and UI are present."""
+def test_step5_gate_passes_with_reliance_policy(tmp_path: Path) -> None:
+    """Step 5 passes when the backend reliance policy is present."""
 
     _write_step5_fixture(tmp_path)
 
@@ -48,18 +48,3 @@ def _write_step5_fixture(root: Path, *, write_policy: bool = True) -> None:
     )
     if write_policy:
         write_reliance_policy(root)
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "api" / "product" / "reliance-policy" / "route.ts",
-        "getReliancePolicy policy",
-    )
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "app" / "reliance-policy" / "page.tsx",
-        "Reliance Policy reviewerRoles external reliance",
-    )
-
-
-def _write_marker_file(path: Path, content: str) -> None:
-    """Write one marker file for Step 5 gate tests."""
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content, encoding="utf-8")

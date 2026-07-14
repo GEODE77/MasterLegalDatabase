@@ -24,7 +24,7 @@ Use this checklist before making a Geode branch public-facing by merging it into
 - [ ] No API keys, tokens, passwords, cookies, or local credentials are committed.
 - [ ] No personal reviewer contact data is committed unless intentionally approved.
 - [ ] No local machine paths are exposed where a project-relative path would work.
-- [ ] Web app sample data does not contain private user information.
+- [ ] Sample, export, and API-response data does not contain private user information.
 
 ## 4. Large Files
 

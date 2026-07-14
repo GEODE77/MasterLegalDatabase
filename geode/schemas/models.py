@@ -54,6 +54,7 @@ EntityType = Literal[
     "session_law",
     "ag_opinion",
     "coprrr_review",
+    "federal_standard",
     "rule_unit",
     "crosswalk_entry",
     "timeline_event",
@@ -638,6 +639,45 @@ class COPRRRReview(GeodeModel):
     publication_date: date
     recommendation: str = Field(min_length=1)
     summary: str = Field(min_length=1)
+    subject_tags: list[str]
+    source_url: HttpUrl
+    confidence: ConfidenceScores
+
+    @field_validator("subject_tags")
+    @classmethod
+    def validate_subject_tags(cls, value: list[str]) -> list[str]:
+        """Require controlled subject tags."""
+
+        return require_known_values(value, SUBJECT_TAGS, "subject_tags")
+
+    @field_validator("source_url")
+    @classmethod
+    def validate_source_url(cls, value: HttpUrl) -> HttpUrl:
+        """Require official source URLs."""
+
+        require_official_source_url(str(value).rstrip("/"))
+        return value
+
+    @field_validator("confidence", mode="before")
+    @classmethod
+    def validate_confidence(cls, value: object) -> ConfidenceScores:
+        """Accept design-style confidence objects and legacy scalar values."""
+
+        return _confidence(value)
+
+
+class FederalStandard(GeodeModel):
+    """Federal authority record used as supplementary compliance context."""
+
+    entity_type: Literal["federal_standard"] = "federal_standard"
+    id: str = Field(pattern=r"^FED-(CFR|USC)-[A-Za-z0-9_.-]+$")
+    title: str = Field(min_length=1)
+    citation: str = Field(min_length=1)
+    jurisdiction: Literal["federal"] = "federal"
+    source_owner: str = Field(min_length=1)
+    publication_date: date
+    summary: str = Field(min_length=1)
+    full_text: str = Field(min_length=1)
     subject_tags: list[str]
     source_url: HttpUrl
     confidence: ConfidenceScores

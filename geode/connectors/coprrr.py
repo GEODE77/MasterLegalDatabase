@@ -20,7 +20,7 @@ from geode.utils.file_io import (
     load_json,
     relative_path,
 )
-from geode.utils.hashing import sha256_file, sha256_text
+from geode.utils.hashing import sha256_text
 
 LAYER = "07_Supplementary"
 RAW_DIR = "_RAW_ARCHIVE/supplementary/coprrr"

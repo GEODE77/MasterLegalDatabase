@@ -1,10 +1,12 @@
 {
-  "generated_at": "2026-07-02T20:58:12.142697Z",
+  "generated_at": "2026-07-07T22:13:29.235153Z",
   "ledger_path": "_CONTROL_PLANE/MANUAL_SOURCE_INTAKE_LEDGER.jsonl",
   "archive_manifest_path": "_RAW_ARCHIVE/manual_intake/manual_source_intake_manifest.jsonl",
-  "records": 0,
-  "pending_pipeline_use": 0,
-  "layers": {},
-  "latest_record_id": null,
+  "records": 1,
+  "pending_pipeline_use": 1,
+  "layers": {
+    "05_Executive_Orders": 1
+  },
+  "latest_record_id": "EO-2019-007",
   "boundary": "This report tracks manually archived official source artifacts. It does not mean the related structured layer has already been rebuilt."
 }

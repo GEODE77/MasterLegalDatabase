@@ -10,11 +10,23 @@
 
 ## A1. Project Identity
 
-**Project Geode** is a regulatory intelligence platform that organizes and
-structures the full body of Colorado state law for **AI-first consumption.**
+**Project Geode** is a backend-first regulatory intelligence database that
+organizes Colorado legal authority for **AI-first consumption**, search,
+retrieval, ingestion, and agentic workflows.
 
-The platform ingests, normalizes, cross-links, and quality-scores six
-interconnected layers of legal authority:
+Geode serves AI models and agents through structured source data, deterministic
+retrieval, hard verification gates, and cited outputs. The jurisdiction model is
+the full Colorado authority hierarchy:
+
+1. State authority
+2. County authority
+3. Municipal authority
+
+The current corpus is state-first and expands outward to county and municipal
+authority without changing the backend-first design.
+
+The platform ingests, normalizes, cross-links, and quality-scores these current
+state authority layers:
 
 | # | Layer | Content | Source Owner | Est. Records |
 |---|-------|---------|-------------|-------------|
@@ -25,23 +37,56 @@ interconnected layers of legal authority:
 | 5 | **Executive Orders** | Governor's executive orders | Governor's Office | ~200+ orders |
 | 6 | **Supplementary** | AG opinions, COPRRR sunrise/sunset reviews, session laws | AG Office, DORA | ~700+ documents |
 
-**The AI is the primary consumer of this data.** Every design decision —
-file format, naming, storage architecture, chunking — optimizes for machine
-readability, structured retrieval, and agentic workflows (RAG, tool-use, knowledge graphs).
+**AI models and agents are the primary consumers of this data.** Every design
+decision - file format, naming, storage architecture, chunking, validation, and
+retrieval - optimizes for machine readability, structured evidence, and
+agentic workflows.
+
+### Orchestration Engine
+
+Geode's centerpiece is the orchestration engine: a deterministic Python
+pipeline that sits between an LLM and the Geode knowledge layer.
+
+The orchestration engine runs in six ordered layers:
+
+1. **Input & Interpretation** - normalize the question, identify legal domain,
+   jurisdiction, entities, time period, and ambiguity.
+2. **Planning & Retrieval** - decide which indexes, corpus files, crosswalks,
+   timelines, and source records must be read.
+3. **Evidence & Reasoning** - assemble verified source passages, structured
+   records, relationship chains, and absence findings.
+4. **Accuracy & Verification (hard gates)** - enforce grounding, citation
+   verification, currency, completeness, faithfulness, and absence verification
+   in code.
+5. **Output Control** - require structured, cited, confidence-rated output and
+   reject answers that do not match the answer contract.
+6. **Platform & Operations** - manage freshness, audit logs, reliance policy,
+   source registries, snapshots, and review workflows across the system.
+
+Markdown instructions and prompts are soft orchestration. They guide the model,
+but they do not enforce accuracy. Code gates are hard orchestration and are
+authoritative. The LLM is the writer and synthesizer; it is not the
+decision-maker. Geode is the knowledge layer. The orchestration engine decides
+what evidence is needed and verifies whether the answer is allowed.
 
 ### Long-Term Vision
 
-- **Legislators** ask whether a proposed bill duplicates existing law or regulation.
-- **Business owners** ask what permits, licenses, and regulatory requirements apply.
-- **Researchers** identify regulatory overlap, compliance burden, and reform opportunities.
-- **AI agents** query programmatically for compliance checking and legislative analysis.
-- **Policymakers** measure practical regulatory impact — costs, burdens, permitting complexity.
+- **Legislative agents** check whether a proposed bill duplicates or conflicts
+  with existing law or regulation.
+- **Compliance agents** identify which state, county, and municipal authorities
+  may apply to a fact pattern.
+- **Research agents** identify regulatory overlap, compliance burden, and
+  reform opportunities.
+- **Policy agents** measure practical regulatory impact - costs, burdens,
+  reporting duties, permitting complexity, and authority conflicts.
 
 ### Immediate Focus: Step 1
 
-Step 1 is **data collection and structuring**: finding, downloading, converting, and storing
-all relevant Colorado legal data in a machine-readable, AI-optimized format with quality
-assurance at every stage. Step 2 (future) builds the query and retrieval layer.
+Step 1 remains **data collection and structuring**: finding, downloading,
+converting, and storing Colorado legal data in a machine-readable,
+AI-optimized format with quality assurance at every stage. The current
+direction adds the deterministic orchestration engine that turns the knowledge
+layer into verified, cited, confidence-rated answers for AI and agent use.
 
 ---
 
@@ -125,6 +170,8 @@ Project_Geode/
 |
 |-- geode/                                    Python package
 |   |-- __init__.py
+|   |-- orchestration/ Deterministic query planning, retrieval, verification,
+|   |                  output-control policies, and hard gates
 |   |-- schemas/       Pydantic models (models.py, validators.py)
 |   |-- extractors/    regex_patterns.py, structure_parser.py,
 |   |                  citation_extractor.py, fingerprint.py,
@@ -327,6 +374,9 @@ pytest tests/adversarial/ -v
 
 ## A7. Quick Reference: AI Retrieval Pattern
 
+The orchestration engine should perform this retrieval sequence. The LLM should
+not choose sources on its own or answer from memory.
+
 ```
 Step 1: Read MASTER_MANIFEST.json          (~2 KB)    -> Know what exists
 Step 2: Read relevant _index.jsonl          (~2-5 MB)  -> Filter/search records
@@ -337,7 +387,9 @@ Step 6: Read TIMELINE_INDEX (if temporal)   (~1 MB)    -> Get chronology
 ```
 
 **The AI never loads the entire database.** Any query reads at most ~15-20 MB
-from a ~500+ MB corpus (0.01-0.04%).
+from a ~500+ MB corpus (0.01-0.04%). The orchestration engine must also verify
+that cited records were actually retrieved and that missing coverage is stated
+as missing instead of filled by inference.
 
 ### Query Type Routing
 
@@ -351,8 +403,8 @@ from a ~500+ MB corpus (0.01-0.04%).
 
 ---
 
-*This file is the foundation of Project Geode's AI-first architecture.*
+*This file is the foundation of Project Geode's backend-first AI architecture.*
 *For complete system design, see `docs/GEODE_SYSTEM_DESIGN.md`.*
 
-*Last updated: 2026-06-12*
+*Last updated: 2026-07-14*
 *Maintained by: Project Geode team*

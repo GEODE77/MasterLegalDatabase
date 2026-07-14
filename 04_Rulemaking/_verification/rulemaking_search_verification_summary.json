@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-07-08T23:36:51.075534Z",
+  "output_root": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode",
+  "official_snapshot_path": null,
+  "official_snapshot_loaded": false,
+  "geode_rules_total": 1035,
+  "geode_rulemaking_notices_total": 7955,
+  "official_records_total": 0,
+  "comparison_records_total": 1040,
+  "official_match_found": 0,
+  "possible_official_match": 0,
+  "no_official_match": 0,
+  "geode_only_history": 0,
+  "missing_geode_rule": 0,
+  "awaiting_official_snapshot": 1040,
+  "needs_review": 0,
+  "normalized_snapshot_path": "04_Rulemaking/_verification/colorado_rulemaking_search_snapshot_normalized.jsonl",
+  "comparison_path": "04_Rulemaking/_verification/rulemaking_search_comparison.jsonl",
+  "summary_path": "04_Rulemaking/_verification/rulemaking_search_verification_summary.json",
+  "control_summary_path": "_CONTROL_PLANE/COLORADO_RULEMAKING_SEARCH_VERIFICATION.json",
+  "template_path": "04_Rulemaking/_verification/rulemaking_search_snapshot_template.csv",
+  "boundary": "This workflow compares Geode CCR and rulemaking records against a saved Colorado Rulemaking Search snapshot. It does not call the live website during search and does not treat uncertain matches as confirmed.",
+  "next_steps": [
+    "Export or capture a Rulemaking Search snapshot using the template columns.",
+    "Run this command again with --official-snapshot pointing to the CSV, JSON, or JSONL file.",
+    "Review the comparison output before using the status labels in release testing."
+  ]
+}

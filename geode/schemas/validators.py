@@ -93,6 +93,7 @@ def _record_model_for(data: dict[str, Any]) -> type[BaseModel]:
         COPRRRReview,
         CrosswalkEntry,
         ExecutiveOrder,
+        FederalStandard,
         RegulationRule,
         RuleUnit,
         RulemakingNotice,
@@ -117,6 +118,7 @@ def _record_model_for(data: dict[str, Any]) -> type[BaseModel]:
         "session_law": SessionLaw,
         "ag_opinion": AGOpinion,
         "coprrr_review": COPRRRReview,
+        "federal_standard": FederalStandard,
         "rule_unit": RuleUnit,
         "agency": Agency,
     }

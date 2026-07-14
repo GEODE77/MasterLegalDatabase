@@ -1,5 +1,9 @@
 # Frontend UI/UX Conformance Audit
 
+Historical note: this audit describes a former frontend direction. Geode is now
+backend-only; these findings are retained as dated evidence and are not current
+architecture.
+
 Generated: 2026-07-07
 
 Reference file loaded: `docs/design-principles.md`

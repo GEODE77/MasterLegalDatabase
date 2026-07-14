@@ -1,18 +1,27 @@
 {
-  "generated_at": "2026-07-06T16:26:07Z",
-  "open_items": 1,
+  "generated_at": "2026-07-07T22:22:53.417793Z",
+  "open_items": 0,
   "items": [
     {
       "record_id": "EO-2019-007",
       "layer_id": "05_Executive_Orders",
-      "status": "queued",
+      "status": "complete",
       "priority": "high",
       "official_listing_url": "https://www.colorado.gov/governor/2019-executive-orders",
       "official_download_url": "https://drive.google.com/uc?export=download&id=0B7w3bkFgg92dZ1ZiX2pKb1Z0eDdVZTdndmFaN1pLNEE2bnZj",
       "quarantine_path": "_QUARANTINE/eo_recovery/EO-2019-007.downloaded.pdf",
       "block_reason": "Official public download returns a Google Drive sign-in page instead of a usable executive order PDF.",
       "evidence_path": "_CONTROL_PLANE/EO_2019_007_RECOVERY_ATTEMPT.json",
-      "next_action": "Request a valid official copy from the Governor's Office or State Archives, archive it through manual source intake, then rerun the EO source-anchoring workflow."
+      "next_action": "No further EO-2019-007 download action is needed; the official manual source has been archived and the executive-order layer has been refreshed.",
+      "manual_intake_archive_path": "_RAW_ARCHIVE/manual_intake/05_Executive_Orders/EO-2019-007/20260707T221329Z_EO-2019-007_official_state_publications_library.pdf",
+      "manual_intake_sha256": "6410ea9287b1551dd6e71796e2871671095cb63839dc1399a5b88c2469937c5d",
+      "manual_intake_ledger_path": "_CONTROL_PLANE/MANUAL_SOURCE_INTAKE_LEDGER.jsonl",
+      "completed_at": "2026-07-07T22:22:53.417793Z",
+      "structured_layer_refreshed": true,
+      "structured_output_paths": [
+        "05_Executive_Orders/2010_2019/exec_orders_2010_2019.jsonl",
+        "05_Executive_Orders/_index.jsonl"
+      ]
     }
   ],
   "boundary": "This queue preserves blocked download work for later retry or official manual replacement. It does not authorize non-official replacement sources."
