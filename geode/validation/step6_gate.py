@@ -53,8 +53,6 @@ def build_step6_readiness_report(root: Path) -> Step6ReadinessReport:
         _check_assignments(resolved_root),
         _check_sop(resolved_root),
         _check_operations_summary(resolved_root),
-        _check_operations_api(resolved_root),
-        _check_operations_ui(resolved_root),
     ]
     blockers = [check.detail for check in checks if not check.ready]
     warnings = _warnings(resolved_root)
@@ -172,58 +170,6 @@ def _check_operations_summary(root: Path) -> Step6Check:
     )
 
 
-def _check_operations_api(root: Path) -> Step6Check:
-    """Check product API access for reviewer operations."""
-
-    route = (
-        root
-        / "geode"
-        / "web"
-        / "src"
-        / "app"
-        / "api"
-        / "product"
-        / "reviewer-operations"
-        / "route.ts"
-    )
-    return _check_file_markers("Reviewer operations API", route, ("getReviewerOperations", "operations"))
-
-
-def _check_operations_ui(root: Path) -> Step6Check:
-    """Check product UI access for reviewer operations."""
-
-    page = root / "geode" / "web" / "src" / "app" / "app" / "reviewer-operations" / "page.tsx"
-    return _check_file_markers(
-        "Reviewer operations UI",
-        page,
-        ("Reviewer Operations", "assignedTo", "Assign named reviewers"),
-    )
-
-
-def _check_file_markers(name: str, path: Path, markers: tuple[str, ...]) -> Step6Check:
-    """Check that a file exists and contains required implementation markers."""
-
-    ready = _file_has_markers(path, markers)
-    return Step6Check(
-        name=name,
-        ready=ready,
-        detail=(
-            f"{name} implementation markers are present."
-            if ready
-            else f"{name} implementation markers are missing."
-        ),
-    )
-
-
-def _file_has_markers(path: Path, markers: tuple[str, ...]) -> bool:
-    """Return whether a file contains all required markers."""
-
-    if not path.exists():
-        return False
-    content = path.read_text(encoding="utf-8")
-    return all(marker in content for marker in markers)
-
-
 def _assignments(root: Path) -> dict[str, object]:
     """Load reviewer assignments."""
 
@@ -274,7 +220,7 @@ def _deferred_items(root: Path) -> list[Step6DeferredItem]:
             id="STEP6-START-PACKET-REVIEW",
             title="Start packet review",
             reason="The system is ready, but the 532 pending packets still need actual decisions.",
-            next_action="Use /app/review-packets and /app/review after reviewers are assigned.",
+            next_action="Use backend review packet and review queue artifacts after reviewers are assigned.",
         ),
     ]
 

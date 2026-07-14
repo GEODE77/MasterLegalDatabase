@@ -71,9 +71,9 @@ Escalation path:
 
 ## Operating Flow
 
-1. Start with `/app/review-packets` to select a pending packet.
+1. Start with the review packet JSONL file to select a pending packet.
 2. Confirm the source sentence and quality issue.
-3. Use `/app/review` to log approve, revise, split, or quarantine decisions.
+3. Use the backend review queue to log approve, revise, split, or quarantine decisions.
 4. Rebuild the guarded apply proposal after decisions are logged.
 5. Apply canonical changes only when replacements validate and authorization exists.
 6. Seek legal reviewer approval before external reliance.

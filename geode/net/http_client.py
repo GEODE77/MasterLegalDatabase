@@ -335,6 +335,7 @@ class GeodeHttpClient:
         last_response: GeodeHttpResponse | None = None
         last_error: Exception | None = None
         last_status: int | None = None
+        retry_reason: str | None = None
 
         for attempt in range(1, retries + 1):
             request_info = GeodeHttpRequest(
@@ -752,7 +753,7 @@ def polite_get(
 def is_curl_cffi_session(session: Any) -> bool:
     """Return whether a session appears to be backed by ``curl_cffi``."""
 
-    return session.__class__.__module__.startswith("curl_cffi")
+    return bool(session.__class__.__module__.startswith("curl_cffi"))
 
 
 def _validate_retry_options(
@@ -999,7 +1000,7 @@ def _retry_delay(
         delay = max(delay, retry_after_delay)
     if max_delay_seconds is not None:
         delay = min(delay, max_delay_seconds)
-    return delay
+    return float(delay)
 
 
 def _retry_after_delay(response: Any) -> float | None:

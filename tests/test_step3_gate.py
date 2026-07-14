@@ -12,7 +12,7 @@ from geode.validation.step3_gate import (
 
 
 def test_step3_gate_passes_when_review_foundation_is_decision_aware(tmp_path: Path) -> None:
-    """Step 3 passes when review evidence and decision-aware product code exist."""
+    """Step 3 passes when backend review evidence is ready."""
 
     _write_step3_fixture(tmp_path)
 
@@ -61,35 +61,3 @@ def _write_step3_fixture(root: Path, *, step2_ready: bool = True) -> None:
         json.dumps({"ready_to_apply": True, "changes": []}),
         encoding="utf-8",
     )
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "lib" / "product" / "productIndex.ts",
-        "getRuleUnitReviewStatusSummary canonicalChangeReady change_ready",
-    )
-    _write_marker_file(
-        root
-        / "geode"
-        / "web"
-        / "src"
-        / "app"
-        / "api"
-        / "product"
-        / "rule-units"
-        / "review"
-        / "route.ts",
-        "statusSummary normalizeStatus change_ready",
-    )
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "app" / "review" / "page.tsx",
-        "reviewFilters change_ready",
-    )
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "app" / "review" / "ReviewDecisionPanel.tsx",
-        "statusLabel Decision Logged",
-    )
-
-
-def _write_marker_file(path: Path, content: str) -> None:
-    """Write one marker file for Step 3 gate tests."""
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content, encoding="utf-8")

@@ -54,8 +54,6 @@ def build_step5_readiness_report(root: Path) -> Step5ReadinessReport:
         _check_roles(resolved_root),
         _check_approval_criteria(resolved_root),
         _check_external_limits(resolved_root),
-        _check_policy_api(resolved_root),
-        _check_policy_ui(resolved_root),
     ]
     blockers = [check.detail for check in checks if not check.ready]
     warnings = _warnings()
@@ -197,48 +195,6 @@ def _check_external_limits(root: Path) -> Step5Check:
     )
 
 
-def _check_policy_api(root: Path) -> Step5Check:
-    """Check that product API access exists for the reliance policy."""
-
-    route = root / "geode" / "web" / "src" / "app" / "api" / "product" / "reliance-policy" / "route.ts"
-    return _check_file_markers("Reliance policy API", route, ("getReliancePolicy", "policy"))
-
-
-def _check_policy_ui(root: Path) -> Step5Check:
-    """Check that product UI access exists for the reliance policy."""
-
-    page = root / "geode" / "web" / "src" / "app" / "app" / "reliance-policy" / "page.tsx"
-    return _check_file_markers(
-        "Reliance policy UI",
-        page,
-        ("Reliance Policy", "reviewerRoles", "external reliance"),
-    )
-
-
-def _check_file_markers(name: str, path: Path, markers: tuple[str, ...]) -> Step5Check:
-    """Check that a file exists and contains required implementation markers."""
-
-    ready = _file_has_markers(path, markers)
-    return Step5Check(
-        name=name,
-        ready=ready,
-        detail=(
-            f"{name} implementation markers are present."
-            if ready
-            else f"{name} implementation markers are missing."
-        ),
-    )
-
-
-def _file_has_markers(path: Path, markers: tuple[str, ...]) -> bool:
-    """Return whether a file contains all required markers."""
-
-    if not path.exists():
-        return False
-    content = path.read_text(encoding="utf-8")
-    return all(marker in content for marker in markers)
-
-
 def _policy(root: Path) -> dict[str, object]:
     """Load the reliance policy as a dictionary."""
 
@@ -271,7 +227,7 @@ def _deferred_items() -> list[Step5DeferredItem]:
             id="STEP5-WORK-PACKETS",
             title="Work the formal review packets",
             reason="The 532 review packets still require actual decisions.",
-            next_action="Use /app/review-packets and /app/review to log packet decisions.",
+            next_action="Use backend review packet and review queue artifacts to log packet decisions.",
         ),
         Step5DeferredItem(
             id="STEP5-PUBLISH-RELIANCE-SOP",

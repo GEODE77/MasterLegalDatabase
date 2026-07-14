@@ -1,4 +1,4 @@
-"""Step 2 readiness gate for Project Geode retrieval and product surfaces."""
+"""Step 2 readiness gate for Project Geode retrieval."""
 
 from __future__ import annotations
 
@@ -11,12 +11,12 @@ from pydantic import BaseModel, Field
 
 from geode.constants import CONTROL_PLANE_DIR
 from geode.utils.file_io import atomic_write_json, iter_jsonl, load_json
-from geode.web.detail_index import detail_index
-from geode.web.query_index import query_index
+from geode.search.detail_index import detail_index
+from geode.search.query_index import query_index
 
 STEP2_REPORT_NAME = "STEP2_READINESS_REPORT.json"
 STEP2_QUEUE_NAME = "STEP2_DEFERRED_QUEUE.json"
-DEFAULT_DATABASE = Path("geode/web/data/structured_output/commons.sqlite3")
+DEFAULT_DATABASE = Path("data/structured_output/indices/commons.sqlite3")
 
 
 class Step2Check(BaseModel):
@@ -49,7 +49,7 @@ class Step2ReadinessReport(BaseModel):
 
 
 def build_step2_readiness_report(root: Path, database_path: Path) -> Step2ReadinessReport:
-    """Build the Step 2 gate report from the read index and product evidence."""
+    """Build the Step 2 gate report from the read index and requirement evidence."""
 
     resolved_root = root.resolve()
     resolved_database = _resolve_database_path(resolved_root, database_path)

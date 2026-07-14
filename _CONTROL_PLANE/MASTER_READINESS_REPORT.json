@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-02T20:38:09.851471+00:00",
+  "generated_at": "2026-07-07T23:49:29.134643+00:00",
   "local_system_usable": true,
   "external_reliance_ready": false,
   "blockers": [
@@ -8,10 +8,10 @@
     "live_official_freshness_not_verified"
   ],
   "source_strength": {
-    "records_scored": 57154,
+    "records_scored": 57155,
     "average_score": 0.987,
     "level_counts": {
-      "direct_full_text_source": 53034,
+      "direct_full_text_source": 53035,
       "official_listing_plus_document": 4120
     }
   },
@@ -21,7 +21,7 @@
     "review_relationships": 2011
   },
   "golden_samples": {
-    "generated_at": "2026-07-02T20:38:09.851471+00:00",
+    "generated_at": "2026-07-07T23:49:29.134643+00:00",
     "samples_written": 130,
     "target_counts": {
       "01_Statutes_CRS": 25,
@@ -36,8 +36,8 @@
     "boundary": "Golden samples are queued for human benchmark review and are not certified yet."
   },
   "freshness": {
-    "network_refresh_performed": true,
-    "items": 2
+    "network_refresh_performed": false,
+    "items": 7
   },
   "human_review": {
     "required_roles": 3,

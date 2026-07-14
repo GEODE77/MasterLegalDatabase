@@ -467,7 +467,6 @@ def apply_rule_unit_review_decisions(
 
     root = output_root.resolve()
     rule_units_path = root / REGULATIONS_LAYER / "_meta" / RULE_UNITS_NAME
-    proposal_path = root / REGULATIONS_LAYER / "_meta" / RULE_UNITS_APPLY_PROPOSAL_NAME
     summary_path = root / REGULATIONS_LAYER / "_meta" / RULE_UNITS_APPLY_SUMMARY_NAME
     decision_log_path = root / REGULATIONS_LAYER / "_meta" / RULE_UNITS_REVIEW_DECISIONS_NAME
     source_units, proposed_units, changes, validation_errors = _build_apply_state(

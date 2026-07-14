@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-07-02T20:36:00.666085Z",
+  "generated_at": "2026-07-07T23:39:10.441795Z",
   "catalog_path": "_CONTROL_PLANE/RETRIEVAL_CATALOG.jsonl",
-  "records_written": 57154,
+  "records_written": 57155,
   "layers_indexed": 7,
   "layer_counts": {
     "01_Statutes_CRS": 34717,
     "02_Regulations_CCR": 1035,
     "03_Legislation": 12453,
     "04_Rulemaking": 7955,
-    "05_Executive_Orders": 534,
+    "05_Executive_Orders": 535,
     "06_Session_Laws": 437,
     "07_Supplementary": 23
   },

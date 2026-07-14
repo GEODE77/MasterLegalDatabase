@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 from pathlib import Path
@@ -15,6 +16,7 @@ from geode.connectors.exec_orders_scraper import (
     discover_executive_orders,
     download_executive_order,
     extract_order_metadata,
+    ingest_archived_executive_orders,
 )
 from geode.connectors.orchestrator import run_full_download
 from geode.connectors.quality import build_bulk_download_quality_report
@@ -368,6 +370,27 @@ def test_exec_order_metadata_prefers_governor_signature_block() -> None:
 
     assert record["id"] == "EO-2021-046"
     assert record["signed_date"] == "2021-02-18"
+    assert record["governor"] == "Jared Polis"
+
+
+def test_exec_order_metadata_accepts_signature_period_date() -> None:
+    """Executive-order dates allow OCR punctuation found in older PDFs."""
+
+    text = (
+        "I Governor Jared Polis\n"
+        "D 2019 007\n"
+        "Executive Order D 2019 007\n"
+        "May 31,2019\n"
+        "GIVEN under my hand and Executive Seal of the State of Colorado "
+        "this thirty-first day of May. 2019.\n"
+        "Governor\n"
+    )
+
+    record = extract_order_metadata(text, "https://www.colorado.gov/governor/test.pdf")
+
+    assert record["id"] == "EO-2019-007"
+    assert record["signed_date"] == "2019-05-31"
+    assert record["governor"] == "Jared Polis"
 
 
 def test_exec_order_bulk_download_resumes_from_manifest(tmp_path: Path) -> None:
@@ -548,6 +571,106 @@ def test_exec_order_bulk_records_failure_when_invalid_retry_remains_invalid(
     assert report.failed == 1
     assert bad_target.read_bytes() == b"<html>Google Drive sign-in page</html>"
     assert list(tmp_path.glob("EO-2019-007_*.pdf")) == []
+
+
+def test_exec_order_ingest_uses_manual_intake_replacement(
+    project_root: Path,
+    monkeypatch,
+) -> None:
+    """Manual official intake can replace a blocked executive-order source."""
+
+    raw_dir = project_root / "_RAW_ARCHIVE" / "exec_orders"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    pdf_url = "https://www.colorado.gov/governor/eo/D2019007.pdf"
+    (raw_dir / "download_manifest.jsonl").write_text(
+        json.dumps(
+            {
+                "jurisdiction": "Colorado",
+                "source_type": "executive_order",
+                "document_id": "EO-2019-007",
+                "document_name": "D 2019 007",
+                "entry": {
+                    "order_number": "D 2019 007",
+                    "title": "D 2019 007",
+                    "signed_date": None,
+                    "source_page_url": "https://www.colorado.gov/governor/2019-executive-orders",
+                    "pdf_url": pdf_url,
+                },
+                "source_url": pdf_url,
+                "source_page_url": "https://www.colorado.gov/governor/2019-executive-orders",
+                "source_format": "pdf",
+                "signed_date": None,
+                "archive_path": "_RAW_ARCHIVE/exec_orders/EO-2019-007.pdf",
+                "sha256": "0" * 64,
+                "downloaded_at": "2026-07-02T00:00:00Z",
+                "missing_metadata": ["signed_date"],
+            },
+            separators=(",", ":"),
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    manual_pdf = (
+        project_root
+        / "_RAW_ARCHIVE"
+        / "manual_intake"
+        / "05_Executive_Orders"
+        / "EO-2019-007"
+        / "official.pdf"
+    )
+    manual_pdf.parent.mkdir(parents=True, exist_ok=True)
+    manual_pdf.write_bytes(b"%PDF-1.7 official replacement")
+    manual_sha = hashlib.sha256(manual_pdf.read_bytes()).hexdigest()
+    (project_root / "_CONTROL_PLANE" / "MANUAL_SOURCE_INTAKE_LEDGER.jsonl").write_text(
+        json.dumps(
+            {
+                "intake_id": "MSI-test",
+                "record_id": "EO-2019-007",
+                "layer_id": "05_Executive_Orders",
+                "official_source_name": "Colorado State Publications Library",
+                "official_source_url": (
+                    "https://spl.cde.state.co.us/artemis/goserials/go4312internet/"
+                    "go43122019007internet.pdf"
+                ),
+                "acquisition_method": "manual_official_download",
+                "received_from": "test",
+                "reviewer_name": "test",
+                "reviewer_email": None,
+                "custody_note": "Official replacement source artifact for EO-2019-007.",
+                "original_filename": "official.pdf",
+                "archive_path": manual_pdf.relative_to(project_root).as_posix(),
+                "sha256": manual_sha,
+                "size_bytes": manual_pdf.stat().st_size,
+                "source_format": "pdf",
+                "received_at": "2026-07-07T22:13:29Z",
+                "status": "archived_pending_pipeline",
+                "blocked_queue_match": True,
+                "boundary": "test",
+            },
+            separators=(",", ":"),
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(
+        "geode.connectors.exec_orders_scraper._extract_pdf_text",
+        lambda _path: (
+            "D 2019 007\n"
+            "EXECUTIVE ORDER\n"
+            "GIVEN under my hand and the Executive Seal of the State of Colorado, "
+            "this fifth day of April, 2019.\n"
+            "Jared Polis\nGovernor\n"
+        ),
+    )
+
+    summary = ingest_archived_executive_orders(project_root)
+    rows = list(iter_jsonl(project_root / "05_Executive_Orders" / "_index.jsonl"))
+
+    assert summary.records_written == 1
+    assert summary.failed_files == 0
+    assert rows[0]["id"] == "EO-2019-007"
+    assert rows[0]["source_path"] == manual_pdf.relative_to(project_root).as_posix()
+    assert rows[0]["source_url"].startswith("https://spl.cde.state.co.us/")
 
 
 def test_orchestrator_runs_injected_connectors(project_root: Path) -> None:

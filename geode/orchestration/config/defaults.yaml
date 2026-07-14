@@ -1,0 +1,16 @@
+{
+  "jurisdiction": {
+    "authority_levels": ["state", "federal"],
+    "state": "CO",
+    "reason": "No narrower jurisdiction was stated, so Geode defaults to Colorado state law plus federal context for regulated emissions."
+  },
+  "sector": {
+    "canonical_id": "NAICS-31-33",
+    "canonical_label": "Manufacturing",
+    "reason": "The query names manufacturing but does not narrow the subsector, so Geode defaults to the full NAICS 31-33 manufacturing sector."
+  },
+  "temporal": {
+    "mode": "current",
+    "reason": "No historical period was stated, so Geode defaults to current law as of today's date."
+  }
+}

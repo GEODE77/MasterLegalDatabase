@@ -22,38 +22,30 @@ def test_audit_artifacts_write_gap_queues_and_boundaries(tmp_path: Path) -> None
     raw_verification = _read_json(
         tmp_path / "_CONTROL_PLANE" / "RAW_SOURCE_BYTE_IDENTICAL_VERIFICATION.json"
     )
-    hardening = _read_json(
-        tmp_path
-        / "_CONTROL_PLANE"
-        / "AUDIT_REPORTS"
-        / "PERSONALIZATION_HARDENING_STATUS_2026-07-01.json"
-    )
 
     assert snapshot_queue["missing_baseline_count"] == 1
     assert ccr_plan["ccr_regulations_uncovered"] == 1
     assert authorization["authorization_state"] == "not_authorized"
-    assert outputs["route_conformance"].endswith("ROUTE_UI_UX_CONFORMANCE_2026-07-01.json")
+    assert outputs["api_verification"].endswith("DATA_API_VERIFICATION_2026-07-01.json")
     assert outputs["reference_decision"].endswith("REFERENCE_SITE_DECISION_2026-07-01.json")
     assert raw_verification["verification_status"] == "byte_identical"
     assert raw_verification["files_compared"] == 1
-    assert hardening["overall_status"] == "design_defect_open"
     assert (tmp_path / "docs" / "templates" / "REVIEWER_ASSIGNMENT_TEMPLATE.md").exists()
-    assert (tmp_path / "docs" / "personalization" / "DATA_HANDLING.md").exists()
 
 
 def _write_audit_fixture(root: Path) -> None:
     control = root / "_CONTROL_PLANE"
     crosswalks = root / "_CROSSWALKS"
     ccr = root / "02_Regulations_CCR"
-    app = root / "geode" / "web" / "src" / "app" / "app" / "dashboard"
+    api = root / "geode" / "api"
     raw = root / "_RAW_ARCHIVE" / "crs"
     control.mkdir(parents=True)
     crosswalks.mkdir(parents=True)
     ccr.mkdir(parents=True)
-    app.mkdir(parents=True)
+    api.mkdir(parents=True)
     raw.mkdir(parents=True)
     (raw / "source.txt").write_text("raw", encoding="utf-8")
-    (app / "page.tsx").write_text("export default function Page() { return null; }\n", encoding="utf-8")
+    (api / "app.py").write_text("def create_app():\n    return None\n", encoding="utf-8")
     (root / "docs").mkdir()
     (root / "docs" / "design-principles.md").write_text("# Design\n", encoding="utf-8")
     _write_jsonl(

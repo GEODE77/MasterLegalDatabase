@@ -9,7 +9,6 @@ from collections import defaultdict
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from pathlib import Path
-from typing import Any
 from urllib.parse import urljoin
 
 import requests

@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-06T19:18:00Z",
+  "generated_at": "2026-07-07T22:22:53.417793Z",
   "status": "active",
   "purpose": "Separate true pipeline failures from source limitations that need official-source repair or archival research.",
   "items": [
     {
       "id": "EO-2019-007-OFFICIAL-PDF",
       "layer_id": "05_Executive_Orders",
-      "status": "external_official_copy_required",
-      "severity": "warning",
+      "status": "resolved_by_manual_official_intake",
+      "severity": "info",
       "record_id": "EO-2019-007",
       "official_listing_url": "https://www.colorado.gov/governor/2019-executive-orders",
       "official_download_url": "https://drive.google.com/uc?export=download&id=0B7w3bkFgg92dZ1ZiX2pKb1Z0eDdVZTdndmFaN1pLNEE2bnZj",
@@ -17,9 +17,12 @@
         "title": "Tribal Access to Certain Child Welfare and Criminal History Databases"
       },
       "local_evidence_path": "_CONTROL_PLANE/EO_2019_007_RECOVERY_ATTEMPT.json",
-      "reason": "The official listing exists, but the linked Google Drive file currently returns a sign-in page instead of a usable PDF.",
-      "next_action": "Request a valid official copy from the Governor's Office or Colorado State Archives, then archive it through manual source intake and rebuild the executive order layer.",
-      "manual_intake_command_shape": "python -m geode.pipeline.manual_source_intake --root . --apply --record-id EO-2019-007 --layer-id 05_Executive_Orders --source-file <official_pdf_path> --official-source-name \"Colorado Governor's Office or State Archives\" --official-source-url https://www.colorado.gov/governor/2019-executive-orders --acquisition-method state_archives_request --received-from <source_contact> --reviewer-name <reviewer_name> --custody-note <custody_note> --json"
+      "reason": "The Governor public link still returns a sign-in page, but an official State Publications Library PDF has been archived through manual intake and used in the structured EO layer.",
+      "next_action": "No further EO-2019-007 source replacement is needed unless a newer official Governor-hosted file becomes available during a later source refresh.",
+      "resolved_at": "2026-07-07T22:22:53.417793Z",
+      "official_replacement_url": "https://spl.cde.state.co.us/artemis/goserials/go4312internet/go43122019007internet.pdf",
+      "manual_intake_archive_path": "_RAW_ARCHIVE/manual_intake/05_Executive_Orders/EO-2019-007/20260707T221329Z_EO-2019-007_official_state_publications_library.pdf",
+      "manual_intake_sha256": "6410ea9287b1551dd6e71796e2871671095cb63839dc1399a5b88c2469937c5d"
     },
     {
       "id": "LEGISCAN-LEGACY-DOCUMENT-GAPS",

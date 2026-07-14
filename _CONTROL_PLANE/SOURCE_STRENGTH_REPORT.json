@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-02T20:38:09.851471+00:00",
-  "records_scored": 57154,
+  "generated_at": "2026-07-07T23:49:29.134643+00:00",
+  "records_scored": 57155,
   "average_source_strength_score": 0.987,
   "level_counts": {
-    "direct_full_text_source": 53034,
+    "direct_full_text_source": 53035,
     "official_listing_plus_document": 4120
   },
   "layer_counts": {
@@ -22,7 +22,7 @@
       "official_listing_plus_document": 4095
     },
     "05_Executive_Orders": {
-      "direct_full_text_source": 534
+      "direct_full_text_source": 535
     },
     "06_Session_Laws": {
       "direct_full_text_source": 437

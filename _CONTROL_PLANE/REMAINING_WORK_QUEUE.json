@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-06T16:26:07Z",
-  "open_items": 5,
+  "generated_at": "2026-07-07T22:22:53.417793Z",
+  "open_items": 4,
   "items": [
     {
       "id": "HUMAN-REVIEWERS",
@@ -38,9 +38,9 @@
       "id": "BLOCKED-DOWNLOAD-EO-2019-007",
       "title": "Resolve blocked download for EO-2019-007",
       "category": "blocked_download",
-      "status": "queued",
-      "reason": "Official public download returns a Google Drive sign-in page instead of a usable executive order PDF.",
-      "next_action": "Request a valid official copy from the Governor's Office or State Archives, archive it through manual source intake, then rerun the EO source-anchoring workflow."
+      "status": "complete",
+      "reason": "EO-2019-007 was recovered from the Colorado State Publications Library and structured into the executive-order layer.",
+      "next_action": "No further blocked-download action is needed for EO-2019-007."
     }
   ]
 }

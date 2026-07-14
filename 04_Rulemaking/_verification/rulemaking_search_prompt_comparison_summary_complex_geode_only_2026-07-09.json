@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-07-09T00:41:29.135006Z",
+  "prompt_count": 51,
+  "geode_empty_results": 0,
+  "official_empty_results": 51,
+  "direct_overlap_prompts": 0,
+  "partial_overlap_prompts": 0,
+  "geode_broader_than_official": 0,
+  "official_unavailable_prompts": 51,
+  "needs_review_prompts": 0,
+  "status_counts": {
+    "official_not_run": 51
+  },
+  "detail_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/04_Rulemaking/_verification/rulemaking_search_prompt_comparison_complex_geode_only_2026-07-09.jsonl",
+  "summary_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/04_Rulemaking/_verification/rulemaking_search_prompt_comparison_summary_complex_geode_only_2026-07-09.json",
+  "report_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/docs/audits/RULEMAKING_SEARCH_PROMPT_COMPARISON_COMPLEX_GEODE_ONLY_2026-07-09.md",
+  "boundary": "This compares Geode's broad legal corpus search to Colorado's official Rulemaking Search, which is a narrower CCR/current-rule search. A lack of official overlap is not automatically a Geode failure."
+}

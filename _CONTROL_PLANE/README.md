@@ -1,7 +1,14 @@
 # Project Geode Control Plane
 
-The control plane contains the small, AI-readable files that describe corpus
-schema, sources, agencies, freshness, timelines, manifests, and update history.
+The control plane contains the small, AI-readable files that describe Geode's
+backend knowledge layer: corpus schema, sources, agencies, freshness,
+timelines, manifests, reliance boundaries, and update history.
+
+The orchestration engine reads these files before retrieving legal text. They
+are part of hard orchestration: code uses them to decide what exists, what is
+fresh, what is trusted, and what must be disclosed as missing. Prompts may
+summarize these rules for an LLM, but the control-plane files and validation
+code are authoritative.
 
 Current operational handoff files:
 

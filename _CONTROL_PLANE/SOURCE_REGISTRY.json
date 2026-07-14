@@ -98,11 +98,11 @@
     "source_name": "Colorado Secretary of State eDocket",
     "description": "Public rulemaking docket records associated with Colorado Register notices and CCR rule changes.",
     "owner": "Colorado Secretary of State",
-    "url": "https://www.sos.state.co.us/CCR/eDocketPublic.do",
+    "url": "https://www.sos.state.co.us/CCR/eDocketCriteria.do",
     "api_url": null,
     "format": ["html"],
     "access_method": "scrape",
-    "access_notes": "Use as a rulemaking detail source when a Register notice exposes an eDocket tracking number or link. The public page may reject non-browser terminal requests.",
+    "access_notes": "Use as a rulemaking detail source when a Register notice exposes an eDocket tracking number or link. The public eDocket search page is linked from the official CCR and Colorado Register navigation.",
     "coverage_start": null,
     "coverage_end": null,
     "update_frequency": "continuous",
@@ -115,6 +115,31 @@
     "target_layer": "04_Rulemaking",
     "connector_type": "register_pipeline",
     "estimated_records": 2000,
+    "license": "Official public legal source; reuse policy to be confirmed.",
+    "contact": null
+  },
+  {
+    "source_id": "colorado_rulemaking_search",
+    "source_name": "Colorado Rulemaking Search Portal",
+    "description": "Public Colorado rule search portal exposing current CCR rule documents, effective dates, filing types, rule-history panels, proposed-change flags, newer-version warnings, and repealed-status warnings.",
+    "owner": "State of Colorado / Colorado Secretary of State",
+    "url": "https://rulemaking.colorado.gov/rulemaking-search",
+    "api_url": "https://uapi.colorado.gov/oit/sos/rules/kendra/query",
+    "format": ["html", "json", "pdf"],
+    "access_method": "browser_embedded_search",
+    "access_notes": "The visible state page embeds a search application hosted at https://oit-rules-search-ui.coawsprod.com/. Use it for verification and history extraction without storing embedded access keys in the repository.",
+    "coverage_start": null,
+    "coverage_end": null,
+    "update_frequency": "continuous",
+    "known_gaps": [
+      "No documented public bulk export has been confirmed.",
+      "Live status flags require periodic source verification.",
+      "Historical version links must be reconciled to Register notices where dates allow."
+    ],
+    "priority": "critical",
+    "target_layer": "02_Regulations_CCR, 04_Rulemaking",
+    "connector_type": "rule_history_backfill",
+    "estimated_records": 4000,
     "license": "Official public legal source; reuse policy to be confirmed.",
     "contact": null
   },
@@ -185,6 +210,30 @@
     "connector_type": "ag_opinions_scraper",
     "estimated_records": 400,
     "license": "Official public government opinions; reuse policy to be confirmed.",
+    "contact": null
+  },
+  {
+    "source_id": "federal_osha",
+    "source_name": "Federal OSHA Standards",
+    "description": "Selected federal OSHA standards needed for workplace-safety compliance retrieval, including hazard communication, machine guarding, silica, lockout/tagout, PPE, respiratory protection, confined spaces, forklifts, hot work, injury records, and employer duties.",
+    "owner": "Occupational Safety and Health Administration, Department of Labor; United States Code",
+    "url": "https://www.ecfr.gov/current/title-29/part-1910",
+    "api_url": null,
+    "format": ["html"],
+    "access_method": "official_web_reference",
+    "access_notes": "Use eCFR for current 29 CFR Part 1910 standards and uscode.house.gov for Occupational Safety and Health Act statutory duties. Initial Geode supplement covers prompts identified in the 2026-07-08 search audit.",
+    "coverage_start": "1970",
+    "coverage_end": null,
+    "update_frequency": "monthly",
+    "known_gaps": [
+      "Only selected OSHA records are currently indexed.",
+      "A complete federal workplace-safety layer should add additional 29 CFR Parts 1903, 1904, 1910, 1926, and related OSHA guidance."
+    ],
+    "priority": "important",
+    "target_layer": "07_Supplementary",
+    "connector_type": "federal_osha_reference",
+    "estimated_records": 11,
+    "license": "Official public federal legal source; eCFR is authoritative but unofficial and should be checked against published CFR when necessary.",
     "contact": null
   }
 ]

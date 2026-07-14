@@ -7,7 +7,20 @@
 
 # B1. System Overview & Vision
 
-**Project Geode** organizes the full body of Colorado state law for AI-first consumption.
+**Project Geode** is a backend-first regulatory intelligence database for
+Colorado legal authority. It serves AI models, agents, APIs, search, retrieval,
+ingestion, and legal data analysis.
+
+Geode's jurisdiction model follows the full Colorado authority hierarchy:
+
+1. State
+2. County
+3. Municipal
+
+The current corpus is state-first. The architecture extends to county and
+municipal authority by adding source registries, schemas, indexes, crosswalks,
+and freshness rules for those local layers without changing the backend-first
+role of the system.
 
 | # | Layer | Content | Source Owner | Est. Records |
 |---|-------|---------|-------------|-------------|
@@ -18,13 +31,58 @@
 | 5 | **Executive Orders** | Governor's orders | Governor's Office | ~200+ |
 | 6 | **Supplementary** | AG opinions, COPRRR reviews | AG, DORA | ~700+ |
 
-**Vision:** Legislators check bill duplication, business owners find requirements, researchers identify overlap, AI agents query programmatically. Measure compliance costs, reporting burdens, permitting complexity.
+**Vision:** AI and agent workflows use Geode to check bill duplication,
+identify state/county/municipal authority overlap, map compliance obligations,
+measure burden, and produce cited research outputs. Downstream tools may be
+built on top of Geode, but this repository is the backend knowledge and
+orchestration layer.
 
-**Step 1 Focus:** Data collection and structuring. Step 2 (future): query/retrieval layer.
+**Current Direction:** Data collection and structuring remain foundational.
+The new centerpiece is the orchestration engine: deterministic Python code that
+sits between an LLM and the Geode knowledge layer, decides what to retrieve,
+assembles evidence, applies hard accuracy gates, and only then allows the LLM
+to write a structured answer.
+
+**Role separation:**
+
+- Geode = knowledge layer.
+- Orchestration engine = decision, retrieval, verification, and output control.
+- LLM = writer and synthesis layer only.
+
+Markdown policies and prompts are soft orchestration. They guide the model but
+do not enforce accuracy. Code gates are hard orchestration and are
+authoritative.
+
+---
+
+# B1A. Orchestration Engine
+
+The orchestration engine runs in six ordered layers.
+
+| # | Layer | Responsibility |
+|---|-------|----------------|
+| 1 | **Input & Interpretation** | Normalize the request; classify question type, legal domain, jurisdiction, entities, time period, and ambiguity. |
+| 2 | **Planning & Retrieval** | Decide which control-plane files, indexes, legal texts, metadata sidecars, crosswalks, timelines, and source records must be read. |
+| 3 | **Evidence & Reasoning** | Assemble verified passages, structured records, relationship chains, conflicts, and absence findings. |
+| 4 | **Accuracy & Verification (hard gates)** | Enforce grounding, citation verification, currency, completeness, faithfulness, and absence verification in code. |
+| 5 | **Output Control** | Require structured, cited, confidence-rated output and reject responses that fail the answer contract. |
+| 6 | **Platform & Operations** | Manage source freshness, snapshots, audit logs, reliance policy, reviewer workflows, and operational reporting. |
+
+The LLM never decides which law applies, whether evidence is sufficient, or
+whether an absence claim is allowed. Those decisions belong to deterministic
+code. If evidence is missing, stale, conflicting, or outside Geode's coverage,
+the orchestrator must expose that limitation instead of allowing the model to
+fill the gap.
 
 ---
 
 # B2. Data Source Registry
+
+The sources below are the current state-authority registry. County and
+municipal authority sources must be added through the same registry pattern:
+official source owner, access method, freshness policy, schema mapping, and
+source URL. No county or municipal source may be treated as covered until it is
+registered, ingested, validated, and visible in the manifest.
 
 ## Source: CRS
 
@@ -450,7 +508,12 @@ Unified chronological spine:
 
 ---
 
-# B9. The 8-Layer Enhancement Pipeline
+# B9. The 8-Layer Ingestion Enhancement Pipeline
+
+This pipeline improves extraction and data quality during ingestion. It is not
+the same thing as the orchestration engine. The ingestion pipeline creates and
+validates knowledge-layer records. The orchestration engine later decides what
+records to retrieve and whether an answer may be emitted.
 
 ## End-to-End Flow
 
@@ -720,4 +783,4 @@ Connectors -> Normalization (schema, IDs, tags, cross-refs)
 
 ---
 
-*End of GEODE_SYSTEM_DESIGN.md | v1.0 | 2026-06-12 | Sections B1-B14*
+*End of GEODE_SYSTEM_DESIGN.md | v1.1 | 2026-07-14 | Sections B1-B14*

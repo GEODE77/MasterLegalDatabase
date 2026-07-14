@@ -13,7 +13,7 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
-from geode.constants import CONTROL_PLANE_DIR
+from geode.constants import CONTROL_PLANE_DIR, RAW_ARCHIVE_DIR, SNAPSHOTS_DIR
 from geode.utils.file_io import atomic_write_json, atomic_write_jsonl, iter_jsonl, load_json
 
 try:
@@ -487,8 +487,11 @@ def _audit_jsonl_addressability(
 
 
 def _is_skipped_jsonl_path(root: Path, path: Path) -> bool:
-    parts = set(path.relative_to(root).parts)
-    return bool(parts & {".git", "node_modules", ".next", "_RAW_ARCHIVE"})
+    relative_parts = path.relative_to(root).parts
+    parts = set(relative_parts)
+    if parts & {".git", "node_modules", RAW_ARCHIVE_DIR, SNAPSHOTS_DIR}:
+        return True
+    return relative_parts[:2] == ("data", "structured_output")
 
 
 def _row_primary_identifier(row: dict[str, Any]) -> str | None:

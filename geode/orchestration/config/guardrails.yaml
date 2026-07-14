@@ -1,0 +1,18 @@
+{
+  "guardrails": {
+    "disclaimers": [
+      "This output is regulatory information, not legal advice.",
+      "A qualified attorney or compliance professional should review high-stakes decisions before action."
+    ],
+    "unauthorized_practice_of_law": {
+      "trigger_terms": ["must", "shall", "required", "permit", "penalty"],
+      "disclaimer": "This system summarizes source-backed requirements and does not provide legal representation or legal advice."
+    }
+  },
+  "escalation": {
+    "low_confidence_threshold": 0.6,
+    "high_stakes_terms": ["penalty", "permit denial", "enforcement", "criminal", "fine"],
+    "channel": "human_review",
+    "reason_template": "Human review required because confidence is low or high-stakes language is present."
+  }
+}

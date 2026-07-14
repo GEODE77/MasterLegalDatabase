@@ -10,7 +10,7 @@ from geode.validation.step9_gate import build_step9_readiness_report, write_step
 
 
 def test_step9_gate_passes_with_relationship_coverage(tmp_path: Path) -> None:
-    """Step 9 passes when relationship coverage and product access exist."""
+    """Step 9 passes when backend relationship coverage exists."""
 
     _write_step9_fixture(tmp_path)
 
@@ -46,14 +46,6 @@ def _write_step9_fixture(root: Path, *, write_coverage: bool = True) -> None:
     _write_relationship_source_fixture(root)
     if write_coverage:
         write_relationship_coverage(root)
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "api" / "product" / "relationships" / "route.ts",
-        "getRelationshipCoverageReport relationshipCoverage",
-    )
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "app" / "relationships" / "page.tsx",
-        "Relationship Health visual graph getRelationshipCoverageReport",
-    )
 
 
 def _write_relationship_source_fixture(root: Path) -> None:
@@ -100,9 +92,3 @@ def _write_relationship_source_fixture(root: Path) -> None:
     ]:
         (crosswalks / name).write_text("", encoding="utf-8")
 
-
-def _write_marker_file(path: Path, content: str) -> None:
-    """Write one marker file for Step 9 gate tests."""
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content, encoding="utf-8")

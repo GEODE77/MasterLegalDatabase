@@ -10,7 +10,7 @@ from geode.validation.step8_gate import build_step8_readiness_report, write_step
 
 
 def test_step8_gate_passes_with_update_ledger(tmp_path: Path) -> None:
-    """Step 8 passes when update ledger artifacts and product access exist."""
+    """Step 8 passes when backend update ledger artifacts exist."""
 
     _write_step8_fixture(tmp_path)
 
@@ -46,14 +46,6 @@ def _write_step8_fixture(root: Path, *, write_ledger: bool = True) -> None:
     _write_ledger_source_fixture(root)
     if write_ledger:
         write_update_ledger(root)
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "api" / "product" / "updates" / "route.ts",
-        "getUpdateLedger getUpdateLedgerSummary ledger",
-    )
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "app" / "updates" / "page.tsx",
-        "getUpdateLedger Full text diff Update Ledger",
-    )
 
 
 def _write_ledger_source_fixture(root: Path) -> None:
@@ -100,9 +92,3 @@ def _write_ledger_source_fixture(root: Path) -> None:
         encoding="utf-8",
     )
 
-
-def _write_marker_file(path: Path, content: str) -> None:
-    """Write one marker file for Step 8 gate tests."""
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content, encoding="utf-8")

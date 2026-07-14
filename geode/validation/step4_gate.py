@@ -52,8 +52,6 @@ def build_step4_readiness_report(root: Path) -> Step4ReadinessReport:
         _check_step3_ready(resolved_root),
         _check_review_packets(resolved_root),
         _check_packet_summary(resolved_root),
-        _check_packet_api(resolved_root),
-        _check_packet_ui(resolved_root),
     ]
     blockers = [check.detail for check in checks if not check.ready]
     warnings = _warnings(resolved_root)
@@ -158,52 +156,6 @@ def _check_packet_summary(root: Path) -> Step4Check:
     )
 
 
-def _check_packet_api(root: Path) -> Step4Check:
-    """Check that product API access exists for review packets."""
-
-    route = root / "geode" / "web" / "src" / "app" / "api" / "product" / "review-packets" / "route.ts"
-    return _check_file_markers(
-        "Review packet API",
-        route,
-        ("getRuleUnitReviewPackets", "getRuleUnitReviewPacketSummary"),
-    )
-
-
-def _check_packet_ui(root: Path) -> Step4Check:
-    """Check that product UI access exists for review packets."""
-
-    page = root / "geode" / "web" / "src" / "app" / "app" / "review-packets" / "page.tsx"
-    return _check_file_markers(
-        "Review packet UI",
-        page,
-        ("Review Packets", "relianceBoundary", "packetFilters"),
-    )
-
-
-def _check_file_markers(name: str, path: Path, markers: tuple[str, ...]) -> Step4Check:
-    """Check that a file exists and contains required implementation markers."""
-
-    ready = _file_has_markers(path, markers)
-    return Step4Check(
-        name=name,
-        ready=ready,
-        detail=(
-            f"{name} implementation markers are present."
-            if ready
-            else f"{name} implementation markers are missing."
-        ),
-    )
-
-
-def _file_has_markers(path: Path, markers: tuple[str, ...]) -> bool:
-    """Return whether a file contains all required markers."""
-
-    if not path.exists():
-        return False
-    content = path.read_text(encoding="utf-8")
-    return all(marker in content for marker in markers)
-
-
 def _warnings(root: Path) -> list[str]:
     """Return Step 4 warnings."""
 
@@ -220,7 +172,7 @@ def _deferred_items(root: Path) -> list[Step4DeferredItem]:
             id="STEP4-PACKET-REVIEW",
             title="Complete formal packet review",
             reason=f"{pending} packets remain pending formal review.",
-            next_action="Use /app/review-packets to work packet batches and log review decisions.",
+            next_action="Use the backend review packet files to work packet batches and log review decisions.",
         ),
         Step4DeferredItem(
             id="STEP4-CANONICAL-APPLY",

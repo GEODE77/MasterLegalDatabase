@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-02T20:38:09.851471+00:00",
-  "open_items": 2,
+  "generated_at": "2026-07-07T23:49:29.134643+00:00",
+  "open_items": 3,
   "items": [
     {
       "id": "CCR-5_CCR_1002-83",
@@ -26,13 +26,13 @@
     {
       "id": "SESSION-LAW-FULL-TEXT",
       "category": "source_depth",
-      "status": "closed_by_pdf_archive",
+      "status": "queued",
       "title": "Upgrade session law chapter evidence",
-      "next_action": "Keep chapter PDFs as the source anchor for session-law records."
+      "next_action": "Preserve full chapter artifacts per session law."
     }
   ],
   "relationship_review_rows": 2011,
-  "freshness_refresh_items": 2,
+  "freshness_refresh_items": 7,
   "human_review_ready_for_reliance": false,
   "boundary": "This dashboard tracks data-quality operations. It is not a legal approval queue."
 }

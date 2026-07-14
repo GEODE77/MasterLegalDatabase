@@ -1,0 +1,126 @@
+{
+  "orchestration": {
+    "version": "0.1.0",
+    "product_boundary": "backend_only",
+    "jurisdiction_scope": ["state", "county", "municipal"],
+    "role_separation": {
+      "geode": "knowledge_layer",
+      "orchestration_engine": "decision_retrieval_verification_output_control",
+      "llm": "writer_and_synthesis_only"
+    },
+    "layer_groups": [
+      {
+        "name": "Input & Interpretation",
+        "stages": ["query_normalization", "parse_intent", "resolve_entities", "scope_temporal", "ambiguity_check", "resolve_jurisdiction"]
+      },
+      {
+        "name": "Planning & Retrieval",
+        "stages": ["build_coverage_contract", "plan_retrieval", "retrieve"]
+      },
+      {
+        "name": "Evidence & Reasoning",
+        "stages": ["assemble_evidence", "inject_reasoning_policies"]
+      },
+      {
+        "name": "Accuracy & Verification",
+        "stages": ["enforce_grounding", "verify_citations", "verify_currency", "check_completeness", "absence_verification", "check_faithfulness"]
+      },
+      {
+        "name": "Output Control",
+        "stages": ["calibrate_confidence", "validate_answer_contract", "guardrails", "escalation_hook", "emit"]
+      },
+      {
+        "name": "Platform & Operations",
+        "stages": ["freshness_reporting", "audit_logging", "snapshot_control", "review_workflow"]
+      }
+    ],
+    "hard_gates": [
+      "grounding",
+      "citation_verification",
+      "currency",
+      "completeness",
+      "faithfulness",
+      "absence_verification",
+      "answer_contract"
+    ],
+    "stages": [
+      "query_normalization",
+      "parse_intent",
+      "resolve_entities",
+      "scope_temporal",
+      "ambiguity_check",
+      "resolve_jurisdiction",
+      "build_coverage_contract",
+      "plan_retrieval",
+      "retrieve",
+      "assemble_evidence",
+      "conflict_detection",
+      "inject_reasoning_policies",
+      "generate_draft",
+      "enforce_grounding",
+      "verify_citations",
+      "verify_currency",
+      "check_completeness",
+      "absence_verification",
+      "check_faithfulness",
+      "calibrate_confidence",
+      "validate_answer_contract",
+      "guardrails",
+      "escalation_hook",
+      "emit"
+    ],
+    "halt_on_gate_failure": true
+  },
+  "classification": {
+    "question_type_rules": [
+      {
+        "question_type": "compliance_check",
+        "answer_shape": "direct_answer",
+        "any_terms": ["do i need", "does a", "need a permit", "must", "required to"]
+      },
+      {
+        "question_type": "overlap_detection",
+        "answer_shape": "comparison",
+        "any_terms": ["overlap", "duplicate", "duplicative", "conflict between"]
+      },
+      {
+        "question_type": "compliance_survey",
+        "answer_shape": "compliance_survey",
+        "any_terms": ["regulations", "requirements", "pertain", "apply", "compliance"]
+      },
+      {
+        "question_type": "exact_citation",
+        "answer_shape": "direct_answer",
+        "any_terms": ["crs", "c.r.s.", "ccr"]
+      },
+      {
+        "question_type": "legislative_history",
+        "answer_shape": "timeline",
+        "any_terms": ["history", "historical", "amended", "changed since"]
+      },
+      {
+        "question_type": "broad_discovery",
+        "answer_shape": "general_summary",
+        "any_terms": ["what laws", "which laws", "affect", "govern"]
+      }
+    ],
+    "topic_rules": [
+      {
+        "topic": "environmental",
+        "sub_topic": "air_emissions",
+        "any_terms": ["emissions", "pollutant", "greenhouse gas", "carbon dioxide", "co2"]
+      },
+      {
+        "topic": "labor",
+        "sub_topic": "workplace",
+        "any_terms": ["employee", "wage", "workplace", "labor"]
+      }
+    ],
+    "industry_rules": [
+      {
+        "industry": "manufacturing",
+        "any_terms": ["manufacturing", "manufacturer", "industrial facility", "factory"]
+      }
+    ]
+  }
+}

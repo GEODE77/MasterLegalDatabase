@@ -41,6 +41,26 @@ def test_write_corpus_usability_audit_outputs_reports(tmp_path: Path) -> None:
     assert (tmp_path / "docs" / "audits" / "CORPUS_USABILITY_AUDIT_2026-07-01.md").exists()
 
 
+def test_corpus_usability_audit_skips_snapshots_and_generated_runtime_data(
+    tmp_path: Path,
+) -> None:
+    """The audit should stay focused on the current legal corpus."""
+
+    _write_fixture(tmp_path)
+    snapshot = tmp_path / "_SNAPSHOTS" / "snapshot_2026-01-01" / "bad.jsonl"
+    generated_runtime = tmp_path / "data" / "structured_output" / "runtime" / "bad.jsonl"
+    snapshot.parent.mkdir(parents=True)
+    generated_runtime.parent.mkdir(parents=True)
+    snapshot.write_text("{bad json\n", encoding="utf-8")
+    generated_runtime.write_text("{bad json\n", encoding="utf-8")
+
+    audit, issues, _queue = build_corpus_usability_audit(tmp_path)
+
+    assert audit.total_jsonl_files_checked == 8
+    assert not any(issue.path == "_SNAPSHOTS/snapshot_2026-01-01/bad.jsonl" for issue in issues)
+    assert not any(issue.path == "data/structured_output/runtime/bad.jsonl" for issue in issues)
+
+
 def _write_fixture(root: Path) -> None:
     control = root / "_CONTROL_PLANE"
     layer = root / "01_Statutes_CRS"

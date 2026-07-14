@@ -1,0 +1,67 @@
+{
+  "coverage_templates": {
+    "compliance_survey": {
+      "completeness_rule": "Each non-conditional category must return candidate sources or be explicitly reported empty.",
+      "categories": [
+        {
+          "category_id": "federal_environmental_rules",
+          "label": "Federal environmental rules",
+          "authority_level": "federal",
+          "retrieval_targets": ["federal_standard"],
+          "reason": "Emissions questions can involve federal environmental standards."
+        },
+        {
+          "category_id": "colorado_statutes",
+          "label": "Colorado enabling statutes",
+          "authority_level": "state",
+          "retrieval_targets": ["statute_section"],
+          "reason": "Colorado statutes establish legal authority for emissions regulation."
+        },
+        {
+          "category_id": "colorado_regulations",
+          "label": "Colorado regulations",
+          "authority_level": "state",
+          "retrieval_targets": ["regulation_rule"],
+          "reason": "Colorado regulations contain operative compliance requirements."
+        },
+        {
+          "category_id": "reporting_rules",
+          "label": "Reporting rules",
+          "authority_level": "state",
+          "retrieval_targets": ["rule_unit", "regulation_rule"],
+          "reason": "Emissions programs commonly include reporting duties."
+        },
+        {
+          "category_id": "permitting_rules",
+          "label": "Permitting rules",
+          "authority_level": "state",
+          "retrieval_targets": ["regulation_rule", "rule_unit"],
+          "reason": "Manufacturing emissions may require permits or permit conditions."
+        },
+        {
+          "category_id": "sector_rules",
+          "label": "Manufacturing sector rules",
+          "authority_level": "state",
+          "retrieval_targets": ["regulation_rule", "rule_unit"],
+          "reason": "Sector-specific rules may apply to manufacturing facilities."
+        }
+      ],
+      "conditional_categories": [
+        {
+          "category_id": "county_rules",
+          "label": "County rules",
+          "authority_level": "county",
+          "retrieval_targets": ["local_rule"],
+          "reason": "County requirements depend on facility location."
+        },
+        {
+          "category_id": "municipal_rules",
+          "label": "Municipal rules",
+          "authority_level": "municipal",
+          "retrieval_targets": ["local_rule"],
+          "reason": "Municipal requirements depend on facility location."
+        }
+      ]
+    }
+  }
+}

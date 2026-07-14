@@ -13,7 +13,7 @@ from geode.validation.step6_gate import (
 
 
 def test_step6_gate_passes_with_reviewer_operations(tmp_path: Path) -> None:
-    """Step 6 passes when assignments, SOP, API, and UI are present."""
+    """Step 6 passes when backend reviewer operations are present."""
 
     _write_step6_fixture(tmp_path)
 
@@ -49,14 +49,6 @@ def _write_step6_fixture(root: Path, *, write_assignments: bool = True) -> None:
     _write_policy(root)
     if write_assignments:
         write_reviewer_operations(root)
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "api" / "product" / "reviewer-operations" / "route.ts",
-        "getReviewerOperations operations",
-    )
-    _write_marker_file(
-        root / "geode" / "web" / "src" / "app" / "app" / "reviewer-operations" / "page.tsx",
-        "Reviewer Operations assignedTo Assign named reviewers",
-    )
 
 
 def _write_policy(root: Path) -> None:
@@ -91,9 +83,3 @@ def _write_policy(root: Path) -> None:
         encoding="utf-8",
     )
 
-
-def _write_marker_file(path: Path, content: str) -> None:
-    """Write one marker file for Step 6 gate tests."""
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content, encoding="utf-8")

@@ -1,0 +1,36 @@
+# Geode Draft Answer Packet
+
+## Advisory Policies
+{% for name, policy in policies.items() %}
+### {{ name }}
+{{ policy }}
+
+{% endfor %}
+## User Intent
+- Question type: {{ intent.question_type.value }}
+- Topic: {{ intent.topic.value }}
+- Sub-topic: {{ intent.sub_topic or "not specified" }}
+- Industry: {{ intent.industry.value }}
+
+## Evidence
+{% for item in evidence %}
+- {{ item.evidence_id }} | {{ item.citation.citation_text }} | {{ item.authority_level.value if item.authority_level else item.citation.authority_level.value }} | {{ item.text }}
+{% endfor %}
+
+## Conflicts
+{% if conflicts %}
+{% for conflict in conflicts %}
+- {{ conflict.conflict_id }} | {{ conflict.status.value }} | {{ conflict.description }}{% if conflict.resolution %} | {{ conflict.resolution }}{% endif %}
+{% endfor %}
+{% else %}
+- none
+{% endif %}
+
+## Empty Expected Categories
+{% if empty_expected_categories %}
+{% for category in empty_expected_categories %}
+- {{ category }}
+{% endfor %}
+{% else %}
+- none
+{% endif %}

@@ -109,6 +109,22 @@ def test_manual_source_intake_rejects_unofficial_url(tmp_path: Path) -> None:
         archive_manual_source(tmp_path, payload, dry_run=True)
 
 
+def test_manual_source_intake_accepts_state_publications_library_url(tmp_path: Path) -> None:
+    """Manual intake accepts Colorado State Publications Library source URLs."""
+
+    source = tmp_path / "official-eo.pdf"
+    source.write_bytes(b"%PDF-1.7 official executive order")
+    payload = _request(source)
+    payload["official_source_url"] = (
+        "https://spl.cde.state.co.us/artemis/goserials/go4312internet/"
+        "go43122019007internet.pdf"
+    )
+
+    record = archive_manual_source(tmp_path, payload, dry_run=True)
+
+    assert record.official_source_url == payload["official_source_url"]
+
+
 def test_manual_source_intake_policy_writer(tmp_path: Path) -> None:
     """The policy artifact documents boundaries and required metadata."""
 

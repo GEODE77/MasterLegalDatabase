@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-06T19:48:34.956146+00:00",
+  "generated_at": "2026-07-14T16:06:09.605181+00:00",
   "status": "warn",
-  "item_count": 2,
+  "item_count": 6,
   "items": [
     {
       "queue_id": "SOURCE-UPDATE-CRS",
@@ -22,6 +22,57 @@
       ]
     },
     {
+      "queue_id": "SOURCE-UPDATE-CCR",
+      "source_id": "ccr",
+      "layer_ids": [
+        "02_Regulations_CCR"
+      ],
+      "action_type": "manual_source_review",
+      "status": "queued",
+      "reason": "Manual source review is needed before any download or replacement intake.",
+      "guarded_command": null,
+      "required_safety_checks": [
+        "Confirm the source URL is official or authorized.",
+        "Run the secret safety check before committing.",
+        "Run the relevant layer validation after download.",
+        "Run the download closeout checklist before push."
+      ]
+    },
+    {
+      "queue_id": "SOURCE-UPDATE-LEGISCAN",
+      "source_id": "legiscan",
+      "layer_ids": [
+        "03_Legislation"
+      ],
+      "action_type": "manual_source_review",
+      "status": "queued",
+      "reason": "Manual source review is needed before any download or replacement intake.",
+      "guarded_command": "python -m geode.connectors.legiscan_pipeline --output-root . --download --session-year 2026",
+      "required_safety_checks": [
+        "Confirm the source URL is official or authorized.",
+        "Run the secret safety check before committing.",
+        "Run the relevant layer validation after download.",
+        "Run the download closeout checklist before push."
+      ]
+    },
+    {
+      "queue_id": "SOURCE-UPDATE-COLORADO_REGISTER",
+      "source_id": "colorado_register",
+      "layer_ids": [
+        "04_Rulemaking"
+      ],
+      "action_type": "manual_source_review",
+      "status": "queued",
+      "reason": "Manual source review is needed before any download or replacement intake.",
+      "guarded_command": "python -m geode.connectors.register_pipeline --output-root . --download",
+      "required_safety_checks": [
+        "Confirm the source URL is official or authorized.",
+        "Run the secret safety check before committing.",
+        "Run the relevant layer validation after download.",
+        "Run the download closeout checklist before push."
+      ]
+    },
+    {
       "queue_id": "SOURCE-UPDATE-EXECUTIVE_ORDERS",
       "source_id": "executive_orders",
       "layer_ids": [
@@ -31,6 +82,23 @@
       "status": "queued",
       "reason": "Manual source review is needed before any download or replacement intake.",
       "guarded_command": "Use the existing executive order connector or manual_source_intake for blocked official files, then rerun the executive order rebuild.",
+      "required_safety_checks": [
+        "Confirm the source URL is official or authorized.",
+        "Run the secret safety check before committing.",
+        "Run the relevant layer validation after download.",
+        "Run the download closeout checklist before push."
+      ]
+    },
+    {
+      "queue_id": "SOURCE-UPDATE-COPRRR",
+      "source_id": "coprrr",
+      "layer_ids": [
+        "07_Supplementary"
+      ],
+      "action_type": "manual_source_review",
+      "status": "queued",
+      "reason": "Manual source review is needed before any download or replacement intake.",
+      "guarded_command": null,
       "required_safety_checks": [
         "Confirm the source URL is official or authorized.",
         "Run the secret safety check before committing.",

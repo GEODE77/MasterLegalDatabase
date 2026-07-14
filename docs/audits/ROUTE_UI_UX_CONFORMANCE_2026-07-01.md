@@ -1,5 +1,9 @@
 # Route UI/UX Conformance
 
+Historical note: this audit describes a former route and UI direction. Geode is
+now backend-only; these findings are retained as dated evidence and are not
+current architecture.
+
 Generated: 2026-07-01T21:54:36.362516+00:00
 
 This table is based on route files, product chrome source, and the approved reference decision.
