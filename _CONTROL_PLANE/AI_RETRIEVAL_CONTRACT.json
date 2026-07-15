@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "candidate_rules": [
+    "Use source-backed text, never metadata-only text.",
+    "Prefer exact geography and authority level over broad keyword matches.",
+    "Exclude semantic_status=source_preservation_only from answer evidence.",
+    "Preserve source_path, source_hash, page, line, section, and passage hash.",
+    "Return selection reasons so an AI can understand why evidence was chosen.",
+    "Cap evidence to the smallest set that covers the requested categories."
+  ],
+  "required_evidence_fields": ["evidence_id", "text", "citation", "provenance", "jurisdiction", "authority_level", "answer_safe", "selection_reasons"],
+  "required_provenance_fields": ["source_id", "source_path", "source_hash", "passage.text_hash"],
+  "disallowed_evidence": ["answer_safe=false", "semantic_status=source_preservation_only", "unresolved_geography"]
+}

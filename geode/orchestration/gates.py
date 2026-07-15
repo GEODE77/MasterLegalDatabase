@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import hashlib
 
 from geode.orchestration.contracts import (
     Answer,
@@ -30,9 +31,14 @@ def enforce_grounding(state: QueryState) -> tuple[QueryState, GateResult]:
     supported: list[AtomicClaim] = []
     stripped: list[str] = []
     for claim in claims:
-        claim_supported = bool(set(claim.evidence_ids) & evidence_ids) and _claim_supported_by_text(
+        claim_evidence = [
+            item
+            for item in state.evidence
+            if item.evidence_id in set(claim.evidence_ids) and _evidence_is_answer_safe(item)
+        ]
+        claim_supported = bool(claim_evidence) and _claim_supported_by_text(
             claim.text,
-            state.evidence,
+            claim_evidence,
         )
         updated = claim.model_copy(update={"supported": claim_supported})
         if claim_supported:
@@ -64,7 +70,7 @@ def verify_citations(state: QueryState) -> tuple[QueryState, GateResult]:
     for citation in state.answer.citations:
         citation_id = citation.canonical_id or citation.citation_text
         evidence = evidence_by_citation.get(citation_id)
-        if evidence is None or not _citation_text_supported(evidence):
+        if evidence is None or not _citation_text_supported(evidence) or not _evidence_is_answer_safe(evidence):
             stripped_citations.append(citation_id)
             continue
         valid_citations.append(citation)
@@ -102,6 +108,12 @@ def verify_currency(state: QueryState) -> tuple[QueryState, GateResult]:
         if item.currency.status in {CurrencyStatus.REPEALED, CurrencyStatus.AMENDED}
         and not _historical_query(state)
     ]
+    unknown = [
+        item.evidence_id
+        for item in cited_evidence
+        if item.currency.status == CurrencyStatus.UNKNOWN and not _historical_query(state)
+    ]
+    flagged = list(dict.fromkeys([*flagged, *unknown]))
     if flagged and state.answer is not None:
         state.answer = state.answer.model_copy(update={"confidence": min(state.answer.confidence, 0.5)})
     result = GateResult(
@@ -110,7 +122,10 @@ def verify_currency(state: QueryState) -> tuple[QueryState, GateResult]:
         passed=not flagged,
         flagged_evidence_ids=flagged,
         messages=(
-            ["Flagged cited provisions that are repealed or superseded for a current-law query."]
+            [
+                "Flagged cited provisions whose current status is repealed, amended, superseded, "
+                "or unverified for a current-law query."
+            ]
             if flagged
             else ["Cited provisions passed currency checks."]
         ),
@@ -296,7 +311,19 @@ def _evidence_by_citation(evidence: list[Evidence]) -> dict[str, Evidence]:
 def _citation_text_supported(evidence: Evidence) -> bool:
     """Confirm the citation has evidence text and a specific source path."""
 
-    return bool(evidence.text.strip() and evidence.provenance.source_path.strip())
+    passage = evidence.provenance.passage
+    if not evidence.text.strip() or not evidence.provenance.source_path.strip() or passage is None:
+        return False
+    if not passage.text_hash:
+        return False
+    normalized = " ".join(evidence.text.split()).encode("utf-8")
+    return hashlib.sha256(normalized).hexdigest() == passage.text_hash
+
+
+def _evidence_is_answer_safe(evidence: Evidence) -> bool:
+    """Reject evidence that is explicitly not ready for model answers."""
+
+    return evidence.answer_safe and evidence.semantic_status != "source_preservation_only"
 
 
 def _remove_sentences_with_terms(text: str, terms: list[str]) -> str:
@@ -340,6 +367,8 @@ def _claim_supported_by_text(text: str, evidence: list[Evidence]) -> bool:
     if not claim_tokens:
         return False
     for item in evidence:
+        if not _evidence_is_answer_safe(item):
+            continue
         evidence_tokens = _tokens(item.text)
         if len(claim_tokens & evidence_tokens) >= MIN_TOKEN_OVERLAP:
             return True

@@ -60,8 +60,178 @@
           "authority_level": "municipal",
           "retrieval_targets": ["local_rule"],
           "reason": "Municipal requirements depend on facility location."
+        },
+        {
+          "category_id": "district_rules",
+          "label": "District rules",
+          "authority_level": "district",
+          "retrieval_targets": ["local_rule"],
+          "reason": "District requirements depend on the identified district and district family."
         }
       ]
+    },
+    "compliance_check": {
+      "completeness_rule": "A compliance check must cover the governing authority, operative rule, and permit category when non-conditional.",
+      "categories": [
+        {
+          "category_id": "federal_environmental_rules",
+          "label": "Federal environmental rules",
+          "authority_level": "federal",
+          "retrieval_targets": ["federal_standard"],
+          "reason": "Permit questions can involve federal standards."
+        },
+        {
+          "category_id": "colorado_statutes",
+          "label": "Colorado enabling statutes",
+          "authority_level": "state",
+          "retrieval_targets": ["statute_section"],
+          "reason": "Colorado statutes establish permitting authority."
+        },
+        {
+          "category_id": "colorado_regulations",
+          "label": "Colorado regulations",
+          "authority_level": "state",
+          "retrieval_targets": ["regulation_rule"],
+          "reason": "Colorado regulations contain operative permit requirements."
+        },
+        {
+          "category_id": "permitting_rules",
+          "label": "Permitting rules",
+          "authority_level": "state",
+          "retrieval_targets": ["regulation_rule", "rule_unit"],
+          "reason": "Compliance checks must identify permit duties when asked."
+        }
+      ],
+      "conditional_categories": [
+        {
+          "category_id": "county_rules",
+          "label": "County rules",
+          "authority_level": "county",
+          "retrieval_targets": ["local_rule"],
+          "reason": "County permit conditions depend on facility county."
+        },
+        {
+          "category_id": "municipal_rules",
+          "label": "Municipal rules",
+          "authority_level": "municipal",
+          "retrieval_targets": ["local_rule"],
+          "reason": "Municipal permit conditions depend on facility city."
+        },
+        {
+          "category_id": "district_rules",
+          "label": "District rules",
+          "authority_level": "district",
+          "retrieval_targets": ["local_rule"],
+          "reason": "District permit conditions depend on the identified district."
+        }
+      ]
+    },
+    "exact_citation": {
+      "completeness_rule": "An exact citation answer must retrieve the cited provision and any directly linked implementing authority.",
+      "categories": [
+        {
+          "category_id": "colorado_statutes",
+          "label": "Colorado cited statutes",
+          "authority_level": "state",
+          "retrieval_targets": ["statute_section"],
+          "reason": "Exact citation questions require the cited statutory source when present."
+        },
+        {
+          "category_id": "colorado_regulations",
+          "label": "Colorado cited regulations",
+          "authority_level": "state",
+          "retrieval_targets": ["regulation_rule"],
+          "reason": "Exact citation questions require the cited regulatory source when present."
+        }
+      ],
+      "conditional_categories": []
+    },
+    "legislative_history": {
+      "completeness_rule": "A history answer must retrieve source authority and related regulatory history categories or disclose gaps.",
+      "categories": [
+        {
+          "category_id": "colorado_statutes",
+          "label": "Colorado statutes",
+          "authority_level": "state",
+          "retrieval_targets": ["statute_section"],
+          "reason": "History questions start with the governing statute."
+        },
+        {
+          "category_id": "colorado_regulations",
+          "label": "Colorado regulations",
+          "authority_level": "state",
+          "retrieval_targets": ["regulation_rule"],
+          "reason": "Regulatory history should include rules tied to the statute."
+        }
+      ],
+      "conditional_categories": []
+    },
+    "overlap_detection": {
+      "completeness_rule": "An overlap answer must retrieve both sides of the potential overlap or disclose the missing side.",
+      "categories": [
+        {
+          "category_id": "colorado_statutes",
+          "label": "Colorado statutes",
+          "authority_level": "state",
+          "retrieval_targets": ["statute_section"],
+          "reason": "Overlap detection needs the statutory side."
+        },
+        {
+          "category_id": "colorado_regulations",
+          "label": "Colorado regulations",
+          "authority_level": "state",
+          "retrieval_targets": ["regulation_rule"],
+          "reason": "Overlap detection needs the regulatory side."
+        }
+      ],
+      "conditional_categories": []
+    },
+    "broad_discovery": {
+      "completeness_rule": "A broad discovery answer must retrieve the main federal and Colorado categories or disclose gaps.",
+      "categories": [
+        {
+          "category_id": "federal_environmental_rules",
+          "label": "Federal environmental rules",
+          "authority_level": "federal",
+          "retrieval_targets": ["federal_standard"],
+          "reason": "Broad discovery should include potentially governing federal authority."
+        },
+        {
+          "category_id": "colorado_statutes",
+          "label": "Colorado statutes",
+          "authority_level": "state",
+          "retrieval_targets": ["statute_section"],
+          "reason": "Broad discovery should include governing Colorado statutes."
+        },
+        {
+          "category_id": "colorado_regulations",
+          "label": "Colorado regulations",
+          "authority_level": "state",
+          "retrieval_targets": ["regulation_rule"],
+          "reason": "Broad discovery should include governing Colorado regulations."
+        }
+      ],
+      "conditional_categories": []
+    },
+    "unknown": {
+      "completeness_rule": "An unknown query type must retrieve broad Colorado authority and disclose uncertainty.",
+      "categories": [
+        {
+          "category_id": "colorado_statutes",
+          "label": "Colorado statutes",
+          "authority_level": "state",
+          "retrieval_targets": ["statute_section"],
+          "reason": "Unknown questions should retrieve statutes first."
+        },
+        {
+          "category_id": "colorado_regulations",
+          "label": "Colorado regulations",
+          "authority_level": "state",
+          "retrieval_targets": ["regulation_rule"],
+          "reason": "Unknown questions should retrieve regulations second."
+        }
+      ],
+      "conditional_categories": []
     }
   }
 }

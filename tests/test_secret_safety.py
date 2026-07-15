@@ -43,6 +43,17 @@ def test_ignores_sha_without_secret_context() -> None:
     assert findings == []
 
 
+def test_ignores_provenance_hash_near_secretary_word() -> None:
+    """Official source titles must not make provenance hashes look like tokens."""
+
+    findings = scan_text(
+        "index.jsonl",
+        '{"title":"Secretary of State source","source_hash":"' + ("b" * 64) + '"}\n',
+    )
+
+    assert findings == []
+
+
 def test_scans_expected_text_file_types() -> None:
     """Common Geode file types are included."""
 

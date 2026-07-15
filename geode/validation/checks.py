@@ -15,6 +15,7 @@ from geode.constants import ALL_LAYERS, CONTROL_PLANE_DIR, CRS_LAYER
 from geode.schemas import (
     Agency,
     CrosswalkEntry,
+    CountyGapRecord,
     LayerIndexRecord,
     StatuteSection,
     TimelineEvent,
@@ -111,8 +112,9 @@ def _extract_reference_ids(record: dict[str, Any]) -> set[str]:
         "statutes_repealed",
         "statutes_affected",
         "affects",
-        "statutes_cited",
-        "statutes_interpreted",
+    "statutes_cited",
+    "statutes_interpreted",
+        "state_authority_ids",
     )
     refs: set[str] = set()
     for field in reference_fields:
@@ -473,6 +475,9 @@ def _validate_master_schema(result: ValidationResult, path: Path, root: Path) ->
         "crosswalk_entry",
         "timeline_event",
         "agency",
+        "local_authority",
+        "local_rule",
+        "county_gap",
     }
     defs = payload.get("$defs", {})
     if not isinstance(defs, dict):
@@ -520,7 +525,7 @@ def _validate_manifest(result: ValidationResult, path: Path, root: Path) -> None
 
         layers = payload.get("data_layers")
         if not isinstance(layers, list) or len(layers) != len(ALL_LAYERS):
-            raise ValueError("data_layers must contain all seven layers")
+            raise ValueError(f"data_layers must contain all {len(ALL_LAYERS)} layers")
         layer_ids = {str(layer.get("id")) for layer in layers if isinstance(layer, dict)}
         missing_layers = sorted(set(ALL_LAYERS) - layer_ids)
         if missing_layers:
@@ -569,6 +574,8 @@ def _validate_manifest(result: ValidationResult, path: Path, root: Path) -> None
             "exec_orders": (60, 45),
             "session_laws": (365, 330),
             "supplementary": (120, 90),
+            "county_authorities": (45, 30),
+            "district_authorities": (45, 30),
         }
         for key, (max_days, alert_days) in expected_policy.items():
             actual = policy.get(key)
@@ -637,9 +644,182 @@ def validate_control_plane(root: Path, result: ValidationResult) -> None:
         except (ValueError, json.JSONDecodeError) as exc:
             result.add_issue("error", _relative(source_registry_path, root), str(exc))
 
+    local_registry_path = control / "LOCAL_SOURCE_REGISTRY.json"
+    if local_registry_path.exists():
+        try:
+            local_registry = load_json(local_registry_path)
+            pilot = local_registry.get("pilot", {})
+            for group in ("counties", "districts"):
+                entries = pilot.get(group, [])
+                if not isinstance(entries, list):
+                    raise ValueError(f"local source registry pilot.{group} must be a list")
+                for source in entries:
+                    require_official_source_url(str(source["url"]))
+        except (KeyError, ValueError, json.JSONDecodeError) as exc:
+            result.add_issue("error", _relative(local_registry_path, root), str(exc))
+
     manifest_path = control / "MASTER_MANIFEST.json"
     _validate_manifest(result, manifest_path, root)
     _validate_pilot_test_set(result, control / "PILOT_TEST_SET.json", root)
+    _validate_county_control_plane(result, control, root)
+    _validate_local_operating_artifacts(result, control, root)
+    _validate_ai_control_plane(result, control, root)
+
+
+def _validate_ai_control_plane(
+    result: ValidationResult,
+    control: Path,
+    root: Path,
+) -> None:
+    """Ensure the AI-facing read, query, retrieval, answer, and readiness contracts exist."""
+
+    required = (
+        "AI_READ_ORDER.json",
+        "AI_QUERY_CONTRACT.json",
+        "AI_RETRIEVAL_CONTRACT.json",
+        "AI_ANSWER_CONTRACT.json",
+        "AI_READINESS_REPORT.json",
+    )
+    if not any((control / name).exists() for name in required):
+        return
+    for name in required:
+        path = control / name
+        if not path.exists():
+            result.add_issue("error", _relative(path, root), "AI control-plane file is missing")
+            continue
+        try:
+            payload = load_json(path)
+            if not isinstance(payload, dict) or not payload.get("version"):
+                raise ValueError("AI control-plane file must be a versioned JSON object")
+            if name == "AI_READINESS_REPORT.json" and payload.get("status") not in {
+                "ready",
+                "needs_review",
+            }:
+                raise ValueError("AI readiness report has an invalid status")
+        except (ValueError, json.JSONDecodeError) as exc:
+            result.add_issue("error", _relative(path, root), str(exc))
+
+
+def _validate_county_control_plane(
+    result: ValidationResult,
+    control: Path,
+    root: Path,
+) -> None:
+    """Validate county coverage, gap evidence, and registry reconciliation."""
+
+    coverage_path = control / "COUNTY_SOURCE_COVERAGE.json"
+    gap_path = control / "COUNTY_GAP_AUDIT.jsonl"
+    registry_path = control / "LOCAL_SOURCE_REGISTRY.json"
+    manifest_path = control / "LOCAL_DOWNLOAD_MANIFEST.jsonl"
+    if not coverage_path.exists():
+        return
+    try:
+        coverage = load_json(coverage_path)
+        counties = coverage.get("counties", [])
+        if len(counties) != 64:
+            raise ValueError("county coverage must contain exactly 64 counties")
+        expected_categories = set(coverage.get("source_categories", []))
+        if len(expected_categories) != 13:
+            raise ValueError("county coverage must contain exactly 13 source categories")
+        for county in counties:
+            categories = county.get("source_categories", {})
+            if set(categories) != expected_categories:
+                raise ValueError(f"county category set is incomplete: {county.get('county_id')}")
+            statuses = [str(cell.get("status")) for cell in categories.values()]
+            if "not_started" in statuses:
+                raise ValueError(f"county coverage has unresolved not_started cell: {county.get('county_id')}")
+            expected_overall = "blocked" if statuses and all(status == "blocked" for status in statuses) else "partial"
+            if county.get("overall_status") != expected_overall:
+                raise ValueError(f"county overall status is stale: {county.get('county_id')}")
+    except (ValueError, json.JSONDecodeError) as exc:
+        result.add_issue("error", _relative(coverage_path, root), str(exc))
+        return
+
+    if not gap_path.exists():
+        result.add_issue("error", _relative(gap_path, root), "county gap audit is missing")
+        return
+    gap_ids: set[str] = set()
+    try:
+        for row in iter_jsonl(gap_path):
+            gap = CountyGapRecord.model_validate(row)
+            if gap.gap_id in gap_ids:
+                result.add_issue("error", _relative(gap_path, root), f"duplicate gap ID: {gap.gap_id}")
+            gap_ids.add(gap.gap_id)
+            if gap.disposition == "official_source_not_identified" and gap.candidate_source_ids:
+                result.add_issue(
+                    "error",
+                    _relative(gap_path, root),
+                    f"gap claims no source while candidates exist: {gap.gap_id}",
+                )
+    except (ValidationError, ValueError, json.JSONDecodeError) as exc:
+        result.add_issue("error", _relative(gap_path, root), str(exc))
+
+    if registry_path.exists() and manifest_path.exists():
+        try:
+            registry = load_json(registry_path)
+            registered = {
+                str(row["source_id"])
+                for row in registry.get("pilot", {}).get("county_sources", [])
+            }
+            attempted = {str(row.get("source_id")) for row in iter_jsonl(manifest_path)}
+            missing = sorted(registered - attempted)
+            if missing:
+                result.add_issue(
+                    "error",
+                    _relative(registry_path, root),
+                    f"registered county sources lack manifest disposition: {missing[:10]}",
+                )
+        except (KeyError, ValueError, json.JSONDecodeError) as exc:
+            result.add_issue("error", _relative(registry_path, root), str(exc))
+
+
+def _validate_local_operating_artifacts(
+    result: ValidationResult,
+    control: Path,
+    root: Path,
+) -> None:
+    """Validate local review, OCR, freshness, and metadata-control artifacts."""
+
+    summary_path = control / "LOCAL_REVIEW_SUMMARY.json"
+    if not summary_path.exists():
+        return
+    try:
+        from geode.pipeline.local_review import LocalReviewSummary
+
+        summary = LocalReviewSummary.model_validate(load_json(summary_path))
+        queue_path = control / "LOCAL_REVIEW_QUEUE.jsonl"
+        queue_count = sum(1 for _ in iter_jsonl(queue_path))
+        if queue_count != summary.total_review_items:
+            raise ValueError("local review summary total does not match queue")
+        ocr_path = control / "LOCAL_OCR_QUEUE.jsonl"
+        ocr_count = sum(1 for _ in iter_jsonl(ocr_path))
+        if ocr_count != summary.ocr_items:
+            raise ValueError("local OCR queue count does not match summary")
+        freshness_path = control / "LOCAL_SOURCE_FRESHNESS.json"
+        freshness = load_json(freshness_path)
+        if freshness.get("sources_checked", -1) != len(freshness.get("records", [])):
+            raise ValueError("local freshness source count does not match records")
+        ocr_report_path = control / "LOCAL_OCR_REPORT.json"
+        ocr_report = load_json(ocr_report_path)
+        if ocr_report.get("pending_items", -1) + ocr_report.get("completed_items", -1) != len(
+            ocr_report.get("items", [])
+        ):
+            raise ValueError("local OCR report counts do not match items")
+        stress_report = load_json(control / "LOCAL_STRESS_TEST_REPORT.json")
+        if stress_report.get("passed") is not True:
+            raise ValueError("local stress test report is not passing")
+        promotion_report_path = control / "LOCAL_PROMOTION_REPORT.json"
+        if promotion_report_path.exists():
+            promotion_report = load_json(promotion_report_path)
+            if promotion_report.get("blocked", 0) != 0:
+                raise ValueError("local promotion report contains blocked decisions")
+        golden_path = control / "LOCAL_GOLDEN_EVALUATION.json"
+        if golden_path.exists():
+            golden = load_json(golden_path)
+            if golden.get("failed", 1) != 0 or golden.get("passed") != golden.get("total"):
+                raise ValueError("local golden-question evaluation is not passing")
+    except (ValidationError, ValueError, KeyError, json.JSONDecodeError, FileNotFoundError) as exc:
+        result.add_issue("error", _relative(summary_path, root), str(exc))
 
 
 def validate_jsonl_file(
@@ -699,6 +879,33 @@ def validate_crs_layer(root: Path, result: ValidationResult) -> None:
                 result.add_issue("error", _relative(meta_path, root), str(exc))
 
 
+def validate_local_layer(root: Path, result: ValidationResult, layer: str) -> None:
+    """Validate local authority indexes and local rule records."""
+
+    layer_root = root / layer
+    index_path = layer_root / "_index.jsonl"
+    rows = validate_jsonl_file(result, index_path, root)
+    record_paths: set[Path] = set()
+    for row in rows:
+        try:
+            LayerIndexRecord.model_validate(row)
+        except ValidationError as exc:
+            result.add_issue("error", _relative(index_path, root), str(exc))
+            continue
+        record_paths.add(root / str(row.get("meta_path") or row.get("path") or ""))
+    for record_path in sorted(record_paths):
+        if not record_path.exists():
+            result.add_issue("error", _relative(record_path, root), "local record file is missing")
+            continue
+        for record in validate_jsonl_file(result, record_path, root):
+            if record.get("entity_type") not in {"local_authority", "local_rule", "rule_unit"}:
+                result.add_issue("error", _relative(record_path, root), "unexpected local entity type")
+                continue
+            valid, errors = validate_record(record)
+            for error in errors:
+                result.add_issue("error", _relative(record_path, root), error)
+
+
 def validate_crosswalks(root: Path, result: ValidationResult) -> None:
     """Validate all crosswalk JSONL relationship files."""
 
@@ -742,15 +949,26 @@ def validate_project(root: Path, layer: str) -> ValidationResult:
     validate_control_plane(root, result)
 
     if layer == "all":
-        for layer_name in ALL_LAYERS:
+        required_layers = [
+            layer_name
+            for layer_name in ALL_LAYERS
+            if layer_name not in {"08_County_Authorities", "09_District_Authorities"}
+            or (root / layer_name).exists()
+        ]
+        for layer_name in required_layers:
             index_path = root / layer_name / "_index.jsonl"
             if not index_path.exists():
                 result.add_issue("error", layer_name, "layer index is missing")
         validate_crs_layer(root, result)
+        for local_layer in ("08_County_Authorities", "09_District_Authorities"):
+            if (root / local_layer).exists():
+                validate_local_layer(root, result, local_layer)
         validate_crosswalks(root, result)
         validate_timeline(root, result)
     elif layer == CRS_LAYER:
         validate_crs_layer(root, result)
+    elif layer in {"08_County_Authorities", "09_District_Authorities"}:
+        validate_local_layer(root, result, layer)
     else:
         index_path = root / layer / "_index.jsonl"
         if not index_path.exists():

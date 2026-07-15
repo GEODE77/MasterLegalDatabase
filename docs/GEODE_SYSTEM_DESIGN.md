@@ -22,6 +22,11 @@ municipal authority by adding source registries, schemas, indexes, crosswalks,
 and freshness rules for those local layers without changing the backend-first
 role of the system.
 
+The local pilot adds two explicit layers: county authorities and district
+authorities. Local identity records are published before local rules so the
+system can distinguish a known authority with incomplete rule collection from
+an authority that has not yet been inventoried.
+
 | # | Layer | Content | Source Owner | Est. Records |
 |---|-------|---------|-------------|-------------|
 | 1 | **CRS** | 44 titles of codified statutory law | Legislative Legal Services | ~10,000+ |
@@ -783,4 +788,40 @@ Connectors -> Normalization (schema, IDs, tags, cross-refs)
 
 ---
 
-*End of GEODE_SYSTEM_DESIGN.md | v1.1 | 2026-07-14 | Sections B1-B14*
+# B15. AI Consumption Contract
+
+Geode is designed to be read by an AI through a controlled sequence, not as a
+human document library. The existing orchestration stages remain authoritative:
+interpret the question, resolve jurisdiction and time, build a coverage plan,
+retrieve evidence, assemble exact passages, verify the answer, and disclose
+limits. The control plane now makes that sequence explicit in:
+
+- `_CONTROL_PLANE/AI_READ_ORDER.json`
+- `_CONTROL_PLANE/AI_QUERY_CONTRACT.json`
+- `_CONTROL_PLANE/AI_RETRIEVAL_CONTRACT.json`
+- `_CONTROL_PLANE/AI_ANSWER_CONTRACT.json`
+- `_CONTROL_PLANE/AI_READINESS_REPORT.json`
+
+The AI must use source-backed passages, not catalog summaries. Each passage
+must carry its source path, source hash, location, and exact passage hash.
+Local material marked `source_preservation_only` remains available for audit
+and future review but cannot support an answer. Unknown currency, unresolved
+geography, missing coverage, and conflicts are surfaced as limitations and
+lower confidence rather than being silently resolved.
+
+---
+
+# B16. Local Evidence Promotion
+
+Preserved local sources move into AI-answer use only through
+`geode.pipeline.local_promotion`. The pipeline creates reviewer packets,
+requires a reviewer decision tied to the preserved source hash, checks exact
+section and page or line provenance, validates the structured rule unit, and
+creates a snapshot before any active metadata is changed. A successful
+promotion changes `semantic_status` to `semantic_ready`; rejected or incomplete
+decisions remain unavailable to answer retrieval. The promotion report and
+local golden evaluation are part of the control plane and validation gates.
+
+---
+
+*End of GEODE_SYSTEM_DESIGN.md | v1.3 | 2026-07-15 | Sections B1-B16*

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 from geode.pipeline.official_source_checker import (
@@ -183,7 +183,9 @@ def test_checker_writes_report_rows_and_docs(tmp_path: Path) -> None:
     assert report.sources_checked == 4
     assert (tmp_path / "_CONTROL_PLANE" / "OFFICIAL_SOURCE_CHECK_REPORT.json").exists()
     assert (tmp_path / "_CONTROL_PLANE" / "OFFICIAL_SOURCE_CHECKS.jsonl").exists()
-    assert (tmp_path / "docs" / "audits" / "OFFICIAL_SOURCE_CHECK_REPORT_2026-07-14.md").exists()
+    assert (
+        tmp_path / "docs" / "audits" / f"OFFICIAL_SOURCE_CHECK_REPORT_{date.today().isoformat()}.md"
+    ).exists()
 
 
 def test_fetch_uses_ag_opinions_fallback(monkeypatch: object) -> None:

@@ -21,6 +21,7 @@ def load_orchestration_config() -> dict[str, Any]:
         "defaults": _load_json_yaml(CONFIG_DIR / "defaults.yaml"),
         "coverage": _load_json_yaml(CONFIG_DIR / "coverage.yaml"),
         "retrieval": _load_json_yaml(CONFIG_DIR / "retrieval.yaml"),
+        "local_jurisdictions": _load_json_yaml(CONFIG_DIR / "local_jurisdictions.yaml"),
         "guardrails": _load_json_yaml(CONFIG_DIR / "guardrails.yaml"),
     }
 

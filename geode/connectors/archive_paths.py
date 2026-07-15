@@ -19,6 +19,9 @@ RAW_CONNECTOR_DIRS = {
     "exec_orders": "exec_orders",
     "coprrr": "supplementary/coprrr",
     "ag_opinions": "supplementary/ag_opinions",
+    "local": "local",
+    "county": "local",
+    "district": "local",
 }
 
 

@@ -26,9 +26,7 @@ class PlanRetrievalStage(PassThroughStage):
         if state.coverage_contract is None:
             raise ValueError("coverage_contract is required before retrieval planning")
         strategies = load_orchestration_config()["retrieval"]["retrieval_strategies"]
-        strategy_config = strategies.get(state.intent.question_type.value) or strategies[
-            "compliance_survey"
-        ]
+        strategy_config = strategies.get(state.intent.question_type.value) or strategies["unknown"]
         strategy = RetrievalStrategyType(str(strategy_config["strategy"]))
         follow_relationships = [
             str(item) for item in strategy_config.get("follow_relationships", [])

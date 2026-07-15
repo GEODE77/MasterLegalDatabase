@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "required_interpretation": ["question_type", "topic", "jurisdiction", "geography", "time_period", "entities"],
+  "ambiguity_policy": "pause_or_disclose",
+  "jurisdiction_policy": "exact_match_before_broader_match",
+  "time_policy": "current_law_requires_verified_currency; historical_questions require an as_of date or explicit period",
+  "local_policy": "county, district, municipal, and state evidence must remain separately identified",
+  "absence_policy": "lack_of_retrieval_is_not_proof_of_absence",
+  "required_plan_outputs": ["coverage_contract", "retrieval_plan", "source_filters", "expected_gaps"]
+}

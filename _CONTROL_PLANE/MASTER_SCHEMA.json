@@ -16,7 +16,10 @@
     {"$ref": "#/$defs/rule_unit"},
     {"$ref": "#/$defs/crosswalk_entry"},
     {"$ref": "#/$defs/timeline_event"},
-    {"$ref": "#/$defs/agency"}
+    {"$ref": "#/$defs/agency"},
+    {"$ref": "#/$defs/local_authority"},
+    {"$ref": "#/$defs/local_rule"},
+    {"$ref": "#/$defs/county_gap"}
   ],
   "$defs": {
     "ConfidenceScore": {
@@ -722,7 +725,13 @@
           "description": "Ontology subject tags.",
           "items": {"type": "string"}
         },
-        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"},
+        "semantic_status": {
+          "type": "string",
+          "description": "Whether the unit is semantically interpreted or only preserves source text.",
+          "enum": ["semantic_ready", "source_preservation_only", "needs_review"],
+          "default": "semantic_ready"
+        }
       },
       "examples": [
         {
@@ -834,6 +843,94 @@
           "file_path": "03_Legislation/2023/bills_2023.jsonl"
         }
       ]
+    },
+    "local_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_type", "id", "authority_level", "authority_type", "name", "official_url", "source_url", "data_retrieved", "confidence"],
+      "properties": {
+        "entity_type": {"const": "local_authority"},
+        "id": {"type": "string", "pattern": "^CO-(COUNTY|MUNICIPAL|DISTRICT)-[A-Z0-9_-]+$"},
+        "authority_level": {"type": "string", "enum": ["county", "municipal", "district"]},
+        "authority_type": {"type": "string"},
+        "name": {"type": "string"},
+        "state": {"const": "CO"},
+        "county_names": {"type": "array", "items": {"type": "string"}},
+        "district_family": {"type": ["string", "null"]},
+        "official_url": {"type": "string", "format": "uri"},
+        "source_url": {"type": "string", "format": "uri"},
+        "boundary_description": {"type": ["string", "null"]},
+        "active": {"type": "boolean"},
+        "data_retrieved": {"type": "string", "format": "date"},
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      }
+    },
+    "local_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_type", "id", "authority_id", "authority_level", "authority_type", "authority_name", "citation", "title", "full_text", "summary", "source_url", "source_path", "source_hash", "source_version", "data_retrieved", "confidence"],
+      "properties": {
+        "entity_type": {"const": "local_rule"},
+        "id": {"type": "string", "pattern": "^LOCAL-RULE-[A-Z0-9_-]+$"},
+        "authority_id": {"type": "string"},
+        "authority_level": {"type": "string", "enum": ["county", "municipal", "district"]},
+        "authority_type": {"type": "string"},
+        "authority_name": {"type": "string"},
+        "district_family": {"type": ["string", "null"]},
+        "county_names": {"type": "array", "items": {"type": "string"}},
+        "citation": {"type": "string"},
+        "title": {"type": "string"},
+        "section_heading": {"type": ["string", "null"]},
+        "full_text": {"type": "string"},
+        "summary": {"type": "string"},
+        "rule_unit_ids": {"type": "array", "items": {"type": "string"}},
+        "state_authority_ids": {"type": "array", "items": {"type": "string"}},
+        "source_citation_pages": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "integer", "minimum": 1}}},
+        "source_category": {"type": ["string", "null"]},
+        "source_format": {"type": ["string", "null"]},
+        "provenance_status": {"type": "string", "enum": ["exact", "section", "document"]},
+        "semantic_status": {"type": "string", "enum": ["semantic_ready", "source_preservation_only", "needs_review"], "default": "source_preservation_only"},
+        "effective_date": {"type": ["string", "null"], "format": "date"},
+        "repeal_date": {"type": ["string", "null"], "format": "date"},
+        "status": {"type": "string", "enum": ["active", "repealed", "superseded", "unknown"]},
+        "applies_to": {"type": "array", "items": {"type": "string"}},
+        "geographic_scope": {"type": "array", "items": {"type": "string"}},
+        "source_url": {"type": "string", "format": "uri"},
+        "source_path": {"type": "string"},
+        "source_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "source_version": {"type": "string"},
+        "source_section": {"type": ["string", "null"]},
+        "source_page": {"type": ["integer", "null"], "minimum": 1},
+        "source_page_end": {"type": ["integer", "null"], "minimum": 1},
+        "source_line_start": {"type": ["integer", "null"], "minimum": 1},
+        "source_line_end": {"type": ["integer", "null"], "minimum": 1},
+        "data_retrieved": {"type": "string", "format": "date-time"},
+        "confidence": {"$ref": "#/$defs/ConfidenceScore"}
+      }
+    },
+    "county_gap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_type", "gap_id", "authority_id", "authority_level", "county_name", "category", "disposition", "official_discovery_status", "reason", "audited_at"],
+      "properties": {
+        "entity_type": {"const": "county_gap"},
+        "gap_id": {"type": "string"},
+        "authority_id": {"type": "string"},
+        "authority_level": {"const": "county"},
+        "county_name": {"type": "string"},
+        "category": {"type": "string"},
+        "disposition": {"type": "string", "enum": ["source_identified_not_attempted", "download_failed", "official_source_not_identified", "official_discovery_page_access_blocked"]},
+        "official_discovery_url": {"type": ["string", "null"], "format": "uri"},
+        "official_discovery_status": {"type": "string", "enum": ["downloaded", "blocked", "not_attempted"]},
+        "official_discovery_raw_path": {"type": ["string", "null"]},
+        "official_discovery_sha256": {"type": ["string", "null"]},
+        "candidate_source_ids": {"type": "array", "items": {"type": "string"}},
+        "attempted_source_ids": {"type": "array", "items": {"type": "string"}},
+        "failed_source_ids": {"type": "array", "items": {"type": "string"}},
+        "evidence_message": {"type": "string"},
+        "reason": {"type": "string"},
+        "audited_at": {"type": "string", "format": "date-time"}
+      }
     },
     "agency": {
       "type": "object",

@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-07-15T22:14:38.288973+00:00",
+  "passed": true,
+  "checks": [
+    {
+      "name": "county index matches master manifest",
+      "passed": true
+    },
+    {
+      "name": "county index matches retrieval catalog",
+      "passed": true
+    },
+    {
+      "name": "local line provenance is complete",
+      "passed": true
+    },
+    {
+      "name": "local categories are explicit",
+      "passed": true
+    },
+    {
+      "name": "unreviewed units are marked unsafe",
+      "passed": true
+    },
+    {
+      "name": "review queue matches summary",
+      "passed": true
+    },
+    {
+      "name": "OCR report matches queue",
+      "passed": true
+    },
+    {
+      "name": "all registered county sources have manifest rows",
+      "passed": true
+    },
+    {
+      "name": "coverage has 832 cells",
+      "passed": true
+    },
+    {
+      "name": "master schema puts semantic status on rule units",
+      "passed": true
+    },
+    {
+      "name": "metadata version audit is clear",
+      "passed": true
+    }
+  ],
+  "boundary": "This stress report checks deterministic local control-plane invariants; it does not approve legal meaning or prove live official freshness."
+}

@@ -1,0 +1,54 @@
+{
+  "facility_indicators": [
+    "facility in",
+    "plant in",
+    "site in",
+    "located in",
+    "operations in",
+    "factory in"
+  ],
+  "counties": {
+    "denver_county": {
+      "county": "Denver County",
+      "aliases": ["denver county", "city and county of denver"]
+    },
+    "boulder_county": {
+      "county": "Boulder County",
+      "aliases": ["boulder county"]
+    },
+    "el_paso_county": {
+      "county": "El Paso County",
+      "aliases": ["el paso county"]
+    }
+  },
+  "municipalities": {
+    "denver": {
+      "municipality": "Denver",
+      "county": "Denver County",
+      "aliases": ["denver", "city of denver"]
+    },
+    "boulder": {
+      "municipality": "Boulder",
+      "county": "Boulder County",
+      "aliases": ["boulder", "city of boulder"]
+    },
+    "colorado_springs": {
+      "municipality": "Colorado Springs",
+      "county": "El Paso County",
+      "aliases": ["colorado springs", "city of colorado springs"]
+    }
+  },
+  "districts": {
+    "bvsd": {
+      "district": "Boulder Valley School District",
+      "district_family": "school",
+      "county": "Boulder County",
+      "aliases": ["boulder valley school district", "bvsd"]
+    },
+    "denver_water": {
+      "district": "Denver Water",
+      "district_family": "water_sanitation",
+      "aliases": ["denver water"]
+    }
+  }
+}

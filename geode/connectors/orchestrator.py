@@ -17,6 +17,7 @@ from geode.connectors.quality import (
     write_bulk_download_quality_report,
 )
 from geode.connectors.register_scraper import download_all_publications
+from geode.connectors.local_sources import download_pilot_sources
 
 LOGGER = logging.getLogger(__name__)
 
@@ -182,6 +183,8 @@ def _default_runner(connector: str) -> ConnectorFunction | None:
         return _run_register
     if canonical == "executive_orders":
         return _run_executive_orders
+    if canonical in {"local", "county", "district"}:
+        return _run_local
     return None
 
 
@@ -244,6 +247,18 @@ def _run_executive_orders(raw_dir: Path, config: dict[str, Any]) -> Any:
     if config.get("executive_orders_index_url"):
         kwargs["index_url"] = str(config["executive_orders_index_url"])
     return download_all_executive_orders(raw_dir, **kwargs)
+
+
+def _run_local(raw_dir: Path, config: dict[str, Any]) -> Any:
+    """Run the bounded county and district pilot connector."""
+
+    return download_pilot_sources(
+        raw_dir.parents[1],
+        authority_level=config.get("local_authority_level"),
+        dry_run=bool(config.get("dry_run", False)),
+        max_links_per_source=int(config.get("local_max_links", 25)),
+        timeout_seconds=float(config.get("timeout", 30.0)),
+    )
 
 
 def _requested_connectors(config: dict[str, Any]) -> list[str]:

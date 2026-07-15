@@ -15,8 +15,8 @@ from pydantic import BaseModel
 
 from geode.constants import RAW_ARCHIVE_DIR, SNAPSHOTS_DIR
 
-ATOMIC_REPLACE_ATTEMPTS = 5
-ATOMIC_REPLACE_DELAY_SECONDS = 0.1
+ATOMIC_REPLACE_ATTEMPTS = 20
+ATOMIC_REPLACE_DELAY_SECONDS = 0.25
 
 
 class RawArchiveWriteError(ValueError):

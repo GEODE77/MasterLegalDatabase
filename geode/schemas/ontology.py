@@ -190,10 +190,12 @@ RELATIONSHIP_TYPES = frozenset(
     {
         "authorized_by",
         "implements",
+        "implemented_by",
         "amends",
         "creates",
         "repeals",
         "cites",
+        "cited_by",
         "has_rule_citing_statute",
         "supersedes",
         "modified_by",
