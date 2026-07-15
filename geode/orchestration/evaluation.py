@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import hashlib
+import re
 from datetime import date
 from pathlib import Path
 
@@ -19,6 +21,7 @@ from geode.orchestration.contracts import (
     Evidence,
     GraphLink,
     Provenance,
+    PassageLocation,
     QueryState,
     QuestionType,
 )
@@ -28,6 +31,11 @@ from geode.orchestration.feedback import FeedbackLoop, FeedbackRecord
 from geode.orchestration.services import FixtureRetrievalBackend, RetrievalBackend
 
 GOLDEN_QUESTIONS_PATH = Path(__file__).parent / "config" / "golden_questions.json"
+REAL_CORPUS_GOLDEN_QUESTIONS_PATH = (
+    Path(__file__).parent / "config" / "real_corpus_golden_questions.json"
+)
+LOCAL_GOLDEN_QUESTIONS_PATH = Path(__file__).parent / "config" / "local_golden_questions.json"
+HUMAN_REVIEWED_STATUSES = frozenset({"human_reviewed", "reviewed", "certified", "approved"})
 
 
 class GoldenQuestion(StrictOrchestrationModel):
@@ -37,6 +45,18 @@ class GoldenQuestion(StrictOrchestrationModel):
     query: str = Field(min_length=1)
     expected_question_type: QuestionType
     requires_local_limitation: bool = False
+    requires_citation: bool = True
+    requires_complete_coverage: bool = True
+    requires_currency_verification: bool = True
+    expected_answer: str | None = None
+    expected_citations: list[str] = Field(default_factory=list)
+    source_sample_id: str | None = None
+    source_record_id: str | None = None
+    source_path: str | None = None
+    review_status: str = "synthetic"
+    reviewer: str | None = None
+    reviewed_at: str | None = None
+    review_note: str | None = None
 
 
 class EvalResult(StrictOrchestrationModel):
@@ -63,6 +83,41 @@ def load_golden_questions(path: Path | None = None) -> list[GoldenQuestion]:
     """Load golden questions from the checked-in fixture file."""
 
     rows = json.loads((path or GOLDEN_QUESTIONS_PATH).read_text(encoding="utf-8"))
+    return _golden_questions_from_rows(rows)
+
+
+def load_real_corpus_golden_questions(
+    path: Path | None = None,
+    *,
+    reviewed_only: bool = True,
+) -> list[GoldenQuestion]:
+    """Load real-corpus golden questions with optional human-review filtering."""
+
+    rows = json.loads(
+        (path or REAL_CORPUS_GOLDEN_QUESTIONS_PATH).read_text(encoding="utf-8")
+    )
+    questions = _golden_questions_from_rows(rows)
+    if not reviewed_only:
+        return questions
+    return [
+        question
+        for question in questions
+        if question.review_status.casefold() in HUMAN_REVIEWED_STATUSES
+    ]
+
+
+def load_local_golden_questions(
+    path: Path | None = None,
+) -> list[GoldenQuestion]:
+    """Load the bounded county and district pilot question set."""
+
+    rows = json.loads((path or LOCAL_GOLDEN_QUESTIONS_PATH).read_text(encoding="utf-8"))
+    return _golden_questions_from_rows(rows)
+
+
+def _golden_questions_from_rows(rows: list[dict[str, object]]) -> list[GoldenQuestion]:
+    """Convert raw fixture rows into strict golden question models."""
+
     return [
         GoldenQuestion.model_validate(
             {
@@ -167,11 +222,14 @@ def run_golden_evaluation(
     retrieval_backend: RetrievalBackend | None = None,
     feedback_loop: FeedbackLoop | None = None,
     corpus_version: str = "mock-golden",
+    include_reviewed_corpus_questions: bool = False,
 ) -> EvalSummary:
     """Run all golden questions and return a pass/fail summary."""
 
     backend = retrieval_backend or build_mock_knowledge_backend()
     rows = questions or load_golden_questions()
+    if include_reviewed_corpus_questions:
+        rows = [*rows, *load_real_corpus_golden_questions()]
     results = [
         evaluate_question(row, retrieval_backend=backend, corpus_version=corpus_version)
         for row in rows
@@ -194,6 +252,25 @@ def run_golden_evaluation(
     )
 
 
+def run_local_golden_evaluation(
+    *,
+    retrieval_backend: RetrievalBackend | None = None,
+    corpus_version: str = "local-corpus",
+) -> EvalSummary:
+    """Run the local pilot questions with explicit local-readiness expectations."""
+
+    backend = retrieval_backend
+    if backend is None:
+        from geode.orchestration.services import LocalKnowledgeRetrievalBackend
+
+        backend = LocalKnowledgeRetrievalBackend()
+    return run_golden_evaluation(
+        questions=load_local_golden_questions(),
+        retrieval_backend=backend,
+        corpus_version=corpus_version,
+    )
+
+
 def evaluate_question(
     question: GoldenQuestion,
     *,
@@ -209,13 +286,25 @@ def evaluate_question(
     )
     checks = {
         "question_type": state.intent.question_type == question.expected_question_type,
-        "coverage_completeness": _coverage_complete(state),
-        "citation_validity": _gate_passed(state, "verify_citations")
-        and bool(state.final_answer and state.final_answer.citations),
-        "currency_correctness": _gate_passed(state, "verify_currency"),
+        "coverage_completeness": (
+            not question.requires_complete_coverage or _coverage_complete(state)
+        ),
+        "citation_validity": (
+            not question.requires_citation
+            or (
+                _gate_passed(state, "verify_citations")
+                and bool(state.final_answer and state.final_answer.citations)
+            )
+        ),
+        "currency_correctness": (
+            not question.requires_currency_verification
+            or _gate_passed(state, "verify_currency")
+        ),
         "schema_conformance": _schema_conforms(state),
         "local_limitation": (not question.requires_local_limitation)
         or _local_limitation_disclosed(state),
+        "expected_answer": _expected_answer_matches(state, question),
+        "expected_citations": _expected_citations_match(state, question),
     }
     errors = [name for name, passed in checks.items() if not passed]
     return EvalResult(
@@ -250,6 +339,7 @@ def _evidence(
         provenance=Provenance(
             source_id=canonical_id,
             source_path=f"mock://{canonical_id}",
+            passage=PassageLocation(text_hash=hashlib.sha256(text.encode("utf-8")).hexdigest()),
             chain=[canonical_id],
         ),
         confidence=0.92,
@@ -304,5 +394,66 @@ def _local_limitation_disclosed(state: QueryState) -> bool:
 
     if state.final_answer is None:
         return False
-    text = " ".join(state.final_answer.uncertainties).casefold()
-    return "county" in text and "municipal" in text
+    text = " ".join(
+        [
+            *state.final_answer.uncertainties,
+            *state.final_answer.coverage_gaps,
+        ]
+    ).casefold()
+    return "county" in text or "district" in text or "municipal" in text
+
+
+def _expected_answer_matches(state: QueryState, question: GoldenQuestion) -> bool:
+    """Return true when the output contains reviewed expected answer content."""
+
+    if not question.expected_answer:
+        return True
+    if state.final_answer is None:
+        return False
+    expected_tokens = _meaningful_tokens(question.expected_answer)
+    answer_text = " ".join(
+        [
+            state.final_answer.summary,
+            *[item.text for item in state.final_answer.requirements],
+        ]
+    )
+    answer_tokens = _meaningful_tokens(answer_text)
+    return expected_tokens.issubset(answer_tokens)
+
+
+def _expected_citations_match(state: QueryState, question: GoldenQuestion) -> bool:
+    """Return true when reviewed expected citations are present."""
+
+    if not question.expected_citations:
+        return True
+    if state.final_answer is None:
+        return False
+    actual = {
+        citation.canonical_id or citation.citation_text
+        for citation in state.final_answer.citations
+    } | {citation.citation_text for citation in state.final_answer.citations}
+    return set(question.expected_citations).issubset(actual)
+
+
+def _meaningful_tokens(text: str) -> set[str]:
+    """Return meaningful comparison tokens for expected answer matching."""
+
+    stopwords = {
+        "a",
+        "an",
+        "and",
+        "are",
+        "for",
+        "from",
+        "in",
+        "is",
+        "of",
+        "or",
+        "the",
+        "to",
+    }
+    return {
+        token
+        for token in re.findall(r"[a-z0-9]+", text.casefold())
+        if len(token) > 2 and token not in stopwords
+    }

@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "purpose": "The order an AI reads Geode so it understands scope before evidence.",
+  "steps": [
+    {"order": 1, "file": "_CONTROL_PLANE/MASTER_MANIFEST.json", "reason": "Know what exists, its coverage, and its limits."},
+    {"order": 2, "file": "_CONTROL_PLANE/RELIANCE_POLICY.json", "reason": "Know which sources may support an answer and which require review."},
+    {"order": 3, "file": "_CONTROL_PLANE/RETRIEVAL_CATALOG.jsonl", "reason": "Filter by authority, geography, topic, currency, and answer safety."},
+    {"order": 4, "file": "layer/_index.jsonl", "reason": "Find the exact record without loading a whole layer."},
+    {"order": 5, "file": "record metadata and source file", "reason": "Read the exact passage and its location."},
+    {"order": 6, "file": "_CROSSWALKS/*.jsonl", "reason": "Check the relationship to higher or lower authority."},
+    {"order": 7, "file": "_CONTROL_PLANE/LOCAL_REVIEW_SUMMARY.json", "reason": "Check whether local evidence is ready for answer use."}
+  ],
+  "rules": [
+    "Do not answer from a catalog title or summary alone.",
+    "Do not treat source-preservation-only local records as semantic evidence.",
+    "Do not combine jurisdictions unless the question asks for a comparison.",
+    "Every substantive statement must point to an exact passage and location.",
+    "Unknown currency or unresolved geography must be disclosed and lower confidence."
+  ]
+}

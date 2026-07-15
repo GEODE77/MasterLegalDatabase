@@ -2,19 +2,44 @@
   "retrieval_strategies": {
     "compliance_survey": {
       "strategy": "broad_authority_sweep",
-      "source_order": [
-        "federal_standard",
-        "statute_section",
-        "regulation_rule",
-        "rule_unit",
-        "crosswalk_entry"
-      ],
-      "follow_relationships": [
-        "enables",
-        "implements",
-        "requires_permit",
-        "requires_reporting"
-      ],
+      "source_order": ["federal_standard", "statute_section", "regulation_rule", "rule_unit", "local_rule", "crosswalk_entry"],
+      "follow_relationships": ["enables", "implements", "requires_permit", "requires_reporting"],
+      "graph_traversal_enabled": true
+    },
+    "compliance_check": {
+      "strategy": "relationship_traversal",
+      "source_order": ["statute_section", "regulation_rule", "rule_unit", "local_rule", "crosswalk_entry"],
+      "follow_relationships": ["enables", "implements", "requires_permit"],
+      "graph_traversal_enabled": true
+    },
+    "exact_citation": {
+      "strategy": "exact_citation_lookup",
+      "source_order": ["statute_section", "regulation_rule"],
+      "follow_relationships": ["enables", "implements"],
+      "graph_traversal_enabled": true
+    },
+    "legislative_history": {
+      "strategy": "timeline_sweep",
+      "source_order": ["statute_section", "regulation_rule", "crosswalk_entry"],
+      "follow_relationships": ["amends", "repeals", "implements"],
+      "graph_traversal_enabled": true
+    },
+    "overlap_detection": {
+      "strategy": "relationship_traversal",
+      "source_order": ["statute_section", "regulation_rule", "crosswalk_entry"],
+      "follow_relationships": ["enables", "implements", "duplicates", "overlaps"],
+      "graph_traversal_enabled": true
+    },
+    "broad_discovery": {
+      "strategy": "discovery_sweep",
+      "source_order": ["federal_standard", "statute_section", "regulation_rule"],
+      "follow_relationships": ["enables", "implements"],
+      "graph_traversal_enabled": true
+    },
+    "unknown": {
+      "strategy": "discovery_sweep",
+      "source_order": ["statute_section", "regulation_rule"],
+      "follow_relationships": ["enables", "implements"],
       "graph_traversal_enabled": true
     }
   }

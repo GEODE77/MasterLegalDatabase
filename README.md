@@ -22,6 +22,8 @@ Current coverage is state-first:
 - executive orders
 - session laws
 - AG opinions, COPRRR reviews, and other supplementary sources
+- county authorities and ordinances (pilot coverage)
+- district authorities and policies (school and water-family pilot coverage)
 
 The jurisdiction model expands from state authority to county and municipal
 authority. New county and local sources must be added through the same source
@@ -39,6 +41,8 @@ control.
   audits, timelines, and operational state.
 - `_CROSSWALKS/` stores relationships between laws, regulations, agencies,
   bills, rulemaking events, and amendments.
+- `08_County_Authorities/` and `09_District_Authorities/` store local authority
+  identities and normalized local rules.
 - `geode/` contains ingestion, parsing, validation, retrieval, search, API, and
   orchestration code.
 - `tests/` verifies schemas, ingestion behavior, retrieval, gates, and backend
@@ -156,4 +160,6 @@ layer:
 - absence verification
 - source freshness checks
 - county and municipal source registry expansion
+- county and district source collection, geography-aware retrieval, and
+  local-to-state crosswalks
 - stronger search/indexing over canonical and metadata records

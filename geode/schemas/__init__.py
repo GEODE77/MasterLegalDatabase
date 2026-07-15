@@ -25,6 +25,7 @@ from geode.schemas.models import (
     ValidationIssue,
     ValidationResult,
 )
+from geode.schemas.local import CountyGapRecord, LocalAuthority, LocalRule
 from geode.schemas.validators import ValidationReport, validate_layer, validate_record
 
 __all__ = [
@@ -52,6 +53,9 @@ __all__ = [
     "ValidationIssue",
     "ValidationReport",
     "ValidationResult",
+    "LocalAuthority",
+    "LocalRule",
+    "CountyGapRecord",
     "validate_layer",
     "validate_record",
 ]

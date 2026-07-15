@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "required_fields": ["summary", "requirements", "citations", "jurisdictions", "confidence", "uncertainties", "coverage_gaps"],
+  "citation_rule": "Each substantive requirement must cite the exact supporting passage.",
+  "uncertainty_rule": "Report missing coverage, unknown currency, conflicts, and ambiguous geography.",
+  "confidence_rule": "Confidence reflects authority, coverage, currency, citation quality, and conflicts.",
+  "prohibited_behavior": ["inventing law", "answering from memory", "silently broadening geography", "stating verified absence without a verified absence record"]
+}

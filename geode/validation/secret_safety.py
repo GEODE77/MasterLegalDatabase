@@ -12,8 +12,11 @@ from typing import Iterable, Sequence
 
 
 SECRET_CONTEXT_RE = re.compile(
-    r"(?i)(api[_-]?key|apikey|access[_-]?token|auth[_-]?token|client[_-]?secret|"
-    r"password|secret|bearer|authorization|legiscan_api_key)"
+    r"(?i)\b(api[_-]?key|apikey|access[_-]?token|auth[_-]?token|client[_-]?secret|"
+    r"password|secret|bearer|authorization|legiscan_api_key)\b"
+)
+PROVENANCE_HASH_RE = re.compile(
+    r'(?i)"(?:source_hash|sha256|text_hash)"\s*:\s*"([a-f0-9]{32,})"'
 )
 ASSIGNMENT_RE = re.compile(
     r"(?i)(api[_-]?key|apikey|access[_-]?token|auth[_-]?token|client[_-]?secret|"
@@ -100,7 +103,11 @@ def scan_text(path: str, text: str) -> list[SecretFinding]:
         matches.extend(("bearer_token", match.group(1)) for match in BEARER_RE.finditer(line))
         matches.extend(("url_token", match.group(2)) for match in URL_SECRET_RE.finditer(line))
         if SECRET_CONTEXT_RE.search(line):
-            matches.extend(("context_hex_token", match.group(0)) for match in CONTEXT_HEX_RE.finditer(line))
+            matches.extend(
+                ("context_hex_token", match.group(0))
+                for match in CONTEXT_HEX_RE.finditer(line)
+                if not _is_provenance_hash(line, match.group(0))
+            )
 
         seen_values: set[str] = set()
         for label, value in matches:
@@ -194,6 +201,12 @@ def _safe_line_preview(line: str) -> str:
     if len(preview) > 140:
         return f"{preview[:137]}..."
     return preview
+
+
+def _is_provenance_hash(line: str, value: str) -> bool:
+    """Return whether a hex value is explicitly stored as source provenance."""
+
+    return any(match.group(1).casefold() == value.casefold() for match in PROVENANCE_HASH_RE.finditer(line))
 
 
 def build_parser() -> argparse.ArgumentParser:

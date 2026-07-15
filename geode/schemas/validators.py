@@ -62,7 +62,7 @@ def require_official_source_url(url: str) -> str:
     if parsed.scheme != "https":
         raise ValueError("source URLs must use https")
     host = parsed.netloc.lower()
-    if host not in AUTHORIZED_SOURCE_HOSTS:
+    if host not in AUTHORIZED_SOURCE_HOSTS and not host.endswith(".colorado.gov"):
         raise ValueError(f"unauthorized source host: {host}")
     return url
 
@@ -78,7 +78,8 @@ def require_utc_datetime(value: datetime) -> datetime:
 def require_not_future_date(value: date | None) -> date | None:
     """Reject dates after the local system date."""
 
-    if value is not None and value > date.today():
+    comparison_value = value.date() if isinstance(value, datetime) else value
+    if comparison_value is not None and comparison_value > date.today():
         raise ValueError("date cannot be in the future")
     return value
 
@@ -101,6 +102,7 @@ def _record_model_for(data: dict[str, Any]) -> type[BaseModel]:
         StatuteSection,
         TimelineEvent,
     )
+    from geode.schemas.local import LocalAuthority, LocalRule
 
     record_id = str(data.get("id", ""))
     if record_id.startswith("TE-"):
@@ -121,6 +123,8 @@ def _record_model_for(data: dict[str, Any]) -> type[BaseModel]:
         "federal_standard": FederalStandard,
         "rule_unit": RuleUnit,
         "agency": Agency,
+        "local_authority": LocalAuthority,
+        "local_rule": LocalRule,
     }
     if entity_type not in models:
         raise ValueError(f"unknown entity_type: {entity_type}")

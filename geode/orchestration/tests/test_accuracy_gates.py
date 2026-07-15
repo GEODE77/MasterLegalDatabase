@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import date
+import hashlib
 
 from geode.orchestration.contracts import (
     Answer,
@@ -18,6 +19,7 @@ from geode.orchestration.contracts import (
     GateAction,
     Intent,
     Provenance,
+    PassageLocation,
     QueryState,
     VerificationStatus,
 )
@@ -215,7 +217,11 @@ def _evidence(
             canonical_id=source_id,
             authority_level=AuthorityLevel.STATE,
         ),
-        provenance=Provenance(source_id=source_id, source_path=f"_fixture/{source_id}.json"),
+        provenance=Provenance(
+            source_id=source_id,
+            source_path=f"_fixture/{source_id}.json",
+            passage=PassageLocation(text_hash=hashlib.sha256(text.encode("utf-8")).hexdigest()),
+        ),
         confidence=0.9,
         is_candidate=False,
         assembled=True,

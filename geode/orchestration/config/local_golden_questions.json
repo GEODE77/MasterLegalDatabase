@@ -1,0 +1,62 @@
+[
+  {
+    "question_id": "local-denver-county-scope",
+    "query": "What county requirements should be checked for a facility in Denver County?",
+    "expected_question_type": "compliance_survey",
+    "requires_local_limitation": true,
+    "requires_citation": false,
+    "requires_complete_coverage": false,
+    "requires_currency_verification": false,
+    "expected_citations": [],
+    "review_status": "synthetic",
+    "review_note": "Requires certified county source records before promotion."
+  },
+  {
+    "question_id": "local-boulder-county-code",
+    "query": "What local requirements should be checked for a facility in Boulder County?",
+    "expected_question_type": "compliance_survey",
+    "requires_local_limitation": true,
+    "requires_citation": false,
+    "requires_complete_coverage": false,
+    "requires_currency_verification": false,
+    "expected_citations": [],
+    "review_status": "synthetic",
+    "review_note": "Must distinguish Boulder County from the City of Boulder."
+  },
+  {
+    "question_id": "local-el-paso-county-scope",
+    "query": "What county requirements should be checked for a facility in El Paso County?",
+    "expected_question_type": "compliance_survey",
+    "requires_local_limitation": true,
+    "requires_citation": false,
+    "requires_complete_coverage": false,
+    "requires_currency_verification": false,
+    "expected_citations": [],
+    "review_status": "synthetic",
+    "review_note": "Requires certified county source records before promotion."
+  },
+  {
+    "question_id": "local-bvsd-district",
+    "query": "Which Boulder Valley School District rules are relevant to a school facility?",
+    "expected_question_type": "compliance_survey",
+    "requires_local_limitation": true,
+    "requires_citation": false,
+    "requires_complete_coverage": false,
+    "requires_currency_verification": false,
+    "expected_citations": [],
+    "review_status": "synthetic",
+    "review_note": "District policy applicability must be separated from general business law."
+  },
+  {
+    "question_id": "local-water-district",
+    "query": "What Denver Water operating rules may apply to a facility using its system?",
+    "expected_question_type": "compliance_survey",
+    "requires_local_limitation": true,
+    "requires_citation": false,
+    "requires_complete_coverage": false,
+    "requires_currency_verification": false,
+    "expected_citations": [],
+    "review_status": "synthetic",
+    "review_note": "Legal classification and service-area applicability require review."
+  }
+]

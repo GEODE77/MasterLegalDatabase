@@ -55,9 +55,9 @@ def _assemble_candidate(state: QueryState, candidate: Evidence) -> Evidence:
     if currency.status == CurrencyStatus.UNKNOWN:
         currency = CurrencyMetadata(
             effective_date=currency.effective_date,
-            status=CurrencyStatus.CURRENT,
-            amendment_status=currency.amendment_status or "not_reported",
-            repeal_status=currency.repeal_status or "not_reported",
+            status=CurrencyStatus.UNKNOWN,
+            amendment_status=currency.amendment_status or "not_verified",
+            repeal_status=currency.repeal_status or "not_verified",
             as_of_date=state.temporal.as_of_date if state.temporal else None,
         )
     return candidate.model_copy(
@@ -75,12 +75,9 @@ def _assemble_candidate(state: QueryState, candidate: Evidence) -> Evidence:
 
 
 def _trim_excerpt(text: str) -> str:
-    """Limit evidence to a compact excerpt."""
+    """Normalize a selected passage without changing its words."""
 
-    normalized = " ".join(text.split())
-    if len(normalized) <= MAX_EVIDENCE_EXCERPT_CHARS:
-        return normalized
-    return normalized[: MAX_EVIDENCE_EXCERPT_CHARS - 3].rstrip() + "..."
+    return " ".join(text.split())
 
 
 def _infer_enabling_statute(candidate: Evidence) -> str | None:

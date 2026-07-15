@@ -43,6 +43,8 @@ LayerName = Literal[
     "05_Executive_Orders",
     "06_Session_Laws",
     "07_Supplementary",
+    "08_County_Authorities",
+    "09_District_Authorities",
 ]
 
 EntityType = Literal[
@@ -59,6 +61,8 @@ EntityType = Literal[
     "crosswalk_entry",
     "timeline_event",
     "agency",
+    "local_authority",
+    "local_rule",
 ]
 
 
@@ -723,6 +727,9 @@ class RuleUnit(GeodeModel):
     plain_english_summary: str = Field(min_length=1)
     subject_tags: list[str]
     confidence: ConfidenceScores
+    semantic_status: Literal["semantic_ready", "source_preservation_only", "needs_review"] = (
+        "semantic_ready"
+    )
 
     @field_validator("rule_type")
     @classmethod
@@ -902,6 +909,22 @@ class LayerIndexRecord(GeodeModel):
     sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     tags: list[str] = Field(default_factory=list)
     confidence: float = Field(ge=0.0, le=1.0)
+    authority_id: str | None = None
+    authority_name: str | None = None
+    authority_level: str | None = None
+    authority_type: str | None = None
+    district_family: str | None = None
+    county_names: list[str] = Field(default_factory=list)
+    geographic_scope: list[str] = Field(default_factory=list)
+    source_section: str | None = None
+    section_heading: str | None = None
+    source_page: int | None = Field(default=None, ge=1)
+    source_page_end: int | None = Field(default=None, ge=1)
+    source_line_start: int | None = Field(default=None, ge=1)
+    source_line_end: int | None = Field(default=None, ge=1)
+    source_category: str | None = None
+    semantic_status: str | None = None
+    text_hash: str | None = None
 
     @field_validator("source_url")
     @classmethod

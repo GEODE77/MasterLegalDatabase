@@ -169,7 +169,7 @@ def _currency_factor(state: QueryState) -> float:
         elif item.currency.status == CurrencyStatus.REPEALED:
             values.append(0.0)
         else:
-            values.append(0.5)
+            values.append(0.25)
     return sum(values) / len(values)
 
 

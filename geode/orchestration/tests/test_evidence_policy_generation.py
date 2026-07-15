@@ -51,7 +51,8 @@ def test_assemble_evidence_adds_provenance_currency_and_jurisdiction() -> None:
     assert evidence.authority_level == AuthorityLevel.STATE
     assert evidence.enabling_statute == "CRS-25-7-109"
     assert evidence.jurisdiction is not None
-    assert evidence.currency.status == CurrencyStatus.CURRENT
+    assert evidence.currency.status == CurrencyStatus.UNKNOWN
+    assert evidence.currency.repeal_status == "not_verified"
     assert evidence.currency.as_of_date is None
     assert evidence.provenance.chain[:3] == ["claim:pending", result.query_id, "reporting_rules"]
     assert "5_CCR_1001-9" in evidence.provenance.chain
@@ -155,7 +156,7 @@ Every claim must cite one or more evidence IDs. If evidence is missing, state th
 
 ## Evidence
 
-- ev-fed | 40_CFR_98 | federal | Facilities must report greenhouse gas emissions.
+- ev-fed | 40_CFR_98 | authority=federal | answer_safe=True | semantic_status=not_reported | applicability=not_reported | passage=not_reported page=not_reported lines=not_reported-not_reported hash=not_reported | why= | Facilities must report greenhouse gas emissions.
 
 
 ## Conflicts

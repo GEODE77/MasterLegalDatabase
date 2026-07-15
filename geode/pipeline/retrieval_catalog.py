@@ -28,10 +28,25 @@ class RetrievalCatalogRecord(BaseModel):
     path: str | None = None
     meta_path: str | None = None
     source_url: str | None = None
+    source_path: str | None = None
+    sha256: str | None = None
     publication_year: int | None = None
     last_updated: str | None = None
+    authority_id: str | None = None
+    authority_name: str | None = None
+    authority_level: str | None = None
+    authority_type: str | None = None
+    district_family: str | None = None
+    county_names: list[str] | None = None
+    geographic_scope: list[str] | None = None
     tags: list[str] = Field(default_factory=list)
     confidence: float | None = None
+    semantic_status: str | None = None
+    source_category: str | None = None
+    source_page: int | None = None
+    source_page_end: int | None = None
+    source_line_start: int | None = None
+    source_line_end: int | None = None
     retrieval_text: str
 
 
@@ -84,7 +99,11 @@ def write_retrieval_catalog(root: Path) -> RetrievalCatalogSummary:
 
     resolved_root = root.resolve()
     records, summary = build_retrieval_catalog(resolved_root)
-    atomic_write_jsonl(resolved_root / RETRIEVAL_CATALOG_PATH, records, resolved_root)
+    atomic_write_jsonl(
+        resolved_root / RETRIEVAL_CATALOG_PATH,
+        (record.model_dump(mode="json", exclude_none=True) for record in records),
+        resolved_root,
+    )
     atomic_write_json(resolved_root / RETRIEVAL_CATALOG_SUMMARY_PATH, summary, resolved_root)
     return summary
 
@@ -121,10 +140,27 @@ def _catalog_record(layer_id: str, row: dict[str, Any]) -> RetrievalCatalogRecor
         path=_optional_str(row.get("path")),
         meta_path=_optional_str(row.get("meta_path")),
         source_url=_optional_str(row.get("source_url")),
+        source_path=_optional_str(row.get("source_path")),
+        sha256=_optional_str(row.get("sha256")),
         publication_year=_optional_int(row.get("publication_year")),
         last_updated=_optional_str(row.get("last_updated")),
+        authority_id=_optional_str(row.get("authority_id")),
+        authority_name=_optional_str(row.get("authority_name")),
+        authority_level=_optional_str(row.get("authority_level")),
+        authority_type=_optional_str(row.get("authority_type")),
+        district_family=_optional_str(row.get("district_family")),
+        county_names=[str(value) for value in row.get("county_names", []) if value]
+        or None,
+        geographic_scope=[str(value) for value in row.get("geographic_scope", []) if value]
+        or None,
         tags=clean_tags,
         confidence=_optional_float(row.get("confidence")),
+        semantic_status=_optional_str(row.get("semantic_status")),
+        source_category=_optional_str(row.get("source_category")),
+        source_page=_optional_int(row.get("source_page")),
+        source_page_end=_optional_int(row.get("source_page_end")),
+        source_line_start=_optional_int(row.get("source_line_start")),
+        source_line_end=_optional_int(row.get("source_line_end")),
         retrieval_text=retrieval_text,
     )
 

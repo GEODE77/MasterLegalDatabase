@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-07-15T22:10:53.595171+00:00",
+  "decisions_received": 0,
+  "promoted": 0,
+  "rejected": 0,
+  "needs_revision": 0,
+  "blocked": 0,
+  "errors": [],
+  "snapshots": [],
+  "boundary": "Only reviewer-approved, source-matched, structured rule units become answer-safe."
+}

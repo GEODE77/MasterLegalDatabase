@@ -86,7 +86,7 @@
       {
         "question_type": "compliance_survey",
         "answer_shape": "compliance_survey",
-        "any_terms": ["regulations", "requirements", "pertain", "apply", "compliance"]
+        "any_terms": ["regulations", "requirements", "pertain", "apply", "compliance", "relevant", "rules"]
       },
       {
         "question_type": "exact_citation",

@@ -1,0 +1,89 @@
+{
+  "total": 5,
+  "passed": 5,
+  "failed": 0,
+  "results": [
+    {
+      "question_id": "local-denver-county-scope",
+      "query": "What county requirements should be checked for a facility in Denver County?",
+      "passed": true,
+      "checks": {
+        "question_type": true,
+        "coverage_completeness": true,
+        "citation_validity": true,
+        "currency_correctness": true,
+        "schema_conformance": true,
+        "local_limitation": true,
+        "expected_answer": true,
+        "expected_citations": true
+      },
+      "errors": []
+    },
+    {
+      "question_id": "local-boulder-county-code",
+      "query": "What local requirements should be checked for a facility in Boulder County?",
+      "passed": true,
+      "checks": {
+        "question_type": true,
+        "coverage_completeness": true,
+        "citation_validity": true,
+        "currency_correctness": true,
+        "schema_conformance": true,
+        "local_limitation": true,
+        "expected_answer": true,
+        "expected_citations": true
+      },
+      "errors": []
+    },
+    {
+      "question_id": "local-el-paso-county-scope",
+      "query": "What county requirements should be checked for a facility in El Paso County?",
+      "passed": true,
+      "checks": {
+        "question_type": true,
+        "coverage_completeness": true,
+        "citation_validity": true,
+        "currency_correctness": true,
+        "schema_conformance": true,
+        "local_limitation": true,
+        "expected_answer": true,
+        "expected_citations": true
+      },
+      "errors": []
+    },
+    {
+      "question_id": "local-bvsd-district",
+      "query": "Which Boulder Valley School District rules are relevant to a school facility?",
+      "passed": true,
+      "checks": {
+        "question_type": true,
+        "coverage_completeness": true,
+        "citation_validity": true,
+        "currency_correctness": true,
+        "schema_conformance": true,
+        "local_limitation": true,
+        "expected_answer": true,
+        "expected_citations": true
+      },
+      "errors": []
+    },
+    {
+      "question_id": "local-water-district",
+      "query": "What Denver Water operating rules may apply to a facility using its system?",
+      "passed": true,
+      "checks": {
+        "question_type": true,
+        "coverage_completeness": true,
+        "citation_validity": true,
+        "currency_correctness": true,
+        "schema_conformance": true,
+        "local_limitation": true,
+        "expected_answer": true,
+        "expected_citations": true
+      },
+      "errors": []
+    }
+  ],
+  "feedback_records": [],
+  "boundary": "Local questions verify jurisdiction and limitation behavior. They do not certify unreviewed local legal meaning."
+}

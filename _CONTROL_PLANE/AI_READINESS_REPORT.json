@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-07-15T22:14:15.147243+00:00",
+  "purpose": "Determine whether an AI can read, retrieve, verify, and cite Geode safely.",
+  "checks": [
+    {
+      "check": "control_plane/AI_READ_ORDER.json",
+      "passed": true
+    },
+    {
+      "check": "control_plane/AI_QUERY_CONTRACT.json",
+      "passed": true
+    },
+    {
+      "check": "control_plane/AI_RETRIEVAL_CONTRACT.json",
+      "passed": true
+    },
+    {
+      "check": "control_plane/AI_ANSWER_CONTRACT.json",
+      "passed": true
+    },
+    {
+      "check": "master_manifest",
+      "passed": true
+    },
+    {
+      "check": "retrieval_catalog",
+      "passed": true
+    },
+    {
+      "check": "local_answer_safe_filter",
+      "passed": true,
+      "detail": "Local preservation-only material is identified and excluded until reviewed."
+    },
+    {
+      "check": "local_review_queues",
+      "passed": true
+    },
+    {
+      "check": "local_stress_tests",
+      "passed": true
+    },
+    {
+      "check": "local_golden_questions",
+      "passed": true
+    },
+    {
+      "check": "local_promotion_boundary",
+      "passed": true,
+      "detail": "Only validated reviewer decisions may promote local evidence."
+    }
+  ],
+  "passed_checks": 11,
+  "total_checks": 11,
+  "status": "ready",
+  "known_limits": [
+    "Local source-preservation-only records remain available for audit but are not answer-safe.",
+    "Unknown currency must be disclosed until the source is verified against a current official version.",
+    "Coverage gaps are findings, not proof that no rule exists."
+  ]
+}

@@ -26,7 +26,7 @@ class BuildCoverageContractStage(PassThroughStage):
 
         templates = load_orchestration_config()["coverage"]["coverage_templates"]
         question_type = state.intent.question_type.value
-        template = templates.get(question_type) or templates["compliance_survey"]
+        template = templates.get(question_type) or templates["unknown"]
         jurisdiction_requirement = {
             item.authority_level: item.requirement for item in state.jurisdiction_coverage
         }

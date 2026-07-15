@@ -41,6 +41,7 @@ class AuthorityLevel(StrEnum):
     STATE = "state"
     COUNTY = "county"
     MUNICIPAL = "municipal"
+    DISTRICT = "district"
     FEDERAL = "federal"
 
 
@@ -208,6 +209,9 @@ class Jurisdiction(StrictOrchestrationModel):
     state: str = "CO"
     county: str | None = None
     municipality: str | None = None
+    facility_location: str | None = None
+    district: str | None = None
+    district_family: str | None = None
 
 
 class JurisdictionCoverage(StrictOrchestrationModel):
@@ -266,6 +270,18 @@ class ExpectedCategory(StrictOrchestrationModel):
     reason: str = Field(min_length=1)
 
 
+class PassageLocation(StrictOrchestrationModel):
+    """Exact source location for a model-facing evidence passage."""
+
+    section: str | None = None
+    heading: str | None = None
+    page: int | None = Field(default=None, ge=1)
+    page_end: int | None = Field(default=None, ge=1)
+    line_start: int | None = Field(default=None, ge=1)
+    line_end: int | None = Field(default=None, ge=1)
+    text_hash: str | None = None
+
+
 class Provenance(StrictOrchestrationModel):
     """Source location metadata for evidence."""
 
@@ -274,6 +290,8 @@ class Provenance(StrictOrchestrationModel):
     source_url: HttpUrl | None = None
     retrieved_at: datetime | None = None
     source_hash: str | None = None
+    source_version: str | None = None
+    passage: PassageLocation | None = None
     chain: list[str] = Field(default_factory=list)
 
 
@@ -313,6 +331,11 @@ class Evidence(StrictOrchestrationModel):
     authority_level: AuthorityLevel | None = None
     assembled: bool = False
     conflict_group: str | None = None
+    source_category: str | None = None
+    semantic_status: str | None = None
+    answer_safe: bool = True
+    applicability: str | None = None
+    selection_reasons: list[str] = Field(default_factory=list)
 
 
 class ConflictReport(StrictOrchestrationModel):
