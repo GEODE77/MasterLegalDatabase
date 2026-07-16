@@ -1,28 +1,7 @@
 {
-  "generated_at": "2026-07-15T20:52:25.032131+00:00",
+  "generated_at": "2026-07-16T19:18:31.470448+00:00",
   "execute_requested": true,
-  "archive_root": "_SNAPSHOTS/local_metadata_versions_20260715T205225Z",
-  "items": [
-    {
-      "source": "08_County_Authorities/_meta/local_rules_20260715T193204Z.jsonl",
-      "target": "_SNAPSHOTS/local_metadata_versions_20260715T205225Z/08_County_Authorities/_meta/local_rules_20260715T193204Z.jsonl",
-      "status": "archived"
-    },
-    {
-      "source": "08_County_Authorities/_meta/local_rules_20260715T194328Z.jsonl",
-      "target": "_SNAPSHOTS/local_metadata_versions_20260715T205225Z/08_County_Authorities/_meta/local_rules_20260715T194328Z.jsonl",
-      "status": "archived"
-    },
-    {
-      "source": "08_County_Authorities/_meta/local_rules_20260715T200420Z.jsonl",
-      "target": "_SNAPSHOTS/local_metadata_versions_20260715T205225Z/08_County_Authorities/_meta/local_rules_20260715T200420Z.jsonl",
-      "status": "archived"
-    },
-    {
-      "source": "08_County_Authorities/_meta/local_rules_20260715T200857Z.jsonl",
-      "target": "_SNAPSHOTS/local_metadata_versions_20260715T205225Z/08_County_Authorities/_meta/local_rules_20260715T200857Z.jsonl",
-      "status": "archived"
-    }
-  ],
+  "archive_root": "_SNAPSHOTS/local_metadata_versions_20260716T191831Z",
+  "items": [],
   "boundary": "Only unreferenced generated metadata is moved. No raw source is deleted or modified."
 }

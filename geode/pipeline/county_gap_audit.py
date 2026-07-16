@@ -137,8 +137,28 @@ def run_gap_audit(root: Path) -> Path:
     records, matrix = build_gap_audit(root)
     audit_path = root / "_CONTROL_PLANE" / "COUNTY_GAP_AUDIT.jsonl"
     matrix_path = root / "_CONTROL_PLANE" / "COUNTY_SOURCE_COVERAGE.json"
+    manifest_path = root / "_CONTROL_PLANE" / "MASTER_MANIFEST.json"
     atomic_write_jsonl(audit_path, records, root)
     atomic_write_json(matrix_path, matrix, root)
+    if manifest_path.exists():
+        manifest = load_json(manifest_path)
+        for layer in manifest.get("data_layers", []):
+            if layer.get("id") != "08_County_Authorities":
+                continue
+            layer["known_gaps"] = (
+                [
+                    f"{len(records)} county source-category gaps remain in the latest audit."
+                ]
+                if records
+                else [
+                    "Official county source-category gap audit is clear; semantic "
+                    "normalization and review queues remain open."
+                ]
+            )
+            layer["last_checked"] = datetime.now(timezone.utc).date().isoformat()
+            layer["status"] = "ready"
+            break
+        atomic_write_json(manifest_path, manifest, root)
     return audit_path
 
 

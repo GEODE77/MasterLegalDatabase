@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field, ValidationError
 
 from geode.pipeline.retrieval_catalog import write_retrieval_catalog
 from geode.schemas import RuleUnit
-from geode.utils.file_io import atomic_write_json, atomic_write_jsonl, iter_jsonl, load_json
+from geode.utils.file_io import atomic_write_json, atomic_write_jsonl, iter_jsonl
 
 
 CONTROL = Path("_CONTROL_PLANE")
@@ -122,7 +122,6 @@ def apply_local_promotion_decisions(root: Path) -> dict[str, Any]:
     promoted: set[str] = set()
     rejected = 0
     needs_revision = 0
-    blocked = 0
     snapshots: list[str] = []
 
     for layer, metadata_path in metadata_files.items():
