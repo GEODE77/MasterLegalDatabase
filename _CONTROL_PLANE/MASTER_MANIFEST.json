@@ -163,17 +163,48 @@
       "id": "08_County_Authorities",
       "path": "08_County_Authorities",
       "entity_type": "local_authority,local_rule",
-      "record_count": 42526,
+      "record_count": 120075,
       "source": "local_county_registry",
-      "format": ["markdown", "jsonl"],
-      "last_ingested": "2026-07-15",
+      "format": [
+        "markdown",
+        "jsonl"
+      ],
+      "last_ingested": "2026-07-16",
       "currency": null,
       "index_file": "08_County_Authorities/_index.jsonl",
-      "known_gaps": ["41 county discovery pages downloaded; 23 official county discovery pages blocked or unavailable; unresolved categories are documented in COUNTY_GAP_AUDIT.jsonl."],
-      "last_checked": "2026-07-15",
+      "known_gaps": [
+        "Official county source-category gap audit is clear; semantic normalization and review queues remain open."
+      ],
+      "last_checked": "2026-07-16",
       "staleness_days": 0,
-      "status": "partial",
-      "derived_files": ["_CONTROL_PLANE/COUNTY_SOURCE_COVERAGE.json", "_CONTROL_PLANE/COUNTY_GAP_AUDIT.jsonl", "_CONTROL_PLANE/LOCAL_SOURCE_REGISTRY.json", "_CONTROL_PLANE/LOCAL_DOWNLOAD_MANIFEST.jsonl", "_CONTROL_PLANE/LOCAL_REVIEW_QUEUE.jsonl", "_CONTROL_PLANE/LOCAL_PROMOTION_QUEUE.jsonl", "_CONTROL_PLANE/LOCAL_PROMOTION_DECISIONS.jsonl", "_CONTROL_PLANE/LOCAL_PROMOTION_REPORT.json", "_CONTROL_PLANE/LOCAL_OCR_QUEUE.jsonl", "_CONTROL_PLANE/LOCAL_SOURCE_CLASSIFICATION_QUEUE.jsonl", "_CONTROL_PLANE/LOCAL_SOURCE_FRESHNESS.json", "_CONTROL_PLANE/LOCAL_METADATA_VERSION_AUDIT.json", "_CONTROL_PLANE/LOCAL_METADATA_ARCHIVE_REPORT.json", "_CONTROL_PLANE/LOCAL_REVIEW_SUMMARY.json", "_CONTROL_PLANE/LOCAL_OCR_REPORT.json", "_CONTROL_PLANE/LOCAL_STRESS_TEST_REPORT.json", "_CONTROL_PLANE/LOCAL_GOLDEN_EVALUATION.json", "_CONTROL_PLANE/AI_READ_ORDER.json", "_CONTROL_PLANE/AI_QUERY_CONTRACT.json", "_CONTROL_PLANE/AI_RETRIEVAL_CONTRACT.json", "_CONTROL_PLANE/AI_ANSWER_CONTRACT.json", "_CONTROL_PLANE/AI_READINESS_REPORT.json", "_CONTROL_PLANE/RETRIEVAL_CATALOG.jsonl", "_CROSSWALKS/local_rule_to_state_authority.jsonl", "_CROSSWALKS/state_authority_to_local_rule.jsonl"]
+      "status": "ready",
+      "derived_files": [
+        "_CONTROL_PLANE/COUNTY_SOURCE_COVERAGE.json",
+        "_CONTROL_PLANE/COUNTY_GAP_AUDIT.jsonl",
+        "_CONTROL_PLANE/LOCAL_SOURCE_REGISTRY.json",
+        "_CONTROL_PLANE/LOCAL_DOWNLOAD_MANIFEST.jsonl",
+        "_CONTROL_PLANE/LOCAL_REVIEW_QUEUE.jsonl",
+        "_CONTROL_PLANE/LOCAL_PROMOTION_QUEUE.jsonl",
+        "_CONTROL_PLANE/LOCAL_PROMOTION_DECISIONS.jsonl",
+        "_CONTROL_PLANE/LOCAL_PROMOTION_REPORT.json",
+        "_CONTROL_PLANE/LOCAL_OCR_QUEUE.jsonl",
+        "_CONTROL_PLANE/LOCAL_SOURCE_CLASSIFICATION_QUEUE.jsonl",
+        "_CONTROL_PLANE/LOCAL_SOURCE_FRESHNESS.json",
+        "_CONTROL_PLANE/LOCAL_METADATA_VERSION_AUDIT.json",
+        "_CONTROL_PLANE/LOCAL_METADATA_ARCHIVE_REPORT.json",
+        "_CONTROL_PLANE/LOCAL_REVIEW_SUMMARY.json",
+        "_CONTROL_PLANE/LOCAL_OCR_REPORT.json",
+        "_CONTROL_PLANE/LOCAL_STRESS_TEST_REPORT.json",
+        "_CONTROL_PLANE/LOCAL_GOLDEN_EVALUATION.json",
+        "_CONTROL_PLANE/AI_READ_ORDER.json",
+        "_CONTROL_PLANE/AI_QUERY_CONTRACT.json",
+        "_CONTROL_PLANE/AI_RETRIEVAL_CONTRACT.json",
+        "_CONTROL_PLANE/AI_ANSWER_CONTRACT.json",
+        "_CONTROL_PLANE/AI_READINESS_REPORT.json",
+        "_CONTROL_PLANE/RETRIEVAL_CATALOG.jsonl",
+        "_CROSSWALKS/local_rule_to_state_authority.jsonl",
+        "_CROSSWALKS/state_authority_to_local_rule.jsonl"
+      ]
     },
     {
       "id": "09_District_Authorities",
@@ -181,14 +212,19 @@
       "entity_type": "local_authority,local_rule",
       "record_count": 712,
       "source": "local_district_registry",
-      "format": ["markdown", "jsonl"],
-      "last_ingested": "2026-07-15",
+      "format": [
+        "markdown",
+        "jsonl"
+      ],
+      "last_ingested": "2026-07-16",
       "currency": null,
       "index_file": "09_District_Authorities/_index.jsonl",
-      "known_gaps": ["School-district policy documents still require individual discovery and download."],
-      "last_checked": "2026-07-15",
+      "known_gaps": [
+        "School-district policy documents still require individual discovery and download."
+      ],
+      "last_checked": "2026-07-16",
       "staleness_days": 0,
-      "status": "partial"
+      "status": "ready"
     }
   ],
   "crosswalks_available": [
@@ -197,9 +233,9 @@
     "bill_to_statute.jsonl",
     "rulemaking_to_regulation.jsonl",
     "agency_to_statute.jsonl",
-    "amendment_history.jsonl"
-    ,"local_rule_to_state_authority.jsonl"
-    ,"state_authority_to_local_rule.jsonl"
+    "amendment_history.jsonl",
+    "local_rule_to_state_authority.jsonl",
+    "state_authority_to_local_rule.jsonl"
   ],
   "freshness_policy": {
     "statutes": {

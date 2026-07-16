@@ -27,7 +27,6 @@ def enforce_grounding(state: QueryState) -> tuple[QueryState, GateResult]:
     """Strip answer claims with no supporting evidence."""
 
     claims = extract_atomic_claims(state.answer)
-    evidence_ids = {item.evidence_id for item in state.evidence}
     supported: list[AtomicClaim] = []
     stripped: list[str] = []
     for claim in claims:

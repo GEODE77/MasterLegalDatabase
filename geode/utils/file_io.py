@@ -110,11 +110,19 @@ def atomic_write_json(target: Path, payload: BaseModel | dict[str, Any], root: P
 def atomic_write_jsonl(target: Path, records: Iterable[JsonRecord], root: Path) -> None:
     """Write validated Pydantic records to JSONL with no blank lines."""
 
-    lines = [_model_to_json(record) for record in records]
-    content = "\n".join(lines)
-    if content:
-        content += "\n"
-    atomic_write_text(target, content, root)
+    ensure_not_raw_archive(target, root)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    snapshot_existing_file(target, root)
+    tmp_path = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
+    try:
+        with tmp_path.open("w", encoding="utf-8", newline="\n") as handle:
+            for record in records:
+                handle.write(_model_to_json(record))
+                handle.write("\n")
+        _replace_with_retry(tmp_path, target)
+    finally:
+        if tmp_path.exists():
+            tmp_path.unlink()
 
 
 def append_jsonl_record_atomic(target: Path, record: JsonRecord, root: Path) -> None:

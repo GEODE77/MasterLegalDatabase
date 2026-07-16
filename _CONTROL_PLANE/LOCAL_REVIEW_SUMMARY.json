@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-15T22:11:58.214472Z",
-  "semantic_review_items": 42115,
-  "ocr_items": 99,
-  "source_classification_items": 47,
-  "downloaded_source_review_items": 85,
-  "blocked_source_recovery_items": 445,
+  "generated_at": "2026-07-16T19:18:37.204966Z",
+  "semantic_review_items": 117077,
+  "ocr_items": 315,
+  "source_classification_items": 270,
+  "downloaded_source_review_items": 4,
+  "blocked_source_recovery_items": 0,
   "metadata_version_items": 0,
-  "total_review_items": 42925,
+  "total_review_items": 118525,
   "answer_safe_local_rule_units": 0,
   "boundary": "These queues identify work that remains. They do not approve legal meaning, perform OCR, delete versioned files, or claim that blocked categories have no law."
 }

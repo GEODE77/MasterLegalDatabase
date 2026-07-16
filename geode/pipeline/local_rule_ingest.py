@@ -14,6 +14,8 @@ from typing import Any
 import fitz
 
 from geode.schemas import ConfidenceScores, LayerIndexRecord, LocalRule, RuleUnit
+from geode.pipeline.retrieval_catalog import write_retrieval_catalog
+from geode.pipeline.writer import _refresh_manifest
 from geode.utils.file_io import atomic_write_jsonl, iter_jsonl, load_json
 
 LOCAL_LAYERS = {
@@ -121,6 +123,14 @@ def ingest_local_rules(root: Path) -> dict[str, int]:
 
     for layer, records in records_by_layer.items():
         _write_layer_records(resolved_root, layer, records, units_by_layer[layer])
+        _refresh_manifest(
+            resolved_root,
+            resolved_root / "_CONTROL_PLANE" / "MASTER_MANIFEST.json",
+            layer,
+            resolved_root / layer / "_index.jsonl",
+            datetime.now(timezone.utc),
+        )
+    write_retrieval_catalog(resolved_root)
     quarantine_path = resolved_root / "_QUARANTINE" / "local_extraction_quarantine.jsonl"
     atomic_write_jsonl(quarantine_path, quarantine, resolved_root)
     return {

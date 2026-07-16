@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T20:49:50.032867+00:00",
+  "generated_at": "2026-07-16T19:18:45.845756+00:00",
   "ocr_engine": null,
   "execute_requested": false,
   "items": [
@@ -893,9 +893,1953 @@
       "source_hash": "5d35d78aa0a52a401a3e19863b9ef7869bc17a09897b624787ff7e5df526fe07",
       "status": "pending_dependency",
       "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/Fire-Ban-Ordinance.pdf",
+      "source_hash": "ce92ea07828893eb22b70494b86bd6c48c858e22d31c2277ddfce2d1f8a5633f",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/Flood-Plain-Ordinance.pdf",
+      "source_hash": "cfa3435b88706ec51be42a0380957eaf64f7f4f7a62bab695a77a043577d2b87",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/Flood-Prevention-Regulation.pdf",
+      "source_hash": "8b9d287baa7a223f6596c79471a2dbd731170aeaef8a43126625e51367dbf680",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/Marijauana-Ordinances.pdf",
+      "source_hash": "9f80068985b7a1ae8d6e48d4d04845d558bafe9e01f952ce9a25417480f7c381",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/Road-Ordinance.pdf",
+      "source_hash": "618077d9993cedde4d36f81b35b19c01f2ab8cc78192350e9404c304cb8da1ae",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/Special-Events-Ordinance.pdf",
+      "source_hash": "c7ea8f1fcc6e9eda8220c4264186d3de4e5c128a1c81daeb2632a2e82248cfc1",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/2019-2nd-Amendment-and-Mental-Health-03-19-01.pdf",
+      "source_hash": "af2b082361305461ac0615ffdcedd056e4ef00c13b151a57856220892d559e80",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/2019-Anti-Wolf-Introduction-12-19-10.pdf",
+      "source_hash": "91501b7a42b21167c48a288372e27dbf72e64b1485b3fa189c44494c4d515132",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/2020-Homestead-Extension-Resolution-05-20-03.pdf",
+      "source_hash": "2338d9cef9c8e075dc2beaf44df1f2e2b86c0e5cd6312f52c9f14b2766628045",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/2020-Proposition-113-against-Popular-Vote-10-20-02.pdf",
+      "source_hash": "611273bcb736398c80f80c897ce7ef4d20afe7d94161f1dc603b8eef38302f58",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/2020-Rural-Jump-Start-Participation-10-20-01.pdf",
+      "source_hash": "c9ac1fb4301221662f5a6f90c75615b7458296c5cb87279c55654adbe8dd18e1",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/2021-Resolution-Opposing-30x30-Land-Preservation-Goal-03-21-01.pdf",
+      "source_hash": "a7b83a3a5fb235d3a6645f26cb38e2d2a2a38f6cda3877447d9df80560a2c04b",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/2021-Opposing-the-Reintroduction-of-Wolves-04-21-01.pdf",
+      "source_hash": "03793f1f5b85a8451c4d370ac3df7837500e7c6baada24a75e1d260c29ec2a6d",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/2021-Drought-Disaster-Resolution-05-21-03.pdf",
+      "source_hash": "1c5f164a7d503f52ac1e031c43bba36e189f30559a92318df85a62c7048882c5",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/2021-Initiative-16-_28Pause-Act_29-06-21-01.pdf",
+      "source_hash": "fc081413c388a0ff4cf6d918c6082fd1e0b9578a7acba86ca6dd0cfa6421bb9c",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_kit_carson_homepage",
+      "authority_id": "CO-COUNTY-KIT_CARSON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_kit_carson_homepage/floodplain_20ADA_1.pdf",
+      "source_hash": "74a893bba66b29fb4982eb390b770c49b73f485f80592504eeeba368a82ca5f6",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_code",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_code/divisionofresponsibilities12026.pdf",
+      "source_hash": "9466729ba73eb5699bbeb1e3a086a661f064f9fdbb5df0c543ae98f947629ff3",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_code",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_code/sustainability_policy_2023.pdf",
+      "source_hash": "4cdd08afe40e164007e3954750ed583ef2baab958755c3982f0447f1a0974e59",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_las_animas_homepage",
+      "authority_id": "CO-COUNTY-LAS_ANIMAS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_las_animas_homepage/ambulance_20LAC_s_20service_20regulations_20and_20license_20procedures_202019071.pdf",
+      "source_hash": "c81e4a3606a4f5003d308b096620558dc903176bc1424539ee27549d45cc938d",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_las_animas_homepage",
+      "authority_id": "CO-COUNTY-LAS_ANIMAS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_las_animas_homepage/22-027_20Stage_20I_20Fire_20Restrictions_208_202_202022_20Las_20Animas_20County.pdf",
+      "source_hash": "50d9888d4b7efc50c8923c845a809daaaf8c4abce6ff59b0fdc5fef61282a9d0",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_las_animas_homepage",
+      "authority_id": "CO-COUNTY-LAS_ANIMAS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_las_animas_homepage/2023_20EOP_20updated_20w_20date_20and_20signed_20_28002_29.pdf",
+      "source_hash": "409b42ab10034a68ff55568827b85be7af43f1970751fd7cfd2eb4fdfd283ef6",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_las_animas_homepage",
+      "authority_id": "CO-COUNTY-LAS_ANIMAS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_las_animas_homepage/Disaster_20Preparation_20Workbook_20RAVE.pdf",
+      "source_hash": "909e06a866c867201fc9eae6655aae486571e54bcad4a2e5a0f79d073cd6b76c",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_morgan_homepage",
+      "authority_id": "CO-COUNTY-MORGAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_morgan_homepage/Recording_20Flat_20Rate_20Changes_20Flyer.pdf",
+      "source_hash": "8e8d870bd95609f0de4b6a8380de379a9dce666bef6c6300148730c512bf7b69",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_morgan_homepage",
+      "authority_id": "CO-COUNTY-MORGAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_morgan_homepage/Naming_20Policy_20for_20County_20Facilities.pdf",
+      "source_hash": "09b56cfebd5d84d442506c4704078a8756b6965db872ff185f50cf7a6834b955",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/Resolution2012_0228_001.pdf",
+      "source_hash": "c65392cc49b10478f486f46452881ab67e86684125ed9ab901bc9138571734c5",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/Resolution2012_0320_001.pdf",
+      "source_hash": "78dabc46a52a69f01bfbf5cc0d41d580eceb087f585d2fc1f102ae61233b5a8c",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/Resolution2012_0531_001.pdf",
+      "source_hash": "16610a50f718d7a9ae96b612131a98beef35d42dde1bae655e0b432d51aefc93",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_rio_grande_homepage",
+      "authority_id": "CO-COUNTY-RIO_GRANDE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_rio_grande_homepage/cora-policy.pdf",
+      "source_hash": "558680cab71d6cd8fc2a633b35fe6592b28287324922845d2ab40825ff39d615",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_homepage",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_homepage/7-10-23_20Zoning_20and_20Land_20Use_20Regulations.pdf",
+      "source_hash": "01b7d41b7c07b1b11e4af14b0ee790ef9c246ac03306292a3fd895230c4de404",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_homepage",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_homepage/4-18-23_20PC_20Packet.pdf",
+      "source_hash": "c03a7b1653d9a6cd8129553a7fe3b92e2073e2020d90ceaf5d0c7fae26dd763b",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_sedgwick_homepage",
+      "authority_id": "CO-COUNTY-SEDGWICK",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_sedgwick_homepage/2024_sedgwick_county_building_permit_fee_schedule.pdf",
+      "source_hash": "418c0b1344c70d737e18a0c86713789056b9a1029ad909419bb07c60016baf6c",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_sedgwick_homepage",
+      "authority_id": "CO-COUNTY-SEDGWICK",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_sedgwick_homepage/PZ-ROW-2024-03_20COMMUNICATION_20PERMIT_20FOR_20COUNTY_20ROAD_20CROSSING_20_26_2.pdf",
+      "source_hash": "bddd2b6d8c630dd4818278db77b2691ea472345b21ebb8addf4b5cfe950e4fc4",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_sedgwick_homepage",
+      "authority_id": "CO-COUNTY-SEDGWICK",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_sedgwick_homepage/RESOLUTIONS-2015-35.pdf",
+      "source_hash": "559448a3af20aa1c97ed8d6da94ff8ca1c63f772f82e83a52c10d764b72c45bb",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_sedgwick_homepage",
+      "authority_id": "CO-COUNTY-SEDGWICK",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_sedgwick_homepage/pz-se-2024-04_subdivision_exemption_form.pdf",
+      "source_hash": "d008a54ce61df670d8e08c0882b4cc8cbba0c712b74bbca28f495c01f12a9438",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_homepage",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_homepage/Washington-County-Budget-2026.pdf",
+      "source_hash": "2cf87ff98ccaa79620fc027612811a6aa7359f6447a58aa465291e8bf1b46433",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_weld_homepage",
+      "authority_id": "CO-COUNTY-WELD",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_weld_homepage/gas-line-worksheet.pdf",
+      "source_hash": "110d0c1ff62e44f1eb7f49a3f578d27443984c335da3392c788b61520ac09e33",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/Resolution-20-2020.pdf",
+      "source_hash": "dddc178a91d615c73b2cf2510ca9670357d09a29ecd44283cf066a512bd4c8b8",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/Tempory_Special_Use_Permit.pdf",
+      "source_hash": "9017ca40bf6d9b57d9cacbc0136464e3620feac4875672c0ede63ab60a16428d",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/Oversize_Load_Permission_Updated_2_28_23.pdf",
+      "source_hash": "438276bb237e06186d8de31bd87e89b8ae8d381081400b374baf4790934f89fc",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_planning_zoning",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "land_use_zoning",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_planning_zoning/Resolution-No_-6-2018.pdf",
+      "source_hash": "a57b5e1343e446dbe606848e46a0424db8209ead62009c3a83ec3d603c81ffcd",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_otero_public_health_food",
+      "authority_id": "CO-COUNTY-OTERO",
+      "source_category": "public_health",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_otero_public_health_food/Handwashing-Station-Diagram_r.pdf",
+      "source_hash": "d4ec75e8d43d109da10215a443c416f01b924db142754de7fa0f8aac29b9f9fa",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_otero_public_health_food",
+      "authority_id": "CO-COUNTY-OTERO",
+      "source_category": "public_health",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_otero_public_health_food/Refrigeration-Monitoring-Chart_r.pdf",
+      "source_hash": "04c9b24dd424c358103bcec8d67bf20993397cc34614d78f4233614ac9cdb032",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_planning",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_planning/PlanningPacket_SanJuanCounty.pdf",
+      "source_hash": "f98a3c218223bb9908af15efcf283d8d6747d6f81df63702e577e25a4ea77d53",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_planning",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_planning/sign_permit_sjc.pdf",
+      "source_hash": "cdfd73f915e39a6f666febd85ad54bf762285d969f842e8631513123aab3066f",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_building_planning",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "building_construction",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_building_planning/San_20Juan_20County_20Avalanche_20Atlas_201976.pdf",
+      "source_hash": "dd3719be4377167fdad9d1fb058b7de7d1773892841f9ad31970e06ef2f42820",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_departments",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_departments/Marijuana-Ordinance.pdf",
+      "source_hash": "d90d24d90a62e3ff724474e1859744dc125a58b242eef1f46308d2ba83c4a293",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_departments",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_departments/new_20subdivision_20.pdf",
+      "source_hash": "9be309e37526fafed57406607303944b1c0d0d381b0f8940d98e41eb24991a64",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_departments",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_departments/AppendixE_RoadwayDesign.pdf",
+      "source_hash": "d4af91e8fe18ff116721612857ca3f60f2a77a8cbf5549ac6e5acabf7bd41a93",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_weld_current_planning",
+      "authority_id": "CO-COUNTY-WELD",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_weld_current_planning/land-use-process-workflow-diagram.pdf",
+      "source_hash": "1f6c0cb3666227ed547de360013a87e6a6d98c6cad5ccdb9eb18834cd5bdcf67",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_zoning_map",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "land_use_zoning",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_zoning_map/Hinsdale_Zoning_Districts_20-_20to_20blow_20up.pdf",
+      "source_hash": "5a2d061fb042ae57a9106ca47d65d4971632b36ff83b4101c3957634c76aa6ca",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_morgan_archived_records",
+      "authority_id": "CO-COUNTY-MORGAN",
+      "source_category": "archived_versions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_morgan_archived_records/2021_20Coordinated_20Election.pdf",
+      "source_hash": "e073c09d4070b0c59c9d740efb21e016338e1a183ea0bf27b32664a19a8b7a99",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_morgan_archived_records",
+      "authority_id": "CO-COUNTY-MORGAN",
+      "source_category": "archived_versions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_morgan_archived_records/2020_20Primary_20Election-1.pdf",
+      "source_hash": "2a3fd6c0f9e51cd7f3152d2a01ca1cc5fecf9b6c4a313b7be05c140d492383a9",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/national_infant_immunization_week_2024_proclamation.pdf",
+      "source_hash": "c7146bce3d6cd6d507c2e925b1236f248b789fe0e9c036511a6e60054f33d4da",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/2024-2029_chip_resolution.pdf",
+      "source_hash": "afec81f6e7ee98c4e31319d17a18ea529ccaf6c9f2befa468ee65649d286bdce",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/linda_diede_proclamation.pdf",
+      "source_hash": "dd86e40265c38fce9b9d95ebb7a9a078c0d6ee11ff9a07cf25ff156301c5abd6",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/public_health_week_2024.pdf",
+      "source_hash": "3ee70a3555397ab2884e7933ee219e0e0971e7f12854397cf43d9dd242c16e83",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/radon_action_month_proclamation_2024.pdf",
+      "source_hash": "a30d095049c8549c85e813e8077b71ef43879772bac7ba44fc00a037effd6b10",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/suicide_proclamation_signed_2023.pdf",
+      "source_hash": "77771fbe13f8729765d2fd75af6d28222f96850ee33930e75e52b1f39a6b4247",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/janna_proclamation.pdf",
+      "source_hash": "ed3abfc2e57f762609f45ef732a0c783763ab5524b52a55cb8cf2645cf953401",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/chip_resolution.pdf",
+      "source_hash": "fa451c806a511e2a4376531aef20f8d343f65a7342addb3bed547f604eacd242",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/joint_aq_proclamation_2023_scan_wilforka_2023-05-03-11-55-19.pdf",
+      "source_hash": "460e10f4f17288c4c4680397bda33c8545a533287ebb767a9f2281b761893775",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/niiw_proclamation_2023.pdf",
+      "source_hash": "9d9193940cef66c7b7b6244f8417b412667be7753e30a6e1d8a1803fe3ef12c6",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/Boundary_20map_20for_20dog_20control-Amherst.pdf",
+      "source_hash": "0ad492478b9e36a351ba5173b475c4384fc2e471f10410a83a9fb636cc81f37d",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/DisputeResolutionRightToFarm_202015.pdf",
+      "source_hash": "836c22462993ca5527a22c1621a30f70835bb786b3ccd234b476a4b6b1f29f63",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/Resolution_03_31_17-01_0.pdf",
+      "source_hash": "8a3693da4fc431ac07263601d68099774a8bdc6e1ee9bb3af0539b4eae46d3d2",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/res_05_31_17_01.pdf",
+      "source_hash": "855f85f6fc7641632bdeddc9501fdd03645f683252b89b5e01a9184698f92b5c",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/Special_Transportation_Permit.pdf",
+      "source_hash": "c342c377a2bef23736dafe3a82de914922ec07987820e9e1f013891b58ccf334",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_rio_grande_homepage",
+      "authority_id": "CO-COUNTY-RIO_GRANDE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_rio_grande_homepage/landing_page_ba0ea6194c8a.html",
+      "source_hash": "ba0ea6194c8a8c9f63ba5af7a5c006f0d3c28dc06712917e9a2e6a5897279f48",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_sedgwick_homepage",
+      "authority_id": "CO-COUNTY-SEDGWICK",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_sedgwick_homepage/Zoning_20District_20Maps_0.pdf",
+      "source_hash": "78bf486efa0377a1bbd730e9d194de14eb9ea335679fa07d01082f6d98a907c0",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_homepage",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_homepage/2022-01_MTC_Final_8-10-2022.pdf",
+      "source_hash": "e617525950cdc3048da993afffca72ac13d4fb5ded5972f2162794e301280904",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_homepage",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_homepage/CertifiedModelTrafficCode2020Edition.pdf",
+      "source_hash": "b368280e0949208681776007b49c76cf92ce38866508bf808501748741a6c137",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_homepage",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_homepage/ordinance_2020-01_environmental_remediation.pdf",
+      "source_hash": "e92071a5fd847116eda80912c98839f97d067bbbf8ddf39e93d80944660a0ec8",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_homepage",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_homepage/FireBan_2020-07.pdf",
+      "source_hash": "e9f186e9a4bcdb119f6a216543eb7cd6ba0e1dbc89637a7110232709e72f5434",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_homepage",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_homepage/2020-06_fire_ban.pdf",
+      "source_hash": "26694c8f210f5df6bd362b9e6e477685fe4bd8315b81217a317d871298f40277",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_homepage",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_homepage/ohv_ordinance_2017-02.pdf",
+      "source_hash": "5decba763a45a6225d578b04fcf3dca82c4338a3ebcfd1707c4952bdce4776b4",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_homepage",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_homepage/marijuana_ordinance_2014_-_01_licensure_of_marijuana_establishments.pdf",
+      "source_hash": "8dedb9aedba47d71311298a132be5137308d2c5b759712f3bddf9e98d4413a32",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_homepage",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_homepage/ordinance_2008-01_building_inspections.pdf",
+      "source_hash": "18565c5b9633f73eb776040e9db3172172a97f440fc7d314748c66f996b081c0",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_cheyenne_homepage",
+      "authority_id": "CO-COUNTY-CHEYENNE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_cheyenne_homepage/county_map.pdf",
+      "source_hash": "005fcbd76d1dd4caa8d5d53f69a680f3c3449d8059e3097daeab4baa6901b43a",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_cheyenne_homepage",
+      "authority_id": "CO-COUNTY-CHEYENNE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_cheyenne_homepage/Turtle_Race_Cancellation_Notice_6_10_26.pdf",
+      "source_hash": "7dac073709abe633be44fd8ebba75d94fb8f6e538a250b8c252cd65d90e89ecc",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_conejos_homepage",
+      "authority_id": "CO-COUNTY-CONEJOS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_conejos_homepage/100_year_floodplain_0.pdf",
+      "source_hash": "fc7dba7c48a7cf32ce235be84b810069d518d2323ec3d4c57ed2f175bb7ba575",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/Cortez-Journal-Newspaper-for-all-Official-Publication-Requirements.pdf",
+      "source_hash": "0788dfad29701ef867e503657df032365dadbe3d27f4f944ae0d1ed8b44abbdd",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_homepage",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_homepage/2022-OWTS-Resolution-to-require-Engineered-Systems.pdf",
+      "source_hash": "ba66b8572455046782330bec9193a3dadd7fd7463ccccaa32952b1e9572afaf6",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_202_2C_20Series_202025_20-_20Public_20records_2C_20property_20storage.pdf",
+      "source_hash": "7cc28f4a1b93237026ed8f8f16ea1d5e5679d1ea7d9c4b2d3d23fd038922597f",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_204_2C_20Series_202025_20-_20Appointing_20Lori_20Hanko_20Treasurer.pdf",
+      "source_hash": "dace4cf6bc1a5d2f3ee2864ca0245b1b973069bf5b1836f48cf3b0ce62b5d47c",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_205_2C_20Series_202025_20-_20Policies_20-_20Signature_20stamps_2C_20V.pdf",
+      "source_hash": "90f16c448cf82ea646028e7d533c0f322eaa8546e10e24ad5738c769f6e04015",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_202_2C_20Series_202024_20-_20Setting_20Portion_20of_20CR_2030_20Speed.pdf",
+      "source_hash": "57224211a249e97d1b5b3303f63dac6d47552a291e8b7cefdd3cef7632cf74da",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_203_2C_20Series_202024_20-_20Keeble_20Boundary_20Line_20Adjustment.pdf",
+      "source_hash": "df0f067891e984d1e90270ff9e70d5a0dd86d71569083f86a5e9ab0bfa4d0a21",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_204_2C_20Series_202024_20-_202024_20Mileage_20Reimbursement_20Rate.pdf",
+      "source_hash": "03583564e747653152f2ff18c169403a0cd116c4f4eb6f398d37b5ce30084beb",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_205_2C_20Series_202024_20-_20Fixing_20County_20Mill_20Levies_202023.pdf",
+      "source_hash": "1077c799433125dd8d65bc4ae589c7f9508f86f6559081e4bab302bcd2242da3",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_206_2C_20Series_202024_20-_20Filming_2C_20Conflict_20of_20Interest_2C.pdf",
+      "source_hash": "e54757264c01fdefe78651a863c2965e5e95453a28c77b1f138d2e47395f2aa8",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_207_2C_20Series_202024_20-_20Lifesaver_20Awards.pdf",
+      "source_hash": "9bc4175e268cddd4091ad7a03381a4d0df5b3246462d10b499270a63ebddb3ec",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_208_2C_20Series_202024_20-_20Rescind_20Use_20Tax_2090-day_20deadline.pdf",
+      "source_hash": "152510debb0fa42563612a260baa7f124fde5a3557e571abe255ebb08f12a22b",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2012_2C_20Series_202024_20-_20SRS_20Money_202024.pdf",
+      "source_hash": "3b3b215523aa5f7015f2d114bccc64639021f24e9d220e6c15322a84ca045405",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2013_2C_20Series_202024_20-_20Special_20Event_20Policy_20amend.pdf",
+      "source_hash": "39997487ad4f2cb64b66eced39ba21921ea960d36514c46f70a6794779c88245",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2015_2C_20Series_202024_20-_20Ground_20Ambulance_20Services.pdf",
+      "source_hash": "781b9a3b99924ba5f1a3fe7af0f9f879944068a3cf53e7d4a904533723d71c94",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2016_2C_20Series_202024_20-_20Setting_20Speed_20Limits_20on_20CR_2030.pdf",
+      "source_hash": "bf51f937536fa8fecbfaf3b3ba0ab2fdf476d268e75e3cb117523845f663b43d",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2017_2C_20Series_202024_20-_20Purchasing_20Policy.pdf",
+      "source_hash": "89cd5aa02d89fbc01a5f808b795dd5d00eec4f3d3a6a3f2937553949c829d68f",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2019_2C_20Series_202024_20-_20Suicide_20Prevention.pdf",
+      "source_hash": "ce2d937242c89628040b03e36353cc7a39497e4b64b0c7a172a32faaa59d677f",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2022_2C_20Series_202024_20-_20Veterans_20Day_20Proclomation.pdf",
+      "source_hash": "40f36fe6f2d76610dc643800c586a3b95e09ca2063193a6c48c44ee4bff0cac1",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2023_2C_20Series_202024_20-_20Adding_20Names_20to_20the_20Veterans_20.pdf",
+      "source_hash": "50bdbf94ef5bf30309fd25936af84411166825cf846e5fa998ea98674d96f13b",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2024_2C_20Series_202024_20-_202025_20Meeting_20Dates.pdf",
+      "source_hash": "2ce8cf5ad1d74a8f328f0d531dd455e73106da30815cf771a7306c64aba5b232",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2025_2C_20Series_202024_20-_202025_20County_20Holidays.pdf",
+      "source_hash": "7621ac0ffb1072bb8dd61aa80030cd7bab0a1d21b1bcee6118d0fe949c890d5f",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2027_2C_20Series_202024_20-_20Uncollectable_20Possessory_20Taxes.pdf",
+      "source_hash": "d4a3a8609b74235c4b820241ad97d82b4ef0455e56c20f703776930873e7e680",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2030_2C_20Series_202024_20-_202025_20Appointments.pdf",
+      "source_hash": "e1d98e9f04f9266e9d05c2655ed416a62dba42d0223465e6435e36057b15b95e",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_201_2C_20Series_202023_20-_20Secure_20Transporation_20Services.pdf",
+      "source_hash": "acbdce7b5ecf8b402ed6a4105cd4040698a2eddb383a8492fa752e9ebca0b3ef",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_202_20Series_202023_20-_20Mileage_20Rates.pdf",
+      "source_hash": "cb612628d87dc92006cd6f66d0ed9e0bc6fa3cfc6cd28cbbb2ec3adba3eaf8f4",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_203_20Series_202023_20-_20Shepherd_20Boundary.pdf",
+      "source_hash": "bc7dd6795e41454abb8d275693b710b24c5d5e905580107f4a18a2d99398fdec",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_204_2C_20Series_202023_20-_20DOLA_20Administrative_20Grant_20-_20Oper.pdf",
+      "source_hash": "26c4930fafb22c3ca232106c24141edba94086041c32bae1def67ce53b9cf883",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_205_2C_20Series_202023_20-_20Spruce_20Street_20Vacation.pdf",
+      "source_hash": "cdfdb1d21c5bca892f53ffb06924e79a2297b52aa3c9d0f356cbb9e5d3c1d7fb",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_206_2C_20Series_202023_20-_20SRS_20funds.pdf",
+      "source_hash": "1ae24e79752cc2aee762c77bd94001cffba9a0549f8ef41143611213327ddc85",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_207_2C_20Series_202023_20-_20Grants_20Policy.pdf",
+      "source_hash": "2d061bf7f613c4986a4e3bd16d3bc988d84483bfc2f191a03bf064236f4b182e",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_208_20Series_202023_20-_20Emergency_20Operations_20Plan.pdf",
+      "source_hash": "258f5455ea1e7b32afe814bc5d20073de5aead6d261236c4c72dd857c3307f0a",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_209_20Series_202023_20-_20Fire_20Restrictions_20in_20Upper_20Piedra.pdf",
+      "source_hash": "b1f2030a485eb5d895b1c03a0c65ef8d19a70f18c9626d49dd48a24ce636e307",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2010_2C_20Series_202023_20-_20Rescinding_20Stage_201_20Fire_20Restric.pdf",
+      "source_hash": "e295ff220128cd3827c3c7de6390755c79e371ba82155c226e9aaae89a1304ea",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2011_2C_20Series_202023_20-_20DOLA_20Solar_20Array_20Administrative_2.pdf",
+      "source_hash": "85e9048dd9dbdf0679f7fc1284cf21a80872d1ca131a57505299c107e10cc679",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2012_2C_20Series_202023_20-_20Realigned_20County_20Commissioner_20Dis.pdf",
+      "source_hash": "c392ff3e07e0eb0baf8e7f2e6e18fddbbaba8758477c10b6be993f9ff022e44d",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2013_2C_20Series_202023_20-_20Suicide_20Prevention_20Month.pdf",
+      "source_hash": "29efcb455d64188c04c0881b3d1ec26c457383db149134b80091c7f3c041de3f",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2014_20Series_202023_20-_20New_20agenda_20policy.pdf",
+      "source_hash": "8700aa6df52e0dfe28966b33b7b8d1e818e4be258e2e504ca2b7f9ec8e12ad74",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2015_20Series_202023_20-_20Mountain_20River_20Ranch_20Boundary_20Line.pdf",
+      "source_hash": "e413645a01bab3d42e7fb0b9737be367d989bd19b0c3174f3ca6d4ede809f37e",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2016_2C_20Series_202023_20-_202024_20BOCC_20Meeting_20Dates.pdf",
+      "source_hash": "8767975c822bb203d65630adede4e12b4bf6fee85b0e2d3fa757bc2db07b4ea9",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2017_2C_20Series_202023_20-_202024_20County_20Holidays.pdf",
+      "source_hash": "cc9f92acdf1d7b25aac1e05b9ce583eb7127bbff184d6592da674d5b83b416f9",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2018_2C_20Series_202023_20-_20Replacing_20meeting_20_26_20agenda_2C_2.pdf",
+      "source_hash": "02890c56379291a412ccd378871ff8b6221f78e1e92eec0232b84bb6dc45698b",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2019_2C_20Series_202023_20-_202024_20Budget.pdf",
+      "source_hash": "efa66ec6d4853ba0af631bfcd9e9ea1a451fa300267ed61c370f700b1230e9d3",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2020_2C_20Series_202023_20-_20Amended_202023_20Budget.pdf",
+      "source_hash": "80efa3180413b1fa4ec9c4ee534a81351656eb619dfe564863f94d53c91f4e45",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2021_2C_20Series_202023_20-_202024_20Appointments.pdf",
+      "source_hash": "8da2d18edea8a3212958a5cece7ade32f894a6f887efa17b25f41f9ec9088fec",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2022_2C_20Series_202023_20-_20Amended_20Secure_20Transportationn_20Po.pdf",
+      "source_hash": "f192aa5c83556e49d025c9ef1103394a9abf340cda64d7fe7dbdbb79a64c93bf",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Resolution_2023_2C_20Series_202023_20-_20Keeble_2C_20Shaw_20Boundary_20Line_20Ad.pdf",
+      "source_hash": "68768704f5d0164a42261dfa6eeac429f431ef2ffece1c58b2cad08b6cb653fd",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_code",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_code/attorney_general_opinion_evacuations.pdf",
+      "source_hash": "faef5367f06bda3f69fe89b86cf258188bf11ca9fa10d3917108b8ab36f353c4",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_las_animas_homepage",
+      "authority_id": "CO-COUNTY-LAS_ANIMAS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_las_animas_homepage/Emergency_20noah_27s_20ark_20animal_20intake_0.pdf",
+      "source_hash": "67f6808c657a3e074dd55f2d889e5de7f5dfb314a49f04a52de5a11ddbb05421",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_las_animas_homepage",
+      "authority_id": "CO-COUNTY-LAS_ANIMAS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_las_animas_homepage/land_use_permit_fees.pdf",
+      "source_hash": "6148d64823fadfa19b6f90f0a92124882ac0c217f12d86f4b37dcea68ffe6e3d",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_las_animas_homepage",
+      "authority_id": "CO-COUNTY-LAS_ANIMAS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_las_animas_homepage/cntymapshops.pdf",
+      "source_hash": "94ce4fc06923ba767460df4caa94f5c487177a2da45752c43c5a9a261bb3b510",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_moffat_homepage",
+      "authority_id": "CO-COUNTY-MOFFAT",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_moffat_homepage/Zones2015_0.pdf",
+      "source_hash": "fc9b6df58ccccc173a03ff0380c1cc01f8ec765291169fe637b83c80c774a79a",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_morgan_homepage",
+      "authority_id": "CO-COUNTY-MORGAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_morgan_homepage/2019_20Restricted_20Bridges_2019Rv.pdf",
+      "source_hash": "a69e45f20ce2df0cbf300985096afb85da8418b67a9956731b5c024ef13dadb4",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_morgan_homepage",
+      "authority_id": "CO-COUNTY-MORGAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_morgan_homepage/Right_20of_20Way_20Regulations_0.pdf",
+      "source_hash": "34be24c7835e02ab4a106e55d5a8ea910a811f3befda19963cc57ce3ac37e49a",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_morgan_homepage",
+      "authority_id": "CO-COUNTY-MORGAN",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_morgan_homepage/Paved-Roads-Policy.pdf",
+      "source_hash": "935b5610993f56b9782bc5e2a5e89e3fe0ba0413f59ae6f0e39f4ed7df685a46",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/MILL_LEVY_RESOLUTION_0.pdf",
+      "source_hash": "ca239f4707cb11f357c603be7d9dfa024152351d2095ef8bde6945099483afb0",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/Appropriation_20Resolution_0.pdf",
+      "source_hash": "12de0c344a4027a5a5ba72206e622c82850fc674194287d2d203876aea0841c8",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/Adopt_20Budget_20Resolution_0.pdf",
+      "source_hash": "5824fff4c0877ce885a16f27ed25545d3e53f514fa9e7c38707bb57b62394865",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_homepage",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_homepage/Tabor_20Resolution_0.pdf",
+      "source_hash": "099864a67a4c9d910ea6caee67034fde62cf451943fdee5bcab66d3cae4c6950",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_weld_homepage",
+      "authority_id": "CO-COUNTY-WELD",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_weld_homepage/source_page_Code-Red-Emergency-Alerts_a9aec5335826.html",
+      "source_hash": "8faa1664c0c6b7e507d60a35a4ba371da1947c7a895253f262e7c5a525a29568",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_boulder_ordinances",
+      "authority_id": "CO-COUNTY-BOULDER",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_boulder_ordinances/Minimum-Wage-Ordinance-2023-11-07.pdf",
+      "source_hash": "5a52b91a1aabc4a5d0753e1537bcdf3865aad4929b08d9ebc59e682c54195177",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_boulder_ordinances",
+      "authority_id": "CO-COUNTY-BOULDER",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_boulder_ordinances/Ord-2023-2-Short-Term-Dwelling-Licensing.pdf",
+      "source_hash": "16c73bc1b9bc969d1865054f031c96bd11540130fca4387c990745244427cbd6",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_boulder_ordinances",
+      "authority_id": "CO-COUNTY-BOULDER",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_boulder_ordinances/Ordinance-2021-1-smoking-regulations.pdf",
+      "source_hash": "3777774fb174e465643356a164e9f6a6102c615bdd46b958a3bfbb48e0c6f297",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_boulder_ordinances",
+      "authority_id": "CO-COUNTY-BOULDER",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_boulder_ordinances/ordinance-2019-3-commercial-waste-hauler-licensing.pdf",
+      "source_hash": "3f669628b2152f5db06f5c9dd941b2a818f707e4c6300fc84d8e3fa550e62708",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_boulder_ordinances",
+      "authority_id": "CO-COUNTY-BOULDER",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_boulder_ordinances/25-feet-sign.pdf",
+      "source_hash": "56c59f98368a81b8f512b8faa748a702d8bfc33eaac5e7d0b2fca5641331e613",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_boulder_ordinances",
+      "authority_id": "CO-COUNTY-BOULDER",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_boulder_ordinances/welcome-smoke-free.pdf",
+      "source_hash": "1bb48ed44a94ed911065e3cc3f9252b7b9c30ebc157191aefa5810e4f6478caa",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_boulder_ordinances",
+      "authority_id": "CO-COUNTY-BOULDER",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_boulder_ordinances/designated-areas.pdf",
+      "source_hash": "81ac6765c2a1adf14545ee4c7d0841325c234b6c04846e23b75997c4fee5eea5",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_boulder_land_use_code",
+      "authority_id": "CO-COUNTY-BOULDER",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_boulder_land_use_code/land-use-code-map-tdr-sending-sites.pdf",
+      "source_hash": "8caf76351c3bb1dd9ba9492d28b67174e0e7af67413744f90a3feac1219299e6",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_alamosa_board_ordinances",
+      "authority_id": "CO-COUNTY-ALAMOSA",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_alamosa_board_ordinances/source_page_Ordinance-Number-15-Adoption-of-the-2003-Internati_50cddbc7ef76.html",
+      "source_hash": "1895300dc0960cad19be684303a6ef6f94b188379ab06df727b47613e1355579",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/Resolution-13-2020.pdf",
+      "source_hash": "526a99b95c5219573bc2836a961a0500e6d861d0352b4f7c8d0ed493cb1cefe3",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/Resolution-10-2020.pdf",
+      "source_hash": "686cbb98555996d7f36a5fded34ab97558a3aa7391da1d88a46e8261487fb7a9",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/PROPOSED-2017-SEASONAL-CLOSURE.pdf",
+      "source_hash": "6a374872d1b8a63a4e06155cedbb6ea919535dbf828a3e51c7f60fb2da232abc",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/INSPECTION-ONE-WAY-TRAFFIC-CIRCULATION.pdf",
+      "source_hash": "0c4a88d6a76051c311a3f30926425ee202f663f44229ddd7fd2c521aea9049d5",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/Montezuma_County_CWPP.pdf",
+      "source_hash": "766198ad152134622255282344f93558b8abe4ddc1291a6e7595f7b2a4c2890e",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/Mesa-County-Land-Trust-Point-of-View.pdf",
+      "source_hash": "cf83eb2eb4aa649d964d6b631d0d89f069fb7501b12e6c6d354d52c61d355232",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/Subdivision-Regulations.pdf",
+      "source_hash": "49f31bf875668981818f4d434ec71e7588bcf2b49fc6292935ca3aff25e07e1f",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/naturalgastimeline.pdf",
+      "source_hash": "1c067af5e43fc706ce9ed6ffd1c4355c3931faae5179958986e49e0965600d3b",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/re4schoolresolution.pdf",
+      "source_hash": "b60873b356e7b30592fbceb3635a9e8a02d30afaba335799bccacf87bc7e8588",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_montezuma_land_use_code_resolution",
+      "authority_id": "CO-COUNTY-MONTEZUMA",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_montezuma_land_use_code_resolution/re6schoolresolution.pdf",
+      "source_hash": "22f506ce5b7adb394195b204800fe1b8ffa171208589deaa081b5140b7a74da8",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_departments",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_departments/25-Temp-moratorium-rec-vehicle-parks_0.pdf",
+      "source_hash": "2b066bb133698eda5e7513187f8e0136181430ad544972b2cf8f7665b88f67bb",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_departments",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_departments/27-Temp-moratorium-water-storage-facilities_0.pdf",
+      "source_hash": "08f8509d857cf65af70729ac38dcf4951c98d99a471cd08feda1de4cc8880d8f",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_departments",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_departments/28-Temp-moratorium-carbon-capture_0.pdf",
+      "source_hash": "2884786664bc246aeb4facb1c4dc404727d0b3c98a1a7690a490a29362c3de2c",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_departments",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_departments/31-Temp-moratorium-wind-energy_0.pdf",
+      "source_hash": "ba927bacd9aef63d1820af8465413b52dfe884dcd6bfd0db657b7b860bebefda",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_departments",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_departments/26-Temp-moratorium-state-interest_0.pdf",
+      "source_hash": "e3f13e31e00b1830e73ff042d74caef83ba5d0773174fbeab8698ace168d4cc9",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_departments",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_departments/Solar_20Power_20Production_20Facilities_20090925.pdf",
+      "source_hash": "08e44743da9a2997462436d2a5e33c2d69829b5315628512ad415195ee978acc",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_washington_departments",
+      "authority_id": "CO-COUNTY-WASHINGTON",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_washington_departments/Battery_20Energy_20Storage_20Systems_20signed_20Resolution_2016-2026.pdf",
+      "source_hash": "246512cbb2959102e10d5efc7c4478d15c852ea61142d74f0a9c5988072821b0",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_rio_blanco_emergency_management",
+      "authority_id": "CO-COUNTY-RIO_BLANCO",
+      "source_category": "emergency_fire_restrictions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_rio_blanco_emergency_management/source_page_Post-Wildfire-Recovery-Resources_9f5d2f835950_2dd4367a6f32.html",
+      "source_hash": "2dd4367a6f32b4c19db73c27e361846936c6a3d0d3a13c0ad232a29ac3ad0cd0",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_rio_blanco_departments",
+      "authority_id": "CO-COUNTY-RIO_BLANCO",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_rio_blanco_departments/source_page_Post-Wildfire-Recovery-Resources_9f5d2f835950_45348d986683.html",
+      "source_hash": "45348d986683a52c1f8929a18a716b477283890b0e145e61a45db57f464a0f7c",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_summit_public_health_gis",
+      "authority_id": "CO-COUNTY-SUMMIT",
+      "source_category": "public_health",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_summit_public_health_gis/source_page_CommunityDevelopment_cd52ecc53d4a_3bf4e4d31fb0.html",
+      "source_hash": "3bf4e4d31fb0a2ca959cc8628459808e0007bf5603e6893bc055ab5aed9aca00",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_summit_public_health_gis",
+      "authority_id": "CO-COUNTY-SUMMIT",
+      "source_category": "public_health",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_summit_public_health_gis/source_page_EmergencyManagement_a792f3ff1093_5bd4e8b8d54a.html",
+      "source_hash": "5bd4e8b8d54a5c4e3198725815307323a85d786bba7bc86d4be9d6acb5505c51",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_summit_public_health_gis",
+      "authority_id": "CO-COUNTY-SUMMIT",
+      "source_category": "public_health",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_summit_public_health_gis/source_page_EnvironmentalHealth_4c6642ada6d9_cea3529f5aba.html",
+      "source_hash": "cea3529f5aba90c3fd2dfd5edf65836250773aac29b31d5986d347271602ce13",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_summit_public_health_gis",
+      "authority_id": "CO-COUNTY-SUMMIT",
+      "source_category": "public_health",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_summit_public_health_gis/source_page_Public_Health_e56fd3a35582_5d0f57bac095.html",
+      "source_hash": "5d0f57bac095b6d18324342c1fb6c536a058ba3b1d4b5feb7667c3ced0d14859",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_fire_restrictions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_fire_restrictions/fire-resolution-effective-05-06-2026.pdf",
+      "source_hash": "061b7b48bc37eba6bdad517d066e587cd395707921b0d38ca3455497eaff8fbe",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/proclamation_signed_scanned.pdf",
+      "source_hash": "fdf84c2260c92b2988c71d69e6abf15efda14f9ecb9c578f45eee7a3987d59c8",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/2023_eh_fee_schedule_resolution_signed.pdf",
+      "source_hash": "49626d99a209ce9bf2fc5331f37fbf7760c1aa5073cafb46ee84869deac2b7e3",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/joint_proclamation.pdf",
+      "source_hash": "3efd65c1d8302fcd2413ae7644dd5cce712563bdee45072e9f08ba233c06cfe8",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/j_lee_proclamation.pdf",
+      "source_hash": "35245e8b5ad42982c8440df15ed1b25b25b8c02a75c71d21240d0c63d322ec7a",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/amendments_to_owts_signed_5_20.pdf",
+      "source_hash": "4076cf2aec57ddf98fb47eb5e79b483ed8db6dcced7481fc228ca87381766766",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/resolution_affirming_policies_regarding_response_to_c19_panemic_signed.pdf",
+      "source_hash": "ad3ab6766533b94342d6338cfe88ba78604888377d453b97711a2f9fafa59108",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/request_for_hearing_on_amendements_to_lc_owts_signed.pdf",
+      "source_hash": "4ce975411398ce9f853a74a5ebb6456ca4aa1cd90af559f803e9cc2022b91f7e",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/adoption_of_eh_fee_schedule_signed.pdf",
+      "source_hash": "9fecd3c9493882326436d7dca5f3a558c9fa24ebc4318b75703f3b0432ee395f",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/covid_proclamation.pdf",
+      "source_hash": "3911f7b8ed113815d31c5716b92f5ad4af94d5dbdbef4d829c4167ab8eefba9a",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/mission_and_vision_resolution.pdf",
+      "source_hash": "75248169aeba6bef9ca6d3ed4fcb91606ad2063a036b0423716a21e8893ad1c0",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_larimer_health_resolutions",
+      "authority_id": "CO-COUNTY-LARIMER",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_larimer_health_resolutions/2020_eh_fee_schedule.pdf",
+      "source_hash": "cfc9b0c4c9628017565fe601f70efdec4d114c9944fa7a39f45bcd7f45de6ef2",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Hinsdale_20Commissioner_20Districts_20town_20-_20_20Final_202024_20_28003_29.pdf",
+      "source_hash": "5f65ea0c1565ab816fe4ae5f62f0775d4221a60db4c4c95ecd87dabcf8a0c8a4",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_hinsdale_homepage",
+      "authority_id": "CO-COUNTY-HINSDALE",
+      "source_category": "unclassified_local_source",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_hinsdale_homepage/Hinsdale_20Commissioners_20Districts_20whole_20county_20-_20Final_202024_20_2800.pdf",
+      "source_hash": "d423060fa291025544cb0a68a457c4ed505877ef1abbb06c9eaade9c835f50ba",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_alamosa_administrative_rule_manuals_af6e35b7cb21",
+      "authority_id": "CO-COUNTY-ALAMOSA",
+      "source_category": "administrative_rule_manuals",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_alamosa_administrative_rule_manuals_af6e35b7cb21/landing_page.html",
+      "source_hash": "ba8af61f20c9b0e1069455f2e34e1e5846f83ed597c27a2f8bca3f6512b68e01",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_gunnison_emergency_fire_restrictions_b21f75dfc9cc",
+      "authority_id": "CO-COUNTY-GUNNISON",
+      "source_category": "emergency_fire_restrictions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_gunnison_emergency_fire_restrictions_b21f75dfc9cc/source_page_Health-Care-Reform-Updates_1499070ea66d.html",
+      "source_hash": "3373ba3be6721d13d1cd5cb9a7de1197b4b055d4f5b1d84f1a9c8da878fae9cd",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_fremont_archived_versions_e031305935b8",
+      "authority_id": "CO-COUNTY-FREMONT",
+      "source_category": "archived_versions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_fremont_archived_versions_e031305935b8/2024_Official_Results.pdf",
+      "source_hash": "f09ac37368bc5d16789a8b28deb17373db0c8dd8c82ac706177ce4ebf7c0fbb5",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_fremont_archived_versions_e031305935b8",
+      "authority_id": "CO-COUNTY-FREMONT",
+      "source_category": "archived_versions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_fremont_archived_versions_e031305935b8/updated-unofficial-results.pdf",
+      "source_hash": "ac326e508d2b11e16fc76ecfb4d42d460028557357fbd5d7c8f7068a8e78d1cc",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_fremont_archived_versions_e031305935b8",
+      "authority_id": "CO-COUNTY-FREMONT",
+      "source_category": "archived_versions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_fremont_archived_versions_e031305935b8/unofficial-ppe-2024.pdf",
+      "source_hash": "6c0095a04af66793b71592b5ab4fc9f0557b9f4f8738dc25c84a264247bd647e",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_grand_county_ordinances_02037218db3b",
+      "authority_id": "CO-COUNTY-GRAND",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_grand_county_ordinances_02037218db3b/landing_page.bin",
+      "source_hash": "a5c3c28077b243cb3b56811572a2ae769719f21e52198fda54281f7f804a717e",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_gunnison_archived_versions_7ce839eb9da0",
+      "authority_id": "CO-COUNTY-GUNNISON",
+      "source_category": "archived_versions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_gunnison_archived_versions_7ce839eb9da0/landing_page.bin",
+      "source_hash": "74e5d5d9ff90e6df6dce3f01bc7fb8feaa13f8fa8cb20bc5d2810f1077a3bae7",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_yuma_continuing_resolutions_1f91b7ba5040",
+      "authority_id": "CO-COUNTY-YUMA",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_yuma_continuing_resolutions_1f91b7ba5040/Minutes2026_03_31.pdf",
+      "source_hash": "374f37635d0ae61ef971e30840ff7354332c1e744f0d9b59aa9c9e31bae73736",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_yuma_continuing_resolutions_1f91b7ba5040",
+      "authority_id": "CO-COUNTY-YUMA",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_yuma_continuing_resolutions_1f91b7ba5040/Minutes2026_04_13.pdf",
+      "source_hash": "807cfe9d21fd9b75002eacb7f9d2c38950459840f6a0be614186ebc59df29d41",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_clear_creek_animal_control_nuisance_b3ba52df3fe2",
+      "authority_id": "CO-COUNTY-CLEAR_CREEK",
+      "source_category": "animal_control_nuisance",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_clear_creek_animal_control_nuisance_b3ba52df3fe2/landing_page.bin",
+      "source_hash": "a032939e98585bd906c7c67c83e15eee4020c6ef2112cd9094cf624306422cd5",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_costilla_environmental_open_burning_8d23582d284e",
+      "authority_id": "CO-COUNTY-COSTILLA",
+      "source_category": "environmental_open_burning",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_costilla_environmental_open_burning_8d23582d284e/landing_page.bin",
+      "source_hash": "cda5b83f123d5e648267901bfcce251721976cd4001cc37bbc6900cc1a511742",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_dolores_administrative_rule_manuals_0908c2184789",
+      "authority_id": "CO-COUNTY-DOLORES",
+      "source_category": "administrative_rule_manuals",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_dolores_administrative_rule_manuals_0908c2184789/Resolution-1-26-03.pdf",
+      "source_hash": "4587f2bbcad0b017bd67844bef3c154e25523349c509b4551b842bcbb3c6a328",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_phillips_continuing_resolutions_4444b7c47367",
+      "authority_id": "CO-COUNTY-PHILLIPS",
+      "source_category": "continuing_resolutions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_phillips_continuing_resolutions_4444b7c47367/Redistricting_Final_County.pdf",
+      "source_hash": "7c6645590c8c6d4b935d33af6780e52f83c6b7ab430df978f58f67a698b1d522",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_rio_grande_county_codes_07d7aa8bf90a",
+      "authority_id": "CO-COUNTY-RIO_GRANDE",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_rio_grande_county_codes_07d7aa8bf90a/landing_page.html",
+      "source_hash": "ecf6e5aebb9a05f26d7a5282cb187511a52509a75a1682ae947c367dd8a42042",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_rio_grande_subdivision_development_e422c8c5176f",
+      "authority_id": "CO-COUNTY-RIO_GRANDE",
+      "source_category": "subdivision_development",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_rio_grande_subdivision_development_e422c8c5176f/landing_page.html",
+      "source_hash": "86b0a4af5180d40dcc77b8be962c26d7f1d89296a865a7dbbd0d8e6bbab719bb",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_saguache_building_construction_c0b982783b0f",
+      "authority_id": "CO-COUNTY-SAGUACHE",
+      "source_category": "building_construction",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_saguache_building_construction_c0b982783b0f/landing_page.html",
+      "source_hash": "b23651293ca6e623dcb19b34e2955659375e27b5ed603d1df1346c83621b6d50",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_emergency_fire_restrictions_3fb8803b0541",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "emergency_fire_restrictions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_emergency_fire_restrictions_3fb8803b0541/source_page_emergency-preparedness-1_5eb73926e97c.html",
+      "source_hash": "b7b3238dfeb08450ef9523aaccc483c7260f4f3c33b5f87028ad3f2e3f69ee84",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_san_juan_environmental_open_burning_97346976581c",
+      "authority_id": "CO-COUNTY-SAN_JUAN",
+      "source_category": "environmental_open_burning",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_san_juan_environmental_open_burning_97346976581c/landing_page.html",
+      "source_hash": "2f792da4e0c6fab82add1c5d754eef7e44009ca06a141ed7826f0aaa65accd90",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_weld_county_ordinances_c6774068ac51",
+      "authority_id": "CO-COUNTY-WELD",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_weld_county_ordinances_c6774068ac51/landing_page.html",
+      "source_hash": "f67f1c72ee9f2f73e72d2b805d29ed8c270a169d13ae07ab639933c220277aaf",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_adams_county_ordinances_95c11f92f08d",
+      "authority_id": "CO-COUNTY-ADAMS",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_adams_county_ordinances_95c11f92f08d/landing_page.html",
+      "source_hash": "8404dc4573a2f29d226bebde261a97820805f9e2fa8e471ca22d8c210158e303",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_yuma_county_ordinances_1d25c04e76a8",
+      "authority_id": "CO-COUNTY-YUMA",
+      "source_category": "county_ordinances",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_yuma_county_ordinances_1d25c04e76a8/landing_page.pdf",
+      "source_hash": "7ccfd289d213d83bfc6f3bb0ee3aa59a49f048670abcd1e69eccf3bb24759950",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_yuma_archived_versions_20260716",
+      "authority_id": "CO-COUNTY-YUMA",
+      "source_category": "archived_versions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_yuma_archived_versions_20260716/Minutes2026_04_30.pdf",
+      "source_hash": "2afd8aebaa29ee8d274fb6ff4078aadbc58f6f19ac598fbc3315517d5f04c0e2",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_crowley_county_codes_20260716",
+      "authority_id": "CO-COUNTY-CROWLEY",
+      "source_category": "county_codes",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_crowley_county_codes_20260716/landing_page.pdf",
+      "source_hash": "03387a0bb54ee21979de68fb4e094c48311002312b27c6842495e7bbfd3e0456",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_crowley_building_construction_20260716",
+      "authority_id": "CO-COUNTY-CROWLEY",
+      "source_category": "building_construction",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_crowley_building_construction_20260716/Buidling_20Permit_20Temp.pdf",
+      "source_hash": "bf1bf246d048e8e4af5395bc771bb71fd601c5cd62b349480899d4a3824f578e",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_crowley_building_construction_20260716",
+      "authority_id": "CO-COUNTY-CROWLEY",
+      "source_category": "building_construction",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_crowley_building_construction_20260716/4236_001.pdf",
+      "source_hash": "fdc536316cf4ba30fb468e3b3c70588e15ca36539225974caba8fe701e677a0a",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_crowley_building_construction_20260716",
+      "authority_id": "CO-COUNTY-CROWLEY",
+      "source_category": "building_construction",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_crowley_building_construction_20260716/2900_001.pdf",
+      "source_hash": "fb42c5dde2c965890be0a78c0da7727e18a947c41195c8e50dae6451c2def2b5",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_crowley_building_construction_20260716",
+      "authority_id": "CO-COUNTY-CROWLEY",
+      "source_category": "building_construction",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_crowley_building_construction_20260716/1328_001.pdf",
+      "source_hash": "9d6ba488a6f16c941993b3a4ae1496a9b286d078ed33378473048b0dcaa8c7cf",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_crowley_building_construction_20260716",
+      "authority_id": "CO-COUNTY-CROWLEY",
+      "source_category": "building_construction",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_crowley_building_construction_20260716/1069_001.pdf",
+      "source_hash": "67f35cd40d715f73209844bdc4d98c35e637530827a72699a0df771758364db3",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_crowley_building_construction_20260716",
+      "authority_id": "CO-COUNTY-CROWLEY",
+      "source_category": "building_construction",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_crowley_building_construction_20260716/1900_001.pdf",
+      "source_hash": "afacec3026732f7401da5c3fda2a667ed9c018a1d070d1e2cebeecfb0618a5ec",
+      "status": "pending_dependency",
+      "derived_path": null
+    },
+    {
+      "source_id": "county_garfield_archived_versions_20260716",
+      "authority_id": "CO-COUNTY-GARFIELD",
+      "source_category": "archived_versions",
+      "source_path": "C:/Users/jpfeifer/OneDrive - CoorsTek/Documents/Geode/_RAW_ARCHIVE/local/county/county_garfield_archived_versions_20260716/landing_page.html",
+      "source_hash": "18867e8870b907a2f6558872819612708834287bb36810f7880a298a44741f40",
+      "status": "pending_dependency",
+      "derived_path": null
     }
   ],
-  "pending_items": 99,
+  "pending_items": 315,
   "completed_items": 0,
   "boundary": "OCR output is derived text for review. It never modifies the preserved raw source and never promotes OCR text directly into answer-safe legal records."
 }
