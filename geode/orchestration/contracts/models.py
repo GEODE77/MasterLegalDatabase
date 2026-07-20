@@ -140,6 +140,16 @@ class CacheStatus(StrEnum):
     STALE = "stale"
 
 
+class EvidenceContentType(StrEnum):
+    """Content classes used by context budgeting."""
+
+    LEGAL = "legal"
+    CONDITIONAL = "conditional"
+    METADATA = "metadata"
+    LOG = "log"
+    UNKNOWN = "unknown"
+
+
 class Topic(StrEnum):
     """Broad subject area for a query."""
 
@@ -333,9 +343,14 @@ class Evidence(StrictOrchestrationModel):
     conflict_group: str | None = None
     source_category: str | None = None
     semantic_status: str | None = None
+    answer_mode: str = "confirmed"
+    conditional_reason: str | None = None
     answer_safe: bool = True
     applicability: str | None = None
     selection_reasons: list[str] = Field(default_factory=list)
+    content_type: EvidenceContentType = EvidenceContentType.LEGAL
+    mandatory: bool = True
+    compression_allowed: bool = False
 
 
 class ConflictReport(StrictOrchestrationModel):
@@ -356,6 +371,21 @@ class PromptPacket(StrictOrchestrationModel):
     policies: dict[str, str] = Field(default_factory=dict)
     rendered_prompt: str = Field(min_length=1)
     evidence_ids: list[str] = Field(default_factory=list)
+    stable_prefix: str = ""
+    dynamic_suffix: str = ""
+    stable_prefix_hash: str | None = None
+    stable_prefix_tokens: int = Field(default=0, ge=0)
+    provider_cache_settings: dict[str, Any] = Field(default_factory=dict)
+
+
+class PromptContext(StrictOrchestrationModel):
+    """Provider-facing stable and dynamic prompt metadata."""
+
+    stable_prefix: str = ""
+    dynamic_suffix: str = ""
+    stable_prefix_hash: str = Field(min_length=1)
+    stable_prefix_tokens: int = Field(default=0, ge=0)
+    provider_cache_settings: dict[str, Any] = Field(default_factory=dict)
 
 
 class DraftRequest(StrictOrchestrationModel):
@@ -364,6 +394,8 @@ class DraftRequest(StrictOrchestrationModel):
     prompt: str = Field(min_length=1)
     evidence: list[Evidence] = Field(default_factory=list)
     conflicts: list[ConflictReport] = Field(default_factory=list)
+    retrieval_references: list["EvidenceRetrievalReference"] = Field(default_factory=list)
+    prompt_context: PromptContext | None = None
 
 
 class GraphLink(StrictOrchestrationModel):
@@ -487,6 +519,7 @@ class ModelRouteDecision(StrictOrchestrationModel):
     estimated_cost: float = Field(ge=0.0)
     estimated_latency_ms: int = Field(ge=0)
     fallback_used: bool = False
+    cache_hit: bool | None = None
 
 
 class ContextBudgetReport(StrictOrchestrationModel):
@@ -497,6 +530,54 @@ class ContextBudgetReport(StrictOrchestrationModel):
     kept_evidence_ids: list[str] = Field(default_factory=list)
     dropped_evidence_ids: list[str] = Field(default_factory=list)
     preserved_high_authority_ids: list[str] = Field(default_factory=list)
+    policy_tokens: int = Field(default=0, ge=0)
+    evidence_tokens_before: int = Field(default=0, ge=0)
+    evidence_tokens_after: int = Field(default=0, ge=0)
+    excluded_evidence_ids: list[str] = Field(default_factory=list)
+    mandatory_evidence_ids: list[str] = Field(default_factory=list)
+    metadata_evidence_ids: list[str] = Field(default_factory=list)
+    retrieval_references: list["EvidenceRetrievalReference"] = Field(default_factory=list)
+    estimated_savings_tokens: int = Field(default=0, ge=0)
+    estimated_savings_percent: float = Field(default=0.0, ge=0.0, le=100.0)
+    tokenizer: str = Field(default="fallback")
+    budget_overflow_tokens: int = Field(default=0, ge=0)
+
+
+class EvidenceRetrievalReference(StrictOrchestrationModel):
+    """Opaque reference to evidence moved out of immediate model context."""
+
+    reference_id: str = Field(min_length=1)
+    evidence_id: str = Field(min_length=1)
+    source_id: str = Field(min_length=1)
+    source_hash: str | None = None
+    corpus_version: str = Field(min_length=1)
+    original_tokens: int = Field(ge=0)
+    expires_at: datetime | None = None
+    retention_seconds: int | None = Field(default=None, ge=1)
+    retrieval_count: int = Field(default=0, ge=0)
+    reason: str = Field(min_length=1)
+
+
+class ProviderCacheEvent(StrictOrchestrationModel):
+    """Measured provider prompt-cache event."""
+
+    event_id: str = Field(min_length=1)
+    provider: str = Field(min_length=1)
+    model: str = Field(min_length=1)
+    stable_prefix_hash: str = Field(min_length=1)
+    stable_prefix_tokens: int = Field(ge=0)
+    cache_hit: bool
+    measured_by: str = Field(default="provider_response")
+    reason: str | None = None
+
+
+class ProviderCacheMetrics(StrictOrchestrationModel):
+    """Aggregate provider prompt-cache measurements."""
+
+    eligible_requests: int = Field(default=0, ge=0)
+    hits: int = Field(default=0, ge=0)
+    misses: int = Field(default=0, ge=0)
+    hit_rate_percent: float = Field(default=0.0, ge=0.0, le=100.0)
 
 
 class CacheEvent(StrictOrchestrationModel):
@@ -563,6 +644,8 @@ class QueryState(StrictOrchestrationModel):
     model_route: ModelRouteDecision | None = None
     context_budget: ContextBudgetReport | None = None
     cache_events: list[CacheEvent] = Field(default_factory=list)
+    provider_cache_events: list[ProviderCacheEvent] = Field(default_factory=list)
+    provider_cache_metrics: ProviderCacheMetrics = Field(default_factory=ProviderCacheMetrics)
     freshness: FreshnessResult | None = None
     audit_log_path: str | None = None
     escalation_required: bool = False
@@ -577,4 +660,5 @@ class QueryState(StrictOrchestrationModel):
     halt_reason: str | None = None
 
 
+DraftRequest.model_rebuild()
 EmittedAnswer.model_rebuild()

@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-07-20T21:56:11.178421+00:00",
+  "reviewed_remaining_candidates": 1029,
+  "entity_confirmations_required": 1028,
+  "manual_atomic_split_proposals": 12,
+  "exception_captures": 0,
+  "promoted": 0,
+  "answer_safe": 0,
+  "status": "review_required",
+  "boundary": "No responsible party or legal meaning is inferred. Remaining candidates have explicit review dispositions and source-preserving split or exception proposals."
+}

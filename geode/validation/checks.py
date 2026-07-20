@@ -952,7 +952,7 @@ def validate_project(root: Path, layer: str) -> ValidationResult:
         required_layers = [
             layer_name
             for layer_name in ALL_LAYERS
-            if layer_name not in {"08_County_Authorities", "09_District_Authorities"}
+            if layer_name not in {"08_County_Authorities", "09_District_Authorities", "10_Municipal_Authorities"}
             or (root / layer_name).exists()
         ]
         for layer_name in required_layers:
@@ -960,14 +960,14 @@ def validate_project(root: Path, layer: str) -> ValidationResult:
             if not index_path.exists():
                 result.add_issue("error", layer_name, "layer index is missing")
         validate_crs_layer(root, result)
-        for local_layer in ("08_County_Authorities", "09_District_Authorities"):
+        for local_layer in ("08_County_Authorities", "09_District_Authorities", "10_Municipal_Authorities"):
             if (root / local_layer).exists():
                 validate_local_layer(root, result, local_layer)
         validate_crosswalks(root, result)
         validate_timeline(root, result)
     elif layer == CRS_LAYER:
         validate_crs_layer(root, result)
-    elif layer in {"08_County_Authorities", "09_District_Authorities"}:
+    elif layer in {"08_County_Authorities", "09_District_Authorities", "10_Municipal_Authorities"}:
         validate_local_layer(root, result, layer)
     else:
         index_path = root / layer / "_index.jsonl"

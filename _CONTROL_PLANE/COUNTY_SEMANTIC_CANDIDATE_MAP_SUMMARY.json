@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-07-20T22:13:23.725161+00:00",
+  "review_candidates_mapped": 1029,
+  "mapped_existing": 7,
+  "planned_new": 1021,
+  "blocked": 1,
+  "active_records_changed": 0,
+  "promotion_status": "awaiting_reviewer_decisions",
+  "boundary": "This step creates identity links only. It does not promote any candidate or change answer-safe retrieval."
+}

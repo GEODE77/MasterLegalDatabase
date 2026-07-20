@@ -42,6 +42,8 @@ class RetrievalCatalogRecord(BaseModel):
     tags: list[str] = Field(default_factory=list)
     confidence: float | None = None
     semantic_status: str | None = None
+    answer_mode: str | None = None
+    conditional_reason: str | None = None
     source_category: str | None = None
     source_page: int | None = None
     source_page_end: int | None = None
@@ -79,6 +81,7 @@ def build_retrieval_catalog(root: Path) -> tuple[list[RetrievalCatalogRecord], R
             record = _catalog_record(layer_id, row)
             if record:
                 records.append(record)
+    records.extend(_conditional_candidate_records(resolved_root, records))
     layer_counts = Counter(record.layer for record in records)
     summary = RetrievalCatalogSummary(
         generated_at=datetime.now(timezone.utc),
@@ -156,6 +159,8 @@ def _catalog_record(layer_id: str, row: dict[str, Any]) -> RetrievalCatalogRecor
         tags=clean_tags,
         confidence=_optional_float(row.get("confidence")),
         semantic_status=_optional_str(row.get("semantic_status")),
+        answer_mode=_optional_str(row.get("answer_mode")),
+        conditional_reason=_optional_str(row.get("conditional_reason")),
         source_category=_optional_str(row.get("source_category")),
         source_page=_optional_int(row.get("source_page")),
         source_page_end=_optional_int(row.get("source_page_end")),
@@ -163,6 +168,85 @@ def _catalog_record(layer_id: str, row: dict[str, Any]) -> RetrievalCatalogRecor
         source_line_end=_optional_int(row.get("source_line_end")),
         retrieval_text=retrieval_text,
     )
+
+
+def _conditional_candidate_records(
+    root: Path,
+    existing: list[RetrievalCatalogRecord],
+) -> list[RetrievalCatalogRecord]:
+    """Expose quarantined county candidates as conditionally citable evidence."""
+
+    queue_path = root / CONTROL_PLANE_DIR / "COUNTY_SEMANTIC_REVIEW_QUEUE.jsonl"
+    mapping_path = root / CONTROL_PLANE_DIR / "COUNTY_SEMANTIC_CANDIDATE_MAP.jsonl"
+    if not queue_path.exists() or not mapping_path.exists():
+        return []
+    existing_status = {record.id: record.semantic_status for record in existing}
+    mappings = {row.get("review_id"): row for row in iter_jsonl(mapping_path)}
+    output: list[RetrievalCatalogRecord] = []
+    for row in iter_jsonl(queue_path):
+        if not row.get("review_disposition"):
+            continue
+        candidate = row.get("candidate_rule_unit") or {}
+        mapping = mappings.get(row.get("review_id")) or {}
+        mapped_id = str(mapping.get("permanent_rule_unit_id") or "")
+        if mapped_id and existing_status.get(mapped_id) == "semantic_ready":
+            continue
+        record_id = mapped_id if mapped_id and mapped_id not in existing_status else (
+            f"CONDITIONAL-{candidate.get('id') or row.get('review_id')}"
+        )
+        action = str(candidate.get("action_required") or "").strip()
+        section = str(candidate.get("source_section") or "Source text")
+        authority_name = str(row.get("authority_name") or "County authority")
+        county_scope = _conditional_county_scope(authority_name)
+        retrieval_text = " | ".join(
+            item for item in (record_id, authority_name, section, action) if item
+        )
+        output.append(
+            RetrievalCatalogRecord(
+                id=record_id,
+                layer="08_County_Authorities",
+                entity_type="rule_unit",
+                title=section,
+                citation=f"{authority_name} — {section}",
+                path=(CONTROL_PLANE_DIR + "/COUNTY_SEMANTIC_REVIEW_QUEUE.jsonl"),
+                meta_path=(CONTROL_PLANE_DIR + "/COUNTY_SEMANTIC_REVIEW_QUEUE.jsonl"),
+                source_url=_optional_str(row.get("source_url")),
+                source_path=_optional_str(row.get("source_path")),
+                sha256=_optional_str(row.get("source_hash")),
+                authority_id=_optional_str(row.get("authority_id")),
+                authority_name=_optional_str(row.get("authority_name")),
+                authority_level="county",
+                authority_type="county_authority",
+                county_names=county_scope or None,
+                geographic_scope=county_scope or None,
+                tags=["conditional_evidence", str(row.get("source_category") or "local")],
+                confidence=_optional_float(candidate.get("confidence", {}).get("overall"))
+                if isinstance(candidate.get("confidence"), dict)
+                else None,
+                semantic_status="needs_review",
+                answer_mode="conditional",
+                conditional_reason=(
+                    "The source passage is preserved and retrievable, but its legally responsible "
+                    "party, binding status, or permanent identity has not been fully verified."
+                ),
+                source_category=_optional_str(row.get("source_category")),
+                retrieval_text=retrieval_text,
+            )
+        )
+    return output
+
+
+def _conditional_county_scope(authority_name: str) -> list[str]:
+    """Convert a county authority label into the local geography format."""
+
+    normalized = authority_name.strip()
+    if not normalized or normalized == "County authority":
+        return []
+    if normalized.casefold().startswith("city and county of "):
+        return [f"{normalized[19:].strip()} County"]
+    if normalized.casefold().endswith(" county"):
+        return [normalized]
+    return [f"{normalized} County"]
 
 
 def _read_jsonl(path: Path) -> list[dict[str, Any]]:

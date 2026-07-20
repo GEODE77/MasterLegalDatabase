@@ -3,6 +3,7 @@
 from geode.orchestration.contracts import QueryState
 from geode.orchestration.entrypoint import (
     DEFAULT_STAGE_ORDER,
+    DEFAULT_EVIDENCE_STORE_PATH,
     build_default_pipeline,
     build_default_stages,
     run_orchestration,
@@ -27,6 +28,7 @@ from geode.orchestration.pipeline import Pipeline
 
 __all__ = [
     "DEFAULT_STAGE_ORDER",
+    "DEFAULT_EVIDENCE_STORE_PATH",
     "EvalResult",
     "EvalSummary",
     "GoldenQuestion",

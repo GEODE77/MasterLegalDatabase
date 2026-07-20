@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-07-20T22:36:10.450223+00:00",
+  "candidates_reviewed": 1029,
+  "auto_approved": 58,
+  "auto_quarantined": 971,
+  "blocked": 1,
+  "applied": 58,
+  "dry_run": false,
+  "status": "applied",
+  "review_method": [
+    "source hash and parent identity check",
+    "exact source text check",
+    "legal modal and responsible-party check",
+    "single-action and noise check",
+    "source-category and current-index check",
+    "schema validation before promotion"
+  ],
+  "boundary": "Only candidates that pass every hard gate are promoted. Failed, ambiguous, or informational candidates remain outside answer-safe retrieval."
+}

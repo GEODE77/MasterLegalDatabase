@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-07-20T21:30:03.057281+00:00",
+  "reviewed_lower_quality": 4772,
+  "improved_candidates": 2548,
+  "dispositions": {
+    "semantic_review": 4772
+  },
+  "quality_levels_after": {
+    "medium": 3361,
+    "needs_review": 1029,
+    "high": 382
+  },
+  "promoted": 0,
+  "answer_safe": 0,
+  "status": "review_required",
+  "boundary": "Repairs are source-grounded candidate improvements only. Combined, ambiguous, or noisy passages remain pending and cannot enter answer-safe retrieval automatically."
+}

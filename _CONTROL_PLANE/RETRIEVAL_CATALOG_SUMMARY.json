@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-16T18:24:32.121346Z",
+  "generated_at": "2026-07-20T22:58:01.879702Z",
   "catalog_path": "_CONTROL_PLANE/RETRIEVAL_CATALOG.jsonl",
-  "records_written": 177953,
-  "layers_indexed": 9,
+  "records_written": 178625,
+  "layers_indexed": 10,
   "layer_counts": {
     "01_Statutes_CRS": 34717,
     "02_Regulations_CCR": 1035,
@@ -11,8 +11,9 @@
     "05_Executive_Orders": 535,
     "06_Session_Laws": 437,
     "07_Supplementary": 34,
-    "08_County_Authorities": 120075,
-    "09_District_Authorities": 712
+    "08_County_Authorities": 121370,
+    "09_District_Authorities": 4,
+    "10_Municipal_Authorities": 85
   },
   "boundary": "The retrieval catalog is a compact discovery index. It does not replace source text, metadata sidecars, validation, or crosswalk records."
 }

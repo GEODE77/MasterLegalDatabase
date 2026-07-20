@@ -1,4 +1,4 @@
-"""Bounded downloader for county and district pilot sources."""
+"""Bounded downloader for county, municipal, and district pilot sources."""
 
 from __future__ import annotations
 
@@ -23,6 +23,7 @@ from geode.net.http_client import (
 )
 from geode.utils.file_io import (
     _replace_with_retry,
+    atomic_write_json,
     atomic_write_jsonl,
     iter_jsonl,
     load_json,
@@ -30,6 +31,8 @@ from geode.utils.file_io import (
 
 LOGGER = logging.getLogger(__name__)
 REGISTRY_PATH = Path("_CONTROL_PLANE") / "LOCAL_SOURCE_REGISTRY.json"
+MUNICIPAL_REGISTRY_PATH = Path("_CONTROL_PLANE") / "MUNICIPAL_SOURCE_REGISTRY.json"
+COUNTY_RETRY_REPORT_PATH = Path("_CONTROL_PLANE") / "COUNTY_LINKED_RETRY_REPORT.json"
 CATEGORY_PAGE_TERMS = (
     "ordinance", "code", "zoning", "land", "planning", "subdivision", "development",
     "building", "health", "environment", "burn", "road", "transport", "animal",
@@ -53,6 +56,9 @@ class LocalDownloadRecord(BaseModel):
     linked_urls: list[str] = Field(default_factory=list)
     failure_class: str | None = None
     message: str = ""
+    link_kind: str | None = None
+    batch_id: str | None = None
+    attempt_id: str | None = None
 
 
 class LocalDownloadSummary(BaseModel):
@@ -68,6 +74,7 @@ class LocalDownloadSummary(BaseModel):
     failed: int = 0
     records_path: str
     coverage_boundary: str
+    batch_id: str | None = None
 
 
 def download_pilot_sources(
@@ -92,9 +99,23 @@ def download_pilot_sources(
     """
 
     resolved_root = root.resolve()
-    registry = load_json(resolved_root / REGISTRY_PATH)
+    registry_path = resolved_root / REGISTRY_PATH
+    registry = load_json(registry_path) if registry_path.exists() else {"pilot": {}}
+    municipal_registry_path = resolved_root / MUNICIPAL_REGISTRY_PATH
+    if municipal_registry_path.exists():
+        municipal_registry = load_json(municipal_registry_path)
+        base_pilot = registry.setdefault("pilot", {})
+        municipal_pilot = municipal_registry.get("pilot", {})
+        base_pilot["municipalities"] = municipal_pilot.get("municipalities", [])
+        base_pilot["municipal_sources"] = municipal_pilot.get("municipal_sources", [])
     pilot = registry.get("pilot", {})
-    entries = [*pilot.get("counties", []), *pilot.get("county_sources", []), *pilot.get("districts", [])]
+    entries = [
+        *pilot.get("counties", []),
+        *pilot.get("county_sources", []),
+        *pilot.get("municipalities", []),
+        *pilot.get("municipal_sources", []),
+        *pilot.get("districts", []),
+    ]
     manifest_path = resolved_root / "_CONTROL_PLANE" / "LOCAL_DOWNLOAD_MANIFEST.jsonl"
     if retry_failed or unattempted_registered:
         manifest_rows = list(iter_jsonl(manifest_path)) if manifest_path.exists() else []
@@ -106,13 +127,21 @@ def download_pilot_sources(
                 and row.get("status") == "failed"
             }
             entries = [
-                entry for entry in [*pilot.get("counties", []), *pilot.get("county_sources", [])]
+                entry for entry in [
+                    *pilot.get("counties", []),
+                    *pilot.get("county_sources", []),
+                    *pilot.get("municipalities", []),
+                    *pilot.get("municipal_sources", []),
+                ]
                 if str(entry.get("source_id")) in failed_ids
             ]
         if unattempted_registered:
             attempted_ids = {str(row.get("source_id")) for row in manifest_rows}
             entries = [
-                entry for entry in pilot.get("county_sources", [])
+                entry for entry in [
+                    *pilot.get("county_sources", []),
+                    *pilot.get("municipal_sources", []),
+                ]
                 if str(entry.get("source_id")) not in attempted_ids
             ]
     if authority_level:
@@ -128,6 +157,7 @@ def download_pilot_sources(
             if row.get("source_url") and row.get("requested_url"):
                 prior_by_url[(str(row["source_url"]), str(row["requested_url"]))] = LocalDownloadRecord.model_validate(row)
     started = datetime.now(timezone.utc)
+    batch_id = _batch_id(started)
     records: list[LocalDownloadRecord] = []
     client = GeodeHttpClient(
         session=build_session(impersonate=True),
@@ -154,13 +184,17 @@ def download_pilot_sources(
                     max_pages=max_pages_per_source,
                     timeout_seconds=timeout_seconds,
                 )
-            records.extend(entry_records)
+            records.extend(_stamp_records(entry_records, batch_id))
     finally:
         client.close()
     if not dry_run and records:
         existing = list(iter_jsonl(record_path)) if record_path.exists() else []
         atomic_write_jsonl(record_path, [*existing, *records], resolved_root)
     completed = datetime.now(timezone.utc)
+    coverage_boundary = str(registry.get("coverage_boundary", ""))
+    if authority_level == "municipal":
+        municipal_registry = load_json(resolved_root / MUNICIPAL_REGISTRY_PATH)
+        coverage_boundary = str(municipal_registry.get("coverage_boundary", coverage_boundary))
     return LocalDownloadSummary(
         started_at=started,
         completed_at=completed,
@@ -170,8 +204,227 @@ def download_pilot_sources(
         skipped=sum(record.status == "skipped" for record in records),
         failed=sum(record.status == "failed" for record in records),
         records_path=record_path.as_posix(),
-        coverage_boundary=str(registry.get("coverage_boundary", "")),
+        coverage_boundary=coverage_boundary,
+        batch_id=batch_id,
     )
+
+
+def retry_failed_linked_sources(
+    root: Path,
+    *,
+    authority_level: str | None = "county",
+    source_ids: set[str] | None = None,
+    dry_run: bool = False,
+    timeout_seconds: float = 30.0,
+    max_retries: int = 3,
+    retry_delay_seconds: float = 1.0,
+) -> LocalDownloadSummary:
+    """Retry every original failed county record in the append-only manifest."""
+
+    resolved_root = root.resolve()
+    manifest_path = resolved_root / "_CONTROL_PLANE" / "LOCAL_DOWNLOAD_MANIFEST.jsonl"
+    prior_rows = list(iter_jsonl(manifest_path)) if manifest_path.exists() else []
+    recoverable_classes = {"access_denied", "network_or_transport_failure"}
+    candidates = [
+        row for row in prior_rows
+        if row.get("status") == "failed"
+        and not str(row.get("message", "")).startswith("retry:")
+        and str(row.get("failure_class")) in recoverable_classes
+        and (authority_level is None or row.get("authority_level") == authority_level)
+        and (not source_ids or str(row.get("source_id")) in source_ids)
+    ]
+    archive_root = resolved_root / "_RAW_ARCHIVE" / "local"
+    archive_root.mkdir(parents=True, exist_ok=True)
+    started = datetime.now(timezone.utc)
+    batch_id = _batch_id(started)
+    records: list[LocalDownloadRecord] = []
+    client = GeodeHttpClient(
+        session=build_session(impersonate=True),
+        config=GeodeHttpClientConfig(
+            timeout_seconds=timeout_seconds,
+            max_retries=max_retries,
+            base_delay=retry_delay_seconds,
+            max_retry_delay_seconds=max(retry_delay_seconds, 10.0),
+        ),
+    )
+    try:
+        fetch_cache: dict[str, GeodeHttpResponse | Exception] = {}
+        for row in candidates:
+            source_id = str(row["source_id"])
+            authority_id = str(row["authority_id"])
+            level = str(row["authority_level"])
+            source_url = str(row["source_url"])
+            requested_url = str(row["requested_url"])
+            fetch_url = _normalize_link_url(requested_url)
+            now = datetime.now(timezone.utc)
+            prior_path = Path(str(row.get("raw_path", "")))
+            base_dir = (
+                prior_path.parent
+                if prior_path.name == "FAILED"
+                else archive_root / level / _safe(source_id)
+            )
+            base_dir.mkdir(parents=True, exist_ok=True)
+            if dry_run:
+                records.append(LocalDownloadRecord(
+                    source_id=source_id,
+                    authority_id=authority_id,
+                    authority_level=level,
+                    source_url=source_url,
+                    requested_url=requested_url,
+                    raw_path=(base_dir / "FAILED").as_posix(),
+                    status="skipped",
+                    retrieved_at=now,
+                    message="dry_run: failed linked document was inventoried for retry",
+                ))
+                continue
+            try:
+                _require_approved_url(fetch_url)
+                cached = fetch_cache.get(fetch_url)
+                if cached is None:
+                    try:
+                        cached = _fetch(
+                            client,
+                            fetch_url,
+                            referer=source_url,
+                            timeout_seconds=timeout_seconds,
+                        )
+                    except (GeodeHttpError, requests.RequestException, ValueError) as exc:
+                        cached = exc
+                    fetch_cache[fetch_url] = cached
+                if isinstance(cached, Exception):
+                    raise cached
+                linked = cached
+                linked_name = Path(urlparse(fetch_url).path).name or "linked_source"
+                linked_path = _write_immutable(base_dir / _safe_filename(linked_name), linked.content)
+                record = _record(
+                    source_id,
+                    authority_id,
+                    level,
+                    source_url,
+                    requested_url,
+                    linked_path,
+                    linked.status_code,
+                    linked.content,
+                    now,
+                )
+                records.append(record.model_copy(update={
+                    "message": "Retry of a previously failed linked-document attempt."
+                }))
+            except (GeodeHttpError, requests.RequestException, ValueError) as exc:
+                records.append(_failed_record(
+                    source_id,
+                    authority_id,
+                    level,
+                    source_url,
+                    requested_url,
+                    base_dir,
+                    now,
+                    f"retry: {exc}",
+                ))
+    finally:
+        client.close()
+    records = _stamp_records(records, batch_id)
+    if not dry_run and records:
+        existing = list(iter_jsonl(manifest_path)) if manifest_path.exists() else []
+        atomic_write_jsonl(manifest_path, [*existing, *records], resolved_root)
+    write_county_retry_report(resolved_root, records)
+    completed = datetime.now(timezone.utc)
+    return LocalDownloadSummary(
+        started_at=started,
+        completed_at=completed,
+        dry_run=dry_run,
+        attempted=len(records),
+        downloaded=sum(record.status == "downloaded" for record in records),
+        skipped=sum(record.status == "skipped" for record in records),
+        failed=sum(record.status == "failed" for record in records),
+        records_path=manifest_path.as_posix(),
+        coverage_boundary=(
+            "Retry scope: recoverable access and transport failures only. Known "
+            "404 historical links remain preserved without repeated requests."
+        ),
+        batch_id=batch_id,
+    )
+
+
+def write_county_retry_report(root: Path, records: list[LocalDownloadRecord]) -> Path:
+    """Write the durable report for one county retry batch."""
+
+    resolved_root = root.resolve()
+    path = resolved_root / COUNTY_RETRY_REPORT_PATH
+    atomic_write_json(
+        path,
+        {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "scope": "county failed download records from the append-only manifest",
+            "attempted": len(records),
+            "downloaded": sum(record.status == "downloaded" for record in records),
+            "failed": sum(record.status == "failed" for record in records),
+            "failed_unique_urls": len({str(record.requested_url) for record in records if record.status == "failed"}),
+            "failed_records": [
+                record.model_dump(mode="json") for record in records if record.status == "failed"
+            ],
+            "reconciliation": build_county_reconciliation(resolved_root),
+            "manual_intake_candidates": [
+                record.model_dump(mode="json")
+                for record in records
+                if record.status == "failed"
+                and record.failure_class in {"access_denied", "network_or_transport_failure"}
+            ],
+            "boundary": (
+                "This report records official-source retrieval outcomes only. It does not "
+                "declare that a failed URL means the underlying law is absent."
+            ),
+        },
+        resolved_root,
+    )
+    return path
+
+
+def build_county_reconciliation(root: Path) -> dict[str, object]:
+    """Reconcile latest county outcomes with the current source registry."""
+
+    resolved_root = root.resolve()
+    registry_path = resolved_root / REGISTRY_PATH
+    registry = load_json(registry_path) if registry_path.exists() else {"pilot": {}}
+    entries = [*registry.get("pilot", {}).get("counties", []), *registry.get("pilot", {}).get("county_sources", [])]
+    current_urls = {str(entry["source_id"]): str(entry["url"]) for entry in entries}
+    manifest_path = resolved_root / "_CONTROL_PLANE" / "LOCAL_DOWNLOAD_MANIFEST.jsonl"
+    latest_pairs: dict[tuple[str, str], LocalDownloadRecord] = {}
+    current_sources: dict[str, LocalDownloadRecord] = {}
+    for row in iter_jsonl(manifest_path) if manifest_path.exists() else []:
+        if row.get("authority_level") != "county":
+            continue
+        record = LocalDownloadRecord.model_validate(row)
+        latest_pairs[(record.source_id, str(record.requested_url))] = record
+        if current_urls.get(record.source_id) == str(record.requested_url):
+            current_sources[record.source_id] = record
+    unresolved = [record for record in latest_pairs.values() if record.status == "failed"]
+    linked_unresolved = [record for record in unresolved if _effective_link_kind(record) != "landing_page"]
+    unique_url_kinds = {
+        str(record.requested_url): _effective_link_kind(record)
+        for record in linked_unresolved
+    }
+    return {
+        "current_registered_sources": len(current_urls),
+        "current_registered_sources_with_outcomes": len(current_sources),
+        "current_registered_sources_downloaded": sum(record.status == "downloaded" for record in current_sources.values()),
+        "current_registered_sources_failed": sum(record.status == "failed" for record in current_sources.values()),
+        "latest_unresolved_pairs": len(unresolved),
+        "latest_unresolved_unique_urls": len({str(record.requested_url) for record in unresolved}),
+        "latest_unresolved_linked_records": len(linked_unresolved),
+        "latest_unresolved_link_kinds": {
+            kind: sum(_effective_link_kind(record) == kind for record in linked_unresolved)
+            for kind in {_effective_link_kind(record) for record in linked_unresolved}
+        },
+        "latest_unresolved_unique_url_kinds": {
+            kind: sum(value == kind for value in unique_url_kinds.values())
+            for kind in set(unique_url_kinds.values())
+        },
+        "latest_unresolved_failure_classes": {
+            kind: sum(record.failure_class == kind for record in unresolved)
+            for kind in {record.failure_class for record in unresolved}
+        },
+    }
 
 
 def _download_entry(
@@ -312,7 +565,7 @@ def _linked_documents(base_url: str, html: str, max_links: int) -> list[str]:
         return []
     links: list[str] = []
     for href in re.findall(r"href=[\"']([^\"']+)[\"']", html, flags=re.IGNORECASE):
-        absolute = urljoin(base_url, href)
+        absolute = _normalize_link_url(urljoin(base_url, href))
         parsed = urlparse(absolute)
         host = parsed.netloc.lower()
         if parsed.scheme != "https" or (
@@ -337,7 +590,7 @@ def _linked_pages(base_url: str, html: str, max_pages: int) -> list[str]:
     base_host = urlparse(base_url).netloc.lower()
     pages: list[str] = []
     for href in re.findall(r"href=[\"']([^\"']+)[\"']", html, flags=re.IGNORECASE):
-        absolute = urljoin(base_url, href).split("#", 1)[0]
+        absolute = _normalize_link_url(urljoin(base_url, href)).split("#", 1)[0]
         parsed = urlparse(absolute)
         host = parsed.netloc.lower()
         path = parsed.path.casefold()
@@ -364,10 +617,16 @@ def _page_filename(url: str) -> str:
     return f"source_page_{stem[:50]}_{digest}.html"
 
 
+def _normalize_link_url(url: str) -> str:
+    """Undo one layer of percent-encoding found in some official page links."""
+
+    return re.sub(r"%25([0-9A-Fa-f]{2})", r"%\1", url)
+
+
 def _record(source_id: str, authority_id: str, level: str, source_url: str, requested_url: str, path: Path, status: int, content: bytes, now: datetime) -> LocalDownloadRecord:
     """Build a successful download record."""
 
-    return LocalDownloadRecord(source_id=source_id, authority_id=authority_id, authority_level=level, source_url=source_url, requested_url=requested_url, raw_path=path.as_posix(), status="downloaded", http_status=status, sha256=hashlib.sha256(content).hexdigest(), retrieved_at=now)
+    return LocalDownloadRecord(source_id=source_id, authority_id=authority_id, authority_level=level, source_url=source_url, requested_url=requested_url, raw_path=path.as_posix(), status="downloaded", http_status=status, sha256=hashlib.sha256(content).hexdigest(), retrieved_at=now, link_kind=_link_kind(source_url, requested_url))
 
 
 def _reuse_record(entry: dict[str, object], prior: LocalDownloadRecord) -> LocalDownloadRecord:
@@ -392,7 +651,42 @@ def _reuse_record(entry: dict[str, object], prior: LocalDownloadRecord) -> Local
 def _failed_record(source_id: str, authority_id: str, level: str, source_url: str, requested_url: str, base_dir: Path, now: datetime, message: str) -> LocalDownloadRecord:
     """Build a failed download record without hiding the source gap."""
 
-    return LocalDownloadRecord(source_id=source_id, authority_id=authority_id, authority_level=level, source_url=source_url, requested_url=requested_url, raw_path=(base_dir / "FAILED").as_posix(), status="failed", retrieved_at=now, failure_class=_failure_class(message), message=message)
+    return LocalDownloadRecord(source_id=source_id, authority_id=authority_id, authority_level=level, source_url=source_url, requested_url=requested_url, raw_path=(base_dir / "FAILED").as_posix(), status="failed", retrieved_at=now, failure_class=_failure_class(message), message=message, link_kind=_link_kind(source_url, requested_url))
+
+
+def _batch_id(started: datetime) -> str:
+    """Create a stable identifier for one downloader run."""
+
+    return f"LOCAL-{started.strftime('%Y%m%dT%H%M%S%fZ')}"
+
+
+def _stamp_records(records: list[LocalDownloadRecord], batch_id: str) -> list[LocalDownloadRecord]:
+    """Attach batch and per-attempt identities to newly created records."""
+
+    stamped: list[LocalDownloadRecord] = []
+    for index, record in enumerate(records, start=1):
+        attempt_id = hashlib.sha256(
+            f"{batch_id}|{index}|{record.source_id}|{record.requested_url}".encode("utf-8")
+        ).hexdigest()[:20]
+        stamped.append(record.model_copy(update={"batch_id": batch_id, "attempt_id": attempt_id}))
+    return stamped
+
+
+def _link_kind(source_url: str, requested_url: str) -> str:
+    """Classify a record as a landing page, discovery page, or document."""
+
+    if source_url == requested_url:
+        return "landing_page"
+    suffix = Path(urlparse(requested_url).path).suffix.casefold()
+    if suffix in {".pdf", ".doc", ".docx", ".txt", ".csv", ".xlsx"}:
+        return "linked_document"
+    return "discovery_page"
+
+
+def _effective_link_kind(record: LocalDownloadRecord) -> str:
+    """Classify older manifest rows that predate the explicit link-kind field."""
+
+    return record.link_kind or _link_kind(str(record.source_url), str(record.requested_url))
 
 
 def _failure_class(message: str) -> str:
@@ -469,7 +763,7 @@ def main() -> int:
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path.cwd())
-    parser.add_argument("--authority-level", choices=["county", "district"])
+    parser.add_argument("--authority-level", choices=["county", "municipal", "district"])
     parser.add_argument("--source-id", action="append", default=[])
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--unattempted-registered", action="store_true")
@@ -479,20 +773,32 @@ def main() -> int:
     parser.add_argument("--max-retries", type=int, default=3)
     parser.add_argument("--retry-delay-seconds", type=float, default=1.0)
     parser.add_argument("--retry-failed", action="store_true")
+    parser.add_argument("--retry-failed-links", action="store_true")
     args = parser.parse_args()
-    summary = download_pilot_sources(
-        args.root,
-        authority_level=args.authority_level,
-        source_ids=set(args.source_id),
-        dry_run=args.dry_run,
-        unattempted_registered=args.unattempted_registered,
-        max_links_per_source=args.max_links,
-        max_pages_per_source=args.max_pages,
-        timeout_seconds=args.timeout_seconds,
-        max_retries=args.max_retries,
-        retry_delay_seconds=args.retry_delay_seconds,
-        retry_failed=args.retry_failed,
-    )
+    if args.retry_failed_links:
+        summary = retry_failed_linked_sources(
+            args.root,
+            authority_level=args.authority_level or "county",
+            source_ids=set(args.source_id),
+            dry_run=args.dry_run,
+            timeout_seconds=args.timeout_seconds,
+            max_retries=args.max_retries,
+            retry_delay_seconds=args.retry_delay_seconds,
+        )
+    else:
+        summary = download_pilot_sources(
+            args.root,
+            authority_level=args.authority_level,
+            source_ids=set(args.source_id),
+            dry_run=args.dry_run,
+            unattempted_registered=args.unattempted_registered,
+            max_links_per_source=args.max_links,
+            max_pages_per_source=args.max_pages,
+            timeout_seconds=args.timeout_seconds,
+            max_retries=args.max_retries,
+            retry_delay_seconds=args.retry_delay_seconds,
+            retry_failed=args.retry_failed,
+        )
     print(summary.model_dump_json(indent=2))
     return 0 if summary.failed == 0 else 2
 

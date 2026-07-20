@@ -1,0 +1,87 @@
+{
+  "generated_at": "2026-07-20T22:36:25.715356+00:00",
+  "layer": "08_County_Authorities",
+  "scope": "Active county authority, rule, and atomic rule-unit records.",
+  "counts": {
+    "authorities": 64,
+    "rules": 3701,
+    "rule_units": 116635
+  },
+  "schema_errors": {
+    "authorities": 0,
+    "rules": 0,
+    "rule_units": 0
+  },
+  "source_integrity": {
+    "missing_source_files": 0,
+    "source_hash_mismatches": 0
+  },
+  "relationship_integrity": {
+    "orphan_rules": 0,
+    "orphan_rule_units": 0
+  },
+  "readability": {
+    "rules_with_encoding_markers": 4,
+    "rule_units_with_encoding_markers": 79,
+    "replacement_characters": 0,
+    "suspected_mojibake_characters": 29464,
+    "source_formats": {
+      "html": 2594,
+      "pdf": 1102,
+      "docx": 5
+    }
+  },
+  "semantic_readiness": {
+    "rule_statuses": {
+      "unknown": 3701
+    },
+    "rule_semantic_statuses": {
+      "source_preservation_only": 3701
+    },
+    "unit_semantic_statuses": {
+      "source_preservation_only": 116576,
+      "semantic_ready": 59
+    },
+    "generic_rule_summaries": 3701,
+    "candidate_review": {
+      "candidate_rule_units": 17342,
+      "promoted": 0,
+      "answer_safe": 0,
+      "status": "review_required"
+    },
+    "improvement": {
+      "reviewed_lower_quality": 4772,
+      "improved_candidates": 2548,
+      "quality_levels_after": {
+        "medium": 3361,
+        "needs_review": 1029,
+        "high": 382
+      },
+      "status": "review_required"
+    },
+    "final_review": {
+      "reviewed_remaining_candidates": 1029,
+      "entity_confirmations_required": 1028,
+      "manual_atomic_split_proposals": 12,
+      "exception_captures": 0,
+      "status": "review_required"
+    },
+    "automated_review": {
+      "candidates_reviewed": 1029,
+      "auto_approved": 58,
+      "auto_quarantined": 971,
+      "applied": 58,
+      "status": "applied"
+    },
+    "boundary": "Source-preserved records are traceable and readable, but are not treated as AI-interpreted legal meaning until grounded semantic review promotes them."
+  },
+  "checks": {
+    "schema_valid": true,
+    "source_files_present": true,
+    "source_hashes_match": true,
+    "relationships_resolve": true,
+    "text_readable": false,
+    "semantic_interpretation_complete": false
+  },
+  "ai_ready": false
+}

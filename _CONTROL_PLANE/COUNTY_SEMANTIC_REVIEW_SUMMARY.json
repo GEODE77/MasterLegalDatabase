@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-07-20T21:30:00.627476+00:00",
+  "layer": "08_County_Authorities",
+  "rules_seen": 3701,
+  "rules_with_candidates": 2257,
+  "candidate_rule_units": 17342,
+  "quality_levels": {
+    "high": 12570,
+    "medium": 3890,
+    "needs_review": 882
+  },
+  "promoted": 0,
+  "answer_safe": 0,
+  "status": "review_required",
+  "boundary": "Candidates are source-grounded drafts only. They remain outside answer-safe retrieval until a reviewer approves the exact passage, meaning, exceptions, and current status."
+}
