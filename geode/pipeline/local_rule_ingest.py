@@ -7,6 +7,7 @@ import argparse
 import json
 import re
 from datetime import datetime, timezone
+from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
@@ -20,6 +21,7 @@ from geode.utils.file_io import atomic_write_jsonl, iter_jsonl, load_json
 
 LOCAL_LAYERS = {
     "county": "08_County_Authorities",
+    "municipal": "10_Municipal_Authorities",
     "district": "09_District_Authorities",
 }
 CRS_PATTERN = re.compile(
@@ -40,7 +42,7 @@ EXCLUDED_DOCUMENT_MARKERS = (
 )
 
 
-def ingest_local_rules(root: Path) -> dict[str, int]:
+def ingest_local_rules(root: Path, authority_level: str | None = None) -> dict[str, int]:
     """Extract, validate, index, and cross-reference pilot local rules."""
 
     resolved_root = root.resolve()
@@ -49,11 +51,18 @@ def ingest_local_rules(root: Path) -> dict[str, int]:
     authorities = _authority_lookup(resolved_root)
     source_registry = _source_registry_lookup(resolved_root)
     seen_hashes: set[str] = set()
+    if authority_level is not None and authority_level not in LOCAL_LAYERS:
+        raise ValueError(f"unknown authority level: {authority_level}")
+    selected_levels = {
+        level for level in LOCAL_LAYERS if authority_level is None or level == authority_level
+    }
     records_by_layer: dict[str, list[LocalRule]] = {layer: [] for layer in LOCAL_LAYERS.values()}
     units_by_layer: dict[str, list[RuleUnit]] = {layer: [] for layer in LOCAL_LAYERS.values()}
     quarantine: list[dict[str, Any]] = []
 
     for row in manifest_rows:
+        if authority_level is not None and str(row.get("authority_level")) != authority_level:
+            continue
         source_entry = source_registry.get(str(row.get("source_id")), {})
         if str(row.get("authority_id")) not in authorities and source_entry:
             row = {
@@ -121,7 +130,10 @@ def ingest_local_rules(root: Path) -> dict[str, int]:
         records_by_layer[layer].append(rule)
         units_by_layer[layer].extend(units)
 
-    for layer, records in records_by_layer.items():
+    for level, layer in LOCAL_LAYERS.items():
+        if level not in selected_levels:
+            continue
+        records = records_by_layer[layer]
         _write_layer_records(resolved_root, layer, records, units_by_layer[layer])
         _refresh_manifest(
             resolved_root,
@@ -164,20 +176,38 @@ def _is_excluded_document(path: Path) -> bool:
 def _authority_lookup(root: Path) -> dict[str, dict[str, Any]]:
     """Load pilot authority metadata from the source registry."""
 
-    registry = load_json(root / "_CONTROL_PLANE" / "LOCAL_SOURCE_REGISTRY.json")
+    registry = _combined_registry(root)
     pilot = registry.get("pilot", {})
-    entries = [*pilot.get("counties", []), *pilot.get("districts", [])]
+    entries = [
+        *pilot.get("counties", []),
+        *pilot.get("municipalities", []),
+        *pilot.get("districts", []),
+    ]
     return {str(entry["authority_id"]): entry for entry in entries}
 
 
 def _source_registry_lookup(root: Path) -> dict[str, dict[str, Any]]:
     """Load current source metadata for identity repair of historical manifests."""
 
-    registry = load_json(root / "_CONTROL_PLANE" / "LOCAL_SOURCE_REGISTRY.json")
+    registry = _combined_registry(root)
     return {
         str(entry["source_id"]): entry
-        for entry in registry.get("pilot", {}).get("county_sources", [])
+        for entry in [
+            *registry.get("pilot", {}).get("county_sources", []),
+            *registry.get("pilot", {}).get("municipal_sources", []),
+        ]
     }
+
+
+def _combined_registry(root: Path) -> dict[str, Any]:
+    """Load the county/district registry plus the municipal registry."""
+
+    registry = load_json(root / "_CONTROL_PLANE" / "LOCAL_SOURCE_REGISTRY.json")
+    municipal_path = root / "_CONTROL_PLANE" / "MUNICIPAL_SOURCE_REGISTRY.json"
+    if municipal_path.exists():
+        municipal_registry = load_json(municipal_path)
+        registry.setdefault("pilot", {}).update(municipal_registry.get("pilot", {}))
+    return registry
 
 
 def _known_state_ids(root: Path) -> set[str]:
@@ -211,11 +241,11 @@ def _extract_source(path: Path) -> tuple[str, int, str]:
         raise ValueError("binary media source is not a legal text document")
     if signature.lstrip().startswith((b"<html", b"<!doctype", b"<!DOCTYPE")):
         parser = _TextHTMLParser()
-        parser.feed(path.read_text(encoding="utf-8", errors="replace"))
+        parser.feed(_decode_html(path.read_bytes()))
         return f"[Page 1]\n{parser.text}", 1, "html"
     if suffix in {".html", ".htm"}:
         parser = _TextHTMLParser()
-        parser.feed(path.read_text(encoding="utf-8", errors="replace"))
+        parser.feed(_decode_html(path.read_bytes()))
         return f"[Page 1]\n{parser.text}", 1, "html"
     if suffix == ".txt":
         return f"[Page 1]\n{path.read_text(encoding='utf-8', errors='replace')}", 1, "text"
@@ -227,7 +257,7 @@ def _extract_source(path: Path) -> tuple[str, int, str]:
         return f"[Page 1]\n{text}", 1, "docx"
     if suffix == ".bin":
         raw = path.read_bytes()
-        decoded = raw.decode("utf-8", errors="replace")
+        decoded = _decode_html(raw) if b"<html" in raw[:4096].lower() else raw.decode("utf-8", errors="replace")
         if "<html" in decoded.casefold() or "<!doctype" in decoded.casefold():
             parser = _TextHTMLParser()
             parser.feed(decoded)
@@ -263,6 +293,72 @@ class _TextHTMLParser(HTMLParser):
     def handle_data(self, data: str) -> None:
         if not self._hidden_depth and data.strip():
             self.parts.append(data.strip())
+
+
+def _decode_html(raw: bytes) -> str:
+    """Decode HTML using its declared charset and safe legacy fallbacks."""
+
+    header = raw[:8192].decode("ascii", errors="ignore")
+    match = re.search(r"charset\s*=\s*[\"']?([A-Za-z0-9_-]+)", header, re.IGNORECASE)
+    declared = match.group(1).lower() if match else ""
+    # A number of government pages declare a legacy charset while actually
+    # serving UTF-8. Prefer a valid UTF-8 decode before honoring that hint so
+    # names and section text are not turned into mojibake.
+    encodings = ["utf-8"]
+    if declared and declared != "utf-8":
+        encodings.append(declared)
+    encodings.extend(("cp1252", "latin-1"))
+    for encoding in encodings:
+        if not encoding:
+            continue
+        try:
+            return _repair_mojibake(unescape(raw.decode(encoding)))
+        except (LookupError, UnicodeDecodeError):
+            continue
+    return raw.decode("utf-8", errors="replace")
+
+
+def _repair_mojibake(text: str) -> str:
+    """Repair a common UTF-8-as-legacy-encoding error in derived text only."""
+
+    if not any(marker in text for marker in ("\u00c3", "\u00c2", "\u00e2")):
+        return text
+    def repair_pair(match: re.Match[str]) -> str:
+        """Repair one two-character UTF-8 mojibake pair."""
+
+        try:
+            return match.group(0).encode("cp1252").decode("utf-8")
+        except (UnicodeDecodeError, UnicodeEncodeError):
+            return match.group(0)
+
+    text = re.sub(r"[\u00c2\u00c3][\u0080-\u00bf]", repair_pair, text)
+    repaired_parts: list[str] = []
+    parts: list[str] = []
+    current: list[str] = []
+    for character in text:
+        try:
+            character.encode("cp1252")
+        except UnicodeEncodeError:
+            if current:
+                parts.append("".join(current))
+                current = []
+            parts.append(character)
+        else:
+            current.append(character)
+    if current:
+        parts.append("".join(current))
+    for part in parts:
+        if not part or any(ord(character) > 255 for character in part):
+            repaired_parts.append(part)
+            continue
+        try:
+            candidate = part.encode("cp1252").decode("utf-8")
+        except (UnicodeDecodeError, UnicodeEncodeError):
+            repaired_parts.append(part)
+        else:
+            repaired_parts.append(candidate)
+    repaired = "".join(repaired_parts)
+    return repaired if repaired.count("\ufffd") <= text.count("\ufffd") else text
 
 
 def _extract_pdf(path: Path) -> tuple[str, int]:
@@ -695,8 +791,9 @@ def main() -> int:
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
+    parser.add_argument("--authority-level", choices=sorted(LOCAL_LAYERS))
     args = parser.parse_args()
-    print(json.dumps(ingest_local_rules(args.root.resolve()), indent=2))
+    print(json.dumps(ingest_local_rules(args.root.resolve(), args.authority_level), indent=2))
     return 0
 
 

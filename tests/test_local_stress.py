@@ -34,6 +34,32 @@ def test_mislabeled_html_and_media_are_classified_by_signature(tmp_path: Path) -
         raise AssertionError("media source was accepted as legal text")
 
 
+def test_extract_source_respects_legacy_html_charset(tmp_path: Path) -> None:
+    """Legacy county pages decode without replacement characters or mojibake."""
+
+    html_path = tmp_path / "legacy.html"
+    html_path.write_bytes(
+        b'<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">'
+        + "Règlement § 1".encode("cp1252")
+    )
+
+    text, _, _ = _extract_source(html_path)
+
+    assert "Règlement § 1" in text
+    assert "\ufffd" not in text
+
+
+def test_extract_source_repairs_common_html_mojibake(tmp_path: Path) -> None:
+    """Derived HTML text repairs a legacy-decoding error without touching raw bytes."""
+
+    path = tmp_path / "broken.html"
+    path.write_bytes("<html><body>Garfield Ã³rdinance</body></html>".encode("utf-8"))
+
+    text, _, _ = _extract_source(path)
+
+    assert "Garfield órdinance" in text
+
+
 def test_local_freshness_uses_latest_download_and_reports_missing_raw(tmp_path: Path) -> None:
     """Freshness is source-specific and exposes missing preserved files."""
 

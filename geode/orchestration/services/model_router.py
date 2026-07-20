@@ -5,7 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Protocol
 
-from geode.orchestration.contracts import Answer, Citation, DraftRequest, ModelRouteDecision
+from geode.orchestration.contracts import (
+    Answer,
+    Citation,
+    DraftRequest,
+    ModelRouteDecision,
+    PromptContext,
+)
+from geode.orchestration.services.prompt_cache import PromptPrefixBuilder
 
 
 class ModelAdapter(Protocol):
@@ -28,7 +35,7 @@ class ModelAdapter(Protocol):
         """Estimated latency."""
 
     def generate(self, request: DraftRequest) -> Answer:
-        """Generate a draft answer."""
+        """Generate a draft answer using optional prompt cache metadata."""
 
 
 @dataclass(frozen=True)
@@ -49,7 +56,14 @@ class DeterministicModelAdapter:
         for item in request.evidence:
             evidence_ids.append(item.evidence_id)
             citations.append(item.citation)
-            lines.append(f"{item.citation.citation_text}: {item.text}")
+            if item.answer_mode == "conditional":
+                lines.append(
+                    f"Conditional source statement ({item.citation.citation_text}): "
+                    f"The source states: {item.text} "
+                    "Binding status and responsible party are not fully verified."
+                )
+            else:
+                lines.append(f"{item.citation.citation_text}: {item.text}")
         if request.conflicts:
             lines.append(
                 "Conflicts requiring disclosure: "
@@ -84,8 +98,11 @@ class ModelRouter:
         ordered = sorted(self.adapters, key=lambda item: (item.estimated_cost, item.estimated_latency_ms))
         failures: list[str] = []
         for index, adapter in enumerate(ordered):
+            adapter_request = request.model_copy(
+                update={"prompt_context": _prompt_context_for(request, adapter.provider)}
+            )
             try:
-                answer = adapter.generate(request)
+                answer = adapter.generate(adapter_request)
             except Exception as exc:  # pragma: no cover - exercised by tests through fallback path
                 failures.append(f"{adapter.provider}:{type(exc).__name__}")
                 continue
@@ -95,6 +112,7 @@ class ModelRouter:
                 estimated_cost=adapter.estimated_cost,
                 estimated_latency_ms=adapter.estimated_latency_ms,
                 fallback_used=index > 0 or bool(failures),
+                cache_hit=_measured_cache_hit(adapter),
             )
             self.last_decision = decision
             return answer, decision
@@ -104,3 +122,23 @@ class ModelRouter:
         """Backward-compatible alias for draft generation."""
 
         return self.generate_draft(request)
+
+
+def _measured_cache_hit(adapter: ModelAdapter) -> bool | None:
+    """Read an optional provider measurement without inventing one."""
+
+    value = getattr(adapter, "last_cache_hit", getattr(adapter, "cache_hit", None))
+    return value if isinstance(value, bool) else None
+
+
+def _prompt_context_for(request: DraftRequest, provider: str) -> PromptContext:
+    """Build provider-specific prompt metadata before an adapter call."""
+
+    stable_prompt = PromptPrefixBuilder().split_rendered(request.prompt, provider=provider)
+    return PromptContext(
+        stable_prefix=stable_prompt.stable_prefix,
+        dynamic_suffix=stable_prompt.dynamic_suffix,
+        stable_prefix_hash=stable_prompt.prefix_hash,
+        stable_prefix_tokens=stable_prompt.prefix_tokens,
+        provider_cache_settings=stable_prompt.cache_settings.__dict__,
+    )

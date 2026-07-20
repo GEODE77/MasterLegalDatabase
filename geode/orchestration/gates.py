@@ -33,7 +33,8 @@ def enforce_grounding(state: QueryState) -> tuple[QueryState, GateResult]:
         claim_evidence = [
             item
             for item in state.evidence
-            if item.evidence_id in set(claim.evidence_ids) and _evidence_is_answer_safe(item)
+            if item.evidence_id in set(claim.evidence_ids)
+            and _evidence_can_support_claim(item, claim.text)
         ]
         claim_supported = bool(claim_evidence) and _claim_supported_by_text(
             claim.text,
@@ -69,7 +70,7 @@ def verify_citations(state: QueryState) -> tuple[QueryState, GateResult]:
     for citation in state.answer.citations:
         citation_id = citation.canonical_id or citation.citation_text
         evidence = evidence_by_citation.get(citation_id)
-        if evidence is None or not _citation_text_supported(evidence) or not _evidence_is_answer_safe(evidence):
+        if evidence is None or not _citation_text_supported(evidence) or not _evidence_can_be_cited(evidence):
             stripped_citations.append(citation_id)
             continue
         valid_citations.append(citation)
@@ -325,6 +326,29 @@ def _evidence_is_answer_safe(evidence: Evidence) -> bool:
     return evidence.answer_safe and evidence.semantic_status != "source_preservation_only"
 
 
+def _evidence_can_be_cited(evidence: Evidence) -> bool:
+    """Allow confirmed evidence or exact conditional source statements to be cited."""
+
+    return _evidence_is_answer_safe(evidence) or evidence.answer_mode == "conditional"
+
+
+def _evidence_can_support_claim(evidence: Evidence, claim_text: str) -> bool:
+    """Permit conditional evidence only when the answer uses source-reporting language."""
+
+    if _evidence_is_answer_safe(evidence):
+        return True
+    if evidence.answer_mode != "conditional":
+        return False
+    return bool(
+        re.search(
+            r"\b(the source states?|the document states?|according to|reported in|"
+            r"the passage states?|not fully verified|may apply|appears to)\b",
+            claim_text,
+            re.IGNORECASE,
+        )
+    )
+
+
 def _remove_sentences_with_terms(text: str, terms: list[str]) -> str:
     """Remove sentences containing any listed term."""
 
@@ -366,7 +390,7 @@ def _claim_supported_by_text(text: str, evidence: list[Evidence]) -> bool:
     if not claim_tokens:
         return False
     for item in evidence:
-        if not _evidence_is_answer_safe(item):
+        if not _evidence_can_support_claim(item, text):
             continue
         evidence_tokens = _tokens(item.text)
         if len(claim_tokens & evidence_tokens) >= MIN_TOKEN_OVERLAP:

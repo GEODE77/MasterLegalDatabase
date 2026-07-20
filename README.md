@@ -23,6 +23,7 @@ Current coverage is state-first:
 - session laws
 - AG opinions, COPRRR reviews, and other supplementary sources
 - county authorities and ordinances (pilot coverage)
+- municipal authorities and ordinances (priority-city pilot coverage)
 - district authorities and policies (school and water-family pilot coverage)
 
 The jurisdiction model expands from state authority to county and municipal
@@ -41,7 +42,8 @@ control.
   audits, timelines, and operational state.
 - `_CROSSWALKS/` stores relationships between laws, regulations, agencies,
   bills, rulemaking events, and amendments.
-- `08_County_Authorities/` and `09_District_Authorities/` store local authority
+- `08_County_Authorities/`, `09_District_Authorities/`, and
+  `10_Municipal_Authorities/` store local authority
   identities and normalized local rules.
 - `geode/` contains ingestion, parsing, validation, retrieval, search, API, and
   orchestration code.

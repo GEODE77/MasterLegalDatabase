@@ -45,6 +45,7 @@ LayerName = Literal[
     "07_Supplementary",
     "08_County_Authorities",
     "09_District_Authorities",
+    "10_Municipal_Authorities",
 ]
 
 EntityType = Literal[

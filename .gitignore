@@ -39,6 +39,7 @@ Thumbs.db
 # Keep source, schemas, fixtures, docs, and curated control-plane files in Git.
 # Keep bulk downloads and pipeline run output out of Git; for large live runs,
 # prefer --root outside OneDrive or other sync-managed folders.
+.geode_runtime/
 _RAW_ARCHIVE/**
 _SNAPSHOTS/**
 _CONTROL_PLANE/BULK_DOWNLOAD_QUALITY_REPORT.json

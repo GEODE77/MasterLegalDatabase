@@ -9,6 +9,7 @@ from geode.orchestration.pipeline import Pipeline, Stage
 from geode.orchestration.services import (
     AccessControlService,
     ContextBudgetManager,
+    EvidenceStore,
     FreshnessMonitor,
     ModelRouter,
     OrchestrationCache,
@@ -63,6 +64,8 @@ DEFAULT_STAGE_ORDER = [
     "emit",
 ]
 
+DEFAULT_EVIDENCE_STORE_PATH = Path(".geode_runtime/evidence_store.sqlite")
+
 
 def build_default_stages(
     *,
@@ -111,8 +114,15 @@ def build_default_pipeline(
     freshness_monitor: FreshnessMonitor | None = None,
     access_control: AccessControlService | None = None,
     corpus_version: str = "unknown",
+    evidence_store_path: Path = DEFAULT_EVIDENCE_STORE_PATH,
 ) -> Pipeline:
-    """Create the fully integrated orchestration pipeline."""
+    """Create the fully integrated pipeline with durable evidence storage."""
+
+    if context_budget_manager is None:
+        context_budget_manager = ContextBudgetManager(
+            evidence_store=EvidenceStore(evidence_store_path),
+            corpus_version=corpus_version,
+        )
 
     return Pipeline(
         build_default_stages(
@@ -137,6 +147,7 @@ def run_orchestration(
     cache: OrchestrationCache | None = None,
     audit_log_path: Path | None = None,
     corpus_version: str = "unknown",
+    evidence_store_path: Path = DEFAULT_EVIDENCE_STORE_PATH,
 ) -> QueryState:
     """Run a raw query through the integrated pipeline."""
 
@@ -150,5 +161,6 @@ def run_orchestration(
         freshness_monitor=FreshnessMonitor(corpus_version=corpus_version),
         access_control=AccessControlService(),
         corpus_version=corpus_version,
+        evidence_store_path=evidence_store_path,
     )
     return pipeline.run(QueryState(intent=Intent(raw_query=raw_query)))

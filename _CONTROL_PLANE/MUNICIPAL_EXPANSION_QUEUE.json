@@ -1,0 +1,1743 @@
+{
+  "schema_version": 1,
+  "state": "CO",
+  "authority_level": "municipal",
+  "source_id": "municipal_statewide_cml_directory",
+  "source_url": "https://www.cml.org/home/networking-events/membership/membership",
+  "source_path": "_RAW_ARCHIVE/local/municipal/municipal_statewide_cml_directory/landing_page.html",
+  "source_retrieved_at": "2026-07-17T12:40:58.128256+00:00",
+  "incorporated_municipality_target": 273,
+  "directory_entries": 270,
+  "registered_entries": 269,
+  "not_registered_entries": 0,
+  "excluded_non_municipal_entries": [
+    "Sheriden Lake"
+  ],
+  "entries": [
+    {
+      "name": "Aguilar",
+      "cml_website": "http://www.aguilarco.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-AGUILAR"
+    },
+    {
+      "name": "Akron",
+      "cml_website": "https://townofakron.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-AKRON"
+    },
+    {
+      "name": "Alamosa",
+      "cml_website": "http://www.cityofalamosa.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ALAMOSA"
+    },
+    {
+      "name": "Alma",
+      "cml_website": "http://www.townofalma.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ALMA"
+    },
+    {
+      "name": "Antonito",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ANTONITO"
+    },
+    {
+      "name": "Arriba",
+      "cml_website": "https://townofarriba.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ARRIBA"
+    },
+    {
+      "name": "Arvada",
+      "cml_website": "http://www.arvada.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ARVADA"
+    },
+    {
+      "name": "Aspen",
+      "cml_website": "https://www.cityofaspen.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ASPEN"
+    },
+    {
+      "name": "Ault",
+      "cml_website": "http://www.townofault.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-AULT"
+    },
+    {
+      "name": "Aurora",
+      "cml_website": "https://www.auroragov.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-AURORA"
+    },
+    {
+      "name": "Avon",
+      "cml_website": "http://www.avon.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-AVON"
+    },
+    {
+      "name": "Basalt",
+      "cml_website": "http://www.basalt.net/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BASALT"
+    },
+    {
+      "name": "Bayfield",
+      "cml_website": "http://www.bayfieldgov.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BAYFIELD"
+    },
+    {
+      "name": "Bennett",
+      "cml_website": "https://townofbennett.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BENNETT"
+    },
+    {
+      "name": "Berthoud",
+      "cml_website": "http://www.berthoud.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BERTHOUD"
+    },
+    {
+      "name": "Bethune",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BETHUNE"
+    },
+    {
+      "name": "Black Hawk",
+      "cml_website": "http://www.cityofblackhawk.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BLACK_HAWK"
+    },
+    {
+      "name": "Blanca",
+      "cml_website": "http://users.gojade.org/~blancaco",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BLANCA"
+    },
+    {
+      "name": "Blue River",
+      "cml_website": "https://townofblueriver.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BLUE_RIVER"
+    },
+    {
+      "name": "Boone",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BOONE"
+    },
+    {
+      "name": "Boulder",
+      "cml_website": "http://www.bouldercolorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BOULDER"
+    },
+    {
+      "name": "Bow Mar",
+      "cml_website": "https://townofbowmar.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BOW_MAR"
+    },
+    {
+      "name": "Branson",
+      "cml_website": "http://www.bransoncolorado.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BRANSON"
+    },
+    {
+      "name": "Breckenridge",
+      "cml_website": "http://www.townofbreckenridge.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BRECKENRIDGE"
+    },
+    {
+      "name": "Brighton",
+      "cml_website": "http://www.brightonco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BRIGHTON"
+    },
+    {
+      "name": "Brookside",
+      "cml_website": "https://townofbrookside.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BROOKSIDE"
+    },
+    {
+      "name": "Broomfield",
+      "cml_website": "http://www.broomfield.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BROOMFIELD"
+    },
+    {
+      "name": "Brush",
+      "cml_website": "http://www.brushcolo.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BRUSH"
+    },
+    {
+      "name": "Buena Vista",
+      "cml_website": "http://www.buenavistaco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BUENA_VISTA"
+    },
+    {
+      "name": "Burlington",
+      "cml_website": "http://www.burlingtoncolo.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-BURLINGTON"
+    },
+    {
+      "name": "Calhan",
+      "cml_website": "http://www.calhan.co/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CALHAN"
+    },
+    {
+      "name": "Campo",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CAMPO"
+    },
+    {
+      "name": "Canon City",
+      "cml_website": "http://www.canoncity.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CANON_CITY"
+    },
+    {
+      "name": "Carbondale",
+      "cml_website": "http://www.carbondalegov.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CARBONDALE"
+    },
+    {
+      "name": "Castle Pines",
+      "cml_website": "https://www.castlepinesco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CASTLE_PINES"
+    },
+    {
+      "name": "Castle Rock",
+      "cml_website": "http://www.crgov.com",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CASTLE_ROCK"
+    },
+    {
+      "name": "Cedaredge",
+      "cml_website": "http://www.cedaredgecolorado.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CEDAREDGE"
+    },
+    {
+      "name": "Centennial",
+      "cml_website": "http://www.centennialco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CENTENNIAL"
+    },
+    {
+      "name": "Center",
+      "cml_website": "https://townofcenter.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CENTER"
+    },
+    {
+      "name": "Central City",
+      "cml_website": "https://centralcity.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CENTRAL_CITY"
+    },
+    {
+      "name": "Cheraw",
+      "cml_website": "https://townofcheraw.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CHERAW"
+    },
+    {
+      "name": "Cherry Hills Village",
+      "cml_website": "http://www.cherryhillsvillage.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CHERRY-HILLS-VILLAGE"
+    },
+    {
+      "name": "Cheyenne Wells",
+      "cml_website": "http://www.townofcheyennewells.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CHEYENNE-WELLS"
+    },
+    {
+      "name": "Coal Creek",
+      "cml_website": "https://townofcoalcreek.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-COAL-CREEK"
+    },
+    {
+      "name": "Cokedale",
+      "cml_website": "https://townofcokedale.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-COKEDALE"
+    },
+    {
+      "name": "Collbran",
+      "cml_website": "https://townofcollbran.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-COLLBRAN"
+    },
+    {
+      "name": "Colorado Springs",
+      "cml_website": "http://www.coloradosprings.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-COLORADO_SPRINGS"
+    },
+    {
+      "name": "Columbine Valley",
+      "cml_website": "http://www.columbinevalley.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-COLUMBINE-VALLEY"
+    },
+    {
+      "name": "Commerce City",
+      "cml_website": "http://www.c3gov.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-COMMERCE_CITY"
+    },
+    {
+      "name": "Cortez",
+      "cml_website": "https://www.cortezco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CORTEZ"
+    },
+    {
+      "name": "Craig",
+      "cml_website": "http://www.ci.craig.co.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CRAIG"
+    },
+    {
+      "name": "Crawford",
+      "cml_website": "https://townofcrawford.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CRAWFORD"
+    },
+    {
+      "name": "Creede",
+      "cml_website": "https://cityofcreede.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CREEDE"
+    },
+    {
+      "name": "Crested Butte",
+      "cml_website": "https://www.crestedbutte-co.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CRESTED_BUTTE"
+    },
+    {
+      "name": "Crestone",
+      "cml_website": "https://townofcrestone.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CRESTONE"
+    },
+    {
+      "name": "Cripple Creek",
+      "cml_website": "http://www.cityofcripplecreek.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CRIPPLE-CREEK"
+    },
+    {
+      "name": "Crook",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CROOK"
+    },
+    {
+      "name": "Crowley",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-CROWLEY"
+    },
+    {
+      "name": "Dacono",
+      "cml_website": "http://www.cityofdacono.com",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DACONO"
+    },
+    {
+      "name": "De Beque",
+      "cml_website": "http://debeque.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DE-BEQUE"
+    },
+    {
+      "name": "Deer Trail",
+      "cml_website": "https://townofdeertrail.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DEER-TRAIL"
+    },
+    {
+      "name": "Del Norte",
+      "cml_website": "http://www.delnortecolorado.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DEL-NORTE"
+    },
+    {
+      "name": "Delta",
+      "cml_website": "http://cityofdelta.net/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DELTA"
+    },
+    {
+      "name": "Denver",
+      "cml_website": "http://www.denvergov.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DENVER"
+    },
+    {
+      "name": "Dillon",
+      "cml_website": "https://www.townofdillon.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DILLON"
+    },
+    {
+      "name": "Dinosaur",
+      "cml_website": "https://townofdinosaur.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DINOSAUR"
+    },
+    {
+      "name": "Dolores",
+      "cml_website": "https://townofdolores.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DOLORES"
+    },
+    {
+      "name": "Dove Creek",
+      "cml_website": "https://townofdovecreek.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DOVE-CREEK"
+    },
+    {
+      "name": "Durango",
+      "cml_website": "http://www.durangogov.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-DURANGO"
+    },
+    {
+      "name": "Eads",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-EADS",
+      "verified_official_website": "https://kiowacounty-colorado.com/",
+      "note": "Kiowa County’s official website publishes Eads Town Council meeting information and county contacts. No separate current Town website or accessible municipal legal and permit publication was confirmed, so those gaps remain explicit."
+    },
+    {
+      "name": "Eagle",
+      "cml_website": "http://www.townofeagle.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-EAGLE"
+    },
+    {
+      "name": "Eaton",
+      "cml_website": "http://www.eatonco.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-EATON"
+    },
+    {
+      "name": "Eckley",
+      "cml_website": "https://townofeckley.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ECKLEY"
+    },
+    {
+      "name": "Edgewater",
+      "cml_website": "http://www.edgewaterco.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-EDGEWATER"
+    },
+    {
+      "name": "Elizabeth",
+      "cml_website": "http://www.townofelizabeth.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ELIZABETH"
+    },
+    {
+      "name": "Empire",
+      "cml_website": "https://townofempire.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-EMPIRE"
+    },
+    {
+      "name": "Englewood",
+      "cml_website": "https://www.englewoodco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ENGLEWOOD"
+    },
+    {
+      "name": "Erie",
+      "cml_website": "http://www.erieco.gov/index.cfm",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ERIE"
+    },
+    {
+      "name": "Estes Park",
+      "cml_website": "https://estespark.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ESTES_PARK"
+    },
+    {
+      "name": "Evans",
+      "cml_website": "https://www.evanscolorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-EVANS"
+    },
+    {
+      "name": "Fairplay",
+      "cml_website": "http://fairplayco.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FAIRPLAY"
+    },
+    {
+      "name": "Federal Heights",
+      "cml_website": "http://www.fedheights.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FEDERAL_HEIGHTS"
+    },
+    {
+      "name": "Firestone",
+      "cml_website": "https://www.firestoneco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FIRESTONE"
+    },
+    {
+      "name": "Flagler",
+      "cml_website": "http://www.flaglercolorado.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FLAGLER"
+    },
+    {
+      "name": "Fleming",
+      "cml_website": "https://www.flemingcolorado.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FLEMING"
+    },
+    {
+      "name": "Florence",
+      "cml_website": "https://www.cityofflorenceco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FLORENCE"
+    },
+    {
+      "name": "Fort Collins",
+      "cml_website": "http://www.fcgov.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FORT_COLLINS"
+    },
+    {
+      "name": "Fort Lupton",
+      "cml_website": "http://www.fortlupton.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FORT_LUPTON"
+    },
+    {
+      "name": "Fort Morgan",
+      "cml_website": "http://www.cityoffortmorgan.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FORT_MORGAN"
+    },
+    {
+      "name": "Fountain",
+      "cml_website": "http://www.fountaincolorado.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FOUNTAIN"
+    },
+    {
+      "name": "Fowler",
+      "cml_website": "http://www.fowlercolorado.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FOWLER"
+    },
+    {
+      "name": "Foxfield",
+      "cml_website": "https://townoffoxfield.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FOXFIELD"
+    },
+    {
+      "name": "Fraser",
+      "cml_website": "http://www.frasercolorado.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FRASER"
+    },
+    {
+      "name": "Frederick",
+      "cml_website": "http://www.frederickco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FREDERICK"
+    },
+    {
+      "name": "Frisco",
+      "cml_website": "http://www.friscogov.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FRISCO"
+    },
+    {
+      "name": "Fruita",
+      "cml_website": "http://fruita.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-FRUITA"
+    },
+    {
+      "name": "Garden City",
+      "cml_website": "http://townofgardencity.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GARDEN_CITY"
+    },
+    {
+      "name": "Genoa",
+      "cml_website": "https://townofgenoa.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GENOA"
+    },
+    {
+      "name": "Georgetown",
+      "cml_website": "http://www.townofgeorgetown.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GEORGETOWN"
+    },
+    {
+      "name": "Gilcrest",
+      "cml_website": "http://www.townofgilcrest.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GILCREST"
+    },
+    {
+      "name": "Glendale",
+      "cml_website": "http://www.glendale.co.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GLENDALE"
+    },
+    {
+      "name": "Glenwood Springs * .",
+      "cml_website": "http://www.cogs.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GLENWOOD_SPRINGS"
+    },
+    {
+      "name": "Golden",
+      "cml_website": "http://www.cityofgolden.net/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GOLDEN"
+    },
+    {
+      "name": "Granada",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GRANADA"
+    },
+    {
+      "name": "Granby",
+      "cml_website": "http://www.townofgranby.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GRANBY"
+    },
+    {
+      "name": "Grand Junction",
+      "cml_website": "http://gjcity.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GRAND_JUNCTION"
+    },
+    {
+      "name": "Grand Lake",
+      "cml_website": "http://www.townofgrandlake.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GRAND_LAKE"
+    },
+    {
+      "name": "Greeley",
+      "cml_website": "http://www.greeleygov.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GREELEY"
+    },
+    {
+      "name": "Green Mountain Falls",
+      "cml_website": "https://greenmountainfalls.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GREEN_MOUNTAIN_FALLS"
+    },
+    {
+      "name": "Greenwood Village",
+      "cml_website": "http://www.greenwoodvillage.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GREENWOOD_VILLAGE"
+    },
+    {
+      "name": "Grover",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GROVER",
+      "review_note": "Official Weld County history confirms Grover as an incorporated Weld County town, and an official Weld County Clerk and Recorder document identifies the Town Clerk, address, telephone, and email. A similarly named municipalimpact.com website was inspected and excluded because it is for Grover, North Carolina, not Colorado. No current Colorado municipal website or online municipal source collection was confirmed."
+    },
+    {
+      "name": "Gunnison",
+      "cml_website": "https://www.gunnisonco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GUNNISON"
+    },
+    {
+      "name": "Gypsum",
+      "cml_website": "http://www.townofgypsum.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-GYPSUM"
+    },
+    {
+      "name": "Hartman",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HARTMAN",
+      "review_note": "Official Prowers County records identify Hartman as a statutory town in Colorado. No separate current Hartman municipal website, code publisher, or town document portal was confirmed; county material is retained only as official jurisdiction and discovery evidence, not as Hartman town law."
+    },
+    {
+      "name": "Haswell",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HASWELL"
+    },
+    {
+      "name": "Haxtun",
+      "cml_website": "https://townofhaxtun.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HAXTUN"
+    },
+    {
+      "name": "Hayden",
+      "cml_website": "https://www.haydencolorado.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HAYDEN"
+    },
+    {
+      "name": "Hillrose",
+      "cml_website": "http://www.hillrosecolorado.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HILLROSE"
+    },
+    {
+      "name": "Holly",
+      "cml_website": "http://www.townofholly.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HOLLY"
+    },
+    {
+      "name": "Holyoke",
+      "cml_website": "http://www.cityofholyoke-co.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HOLYOKE"
+    },
+    {
+      "name": "Hooper",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HOOPER"
+    },
+    {
+      "name": "Hotchkiss",
+      "cml_website": "http://www.townofhotchkiss.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HOTCHKISS"
+    },
+    {
+      "name": "Hot Sulphur Springs",
+      "cml_website": "http://www.hotsulphurspringsco.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HOT_SULPHUR_SPRINGS"
+    },
+    {
+      "name": "Hudson",
+      "cml_website": "https://hudsoncolorado.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HUDSON"
+    },
+    {
+      "name": "Hugo",
+      "cml_website": "http://www.townhugo.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-HUGO"
+    },
+    {
+      "name": "Idaho Springs",
+      "cml_website": "http://www.idahospringsco.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-IDAHO_SPRINGS"
+    },
+    {
+      "name": "Ignacio",
+      "cml_website": "https://townofignacio.colorado.gov/#main-content",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-IGNACIO"
+    },
+    {
+      "name": "Iliff",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ILIFF",
+      "review_note": "The official Colorado State Auditor local-government directory identifies Town of Iliff as a Logan County town, and official Logan County records identify the Town of Iliff and its local clerk. No separate current Iliff municipal website, code publisher, or town document portal was confirmed."
+    },
+    {
+      "name": "Jamestown",
+      "cml_website": "http://www.jamestownco.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-JAMESTOWN"
+    },
+    {
+      "name": "Johnstown",
+      "cml_website": "https://johnstown.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-JOHNSTOWN"
+    },
+    {
+      "name": "Julesburg",
+      "cml_website": "http://www.townofjulesburg.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-JULESBURG"
+    },
+    {
+      "name": "Keenesburg",
+      "cml_website": "https://www.townofkeenesburg.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-KEENESBURG"
+    },
+    {
+      "name": "Kersey",
+      "cml_website": "http://www.townofkersey.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-KERSEY"
+    },
+    {
+      "name": "Keystone",
+      "cml_website": "https://keystone.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-KEYSTONE"
+    },
+    {
+      "name": "Kim",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-KIM"
+    },
+    {
+      "name": "Kiowa",
+      "cml_website": "https://townofkiowa.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-KIOWA"
+    },
+    {
+      "name": "Kit Carson",
+      "cml_website": "https://www.townofkitcarson.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-KIT_CARSON"
+    },
+    {
+      "name": "Kremmling",
+      "cml_website": "http://www.townofkremmling.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-KREMMLING"
+    },
+    {
+      "name": "Lafayette",
+      "cml_website": "https://lafayetteco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LAFAYETTE"
+    },
+    {
+      "name": "La Jara",
+      "cml_website": "https://townoflajara.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LA_JARA"
+    },
+    {
+      "name": "La Junta",
+      "cml_website": "http://www.lajuntacolorado.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LA_JUNTA"
+    },
+    {
+      "name": "Lake City",
+      "cml_website": "http://www.townoflakecity.co",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LAKE_CITY"
+    },
+    {
+      "name": "Lakeside",
+      "cml_website": "https://www.townoflakesideco.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LAKESIDE"
+    },
+    {
+      "name": "Lakewood",
+      "cml_website": "https://www.lakewood.org",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LAKEWOOD"
+    },
+    {
+      "name": "Lamar",
+      "cml_website": "http://www.ci.lamar.co.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LAMAR"
+    },
+    {
+      "name": "Larkspur",
+      "cml_website": "http://www.townoflarkspur.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LARKSPUR"
+    },
+    {
+      "name": "La Salle",
+      "cml_website": "http://www.lasalletown.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LASALLE"
+    },
+    {
+      "name": "Las Animas",
+      "cml_website": "https://cityoflasanimas.colorado.gov/#main-content",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LAS_ANIMAS"
+    },
+    {
+      "name": "La Veta",
+      "cml_website": "http://www.townoflaveta-co.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LA_VETA"
+    },
+    {
+      "name": "Leadville",
+      "cml_website": "https://cityofleadville.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LEADVILLE"
+    },
+    {
+      "name": "Limon",
+      "cml_website": "http://www.townoflimon.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LIMON"
+    },
+    {
+      "name": "Littleton",
+      "cml_website": "http://www.littletonco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LITTLETON"
+    },
+    {
+      "name": "Lochbuie",
+      "cml_website": "http://www.lochbuie.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LOCHBUIE"
+    },
+    {
+      "name": "Log Lane Village",
+      "cml_website": "https://www.townofllv.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LOG_LANE_VILLAGE"
+    },
+    {
+      "name": "Lone Tree",
+      "cml_website": "http://www.cityoflonetree.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LONE_TREE"
+    },
+    {
+      "name": "Longmont",
+      "cml_website": "https://www.longmontcolorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LONGMONT"
+    },
+    {
+      "name": "Louisville",
+      "cml_website": "http://www.louisvilleco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LOUISVILLE"
+    },
+    {
+      "name": "Loveland",
+      "cml_website": "https://www.lovgov.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LOVELAND"
+    },
+    {
+      "name": "Lyons",
+      "cml_website": "http://www.townoflyons.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-LYONS"
+    },
+    {
+      "name": "Manassa",
+      "cml_website": "http://www.manassa.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MANASSA"
+    },
+    {
+      "name": "Mancos",
+      "cml_website": "http://www.mancoscolorado.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MANCOS"
+    },
+    {
+      "name": "Manitou Springs",
+      "cml_website": "http://www.manitouspringsgov.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MANITOU_SPRINGS"
+    },
+    {
+      "name": "Manzanola",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MANZANOLA"
+    },
+    {
+      "name": "Marble",
+      "cml_website": "http://www.townofmarble.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MARBLE"
+    },
+    {
+      "name": "Mead",
+      "cml_website": "http://www.townofmead.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MEAD"
+    },
+    {
+      "name": "Meeker",
+      "cml_website": "http://www.townofmeeker.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MEEKER"
+    },
+    {
+      "name": "Merino",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MERINO"
+    },
+    {
+      "name": "Milliken",
+      "cml_website": "http://www.millikenco.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MILLIKEN"
+    },
+    {
+      "name": "Minturn",
+      "cml_website": "http://www.minturn.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MINTURN"
+    },
+    {
+      "name": "Moffat",
+      "cml_website": "https://townofmoffat.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MOFFAT"
+    },
+    {
+      "name": "Monte Vista",
+      "cml_website": "https://montevista.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MONTE_VISTA"
+    },
+    {
+      "name": "Montezuma",
+      "cml_website": "https://www.townofmontezuma.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MONTEZUMA"
+    },
+    {
+      "name": "Montrose",
+      "cml_website": "http://www.cityofmontrose.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MONTROSE"
+    },
+    {
+      "name": "Monument",
+      "cml_website": "http://www.townofmonument.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MONUMENT"
+    },
+    {
+      "name": "Morrison",
+      "cml_website": "https://www.morrisonco.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MORRISON"
+    },
+    {
+      "name": "Mountain View",
+      "cml_website": "https://www.tomv.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MOUNTAIN_VIEW"
+    },
+    {
+      "name": "Mountain Village",
+      "cml_website": "https://townofmountainvillage.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MOUNTAIN_VILLAGE"
+    },
+    {
+      "name": "Mt. Crested Butte",
+      "cml_website": "https://mtcb.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-MT_CRESTED_BUTTE"
+    },
+    {
+      "name": "Naturita",
+      "cml_website": "https://townofnaturita.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-NATURITA"
+    },
+    {
+      "name": "Nederland",
+        "cml_website": "https://www.nederlandco.gov/",
+        "status": "registered",
+        "authority_id": "CO-MUNICIPAL-NEDERLAND"
+    },
+    {
+      "name": "New Castle",
+      "cml_website": "https://www.newcastlecolorado.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-NEW-CASTLE"
+    },
+    {
+      "name": "Northglenn",
+      "cml_website": "http://www.northglenn.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-NORTHGLENN"
+    },
+    {
+      "name": "Norwood",
+      "cml_website": "https://www.norwoodtown.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-NORWOOD"
+    },
+    {
+      "name": "Nucla",
+      "cml_website": "https://townofnucla.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-NUCLA"
+    },
+    {
+      "name": "Nunn",
+      "cml_website": "https://townofnunn.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-NUNN"
+    },
+    {
+      "name": "Oak Creek",
+      "cml_website": "https://townofoakcreek.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-OAK-CREEK"
+    },
+    {
+      "name": "Olathe",
+      "cml_website": "https://www.townofolathe.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-OLATHE"
+    },
+    {
+      "name": "Olney Springs",
+      "cml_website": "https://townofolneysprings.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-OLNEY-SPRINGS"
+    },
+    {
+      "name": "Ophir",
+      "cml_website": "https://townofophir.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-OPHIR"
+    },
+    {
+      "name": "Orchard City",
+      "cml_website": "https://www.orchardcityco.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ORCHARD-CITY"
+    },
+    {
+      "name": "Ordway",
+      "cml_website": "https://townofordway.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ORDWAY"
+    },
+    {
+      "name": "Otis",
+      "cml_website": "https://townofotis.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-OTIS"
+    },
+    {
+      "name": "Ouray",
+      "cml_website": "https://www.cityofouray.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-OURAY"
+    },
+    {
+      "name": "Ovid",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-OVID"
+    },
+    {
+      "name": "Pagosa Springs",
+      "cml_website": "https://www.pagosasprings.co.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PAGOSA-SPRINGS"
+    },
+    {
+      "name": "Palisade",
+      "cml_website": "http://www.townofpalisade.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PALISADE",
+      "verified_official_website": "https://palisade.colorado.gov/",
+      "note": "The current official Town of Palisade site is hosted on Colorado.gov; the older CML-listed domain is retained as a historical directory value."
+    },
+    {
+      "name": "Palmer Lake",
+      "cml_website": "https://www.townofpalmerlake.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PALMER_LAKE",
+      "verified_official_website": "https://www.townofpalmerlake.com/"
+    },
+    {
+      "name": "Paoli",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PAOLI"
+    },
+    {
+      "name": "Paonia",
+      "cml_website": "http://townofpaonia.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PAONIA",
+      "verified_official_website": "https://townofpaonia.colorado.gov/",
+      "note": "The current official Town of Paonia site is hosted on Colorado.gov; the older CML-listed domain is retained as a historical directory value."
+    },
+    {
+      "name": "Parachute",
+      "cml_website": "https://townofparachute.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PARACHUTE",
+      "verified_official_website": "https://www.parachute.gov/",
+      "note": "The current official Town of Parachute site is parachute.gov; the older CML-listed Colorado.gov address is retained as a historical directory value."
+    },
+    {
+      "name": "Parker",
+      "cml_website": "http://www.parkeronline.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PARKER"
+    },
+    {
+      "name": "Peetz",
+      "cml_website": "https://www.townofpeetz.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PEETZ",
+      "verified_official_website": "https://www.townofpeetz.com/"
+    },
+    {
+      "name": "Pierce",
+      "cml_website": "http://www.townofpierce.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PIERCE",
+      "verified_official_website": "https://www.piercecolo.gov/",
+      "note": "The current official Town of Pierce site is piercecolo.gov; the older CML-listed address is retained as a historical directory value."
+    },
+    {
+      "name": "Pitkin",
+      "cml_website": "https://townofpitkin.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PITKIN",
+      "verified_official_website": "https://townofpitkin.colorado.gov/"
+    },
+    {
+      "name": "Platteville",
+      "cml_website": "http://www.plattevillegov.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PLATTEVILLE",
+      "verified_official_website": "https://platteville.colorado.gov/",
+      "note": "The current official Town of Platteville site is hosted on Colorado.gov; the older CML-listed domain is retained as a historical directory value."
+    },
+    {
+      "name": "Poncha Springs",
+      "cml_website": "http://www.ponchaspringscolorado.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PONCHA-SPRINGS",
+      "verified_official_website": "https://www.ponchasprings.us/",
+      "note": "The current official Town of Poncha Springs site is ponchasprings.us; the older CML-listed domain is retained as a historical directory value."
+    },
+    {
+      "name": "Pritchett",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PRITCHETT",
+      "verified_official_website": "https://www.bacacountyco.gov/towns/pritchett-colorado/",
+      "note": "Baca County’s official page identifies Pritchett, its mayor and manager, Town address, and monthly open council meetings. No separate town website or accessible municipal legal and permit publication was confirmed, so those gaps remain explicit."
+    },
+    {
+      "name": "Pueblo",
+      "cml_website": "http://www.pueblo.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-PUEBLO"
+    },
+    {
+      "name": "Ramah",
+      "cml_website": "https://ramah.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-RAMAH",
+      "verified_official_website": "https://ramah.colorado.gov/",
+      "note": "The official Colorado.gov site is confirmed, but automated access is currently blocked; source-category gaps remain explicitly recorded in the municipal registry."
+    },
+    {
+      "name": "Rangely",
+      "cml_website": "https://townofrangely.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-RANGELY",
+      "verified_official_website": "https://townofrangely.colorado.gov/town-rangely",
+      "note": "Official code, council packet, permit contact, and utility pages are confirmed; the municipal registry records the remaining archive and freshness gaps."
+    },
+    {
+      "name": "New Raymer",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-NEW-RAYMER",
+      "source_aliases": ["Raymer"],
+      "note": "Official Weld County history and the Colorado local-government portal identify New Raymer as the current municipality; Raymer is retained as the historical alias."
+    },
+    {
+      "name": "Red Cliff",
+      "cml_website": "https://townofredcliff.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-RED-CLIFF",
+      "verified_official_website": "https://townofredcliff.colorado.gov/",
+      "note": "The official Colorado.gov site is confirmed; category-specific municipal sources remain to be discovered and are recorded with explicit gaps."
+    },
+    {
+      "name": "Rico",
+      "cml_website": "https://townofrico.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-RICO",
+      "verified_official_website": "https://townofrico.colorado.gov/",
+      "note": "Official Rico homepage, board packet, planning packet, land-use amendment, drinking-water, and environmental links are confirmed."
+    },
+    {
+      "name": "Ridgway",
+      "cml_website": "http://town.ridgway.co.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-RIDGWAY",
+      "verified_official_website": "https://townofridgway.colorado.gov/",
+      "note": "The current official Town of Ridgway site is townofridgway.colorado.gov; the older CML-listed domain is retained as a historical directory value."
+    },
+    {
+      "name": "Rifle",
+      "cml_website": "http://www.rifleco.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-RIFLE"
+    },
+    {
+      "name": "Rockvale",
+      "cml_website": "https://townofrockvale.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ROCKVALE",
+      "verified_official_website": "https://townofrockvale.colorado.gov/",
+      "note": "Rockvale’s official identity site and Municode publication are confirmed; category-specific coverage gaps remain recorded in the registry."
+    },
+    {
+      "name": "Rocky Ford",
+      "cml_website": "https://cityofrockyford.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ROCKY-FORD",
+      "verified_official_website": "https://www.cityofrockyfordco.gov/",
+      "note": "The current official City of Rocky Ford site is cityofrockyfordco.gov; the older CML-listed Colorado.gov domain is retained as a historical directory value."
+    },
+    {
+      "name": "Romeo",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-ROMEO"
+    },
+    {
+      "name": "Rye",
+      "cml_website": "https://townofrye.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-RYE",
+      "verified_official_website": "https://townofrye.colorado.gov/",
+      "note": "The official Colorado.gov site is confirmed; category-specific municipal sources remain to be discovered and are recorded with explicit gaps."
+    },
+    {
+      "name": "Saguache",
+      "cml_website": "http://www.townofsaguache.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SAGUACHE",
+      "verified_official_website": "https://www.townofsaguache.org/",
+      "note": "The current official Town of Saguache site is townofsaguache.org; the older CML-listed domain is retained as a historical directory value."
+    },
+    {
+      "name": "Salida",
+      "cml_website": "http://www.cityofsalida.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SALIDA"
+    },
+    {
+      "name": "Sanford",
+      "cml_website": "https://townofsanford.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SANFORD",
+      "verified_official_website": "https://townofsanford.colorado.gov/",
+      "note": "The official Colorado.gov site is confirmed; category-specific municipal sources remain to be discovered and are recorded with explicit gaps."
+    },
+    {
+      "name": "San Luis",
+      "cml_website": "http://townofsanluisco.org/index.html",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SAN-LUIS",
+      "verified_official_website": "https://www.townofsanluisco.org/",
+      "note": "The current official site is townofsanluisco.org; its document library, permits, building-code resolution, meeting records, and Municode code publication are registered."
+    },
+    {
+      "name": "Sawpit",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SAWPIT",
+      "review_note": "The official Colorado State Auditor directory identifies Town of Sawpit as a San Miguel County town. San Miguel County's official hazard-mitigation and emergency-management records identify Sawpit and document its unusual governance context. No separate current Sawpit municipal website, code publisher, or town document portal was confirmed."
+    },
+    {
+      "name": "Sedgwick",
+      "cml_website": "https://www.sedgwickcolorado.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SEDGWICK",
+      "verified_official_website": "https://www.sedgwickcolorado.com/",
+      "note": "The official site publishes Sedgwick’s code, zoning and ordinance page, government forms, permits, and utilities application."
+    },
+    {
+      "name": "Seibert",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SEIBERT"
+    },
+    {
+      "name": "Severance",
+      "cml_website": "http://www.townofseverance.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SEVERANCE",
+      "verified_official_website": "https://www.townofseverance.org/",
+      "note": "The current official Town site publishes ordinances, land-use code, zoning map, construction standards, and permit-related materials."
+    },
+    {
+      "name": "Sheridan",
+      "cml_website": "http://www.ci.sheridan.co.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SHERIDAN",
+      "verified_official_website": "https://www.ci.sheridan.co.us/",
+      "note": "The official City site and Municode code provide dedicated building, fire, planning, zoning, environment, stormwater, and permit chapters."
+    },
+    {
+      "name": "Silt",
+      "cml_website": "http://www.townofsilt.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SILT"
+    },
+    {
+      "name": "Silver Cliff",
+      "cml_website": "http://silvercliffco.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SILVER-CLIFF",
+      "verified_official_website": "https://www.silvercliffco.com/",
+      "note": "The current official site publishes building/zoning, permit packets, water and sewer providers, code enforcement, and municipal-document sources."
+    },
+    {
+      "name": "Silver Plume",
+      "cml_website": "https://silverplumetown.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SILVER-PLUME",
+      "verified_official_website": "https://silverplumetown.com/",
+      "note": "The official site publishes ordinances/resolutions and licenses/permits. The authorized Municode land-use code provides zoning, development permits, building-inspector procedures, floodplain, and watershed provisions; standalone municipal fire-code and broader environmental records were not confirmed."
+    },
+    {
+      "name": "Silverthorne",
+      "cml_website": "http://www.silverthorne.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SILVERTHORNE"
+    },
+    {
+      "name": "Silverton",
+      "cml_website": "https://townofsilverton.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SILVERTON",
+      "verified_official_website": "https://townofsilverton.colorado.gov/",
+      "note": "The official Town site provides building/code-enforcement and forms pages; the authorized Municode publication contains the municipal code, land-use, building, health, and utility chapters. A standalone local fire-code source was not confirmed."
+    },
+    {
+      "name": "Simla",
+      "cml_website": "http://www.townofsimla.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SIMLA",
+      "verified_official_website": "https://townofsimla.com/",
+      "note": "The official site publishes building and land-use rules, permit procedures, public works, and municipal-code references. The authorized code library provides the full code; county permitting applies outside town limits."
+    },
+    {
+      "name": "Snowmass Village",
+      "cml_website": "http://tosv.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SNOWMASS-VILLAGE",
+      "verified_official_website": "https://www.tosv.com/",
+      "note": "The official Town site publishes planning, zoning, building code, applications, permits, environmental health, solid waste, and wildfire materials. Municode provides the municipal code and ordinance archive; Roaring Fork Fire Rescue and Snowmass Water and Sanitation District are separate partner authorities."
+    },
+    {
+      "name": "South Fork",
+      "cml_website": "https://townofsouthfork.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SOUTH-FORK",
+      "verified_official_website": "https://townofsouthfork.colorado.gov/",
+      "note": "The official Town site publishes land use, town-clerk, permit, and ordinance-index materials. The authorized Municode publication provides the municipal code, utilities, and health/sanitation chapters; a standalone local fire-code source was not confirmed."
+    },
+    {
+      "name": "Springfield",
+      "cml_website": "https://townofspringfield.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SPRINGFIELD",
+      "verified_official_website": "https://townofspringfield.colorado.gov/",
+      "note": "The official portal is access-restricted during automated discovery. The authorized Municode publication provides the municipal code, zoning, and health/sanitation provisions; town-specific permit, fire, and current environmental records remain explicit gaps."
+    },
+    {
+      "name": "Starkville",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-STARKVILLE"
+    },
+    {
+      "name": "Steamboat Springs",
+      "cml_website": "http://www.steamboatsprings.net/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-STEAMBOAT_SPRINGS"
+    },
+    {
+      "name": "Sterling",
+      "cml_website": "http://www.sterlingcolo.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-STERLING"
+    },
+    {
+      "name": "Stratton",
+      "cml_website": "https://townofstratton.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-STRATTON",
+      "verified_official_website": "https://townofstratton.colorado.gov/",
+      "note": "The official portal is confirmed as the municipal source lead but was blocked by automated access controls; no separate official code publisher or category-specific source was confirmed, so all unverified categories remain explicit gaps."
+    },
+    {
+      "name": "Sugar City",
+      "cml_website": "https://sugarcitycolorado.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SUGAR-CITY",
+      "note": "The queued sugarcitycolorado.com domain is inactive, but the current official Town of Sugar City site at townofsugarcityco.org publishes the municipal code, town meetings, contact information, and a 2025 consumer-confidence water report. Crowley County's official Colorado portal independently lists the Town Clerk and town contact details."
+    },
+    {
+      "name": "Superior",
+      "cml_website": "https://www.superiorcolorado.gov/Home",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SUPERIOR",
+      "verified_official_website": "https://www.superiorcolorado.gov/",
+      "note": "The official Town site publishes clerk records, building and zoning regulations, permits, water, wastewater, stormwater, waste, and environmental materials. Municode provides the municipal code and ordinance history."
+    },
+    {
+      "name": "Swink",
+      "cml_website": "http://townofswinkco.ourlocalview.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-SWINK",
+      "note": "The official Colorado State Auditor directory identifies Town of Swink as an Otero County town, and Otero County's official site lists Swink among its communities. The queued townofswinkco.ourlocalview.com website returned HTTP 502 during inspection and is not treated as downloadable evidence; no separate current official town code portal was confirmed."
+    },
+    {
+      "name": "Telluride",
+      "cml_website": "http://www.telluride-co.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-TELLURIDE"
+    },
+    {
+      "name": "Thornton",
+      "cml_website": "https://www.thorntonco.gov/Pages/default.aspx",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-THORNTON"
+    },
+    {
+      "name": "Timnath",
+      "cml_website": "http://www.timnath.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-TIMNATH",
+      "verified_official_website": "https://timnath.org/",
+      "note": "The official site publishes the ordinance archive, current land-use code, building and fire-code information, and permit services. Environmental and utility records remain an explicit continuing-retrieval area."
+    },
+    {
+      "name": "Trinidad",
+      "cml_website": "http://www.trinidad.co.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-TRINIDAD"
+    },
+    {
+      "name": "Two Buttes",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-TWO-BUTTES",
+      "verified_official_website": "https://www.bacacountyco.gov/towns/two-buttes/",
+      "note": "Baca County’s official page identifies Two Buttes, its mayor and manager, Town address, phone, and email, and mentions historical town-law archives. No accessible current municipal legal or permit publication was confirmed, so those gaps remain explicit."
+    },
+    {
+      "name": "Vail",
+      "cml_website": "http://vailgov.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-VAIL"
+    },
+    {
+      "name": "Victor",
+      "cml_website": "http://www.cityofvictor.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-VICTOR",
+      "verified_official_website": "https://www.cityofvictor.com/",
+      "note": "The official City site publishes building permits, development materials, zoning applications, and land-use updates. Municode provides the municipal code, utilities, health/sanitation, and development provisions; current land-use transition materials require freshness checks."
+    },
+    {
+      "name": "Vilas",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-VILAS",
+      "verified_official_website": "https://www.bacacountyco.gov/towns/vilas-colorado/",
+      "note": "Baca County’s official page identifies Vilas as a statutory town and publishes Town Hall contact information. No separate town website or accessible municipal legal and permit publication was confirmed, so those gaps remain explicit and county material is not treated as town law."
+    },
+    {
+      "name": "Vona",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-VONA"
+    },
+    {
+      "name": "Walden",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WALDEN",
+      "verified_official_website": "https://townofwaldenco.com/",
+      "note": "The official Town site publishes agendas, municipal court records, building application and fee documents, fire-management guidance, water restrictions, and public contact information. Complete code, zoning, and environmental records remain explicit gaps pending further retrieval."
+    },
+    {
+      "name": "Walsenburg",
+      "cml_website": "https://cityofwalsenburg.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WALSENBURG",
+      "verified_official_website": "https://www.walsenburg.org/",
+      "note": "The current official City site is walsenburg.org. It publishes the ordinance book, building permits, and applications; Municode provides the municipal code, zoning, utilities, and sanitation provisions."
+    },
+    {
+      "name": "Walsh",
+      "cml_website": "https://townofwalsh.colorado.gov",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WALSH",
+      "verified_official_website": "https://townofwalsh.colorado.gov/",
+      "note": "The official portal and utilities page are confirmed. A complete municipal code, ordinance archive, zoning, building, fire, and permit publication set was not accessible and remains explicitly marked as gaps."
+    },
+    {
+      "name": "Ward",
+      "cml_website": null,
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WARD",
+      "verified_official_website": "https://bouldercounty.gov/property-and-land/land-use/building/municipal-contacts/",
+      "note": "Boulder County’s official municipal-contact page confirms Ward’s town phone and email and expressly states that the County does not have Ward’s land-use or building-code jurisdiction. No separate Town website or accessible municipal legal and permit publication was confirmed, so those gaps remain explicit."
+    },
+    {
+      "name": "Wellington",
+      "cml_website": "http://www.townofwellington.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WELLINGTON"
+    },
+    {
+      "name": "Westcliffe",
+      "cml_website": "https://townofwestcliffe.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WESTCLIFFE",
+      "verified_official_website": "https://townofwestcliffe.colorado.gov/",
+      "note": "The official Town site and authorized Municode publication provide the municipal code and planning/legal sources. Custer County supplies regional planning and permit resources, which are recorded separately from Town authority."
+    },
+    {
+      "name": "Westminster",
+      "cml_website": "https://www.cityofwestminster.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WESTMINSTER"
+    },
+    {
+      "name": "Wheat Ridge",
+      "cml_website": "http://www.ci.wheatridge.co.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WHEAT_RIDGE"
+    },
+    {
+      "name": "Wiggins",
+      "cml_website": "https://townofwiggins.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WIGGINS",
+      "verified_official_website": "https://www.wigginsco.gov/",
+      "note": "The current official Town site is wigginsco.gov. The Town publishes clerk records, community development, permits, and building-code information; American Legal Publishing provides the municipal code and code-adoption ordinance."
+    },
+    {
+      "name": "Wiley",
+      "cml_website": "http://www.townofwiley.us/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WILEY",
+      "verified_official_website": "https://townofwiley.gov/",
+      "note": "The current official site is townofwiley.gov and publishes notices, meetings, clerk contact, utilities, and service reporting. No accessible municipal code, zoning, building, fire, or permit publication was confirmed, so those gaps remain explicit."
+    },
+    {
+      "name": "Williamsburg",
+      "cml_website": "https://townofwilliamsburg.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WILLIAMSBURG",
+      "verified_official_website": "https://townofwilliamsburg.colorado.gov/",
+      "note": "The official Colorado portal confirms Town Hall, clerk, code enforcement, building inspector, water operator, and municipal court contacts. No accessible complete code, ordinance archive, zoning publication, fire-code publication, or permit library was confirmed, so those gaps remain explicit."
+    },
+    {
+      "name": "Windsor",
+      "cml_website": "http://www.windsorgov.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WINDSOR"
+    },
+    {
+      "name": "Winter Park",
+      "cml_website": "http://www.wpgov.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WINTER-PARK",
+      "verified_official_website": "https://wpgov.com/",
+      "note": "The official Town site publishes a continually updated Town Code, planning and Unified Development Code resources, building pages, permit forms, business-license materials, and Town Clerk records. American Legal Publishing identifies the code as current through Ordinance 645, Series of 2026; ordinances pending codification and linked documents remain subject to freshness checks."
+    },
+    {
+      "name": "Woodland Park",
+      "cml_website": "http://www.city-woodlandpark.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WOODLAND_PARK"
+    },
+    {
+      "name": "Wray",
+      "cml_website": "http://www.cityofwray.org/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-WRAY",
+      "verified_official_website": "https://cityofwray.org/",
+      "note": "The official City site publishes the municipal code through an authorized code host, ordinances and council documents, zoning and planning materials, building and floodplain applications, and a building-code ordinance adopting the 2018 International Building and Fire Codes. Environmental records remain an explicit gap pending further retrieval."
+    },
+    {
+      "name": "Yampa",
+      "cml_website": "https://www.townofyampa.com/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-YAMPA",
+      "verified_official_website": "https://www.townofyampa.com/",
+      "note": "The official Town site publishes the municipal code, a 2025 Land Development Code, comprehensive plan, board agendas and minutes, public works, water/sewer rates, and a consumer-confidence report. Separate fire-district operations and a complete ordinance archive remain explicit gaps."
+    },
+    {
+      "name": "Yuma",
+      "cml_website": "https://cityofyuma.colorado.gov/",
+      "status": "registered",
+      "authority_id": "CO-MUNICIPAL-YUMA",
+      "verified_official_website": "https://cityofyuma.colorado.gov/",
+      "note": "The official City portal is confirmed but was blocked by automated inspection during discovery. The authorized code publisher exposes municipal code, zoning, public services, subdivision, and license/permit titles; portal-dependent ordinance, application, and environmental records remain explicit gaps."
+    }
+  ]
+}

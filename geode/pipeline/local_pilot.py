@@ -11,14 +11,19 @@ from geode.utils.file_io import atomic_write_jsonl, iter_jsonl, load_json
 
 
 def materialize_pilot_authorities(root: Path) -> dict[str, int]:
-    """Write registered county and district identities and their indexes."""
+    """Write registered county, municipal, and district identities and indexes."""
 
     resolved_root = root.resolve()
     registry = load_json(resolved_root / "_CONTROL_PLANE" / "LOCAL_SOURCE_REGISTRY.json")
+    municipal_registry_path = resolved_root / "_CONTROL_PLANE" / "MUNICIPAL_SOURCE_REGISTRY.json"
+    if municipal_registry_path.exists():
+        municipal_registry = load_json(municipal_registry_path)
+        registry.setdefault("pilot", {}).update(municipal_registry.get("pilot", {}))
     pilot = registry["pilot"]
     counts: dict[str, int] = {}
     for level, layer, entries_key in (
         ("county", "08_County_Authorities", "counties"),
+        ("municipal", "10_Municipal_Authorities", "municipalities"),
         ("district", "09_District_Authorities", "districts"),
     ):
         records = [_authority_from_entry(entry) for entry in pilot.get(entries_key, [])]
@@ -26,7 +31,11 @@ def materialize_pilot_authorities(root: Path) -> dict[str, int]:
         atomic_write_jsonl(metadata_path, records, resolved_root)
         indexes = [_index_record(record, metadata_path, resolved_root, layer) for record in records]
         index_path = resolved_root / layer / "_index.jsonl"
-        existing_rules = [row for row in iter_jsonl(index_path) if row.get("entity_type") == "local_rule"]
+        existing_rules = (
+            [row for row in iter_jsonl(index_path) if row.get("entity_type") == "local_rule"]
+            if index_path.exists()
+            else []
+        )
         atomic_write_jsonl(index_path, [*indexes, *existing_rules], resolved_root)
         counts[level] = len(records)
     return counts

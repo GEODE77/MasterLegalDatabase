@@ -163,19 +163,19 @@
       "id": "08_County_Authorities",
       "path": "08_County_Authorities",
       "entity_type": "local_authority,local_rule",
-      "record_count": 120075,
+      "record_count": 120341,
       "source": "local_county_registry",
       "format": [
         "markdown",
         "jsonl"
       ],
-      "last_ingested": "2026-07-16",
+      "last_ingested": "2026-07-20",
       "currency": null,
       "index_file": "08_County_Authorities/_index.jsonl",
       "known_gaps": [
         "Official county source-category gap audit is clear; semantic normalization and review queues remain open."
       ],
-      "last_checked": "2026-07-16",
+      "last_checked": "2026-07-20",
       "staleness_days": 0,
       "status": "ready",
       "derived_files": [
@@ -225,6 +225,31 @@
       "last_checked": "2026-07-16",
       "staleness_days": 0,
       "status": "ready"
+    },
+    {
+      "id": "10_Municipal_Authorities",
+      "path": "10_Municipal_Authorities",
+      "entity_type": "local_authority,local_rule",
+      "record_count": 85,
+      "source": "municipal_source_registry",
+      "format": [
+        "markdown",
+        "jsonl"
+      ],
+      "last_ingested": "2026-07-16",
+      "currency": null,
+      "index_file": "10_Municipal_Authorities/_index.jsonl",
+      "known_gaps": [
+        "Eighty-five priority municipal identities are registered; category-specific downloading and source verification is in progress.",
+        "The registry does not claim that an unlisted category is absent."
+      ],
+      "last_checked": "2026-07-16",
+      "staleness_days": 0,
+      "status": "in_progress",
+      "derived_files": [
+        "_CONTROL_PLANE/MUNICIPAL_SOURCE_REGISTRY.json",
+        "_CONTROL_PLANE/LOCAL_DOWNLOAD_MANIFEST.jsonl"
+      ]
     }
   ],
   "crosswalks_available": [

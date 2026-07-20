@@ -1263,14 +1263,14 @@
         "authority_id": "CO-COUNTY-ARAPAHOE",
         "authority_level": "county",
         "category": "building_construction",
-        "url": "https://files.arapahoeco.gov/your_county/county_departments/public_works_and_development/divisions/building/index.php"
+        "url": "https://files.arapahoeco.gov/your_county/county_departments/public_works_and_development/divisions/building/code_central_/index.php"
       },
       {
         "source_id": "county_arapahoe_parking_ordinance",
         "authority_id": "CO-COUNTY-ARAPAHOE",
         "authority_level": "county",
         "category": "roads_transportation_access",
-        "url": "https://files.arapahoeco.gov/your_county/codes_criteria_and_ordinances/parking_regulations_for_county_roads_and_properties_.php"
+        "url": "https://files.arapahoeco.gov/your_county/codes_criteria_and_ordinances/index.php"
       },
       {
         "source_id": "county_arapahoe_building_resolution",
@@ -1382,14 +1382,14 @@
         "authority_id": "CO-COUNTY-ARCHULETA",
         "authority_level": "county",
         "category": "subdivision_development",
-        "url": "https://www.archuletacounty.org/DocumentCenter/View/3689/Section-1--General-Admin-Amend-2022-32"
+        "url": "https://archuletacounty.org/93/Planning-Department"
       },
       {
         "source_id": "county_archuleta_land_use_general_building_construction",
         "authority_id": "CO-COUNTY-ARCHULETA",
         "authority_level": "county",
         "category": "building_construction",
-        "url": "https://www.archuletacounty.org/DocumentCenter/View/3689/Section-1--General-Admin-Amend-2022-32"
+        "url": "https://archuletacounty.org/93/Planning-Department"
       },
       {
         "source_id": "county_archuleta_zoning",
@@ -3573,7 +3573,7 @@
         "authority_id": "CO-COUNTY-WELD",
         "authority_level": "county",
         "category": "building_construction",
-        "url": "https://www.weld.gov/Legal-and-Public-Notices/Commissioner-Notices/2026-Commissioner-Notices/Ordinance-2026-05-First-Reading"
+        "url": "https://www.weld.gov/Legal-and-Public-Notices/Commissioner-Notices/2026-Commissioner-Notices"
       },
       {
         "source_id": "county_yuma_land_use",
@@ -3888,7 +3888,7 @@
         "authority_id": "CO-COUNTY-BROOMFIELD",
         "authority_level": "county",
         "category": "continuing_resolutions",
-        "url": "https://www.broomfield.org/2738/Council-Procedures-and-Rules-of-Order"
+        "url": "https://www.broomfield.org/467/Broomfield-Council-Meeting-Process-and-O"
       },
       {
         "source_id": "county_broomfield_meeting_archive",
@@ -4175,7 +4175,7 @@
         "authority_id": "CO-COUNTY-MESA",
         "authority_level": "county",
         "category": "animal_control_nuisance",
-        "url": "https://www.mesacounty.us/sites/default/files/2025-08/Resolution%202024-44%20%28updated%20Jan%202025%29ADA.pdf"
+        "url": "https://www.mesacounty.us/departments-and-services/sheriff/divisions/animal-control"
       },
       {
         "source_id": "county_mesa_fire_restrictions",
@@ -4658,7 +4658,7 @@
         "authority_id": "CO-COUNTY-ARAPAHOE",
         "authority_level": "county",
         "category": "continuing_resolutions",
-        "url": "https://www.arapahoeco.gov/your_county/board_of_county_commissioners/index.php",
+        "url": "https://files.arapahoeco.gov/your_county/board_of_county_commissioners/index.php",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.arapahoeco.gov/",
         "known_gaps": [
@@ -4670,7 +4670,7 @@
         "authority_id": "CO-COUNTY-ARAPAHOE",
         "authority_level": "county",
         "category": "county_codes",
-        "url": "https://www.arapahoeco.gov/your_county/codes_criteria_and_ordinances/index.php",
+        "url": "https://files.arapahoeco.gov/your_county/codes_criteria_and_ordinances/index.php",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.arapahoeco.gov/",
         "known_gaps": [
@@ -4682,7 +4682,7 @@
         "authority_id": "CO-COUNTY-ARAPAHOE",
         "authority_level": "county",
         "category": "public_health",
-        "url": "https://www.arapahoeco.gov/your_county/county_departments/public_health_department/index.php",
+        "url": "https://files.arapahoeco.gov/your_county/county_departments/public_health_department/index.php",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.arapahoeco.gov/",
         "known_gaps": [
@@ -4694,7 +4694,7 @@
         "authority_id": "CO-COUNTY-ARAPAHOE",
         "authority_level": "county",
         "category": "subdivision_development",
-        "url": "https://www.arapahoeco.gov/your_county/county_departments/public_works_and_development/index.php",
+        "url": "https://files.arapahoeco.gov/your_county/county_departments/public_works_and_development/divisions/planning_and_land_development/land_development_code_and_regulations/index.php",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.arapahoeco.gov/",
         "known_gaps": [
@@ -4850,7 +4850,7 @@
         "authority_id": "CO-COUNTY-CHAFFEE",
         "authority_level": "county",
         "category": "administrative_rule_manuals",
-        "url": "https://www.chaffeecounty.org/Documents/Departments/Attorney/CORA Policy-post on website 8-19-24.pdf",
+        "url": "https://search.chaffeecounty.org/",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.chaffeecounty.org/",
         "known_gaps": [
@@ -5390,7 +5390,7 @@
         "authority_id": "CO-COUNTY-PROWERS",
         "authority_level": "county",
         "category": "subdivision_development",
-        "url": "https://www.prowersco.gov/media/land-use-forms/Cluster Subdivision Application.pdf",
+        "url": "https://www.prowersco.gov/media/land-use/Prowers_County_Subdivision_Regulations.pdf",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.prowersco.gov/",
         "known_gaps": [
@@ -6266,7 +6266,7 @@
         "authority_id": "CO-COUNTY-RIO_BLANCO",
         "authority_level": "county",
         "category": "administrative_rule_manuals",
-        "url": "https://rbc.us/DocumentCenter/View/6070/RBC-LUR_Current",
+        "url": "https://www.rbc.us/314/Planning",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://rbc.us/314/Planning",
         "known_gaps": [
@@ -7526,7 +7526,7 @@
         "authority_id": "CO-COUNTY-WASHINGTON",
         "authority_level": "county",
         "category": "land_use_zoning",
-        "url": "https://www.co.washington.co.us/",
+        "url": "https://washingtoncounty.colorado.gov/departments",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.co.washington.co.us/",
         "known_gaps": [
@@ -7538,7 +7538,7 @@
         "authority_id": "CO-COUNTY-WASHINGTON",
         "authority_level": "county",
         "category": "roads_transportation_access",
-        "url": "https://www.co.washington.co.us/",
+        "url": "https://washingtoncounty.colorado.gov/departments",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.co.washington.co.us/",
         "known_gaps": [
@@ -7550,7 +7550,7 @@
         "authority_id": "CO-COUNTY-WASHINGTON",
         "authority_level": "county",
         "category": "emergency_fire_restrictions",
-        "url": "https://www.co.washington.co.us/",
+        "url": "https://washingtoncounty.colorado.gov/departments",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.co.washington.co.us/",
         "known_gaps": [
@@ -7574,7 +7574,7 @@
         "authority_id": "CO-COUNTY-WASHINGTON",
         "authority_level": "county",
         "category": "continuing_resolutions",
-        "url": "https://washingtoncounty.colorado.gov/commissioners",
+        "url": "https://washingtoncounty.colorado.gov/washington-county-commissioners",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.co.washington.co.us/",
         "known_gaps": [
@@ -7586,7 +7586,7 @@
         "authority_id": "CO-COUNTY-WASHINGTON",
         "authority_level": "county",
         "category": "archived_versions",
-        "url": "https://www.co.washington.co.us/",
+        "url": "https://washingtoncounty.colorado.gov/washington-county-commissioners",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.co.washington.co.us/",
         "known_gaps": [
@@ -7598,7 +7598,7 @@
         "authority_id": "CO-COUNTY-WASHINGTON",
         "authority_level": "county",
         "category": "administrative_rule_manuals",
-        "url": "https://washingtoncounty.colorado.gov/sites/g/files/lrnvjt1191/files/documents/Wind-Regs-Draft-2026.pdf",
+        "url": "https://washingtoncounty.colorado.gov/departments",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.co.washington.co.us/",
         "known_gaps": [
@@ -7622,7 +7622,7 @@
         "authority_id": "CO-COUNTY-WASHINGTON",
         "authority_level": "county",
         "category": "animal_control_nuisance",
-        "url": "https://www.co.washington.co.us/",
+        "url": "https://washingtoncounty.colorado.gov/departments",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.co.washington.co.us/",
         "known_gaps": [
@@ -7634,7 +7634,7 @@
         "authority_id": "CO-COUNTY-WASHINGTON",
         "authority_level": "county",
         "category": "building_construction",
-        "url": "https://www.co.washington.co.us/",
+        "url": "https://washingtoncounty.colorado.gov/departments",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.co.washington.co.us/",
         "known_gaps": [
@@ -7646,7 +7646,7 @@
         "authority_id": "CO-COUNTY-WASHINGTON",
         "authority_level": "county",
         "category": "public_health",
-        "url": "https://www.co.washington.co.us/",
+        "url": "https://washingtoncounty.colorado.gov/departments",
         "discovery_method": "archived_official_page_link",
         "discovery_parent_url": "https://www.co.washington.co.us/",
         "known_gaps": [

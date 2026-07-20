@@ -8,6 +8,7 @@ from pathlib import Path
 from jinja2 import Template
 
 from geode.orchestration.contracts import DraftRequest, PromptPacket, QueryState, StageLog, StageStatus
+from geode.orchestration.services import PromptPrefixBuilder
 from geode.orchestration.stages._stub import PassThroughStage
 
 POLICY_DIR = Path(__file__).parents[1] / "policies"
@@ -29,10 +30,16 @@ class InjectReasoningPoliciesStage(PassThroughStage):
             policies=policies,
             empty_expected_categories=state.empty_expected_categories,
         )
+        stable_prompt = PromptPrefixBuilder().split_rendered(rendered_prompt)
         packet = PromptPacket(
             policies=policies,
             rendered_prompt=rendered_prompt,
             evidence_ids=[item.evidence_id for item in state.evidence],
+            stable_prefix=stable_prompt.stable_prefix,
+            dynamic_suffix=stable_prompt.dynamic_suffix,
+            stable_prefix_hash=stable_prompt.prefix_hash,
+            stable_prefix_tokens=stable_prompt.prefix_tokens,
+            provider_cache_settings=stable_prompt.cache_settings.__dict__,
         )
         state.prompt_packet = packet
         state.draft_request = DraftRequest(

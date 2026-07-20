@@ -12,6 +12,7 @@ from typing import Protocol
 from geode.orchestration.contracts import (
     AuthorityLevel,
     Citation,
+    EvidenceContentType,
     Evidence,
     GraphLink,
     Provenance,
@@ -114,7 +115,7 @@ class LocalKnowledgeRetrievalBackend:
             if entity_type in {"rule_unit", "local_rule"} and row.get("semantic_status") in {
                 "source_preservation_only",
                 "needs_review",
-            }:
+            } and row.get("answer_mode") != "conditional":
                 continue
             if step.targets and entity_type not in step.targets:
                 continue
@@ -159,10 +160,18 @@ class LocalKnowledgeRetrievalBackend:
                     category_id=step.category_id,
                     source_category=str(row.get("source_category") or "") or None,
                     semantic_status=str(row.get("semantic_status") or "") or None,
+                    answer_mode=str(row.get("answer_mode") or "confirmed"),
+                    conditional_reason=str(row.get("conditional_reason") or "") or None,
                     answer_safe=(
                         entity_type != "rule_unit"
                         or str(row.get("semantic_status") or "") == "semantic_ready"
                     ),
+                    content_type=(
+                        EvidenceContentType.CONDITIONAL
+                        if row.get("answer_mode") == "conditional"
+                        else EvidenceContentType.LEGAL
+                    ),
+                    mandatory=row.get("answer_mode") != "conditional",
                     applicability=_applicability(row, state),
                     selection_reasons=_selection_reasons(row, state, score),
                     is_candidate=True,
@@ -218,9 +227,17 @@ class LocalKnowledgeRetrievalBackend:
                         category_id=evidence.category_id,
                         source_category=str(target.get("source_category") or "") or None,
                         semantic_status=str(target.get("semantic_status") or "") or None,
+                        answer_mode=str(target.get("answer_mode") or "confirmed"),
+                        conditional_reason=str(target.get("conditional_reason") or "") or None,
                         answer_safe=(
                             target_status not in {"source_preservation_only", "needs_review"}
                         ),
+                        content_type=(
+                            EvidenceContentType.CONDITIONAL
+                            if target.get("answer_mode") == "conditional"
+                            else EvidenceContentType.LEGAL
+                        ),
+                        mandatory=target.get("answer_mode") != "conditional",
                         is_candidate=True,
                         relationship_path=[*evidence.relationship_path, source_id, target_id],
                     )

@@ -8,7 +8,7 @@ import json
 import os
 import re
 from collections import Counter
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any, Callable, Sequence
 from urllib.parse import urlencode, urlparse
@@ -187,7 +187,7 @@ def write_official_source_check_report(
     report = build_official_source_check_report(resolved_root, fetch_source=fetch_source)
     atomic_write_json(resolved_root / REPORT_PATH, report, resolved_root)
     atomic_write_jsonl(resolved_root / ROWS_PATH, report.items, resolved_root)
-    docs_path = DOCS_REPORT_DIR / f"OFFICIAL_SOURCE_CHECK_REPORT_{report.generated_at.date()}.md"
+    docs_path = DOCS_REPORT_DIR / f"OFFICIAL_SOURCE_CHECK_REPORT_{date.today()}.md"
     atomic_write_text(resolved_root / docs_path, _docs_report(report), resolved_root)
     return report
 
