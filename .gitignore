@@ -20,6 +20,9 @@ htmlcov/
 
 # Generated dependency and temporary artifacts
 node_modules/
+.pnpm-store/
+apps/web/.next/
+apps/web/*.log
 _tmp_*
 
 # IDE
